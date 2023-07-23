@@ -15,6 +15,36 @@ import {
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
+const LANGUAGES = new Set(['en', 'ms']);
+
+let language;
+
+export function getLanguageFromPath(pathname, resetCache = false) {
+  if (resetCache) {
+    language = undefined;
+  }
+
+  if (language !== undefined) return language;
+
+  const segs = pathname.split('/');
+  if (segs.length > 1) {
+    const l = segs[1];
+    if (LANGUAGES.has(l)) {
+      language = l;
+    }
+  }
+
+  if (language === undefined) {
+    language = 'en'; // default to English
+  }
+
+  return language;
+}
+
+export function getLanguage(curPath = window.location.pathname, resetCache = false) {
+  return getLanguageFromPath(curPath, resetCache);
+}
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
