@@ -12,12 +12,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "git add"
+      "eslint"
     ],
     "*.css": [
-      "stylelint --fix",
-      "git add"
+      "stylelint"
     ]
   },
   "repository": {
