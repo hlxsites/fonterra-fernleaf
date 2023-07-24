@@ -14,7 +14,7 @@ footer ul {
   margin: 0;
 }
 
-@media only screen and (max-width: 1023px) {
+@media only screen and (max-width: 899px) {
   footer .columns > div {
     flex-direction: column;
     text-align: center;
@@ -37,7 +37,7 @@ footer ul {
   }
 }
 
-@media only screen and (min-width: 1024px) {
+@media only screen and (min-width: 900px) {
   footer .columns > div :nth-child(2) {
     text-align: center;
     flex-grow: 2;
