@@ -1,4 +1,5 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import { getLanguage } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -92,7 +93,11 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 export default async function decorate(block) {
   // fetch nav content
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
+  let navPath = navMeta ? new URL(navMeta).pathname : '/nav';
+  if (!navMeta) {
+    navPath = getLanguage() === 'en' ? '/nav' : `/${getLanguage()}/nav`;
+  }
+
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {
