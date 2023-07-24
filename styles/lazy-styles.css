@@ -1,1 +1,40 @@
 /* below the fold CSS goes here */
+@font-face {
+    font-family: iconanchor;
+    src: url('fonts/icon/iconanchor.woff2') format('woff2'), url('fonts/icon/iconanchor.woff') format('woff'), url('fonts/icon/iconanchor.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: mark-ot;
+    src: url('fonts/Mark-OT.woff2') format('woff2'), url('fonts/Mark-OT.woff') format('woff'), url('fonts/Mark-OT.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: mark-ot-bold;
+    src: url('fonts/Mark-OT-Bold.woff2') format('woff2'), url('fonts/Mark-OT-Bold.woff') format('woff'), url('fonts/Mark-OT-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: mark-ot-book;
+    src: url('fonts/Mark-OT-Book.woff2') format('woff2'), url('fonts/Mark-OT-Book.woff') format('woff'), url('fonts/Mark-OT-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: mark-ot-light;
+    src: url('fonts/Mark-OT-Light.woff2') format('woff2'), url('fonts/Mark-OT-Light.woff') format('woff'), url('fonts/Mark-OT-Light.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
