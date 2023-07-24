@@ -1,14 +1,58 @@
 footer {
-  padding: 2rem;
-  background-color: var(--overlay-background-color);
+  padding: 20px;
   font-size: var(--body-font-size-s);
+  background-color: var(--background-color);  
 }
 
-footer .footer {
-  max-width: 1200px;
-  margin: auto;
+footer .columns > div {
+  display: flex;
 }
 
-footer .footer p {
+footer ul {
+  list-style: none;
+  padding: 0;
   margin: 0;
+}
+
+@media only screen and (max-width: 1023px) {
+  footer .columns > div {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  footer .columns > div :nth-child(1) {
+    order: 4;
+  }
+
+  footer .columns > div :nth-child(2) {
+    order: 2;
+  }
+
+  footer .columns > div :nth-child(3) {
+    order: 1;
+  }
+
+  footer .columns > div :nth-child(4) {
+    order: 3;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  footer .columns > div :nth-child(2) {
+    text-align: center;
+    flex-grow: 2;
+  }
+
+  footer .columns > div :nth-child(2) ul {
+    display: inline-flex;
+  }
+}
+
+footer .columns > div :nth-child(2) ul li {
+  padding: 0 17px;
+}
+
+/* TODO: Implement country selector popup */
+footer .columns.country-selector {
+  display: none;
 }

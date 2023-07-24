@@ -93,7 +93,11 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 export default async function decorate(block) {
   // fetch nav content
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta).pathname : (getLanguage() === 'en' ? '/nav' : `/${getLanguage()}/nav`);
+  let navPath = navMeta ? new URL(navMeta).pathname : '/nav';
+  if (!navMeta) {
+    navPath = getLanguage() === 'en' ? '/nav' : `/${getLanguage()}/nav`;
+  }
+
   const resp = await fetch(`${navPath}.plain.html`);
 
   if (resp.ok) {
