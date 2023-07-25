@@ -1,14 +1,15 @@
-/* below the fold CSS goes here */
+/* iconanchor */
 @font-face {
-    font-family: iconanchor;
-    src: url('fonts/icon/iconanchor.woff2') format('woff2'), url('fonts/icon/iconanchor.woff') format('woff'), url('fonts/icon/iconanchor.ttf') format('truetype');
+    font-family: 'iconanchor';
+    src: url('fonts/icon/iconanchor.woff') format('woff'), url('fonts/icon/iconanchor.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
 }
 
+/* Mark-OT Fonts */
 @font-face {
-    font-family: mark-ot;
+    font-family: 'Mark-OT';
     src: url('fonts/Mark-OT.woff2') format('woff2'), url('fonts/Mark-OT.woff') format('woff'), url('fonts/Mark-OT.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
@@ -16,24 +17,118 @@
 }
 
 @font-face {
-    font-family: mark-ot-bold;
-    src: url('fonts/Mark-OT-Bold.woff2') format('woff2'), url('fonts/Mark-OT-Bold.woff') format('woff'), url('fonts/Mark-OT-Bold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: mark-ot-book;
-    src: url('fonts/Mark-OT-Book.woff2') format('woff2'), url('fonts/Mark-OT-Book.woff') format('woff'), url('fonts/Mark-OT-Book.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: mark-ot-light;
+    font-family: 'Mark-OT';
     src: url('fonts/Mark-OT-Light.woff2') format('woff2'), url('fonts/Mark-OT-Light.woff') format('woff'), url('fonts/Mark-OT-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mark-OT';
+    src: url('fonts/Mark-OT-Medium.woff2') format('woff2'), url('fonts/Mark-OT-Medium.woff') format('woff'), url('fonts/Mark-OT-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Mark-OT';
+    src: url('fonts/Mark-OT-Bold.woff2') format('woff2'), url('fonts/Mark-OT-Bold.woff') format('woff'), url('fonts/Mark-OT-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Mark-OT Book Fonts */
+@font-face {
+    font-family: 'Mark-OT-Book';
+    src: url('fonts/Mark-OT-Book.woff2') format('woff2'), url('fonts/Mark-OT-Book.woff') format('woff'), url('fonts/Mark-OT-Book.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Stag Fonts */
+@font-face {
+    font-family: 'Stag';
+    src: url('fonts/Stag-Semibold.woff2') format('woff2'), url('fonts/Stag-Semibold.woff') format('woff'), url('fonts/Stag-Semibold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Stag';
+    src: url('fonts/Stag-Medium.woff2') format('woff2'), url('fonts/Stag-Medium.woff') format('woff'), url('fonts/Stag-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Stag Book Fonts */
+@font-face {
+    font-family: 'Stag-Book';
+    src: url('fonts/Stag-Book.woff2') format('woff2'), url('fonts/Stag-Book.woff') format('woff'), url('fonts/Stag-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* StagSans Fonts */
+@font-face {
+    font-family: 'StagSans-Light';
+    src: url('fonts/StagSans-Light.woff2') format('woff2'), url('fonts/StagSans-Light.woff') format('woff'), url('fonts/StagSans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'StagSans-Medium';
+    src: url('fonts/StagSans-Medium.woff2') format('woff2'), url('fonts/StagSans-Medium.woff') format('woff'), url('fonts/StagSans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* StagSans Book Fonts */
+@font-face {
+    font-family: 'StagSans-Book';
+    src: url('fonts/StagSans-Book.woff2') format('woff2'), url('fonts/StagSans-Book.woff') format('woff'), url('fonts/StagSans-Book.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Other Fonts */
+@font-face {
+    font-family: 'Evenfall-Oblique';
+    src: url('fonts/Evenfall-Oblique.woff2') format('woff2'), url('fonts/Evenfall-Oblique.woff') format('woff'), url('fonts/Evenfall-Oblique.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GE-SS-Two-Bold';
+    src: url('fonts/GE-SS-Two-Bold.woff2') format('woff2'), url('fonts/GE-SS-Two-Bold.woff') format('woff'), url('fonts/GE-SS-Two-Bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GE-Thameen-DemiBold-Italic';
+    src: url('fonts/GE-Thameen-DemiBold-Italic.woff2') format('woff2'), url('fonts/GE-Thameen-DemiBold-Italic.woff') format('woff'), url('fonts/GE-Thameen-DemiBold-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cairo';
+    src: url('fonts/Cairo.woff2') format('woff2'), url('fonts/Cairo.woff') format('woff'), url('fonts/Cairo.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap;

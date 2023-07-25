@@ -12,51 +12,84 @@
 
  :root {
   /* fonts */
-  --body-font-family: mark-ot-book, helvetica, arial, sans-serif;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: "Roboto Mono", menlo, consolas, "Liberation Mono", monospace;
+  --global-primary-font-family: "Mark-OT", Helvetica, Arial, sans-serif;
+  --global-secondary-font-family: "Mark-OT-Book", Helvetica, Arial, sans-serif;
+  --global-tertiary-font-family: "Stag",Georgia, "Times New Roman", Times, serif;
+  --body-font-family: var(--global-primary-font-family);
+  --heading-font-family: var(--global-tertiary-font-family);
+  --fixed-font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  
+  /* Colors - Global Names */
+  --global-color-black: #000;
+  --global-color-white: #fff;  
+  --global-color-snow: #f5f5f7;
+  --global-color-silver: #c1c1c1;
+  --global-color-platinum: #f0f0f0;
+  --global-color-gray: #808080;
+  --global-color-foggy-gray: #dadfe9;
+  --global-color-dim-gray: #6c6c6c;
+  --global-color-dark-gray: #242424;
+  --global-color-red: #ed1c24;
+  --global-color-tomato-red: #e0271d;
+  --global-color-scarlet: #e1271d;
+  --global-color-pine-green: #006938;
+  --global-color-dark-blue: #00338d;
+  --global-color-yellow: #fedf00;
+  --global-color-selective-yellow: #f0ab00;
+  --global-color-dark-goldenrod: #c18812;
 
-  /* colors */
-  --text-color: #000;
-  --link-color: #000;
-  --link-hover-color: #000;
-  --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
+  /* Colors - Alias Names */
+  --text-color: var(--global-color-black);
+  --link-color: var(--global-color-black);
+  --link-hover-color: var(--global-color-black);
+  --border-highlight-color: var(--global-color-selective-yellow);
+  --overlay-background-color: var(--global-color-dim-gray);
+  --highlight-background-color: var(--global-color-silver);
 
   /* body sizes */
-  --body-font-size-l: 21.168px;
+  --body-font-size-l: 20px;
   --body-font-size-m: 16px;
   --body-font-size-s: 12px;
 
   /* heading sizes */
-  --heading-font-size-xxl: 20px;
-  --heading-font-size-xl: 18px;
-  --heading-font-size-l: 16px;
-  --heading-font-size-m: 14px;
-  --heading-font-size-s: 12px;
-  --heading-font-size-xs: 10px;
+  --heading-font-size-xxl: 32px;
+  --heading-font-size-xl: 24px;
+  --heading-font-size-l: 20px;
+  --heading-font-size-m: 18px;
+  --heading-font-size-s: 16px;
+  --heading-font-size-xs: 14px;
 
   /* nav height */
   --nav-height: 4.375rem;
 }
 
-@media (min-width: 900px) {
+@media (min-width: 600px) {
   :root {
-    --heading-font-size-xxl: 60px;
-    --heading-font-size-xl: 48px;
-    --heading-font-size-l: 36px;
-    --heading-font-size-m: 30px;
+    --heading-font-size-xxl: 40px;
+    --heading-font-size-xl: 32px;
+    --heading-font-size-l: 28px;
+    --heading-font-size-m: 26px;
     --heading-font-size-s: 24px;
     --heading-font-size-xs: 22px;
   }
 }
 
+@media (min-width: 900px) {
+  :root {
+    --heading-font-size-xxl: 48px;
+    --heading-font-size-xl: 40px;
+    --heading-font-size-l: 36px;
+    --heading-font-size-m: 34px;
+    --heading-font-size-s: 32px;
+    --heading-font-size-xs: 30px;
+  }
+}
+
 body {
-  font-size: var(--body-font-size-m);
-  margin: 0;
   font-family: var(--body-font-family);
+  font-size: var(--body-font-size-m);
   line-height: 1;
+  margin: 0;  
   color: var(--text-color);
   display: none;
 }
@@ -72,7 +105,6 @@ header {
 h1, h2, h3,
 h4, h5, h6 {
   font-family: var(--heading-font-family);
-  font-weight: 600;
   line-height: 1.25;
   margin-top: 1em;
   margin-bottom: .5em;
