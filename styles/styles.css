@@ -12,12 +12,12 @@
 
  :root {
   /* fonts */
-  --global-primary-font-family: "Mark-OT", Helvetica, Arial, sans-serif;
-  --global-secondary-font-family: "Mark-OT-Book", Helvetica, Arial, sans-serif;
-  --global-tertiary-font-family: "Stag",Georgia, "Times New Roman", Times, serif;
+  --global-primary-font-family: mark-ot, helvetica, arial, sans-serif;
+  --global-secondary-font-family: mark-ot-book, helvetica, arial, sans-serif;
+  --global-tertiary-font-family: stag, georgia, "Times New Roman",times, serif;
   --body-font-family: var(--global-primary-font-family);
   --heading-font-family: var(--global-tertiary-font-family);
-  --fixed-font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+  --fixed-font-family: monaco, menlo, monsolas, "Courier New", monospace;
   
   /* Colors - Global Names */
   --global-color-black: #000;
