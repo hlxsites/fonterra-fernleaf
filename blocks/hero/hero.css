@@ -31,6 +31,7 @@
     margin: 0;
     padding: 0;
 }
+
 .hero .hero__description .button-container a {
     width:100%;
 }
@@ -55,8 +56,8 @@
     position: relative;
 }
 
-.recipe .hero .hero__bg:after,
-.product .hero .hero__bg:after {
+.recipe .hero .hero__bg::after,
+.product .hero .hero__bg::after {
     background-position: bottom;
     background-size: cover;
     bottom: 0;    
@@ -68,8 +69,8 @@
     top: 0;
 }
 
-.recipe .hero .hero__bg:after {
-    background-image: url(../../styles/images/milk-splash-mobile.png);
+.recipe .hero .hero__bg::after {
+    background-image: url("../../styles/images/milk-splash-mobile.png");
 }
 
 .recipe .hero .hero__bg img {
@@ -81,12 +82,14 @@
     position: absolute;
     z-index: 1;
 }
+
 .product .hero .hero__product {
     position: relative;
     z-index: 2;
 }
-.product .hero .hero__bg:after {
-    background-image: url(../../styles/images/product-milk-splash-mobile.png);
+
+.product .hero .hero__bg::after {
+    background-image: url("../../styles/images/product-milk-splash-mobile.png");
 }
 
 @media (min-width: 600px) {
@@ -94,16 +97,19 @@
     .hero {
         min-height: unset;
     }
+
     .hero .hero__bg img {
         min-height: 500px;
         object-fit: cover;
     }
+
     .hero .hero__description {
         padding: 0;
         top: 50%;
         transform: translate(0, -50%);
         width: 48%;
     }
+
     .hero .hero__description .button-container a {
         width: auto;
     }
@@ -113,20 +119,24 @@
         height: 18.6rem;
         min-height: unset;
     }
+
     /* Recipe & Product - Hero Banner */
     .recipe .hero .hero__bg img {
         height: 18.75rem;
         min-height: unset;
     }
-    .recipe .hero .hero__bg:after {
-        background-image: url(../../styles/images/milk-splash-desktop.png);
+
+    .recipe .hero .hero__bg::after {
+        background-image: url("../../styles/images/milk-splash-desktop.png");
     }
+
     .product .hero .hero__bg img {
         min-height: unset;
         object-fit: unset;
     }
-    .product .hero .hero__bg:after {
-        background-image: url(../../styles/images/product-milk-splash-desktop.png);
+
+    .product .hero .hero__bg::after {
+        background-image: url("../../styles/images/product-milk-splash-desktop.png");
     }
 }
 
@@ -138,6 +148,7 @@
         line-height: 4.063rem;
         margin: 0.938rem 0 1.188rem;
     }
+
     .hero .hero__description p {
         font-size: 1rem;
         line-height: 1.375rem;
@@ -147,6 +158,7 @@
     .hero.main .hero__bg img {
         height: 38.75rem;        
     }
+
     /* Recipe - Hero Banner */
     .recipe .hero .hero__bg img {
         height: 29.875rem;
@@ -158,6 +170,7 @@
     .hero.main .hero__bg img {
         height: 43.625rem;
     }
+
     /* Recipe - Hero Banner */
     .recipe .hero .hero__bg img {
         height: 25rem;
