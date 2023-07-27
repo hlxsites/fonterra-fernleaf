@@ -19,7 +19,7 @@
   --heading-font-family: var(--global-tertiary-font-family);
   --heading-font-family-light: stag-sans-light, helvetica, arial, sans-serif;
   --fixed-font-family: monaco, menlo, monsolas, "Courier New", monospace;
-  --footer-secondary-font-family: stag-sans-light, georgia, "Times New Roman", times, serif;
+  --footer-secondary-font-family: stag-sans-book, georgia, "Times New Roman", times, serif;
 
   /* Colors - Global Names */
   --global-color-black: #000;

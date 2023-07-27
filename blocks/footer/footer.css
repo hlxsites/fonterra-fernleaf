@@ -14,6 +14,11 @@ footer ul {
   margin: 0;
 }
 
+footer ul li a:any-link {
+  color: var(--global-color-dark-gray);
+  text-decoration: none;
+}
+
 footer .columns > div {
   display: flex;
   flex-direction: column;
@@ -34,7 +39,6 @@ footer .columns > div :nth-child(2) ul {
   display: flex;
   justify-content: center;
   font-family: var(--footer-secondary-font-family);
-  font-weight: 600;
 }
 
 footer .columns > div :nth-child(2) ul li {
