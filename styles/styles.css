@@ -15,7 +15,7 @@
   --global-primary-font-family: mark-ot, helvetica, arial, sans-serif;
   --global-secondary-font-family: mark-ot-book, helvetica, arial, sans-serif;
   --global-tertiary-font-family: stag, georgia, "Times New Roman",times, serif;
-  --global-quaternary-font-family: stag-sans-book, Helvetica, Arial, sans-serif;
+  --global-quaternary-font-family: stag-sans-book, helvetica, arial, sans-serif;
   --body-font-family: var(--global-primary-font-family);
   --heading-font-family: var(--global-tertiary-font-family);
   --heading-font-family-light: stag-sans-light, helvetica, arial, sans-serif;
