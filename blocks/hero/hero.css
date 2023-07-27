@@ -99,7 +99,9 @@
         object-fit: cover;
     }
     .hero .hero__description {
-        padding: 6.25rem 0 5.625rem;
+        padding: 0;
+        top: 50%;
+        transform: translate(0, -50%);
         width: 48%;
     }
     .hero .hero__description .button-container a {
