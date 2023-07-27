@@ -35,6 +35,17 @@ function openOnKeydown(e) {
 function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
 }
+function resetNavSection() {
+  const navSection = nav.querySelector('.nav-sections');
+  navSection.classList.remove('child-section-enable');
+  nav.querySelector(".nav-drop").classList.remove('child-section');
+}
+function enableSubNavSection(e) {
+  const navSection = nav.querySelector('.nav-sections');
+  navSection.classList.add('child-section-enable');
+  e.currentTarget.closest('.nav-drop').classList.add('child-section');
+  navSection.querySelector('.nav-back-btn').addEventListener('click', resetNavSection);
+}
 
 /**
  * Toggles all nav sections
@@ -72,6 +83,15 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     });
   } else {
     navDrops.forEach((drop) => {
+      drop.setAttribute('aria-expanded', false);
+      if (forceExpanded === null) {
+        const mobileIcon = nav.querySelector('.mobile-icon')
+        if (!mobileIcon) {
+          drop.insertAdjacentHTML('afterbegin', "<a class='mobile-icon'><span class='arrow-right'></span></a>");
+          drop.querySelector('ul').insertAdjacentHTML('afterbegin', "<li class='nav-back-btn'><span>Back To Main Menu</span></li>");
+          drop.querySelector(".arrow-right").addEventListener('click', (e) => enableSubNavSection(e));
+        }
+      }
       drop.removeAttribute('role');
       drop.removeAttribute('tabindex');
       drop.removeEventListener('focus', focusNavSection);
@@ -139,7 +159,10 @@ export default async function decorate(block) {
     nav.setAttribute('aria-expanded', 'false');
     // prevent mobile nav behavior on window resize
     toggleMenu(nav, navSections, isDesktop.matches);
-    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+    isDesktop.addEventListener('change', () => {
+      resetNavSection();
+      toggleMenu(nav, navSections, isDesktop.matches)
+    });
 
     decorateIcons(nav);
     const navWrapper = document.createElement('div');

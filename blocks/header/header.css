@@ -18,18 +18,18 @@ header nav {
   font-family: var(--body-font-family);
 }
 
-
-
 @media (min-width: 600px) {
   header nav {
     padding: 0 43px 0px 0;
     gap: 0;
   }
 
-  
+
 }
+
 @media (max-width: 900px) {
-  header nav .nav-sections > ul {
+  
+  header nav .nav-sections>ul {
     display: block;
     background-color: var(--global-color-white);
     white-space: initial;
@@ -40,10 +40,12 @@ header nav {
     height: 100%;
     margin: 0;
     list-style: none;
+    overflow: auto;
   }
+
   header nav a:any-link {
     display: block;
-    padding: 1.125rem 1.875rem 1.25rem 0.938rem;
+    padding: 1.125rem 1rem 1.25rem 0.575rem;
     margin: 0;
     text-align: left;
     background-color: var(--global-color-Alabaster);
@@ -75,6 +77,7 @@ header nav p {
 header nav a:any-link {
   color: currentcolor;
   text-decoration: none;
+  padding: 7px 10px 7px 9px;;
 }
 
 /* hamburger */
@@ -205,7 +208,6 @@ header nav[aria-expanded="true"] .nav-sections {
 header nav .nav-sections ul {
   list-style: none;
   padding-left: 0;
-  font-size: var(--body-font-size-s);
   font-weight: 500;
 }
 
@@ -223,14 +225,80 @@ header nav .nav-sections ul>li>ul>li {
   font-weight: 500;
 }
 @media (max-width: 900px) {
-  header nav .nav-sections ul>li{
+  header nav .nav-sections ul>li {
     font-weight: 700;
     float: none;
     display: block;
     position: relative;
     border-top: 1px solid var(--global-color-Mercury);
   }
+
+  header nav .nav-sections>ul>li:not(.child-section) >ul {
+    display: none;
+  }
+  .child-section-enable > ul > li:not(.child-section) {  
+    display: none;  
+  }  
+  .child-section-enable > ul > li > a:not(.mobile-icon) {  
+    display: none;  
+  } 
+  header nav .nav-sections .child-section .mobile-icon{
+    display: none;
+  }
+  header nav .sub-nav li a {
+    color: initial;
+  }
+
+  header nav .sub-nav span {
+    color: currentcolor;
+    text-decoration: none;
+    padding: 1.125rem 1.575rem 1.25rem 1.575rem;
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    font-size: .875rem;
+    cursor: pointer;
+  }
+  
+  header nav .nav-back-btn span {
+    padding: 1.125rem 1.575rem 1.25rem 1.575rem;
+    text-align: center;
+    display: block;
+    text-transform: uppercase;
+    font-size: .775rem;
+    cursor: pointer;
+    color: var(--global-color-pine-green);
+    font-weight: bold;
+  }
+  header nav .nav-sections .nav-drop .mobile-icon span {
+    position: absolute;
+    right: 0;
+    padding: 15px 22px;
+    font-family: 'iconanchor' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  header nav .nav-sections .nav-drop .mobile-icon:before {
+    content: "";
+    position: absolute;
+    top: 4px;
+    height: 2.5rem;
+    width: 0.063rem;
+    background-color: var(--global-color-Mercury);
+    right: 50px;
+  }
+
+  header nav .nav-sections .nav-drop .mobile-icon span:before {
+    content: "\e902";
+  }
 }
+
 @media (min-width: 900px) {
   header nav .nav-sections {
     display: block;
@@ -249,12 +317,10 @@ header nav .nav-sections ul>li>ul>li {
     cursor: pointer;
   }
 
-
   header nav .nav-sections ul {
     display: flex;
-    gap: 2em;
     margin: 0;
-    font-size: var(--body-font-size-xs);
+    font-size: .875rem;
     margin-left: auto;
     margin-right: auto;
     width: fit-content;
@@ -269,8 +335,9 @@ header nav .nav-sections ul>li>ul>li {
     justify-content: center;
     align-items: center;
     border-bottom: 3px;
-    font-size: .875rem;
     cursor: pointer;
+    font-size: 0.835rem;
+    margin: 0 .11px 0 9px;
   }
 
   header nav .nav-sections>ul>li>strong {
@@ -286,7 +353,7 @@ header nav .nav-sections ul>li>ul>li {
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 3px;
     background: var(--global-color-selective-yellow);
     transition: width 0.3s;
   }
@@ -305,7 +372,7 @@ header nav .nav-sections ul>li>ul>li {
     background-color: var(--global-color-white);
     white-space: initial;
     position: fixed;
-    top: var(--nav-height);
+    top: calc(var(--nav-height) + 1px);
     left: 0;
     width: 100%;
     height: 100%;
@@ -316,8 +383,11 @@ header nav .nav-sections ul>li>ul>li {
 
   header nav .nav-sections>ul>li>ul>li {
     padding: 0.625rem 0 0.75rem;
-    width: 473px;
+    width: 475px;
     margin: auto
+  }
+  header nav .nav-sections>ul>li>ul>li.nav-back-btn{
+    display: none;
   }
 }
 
