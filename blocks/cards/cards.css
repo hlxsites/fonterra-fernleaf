@@ -7,11 +7,12 @@
 }
 
 .cards ul li {
-  text-align: center;
+  text-align: left;
 }
 
 @media (min-width: 600px) {
   .cards ul li {
+    text-align: center;
     flex-basis: 50%;
   }
 }
