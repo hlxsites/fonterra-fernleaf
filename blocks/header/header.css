@@ -18,6 +18,25 @@ header nav {
   font-family: var(--body-font-family);
 }
 
+span.icon.icon-search svg {
+  display: none;
+}
+
+span.icon.icon-search {
+  background: var(--global-color-pine-green);
+  border-radius: 50%;
+  padding: 20px;
+  color: white;
+  position: relative;
+}
+
+span.icon.icon-search::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media (min-width: 600px) {
   header nav {
     padding: 0 43px 0px 0;
@@ -28,7 +47,7 @@ header nav {
 }
 
 @media (max-width: 900px) {
-  
+
   header nav .nav-sections>ul {
     display: block;
     background-color: var(--global-color-white);
@@ -45,14 +64,18 @@ header nav {
 
   header nav a:any-link {
     display: block;
-    padding: 1.125rem 1rem 1.25rem 0.575rem;
     margin: 0;
     text-align: left;
     background-color: var(--global-color-Alabaster);
     font-size: .75rem;
+    padding: 20px 10px;
+  }
+  header nav > div.nav-sections > ul > li > a  {
+    color: var(--global-color-pine-green);;
   }
 
 }
+
 @media (min-width: 900px) {
   header nav {
     display: flex;
@@ -65,7 +88,14 @@ header nav {
     overflow: visible;
     overflow-y: auto;
   }
-
+  header nav a:any-link {
+    text-decoration: none;
+    padding: 27px 10px;
+    color: var(--global-color-pine-green);
+  }
+  header nav > div.nav-sections > ul > li.nav-drop > ul > li > a{
+    color: initial;
+  }
 }
 
 
@@ -74,11 +104,7 @@ header nav p {
   line-height: 1;
 }
 
-header nav a:any-link {
-  color: currentcolor;
-  text-decoration: none;
-  padding: 7px 10px 7px 9px;;
-}
+
 
 /* hamburger */
 header nav .nav-hamburger {
@@ -224,6 +250,7 @@ header nav .nav-sections ul>li>ul {
 header nav .nav-sections ul>li>ul>li {
   font-weight: 500;
 }
+
 @media (max-width: 900px) {
   header nav .nav-sections ul>li {
     font-weight: 700;
@@ -233,18 +260,22 @@ header nav .nav-sections ul>li>ul>li {
     border-top: 1px solid var(--global-color-Mercury);
   }
 
-  header nav .nav-sections>ul>li:not(.child-section) >ul {
+  header nav .nav-sections>ul>li:not(.child-section)>ul {
     display: none;
   }
-  .child-section-enable > ul > li:not(.child-section) {  
-    display: none;  
-  }  
-  .child-section-enable > ul > li > a:not(.mobile-icon) {  
-    display: none;  
-  } 
-  header nav .nav-sections .child-section .mobile-icon{
+
+  .child-section-enable>ul>li:not(.child-section) {
     display: none;
   }
+
+  .child-section-enable>ul>li>a:not(.mobile-icon) {
+    display: none;
+  }
+
+  header nav .nav-sections .child-section .mobile-icon {
+    display: none;
+  }
+
   header nav .sub-nav li a {
     color: initial;
   }
@@ -259,7 +290,7 @@ header nav .nav-sections ul>li>ul>li {
     font-size: .875rem;
     cursor: pointer;
   }
-  
+
   header nav .nav-back-btn span {
     padding: 1.125rem 1.575rem 1.25rem 1.575rem;
     text-align: center;
@@ -270,6 +301,7 @@ header nav .nav-sections ul>li>ul>li {
     color: var(--global-color-pine-green);
     font-weight: bold;
   }
+
   header nav .nav-sections .nav-drop .mobile-icon span {
     position: absolute;
     right: 0;
@@ -358,6 +390,10 @@ header nav .nav-sections ul>li>ul>li {
     transition: width 0.3s;
   }
 
+  header nav .active:after {
+    width: 100% !important;
+  }
+
   header nav .nav-sections>ul>li:hover::after {
     width: 100%;
   }
@@ -386,7 +422,8 @@ header nav .nav-sections ul>li>ul>li {
     width: 475px;
     margin: auto
   }
-  header nav .nav-sections>ul>li>ul>li.nav-back-btn{
+
+  header nav .nav-sections>ul>li>ul>li.nav-back-btn {
     display: none;
   }
 }

@@ -137,6 +137,15 @@ export default async function decorate(block) {
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
+        debugger
+        // navSection.querySelector("a").forEach((anchorSection)=>{
+        //   if(anchorSection.href === window.location.pathname){
+        //     navSection.classList.add("active")
+        //   }
+        // });
+        if (navSection.querySelector("a").href === window.location.href) {
+          navSection.classList.add("active")
+        }
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('mouseenter', () => {
           if (isDesktop.matches) {
@@ -154,7 +163,10 @@ export default async function decorate(block) {
     hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
         <span class="nav-hamburger-icon"></span>
       </button>`;
-    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+    hamburger.addEventListener('click', () => {
+      resetNavSection();
+      toggleMenu(nav, navSections);
+    });
     nav.prepend(hamburger);
     nav.setAttribute('aria-expanded', 'false');
     // prevent mobile nav behavior on window resize
