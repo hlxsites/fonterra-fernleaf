@@ -264,12 +264,12 @@ main img {
 .section > div {
   max-width: 61.25rem;
   margin: 0 auto;
-  padding: 30px 0;
+  padding: 0 0.938rem;
 }
 
-@media (max-width: 899px) {
+@media (min-width: 900px) {
   .section > div {
-    padding: 0 0.938rem;
+    padding: 30px 0;
   }
 }
 
