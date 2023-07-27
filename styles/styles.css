@@ -10,19 +10,21 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+:root {
   /* fonts */
   --global-primary-font-family: mark-ot, helvetica, arial, sans-serif;
   --global-secondary-font-family: mark-ot-book, helvetica, arial, sans-serif;
-  --global-tertiary-font-family: stag, georgia, "Times New Roman",times, serif;
+  --global-tertiary-font-family: stag, georgia, "Times New Roman", times, serif;
   --body-font-family: var(--global-primary-font-family);
   --heading-font-family: var(--global-tertiary-font-family);
   --heading-font-family-light: stag-sans-light, helvetica, arial, sans-serif;
   --fixed-font-family: monaco, menlo, monsolas, "Courier New", monospace;
-  
+  --footer-secondary-font-family: stag-sans-light, georgia, "Times New Roman",
+    times, serif;
+
   /* Colors - Global Names */
   --global-color-black: #000;
-  --global-color-white: #fff;  
+  --global-color-white: #fff;
   --global-color-snow: #f5f5f7;
   --global-color-silver: #c1c1c1;
   --global-color-platinum: #f0f0f0;
@@ -62,6 +64,10 @@
 
   /* nav height */
   --nav-height: 4.375rem;
+
+  /* footer height */
+  --footer-height-mobile: 12.5rem;
+  --footer-height-desktop: 4.375rem;
 }
 
 @media (min-width: 600px) {
@@ -82,63 +88,73 @@
   }
 }
 
+html {
+  height: 100%;
+}
+
 body {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1;
-  margin: 0;  
+  line-height: 1.5;
+  margin: 0;
   color: var(--text-color);
   display: none;
+  position: relative;
+  min-height: 100%;
+  padding-bottom: var(--footer-height-mobile);
 }
 
 body.appear {
-  display: unset;
+  display: block;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 header {
   height: var(--nav-height);
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--heading-font-family);
   line-height: 1.25;
-  letter-spacing: .125rem;
+  letter-spacing: 0.125rem;
   margin-top: 1em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { 
+h1 {
   font-size: var(--heading-font-size-xxl);
-  color: var(--global-color-pine-green);
-  margin-bottom: 1.125rem;
-  line-height: 4.063rem;
-  font-weight: normal;
 }
-
-h2 { 
+h2 {
   font-size: var(--heading-font-size-xl);
-  color: var(--global-color-scarlet);
-  font-weight: bold;
 }
-
-h3 { 
+h3 {
   font-size: var(--heading-font-size-l);
-  color: var(--global-color-selective-yellow);
 }
-
-h4 { 
-  font-family: var(--heading-font-family-light);
+h4 {
   font-size: var(--heading-font-size-m);
-  font-weight: 400;
-  letter-spacing: normal;
+}
+h5 {
+  font-size: var(--heading-font-size-s);
+}
+h6 {
+  font-size: var(--heading-font-size-xs);
 }
 
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
-
-p, dl, ol, ul, pre, blockquote {
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -150,13 +166,16 @@ hr {
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-code, pre, samp {
+code,
+pre,
+samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code, samp {
-  padding: .125em;
+code,
+samp {
+  padding: 0.125em;
 }
 
 pre {
@@ -166,7 +185,7 @@ pre {
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
-  border-radius: .25em;
+  border-radius: 0.25em;
   overflow-x: auto;
   white-space: pre;
 }
@@ -182,7 +201,8 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link, button {
+a.button:any-link,
+button {
   font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
@@ -201,12 +221,28 @@ a.button:any-link, button {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  border-radius: 30px;
 }
 
-a.button.secondary, button.secondary {
+a.button:hover,
+a.button:focus,
+button:hover,
+button:focus {
+  background-color: var(--link-hover-color);
+  cursor: pointer;
+}
+
+button:disabled,
+button:disabled:hover {
+  background-color: var(--overlay-background-color);
+  cursor: unset;
+}
+
+a.button.secondary,
+button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 main input {
@@ -268,6 +304,10 @@ main img {
 }
 
 @media (min-width: 900px) {
+  body {
+    padding-bottom: var(--footer-height-desktop);
+  }
+
   .section > div {
     padding: 30px 0;
   }
