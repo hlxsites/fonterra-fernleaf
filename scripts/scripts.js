@@ -1,6 +1,5 @@
 import {
   sampleRUM,
-  buildBlock,
   loadHeader,
   loadFooter,
   decorateButtons,
@@ -46,31 +45,35 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
 }
 
 /**
- * Builds hero block and prepends to main in a new section.
- * @param {Element} main The container element
- */
-function buildHeroBlock(main) {
-  const h1 = main.querySelector('h1');
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
-    main.prepend(section);
-  }
-}
-
-/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
- */
 function buildAutoBlocks(main) {
   try {
-    buildHeroBlock(main);
+    //buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
+}
+*/
+export function decorateLinkedPictures(container) {
+  [...container.querySelectorAll('picture + br + a')]
+  // link text is an unformatted URL paste, and matches the link href
+    .filter((a) => {
+      try {
+        // ignore domain in comparison
+        return new URL(a.href).pathname === new URL(a.textContent).pathname;
+      } catch (e) {
+        return false;
+      }
+    })
+    .forEach((a) => {
+      const picture = a.previousElementSibling.previousElementSibling;
+      picture.remove();
+      const br = a.previousElementSibling;
+      br.remove();
+      a.innerHTML = picture.outerHTML;
+    });
 }
 
 /**
@@ -80,9 +83,10 @@ function buildAutoBlocks(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
+  decorateLinkedPictures(main);
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
+  // buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
 }

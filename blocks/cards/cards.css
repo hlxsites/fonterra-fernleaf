@@ -1,31 +1,35 @@
-.cards > ul {
+.cards ul {
+  display: flex;
+  flex-wrap: wrap;
   list-style: none;
-  margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 16px;
+  margin: 0;
 }
 
-.cards > ul > li {
-  border: 1px solid var(--highlight-background-color);
-  background-color: var(--background-color)
+.cards ul li {
+  text-align: left;
 }
 
-.cards .cards-card-body {
-  margin: 16px;
+@media (min-width: 600px) {
+  .cards ul li {
+    text-align: center;
+    flex-basis: 50%;
+  }
 }
 
-.cards .cards-card-image {
-  line-height: 0;
+.cards h4 {
+  margin-bottom: 0;
 }
 
-.cards .cards-card-body > *:first-child {
-  margin-top: 0;
+.cards p {
+  margin: 0;
 }
 
-.cards > ul > li img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+.cards a {
+  text-decoration: none;
+}
+
+.cards a:hover {
+  opacity: .6;
+  transition: all .3s ease;
 }
