@@ -16,8 +16,7 @@ const getListHTML = (row) => `<div>
 async function loadData(path) {
   if (path && path.startsWith('/')) {
     const resp = await fetch(path);
-    const listData = JSON.parse(await resp.text());
-    return listData;
+    return JSON.parse(await resp.text());
   }
   return null;
 }
