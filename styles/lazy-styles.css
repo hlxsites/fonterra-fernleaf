@@ -1,135 +1,415 @@
 /* iconanchor */
 @font-face {
-    font-family: iconanchor;
-    src: url('fonts/icon/iconanchor.woff') format('woff'), url('fonts/icon/iconanchor.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: iconanchor;
+  src: url("fonts/icon/iconanchor.woff") format("woff"),
+    url("fonts/icon/iconanchor.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "iconanchor-v2";
+  src: url("clientlibs/fonts/iconanchor-v2.ttf?mcjpe1") format("truetype"),
+    url("clientlibs/fonts/iconanchor-v2.woff?mcjpe1") format("woff");
+  font-weight: normal;
+  font-style: normal;
 }
 
 /* Mark-OT Fonts */
 @font-face {
-    font-family: mark-ot;
-    src: url('fonts/Mark-OT.woff2') format('woff2'), url('fonts/Mark-OT.woff') format('woff'), url('fonts/Mark-OT.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: mark-ot;
+  src: url("fonts/Mark-OT.woff2") format("woff2"),
+    url("fonts/Mark-OT.woff") format("woff"),
+    url("fonts/Mark-OT.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: mark-ot;
-    src: url('fonts/Mark-OT-Light.woff2') format('woff2'), url('fonts/Mark-OT-Light.woff') format('woff'), url('fonts/Mark-OT-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
+  font-family: mark-ot;
+  src: url("fonts/Mark-OT-Light.woff2") format("woff2"),
+    url("fonts/Mark-OT-Light.woff") format("woff"),
+    url("fonts/Mark-OT-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: mark-ot;
-    src: url('fonts/Mark-OT-Medium.woff2') format('woff2'), url('fonts/Mark-OT-Medium.woff') format('woff'), url('fonts/Mark-OT-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: mark-ot;
+  src: url("fonts/Mark-OT-Medium.woff2") format("woff2"),
+    url("fonts/Mark-OT-Medium.woff") format("woff"),
+    url("fonts/Mark-OT-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: mark-ot;
-    src: url('fonts/Mark-OT-Bold.woff2') format('woff2'), url('fonts/Mark-OT-Bold.woff') format('woff'), url('fonts/Mark-OT-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: mark-ot;
+  src: url("fonts/Mark-OT-Bold.woff2") format("woff2"),
+    url("fonts/Mark-OT-Bold.woff") format("woff"),
+    url("fonts/Mark-OT-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Mark-OT Book Fonts */
 @font-face {
-    font-family: mark-ot-book;
-    src: url('fonts/Mark-OT-Book.woff2') format('woff2'), url('fonts/Mark-OT-Book.woff') format('woff'), url('fonts/Mark-OT-Book.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: mark-ot-book;
+  src: url("fonts/Mark-OT-Book.woff2") format("woff2"),
+    url("fonts/Mark-OT-Book.woff") format("woff"),
+    url("fonts/Mark-OT-Book.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Stag Fonts */
 @font-face {
-    font-family: stag;
-    src: url('fonts/Stag-Semibold.woff2') format('woff2'), url('fonts/Stag-Semibold.woff') format('woff'), url('fonts/Stag-Semibold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: stag;
+  src: url("fonts/Stag-Semibold.woff2") format("woff2"),
+    url("fonts/Stag-Semibold.woff") format("woff"),
+    url("fonts/Stag-Semibold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: stag;
-    src: url('fonts/Stag-Medium.woff2') format('woff2'), url('fonts/Stag-Medium.woff') format('woff'), url('fonts/Stag-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: stag;
+  src: url("fonts/Stag-Medium.woff2") format("woff2"),
+    url("fonts/Stag-Medium.woff") format("woff"),
+    url("fonts/Stag-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Stag Book Fonts */
 @font-face {
-    font-family: stag-book;
-    src: url('fonts/Stag-Book.woff2') format('woff2'), url('fonts/Stag-Book.woff') format('woff'), url('fonts/Stag-Book.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: stag-book;
+  src: url("fonts/Stag-Book.woff2") format("woff2"),
+    url("fonts/Stag-Book.woff") format("woff"),
+    url("fonts/Stag-Book.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* StagSans Fonts */
 @font-face {
-    font-family: stag-sans-light;
-    src: url('fonts/StagSans-Light.woff2') format('woff2'), url('fonts/StagSans-Light.woff') format('woff'), url('fonts/StagSans-Light.ttf') format('truetype');
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
+  font-family: stag-sans-light;
+  src: url("fonts/StagSans-Light.woff2") format("woff2"),
+    url("fonts/StagSans-Light.woff") format("woff"),
+    url("fonts/StagSans-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: stag-sans-medium;
-    src: url('fonts/StagSans-Medium.woff2') format('woff2'), url('fonts/StagSans-Medium.woff') format('woff'), url('fonts/StagSans-Medium.ttf') format('truetype');
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
+  font-family: stag-sans-medium;
+  src: url("fonts/StagSans-Medium.woff2") format("woff2"),
+    url("fonts/StagSans-Medium.woff") format("woff"),
+    url("fonts/StagSans-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* StagSans Book Fonts */
 @font-face {
-    font-family: stag-sans-book;
-    src: url('fonts/StagSans-Book.woff2') format('woff2'), url('fonts/StagSans-Book.woff') format('woff'), url('fonts/StagSans-Book.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: stag-sans-book;
+  src: url("fonts/StagSans-Book.woff2") format("woff2"),
+    url("fonts/StagSans-Book.woff") format("woff"),
+    url("fonts/StagSans-Book.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* Other Fonts */
 @font-face {
-    font-family: evenfall-oblique;
-    src: url('fonts/Evenfall-Oblique.woff2') format('woff2'), url('fonts/Evenfall-Oblique.woff') format('woff'), url('fonts/Evenfall-Oblique.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: evenfall-oblique;
+  src: url("fonts/Evenfall-Oblique.woff2") format("woff2"),
+    url("fonts/Evenfall-Oblique.woff") format("woff"),
+    url("fonts/Evenfall-Oblique.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: ge-ss-two-bold;
-    src: url('fonts/GE-SS-Two-Bold.woff2') format('woff2'), url('fonts/GE-SS-Two-Bold.woff') format('woff'), url('fonts/GE-SS-Two-Bold.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: ge-ss-two-bold;
+  src: url("fonts/GE-SS-Two-Bold.woff2") format("woff2"),
+    url("fonts/GE-SS-Two-Bold.woff") format("woff"),
+    url("fonts/GE-SS-Two-Bold.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: ge-thameen-demibold-italic;
-    src: url('fonts/GE-Thameen-DemiBold-Italic.woff2') format('woff2'), url('fonts/GE-Thameen-DemiBold-Italic.woff') format('woff'), url('fonts/GE-Thameen-DemiBold-Italic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: ge-thameen-demibold-italic;
+  src: url("fonts/GE-Thameen-DemiBold-Italic.woff2") format("woff2"),
+    url("fonts/GE-Thameen-DemiBold-Italic.woff") format("woff"),
+    url("fonts/GE-Thameen-DemiBold-Italic.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: cairo;
-    src: url('fonts/Cairo.woff2') format('woff2'), url('fonts/Cairo.woff') format('woff'), url('fonts/Cairo.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: cairo;
+  src: url("fonts/Cairo.woff2") format("woff2"),
+    url("fonts/Cairo.woff") format("woff"),
+    url("fonts/Cairo.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  font-family: iconanchor, sans-serif;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-down::before {
+  content: "\e900";
+}
+
+.icon-arrow-left::before {
+  content: "\e901";
+}
+
+.icon-arrow-right::before {
+  content: "\e902";
+}
+
+.icon-book::before {
+  content: "\e903";
+}
+
+.icon-calendar::before {
+  content: "\e904";
+}
+
+.icon-checkbox::before {
+  content: "\e905";
+}
+
+.icon-checkbox-active::before {
+  content: "\e906";
+}
+
+.icon-circle-add::before {
+  content: "\e907";
+}
+
+.icon-circle-close::before {
+  content: "\e908";
+}
+
+.icon-circle-information::before {
+  content: "\e909";
+}
+
+.icon-circle-minus::before {
+  content: "\e90a";
+}
+
+.icon-circle-pause::before {
+  content: "\e90b";
+}
+
+.icon-circle-target::before {
+  content: "\e90c";
+}
+
+.icon-circle-tick::before {
+  content: "\e90d";
+}
+
+.icon-cirle-plus::before {
+  content: "\e90e";
+}
+
+.icon-close::before {
+  content: "\e90f";
+}
+
+.icon-critical-alert::before {
+  content: "\e910";
+}
+
+.icon-download::before {
+  content: "\e911";
+}
+
+.icon-edit::before {
+  content: "\e912";
+}
+
+.icon-email::before {
+  content: "\e913";
+}
+
+.icon-facebook::before {
+  content: "\e914";
+}
+
+.icon-google-plus::before {
+  content: "\e915";
+}
+
+.icon-heart::before {
+  content: "\e916";
+}
+
+.icon-help::before {
+  content: "\e917";
+}
+
+.icon-icon-knife::before {
+  content: "\e918";
+}
+
+.icon-icon-time::before {
+  content: "\e919";
+}
+
+.icon-icon-user::before {
+  content: "\e91a";
+}
+
+.icon-instagram::before {
+  content: "\e91b";
+}
+
+.icon-letter::before {
+  content: "\e91c";
+}
+
+.icon-message::before {
+  content: "\e91d";
+}
+
+.icon-minus::before {
+  content: "\e91e";
+}
+
+.icon-pause::before {
+  content: "\e91f";
+}
+
+.icon-phone::before {
+  content: "\e920";
+}
+
+.icon-play::before {
+  content: "\e921";
+}
+
+.icon-plus::before {
+  content: "\e922";
+}
+
+.icon-recycle::before {
+  content: "\e923";
+}
+
+.icon-replay::before {
+  content: "\e924";
+}
+
+.icon-search::before {
+  content: "\e925";
+}
+
+.icon-share::before {
+  content: "\e926";
+}
+
+.icon-star::before {
+  content: "\e927";
+}
+
+.icon-star-full::before {
+  content: "\e9d9";
+}
+
+.icon-tick::before {
+  content: "\e929";
+}
+
+.icon-twitter::before {
+  content: "\e92a";
+}
+
+.icon-whatsapp::before {
+  content: "\e92b";
+}
+
+.icon-wish-list .path1::before {
+  content: "\e92c";
+  color: #010101;
+}
+
+.icon-wish-list .path2::before {
+  content: "\e92d";
+  margin-left: -0.9727em;
+  color: #231f20;
+}
+
+.icon-wish-list .path3::before {
+  content: "\e930";
+  margin-left: -0.9727em;
+  color: #231f20;
+}
+
+.icon-wish-list .path4::before {
+  content: "\e931";
+  margin-left: -0.9727em;
+  color: #231f20;
+}
+
+.icon-youtube::before {
+  content: "\e932";
+}
+
+.icon-trash::before {
+  content: "\e92e";
+}
+
+.icon-trash2::before {
+  content: "\e92f";
+}
+
+/** TODO: check if this is still needed */
+
+.icon-star-full-v2,
+.icon-star-full,
+.icon-star-empty {
+  font-family: "iconanchor-v2", sans-serif !important;
+}
+
+.icon-star-empty::before {
+  content: "\e9d7" !important;
+}
+
+.icon-star-full-v2::before,
+.icon-star-full::before {
+  content: "\e9d9" !important;
 }
