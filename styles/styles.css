@@ -64,6 +64,10 @@
   --nav-height: 4.375rem;
 }
 
+.inner-container {
+  padding: 0 20px;
+}
+
 @media (min-width: 600px) {
   :root {
     --heading-font-size-xl: 32px;
@@ -72,6 +76,12 @@
     --heading-font-size-s: 24px;
     --heading-font-size-xs: 22px;
   }
+
+  .inner-container {
+    max-width: 570px;
+    margin: 0 auto;
+    padding: 0;
+  }
 }
 
 @media (min-width: 900px) {
@@ -79,6 +89,20 @@
     --heading-font-size-l: 35px;
     --heading-font-size-s: 32px;
     --heading-font-size-xs: 30px;
+  }
+  
+  .inner-container {
+    max-width: 870px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .inner-container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0;
   }
 }
 

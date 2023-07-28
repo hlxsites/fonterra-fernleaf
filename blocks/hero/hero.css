@@ -9,13 +9,17 @@
     width: 100%;
 }
 
-.hero .hero-description {
+.hero .inner-container {
+    padding: 0;
+}
+
+.hero .hero-content {
     padding: 1.813rem 0.938rem;
     position: absolute;
     top: 0;
 }
 
-.hero .hero-description h4 {
+.hero .hero-content h4 {
     color: var(--global-color-pine-green);
     font-family: var(--global-tertiary-font-family);
     font-size: 1.5rem;
@@ -24,7 +28,7 @@
     margin: 0.938rem 0 0.313rem;
 }
 
-.hero .hero-description p {
+.hero .hero-content p {
     color: var(--global-color-dark-gray);
     font-size: .875rem;
     line-height: 1.25rem;
@@ -32,7 +36,7 @@
     padding: 0;
 }
 
-.hero .hero-description .button-container a {
+.hero .hero-content .button-container a {
     width:100%;
 }
 
@@ -104,14 +108,18 @@
         object-fit: cover;
     }
 
-    .hero .hero-description {
+    .hero .hero-content {
         padding: 0;
         top: 50%;
         transform: translate(0, -50%);
+        width: 100%;
+    }
+
+    .hero .hero-content .hero-description {
         width: 48%;
     }
 
-    .hero .hero-description .button-container a {
+    .hero .hero-content .button-container a {
         width: auto;
     }
     
@@ -143,14 +151,14 @@
 
 @media (min-width: 900px) {
     /* Hero Banner */
-    .hero .hero-description h4 {        
+    .hero .hero-content h4 {        
         font-size: 2.625rem;
         letter-spacing: .025rem;
         line-height: 4.063rem;
         margin: 0.938rem 0 1.188rem;
     }
 
-    .hero .hero-description p {
+    .hero .hero-content p {
         font-size: 1rem;
         line-height: 1.375rem;
     }

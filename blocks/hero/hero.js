@@ -91,9 +91,15 @@ export default function decorate(block) {
   }
 
   if (heroSections[SECTION_CONTENT]) {
-    const divTag = document.createElement('div');
-    divTag.className = 'hero-description';
-    divTag.innerHTML = heroSections[SECTION_CONTENT];
-    block.append(divTag);
+    const divContent = document.createElement('div');
+    divContent.className = 'hero-content';
+    const divInnerContainer = document.createElement('div');
+    divInnerContainer.className = 'inner-container';
+    const description = document.createElement('div');
+    description.className = 'hero-description';
+    description.innerHTML = heroSections[SECTION_CONTENT];
+    divInnerContainer.appendChild(description);
+    divContent.appendChild(divInnerContainer);
+    block.append(divContent);
   }
 }
