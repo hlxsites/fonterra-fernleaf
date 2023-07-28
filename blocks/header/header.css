@@ -84,12 +84,15 @@ span.icon.icon-search::before {
     text-decoration: none;
   }
 
-  header nav>div.nav-sections>ul>li>a {
-    color: var(--global-color-pine-green);
-  }
   header nav .nav-brand a {
     display: contents;
   }
+
+  header nav>div.nav-sections>ul>li>a {
+    color: var(--global-color-pine-green);
+  }
+
+
 }
 
 @media (min-width: 900px) {
@@ -112,16 +115,19 @@ span.icon.icon-search::before {
     font-weight: inherit;
   }
 
+  header nav .nav-brand a {
+    padding: inherit;
+  }
+  
   header nav>div.nav-sections>ul>li.nav-drop>ul>li>a {
     color: initial;
     padding: inherit;
   }
+
   header nav>div.nav-sections>ul>li.nav-drop>ul>li>a:hover{
     text-decoration: revert;
   }
-  header nav .nav-brand a {
-    padding: inherit;
-  }
+
 }
 
 
