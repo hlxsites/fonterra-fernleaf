@@ -1,5 +1,5 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
-import { getLanguage } from '../../scripts/scripts.js';
+import { getLanguage, decorateLinkedPictures } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -34,6 +34,21 @@ function openOnKeydown(e) {
 
 function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
+}
+
+function resetNavSection() {
+  const nav = document.querySelector('nav');
+  const navSection = nav.querySelector('.nav-sections');
+  navSection.classList.remove('child-section-enable');
+  nav.querySelector('.nav-drop').classList.remove('child-section');
+}
+
+function enableSubNavSection(e) {
+  const nav = document.querySelector('nav');
+  const navSection = nav.querySelector('.nav-sections');
+  navSection.classList.add('child-section-enable');
+  e.currentTarget.closest('.nav-drop').classList.add('child-section');
+  navSection.querySelector('.nav-back-btn').addEventListener('click', resetNavSection);
 }
 
 /**
@@ -72,6 +87,15 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     });
   } else {
     navDrops.forEach((drop) => {
+      drop.setAttribute('aria-expanded', false);
+      if (forceExpanded === null) {
+        const mobileIcon = nav.querySelector('.mobile-icon');
+        if (!mobileIcon) {
+          drop.insertAdjacentHTML('afterbegin', '<a class="mobile-icon"><span class="arrow-right"></span></a>');
+          drop.querySelector('ul').insertAdjacentHTML('afterbegin', '<li class="nav-back-btn"><span>Back To Main Menu</span></li>');
+          drop.querySelector('.arrow-right').addEventListener('click', (e) => enableSubNavSection(e));
+        }
+      }
       drop.removeAttribute('role');
       drop.removeAttribute('tabindex');
       drop.removeEventListener('focus', focusNavSection);
@@ -108,6 +132,9 @@ export default async function decorate(block) {
     nav.id = 'nav';
     nav.innerHTML = html;
 
+    // Handle links
+    decorateLinkedPictures(nav);
+
     const classes = ['brand', 'sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
@@ -117,8 +144,11 @@ export default async function decorate(block) {
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
+        if (navSection.querySelector('a').href === window.location.href) {
+          navSection.classList.add('active');
+        }
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('click', () => {
+        navSection.addEventListener('mouseenter', () => {
           if (isDesktop.matches) {
             const expanded = navSection.getAttribute('aria-expanded') === 'true';
             toggleAllNavSections(navSections);
@@ -134,12 +164,18 @@ export default async function decorate(block) {
     hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
         <span class="nav-hamburger-icon"></span>
       </button>`;
-    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+    hamburger.addEventListener('click', () => {
+      resetNavSection();
+      toggleMenu(nav, navSections);
+    });
     nav.prepend(hamburger);
     nav.setAttribute('aria-expanded', 'false');
     // prevent mobile nav behavior on window resize
     toggleMenu(nav, navSections, isDesktop.matches);
-    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+    isDesktop.addEventListener('change', () => {
+      resetNavSection();
+      toggleMenu(nav, navSections, isDesktop.matches);
+    });
 
     decorateIcons(nav);
     const navWrapper = document.createElement('div');
