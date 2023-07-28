@@ -33,7 +33,7 @@
   padding: 0.625rem;
 }
 
-.recipe-card .recipe-content h4 {
+.recipe-card .recipe-content .recipe-title {
   font-size: 1.125rem;
   line-height: 1.375rem;
   height: 2.813rem;

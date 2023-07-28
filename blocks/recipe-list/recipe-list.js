@@ -2,9 +2,9 @@ import { getLanguage } from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
-                <img src="${row.image}">
+                <img alt="${row.shorttitle}" src="${row.image}">
                 <div class="recipe-content">
-                    <h4>${row.shorttitle}</h4>
+                    <div class="recipe-title">${row.shorttitle}</div>
                     <div class="recipe-desc">${row.shortdescription}</div>
                     <div class="recipe-info">
                         <div class="recipe-card-icon icon-icon-time">${row.duration}</div>
