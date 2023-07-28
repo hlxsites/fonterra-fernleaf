@@ -1,5 +1,5 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
-import { getLanguage } from '../../scripts/scripts.js';
+import { getLanguage, decorateLinkedPictures } from '../../scripts/scripts.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -35,12 +35,14 @@ function openOnKeydown(e) {
 function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
 }
+
 function resetNavSection() {
   const nav = document.querySelector('nav');
   const navSection = nav.querySelector('.nav-sections');
   navSection.classList.remove('child-section-enable');
   nav.querySelector('.nav-drop').classList.remove('child-section');
 }
+
 function enableSubNavSection(e) {
   const nav = document.querySelector('nav');
   const navSection = nav.querySelector('.nav-sections');
@@ -130,6 +132,9 @@ export default async function decorate(block) {
     nav.id = 'nav';
     nav.innerHTML = html;
 
+    // Handle links
+    decorateLinkedPictures(nav);
+
     const classes = ['brand', 'sections', 'tools'];
     classes.forEach((c, i) => {
       const section = nav.children[i];
@@ -171,9 +176,7 @@ export default async function decorate(block) {
       resetNavSection();
       toggleMenu(nav, navSections, isDesktop.matches);
     });
-    nav.querySelector('.nav-brand').addEventListener('click', () => {
-      document.location.href = '/';
-    });
+
     decorateIcons(nav);
     const navWrapper = document.createElement('div');
     navWrapper.className = 'nav-wrapper';
