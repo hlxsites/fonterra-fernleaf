@@ -1,11 +1,11 @@
 footer {
-  padding: 20px;
+  padding: 20px 0 1.688rem;
   font-size: var(--body-font-size-s);
-  background-color: var(--background-color);  
-}
-
-footer .columns > div {
-  display: flex;
+  background-color: var(--background-color);
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  height: var(--footer-height-mobile);
 }
 
 footer ul {
@@ -14,42 +14,129 @@ footer ul {
   margin: 0;
 }
 
-@media only screen and (max-width: 899px) {
+footer ul li a:any-link {
+  color: var(--global-color-dark-gray);
+  text-decoration: none;
+}
+
+footer .columns > div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+}
+
+footer .columns > div :nth-child(1) {
+  order: 4;
+}
+
+footer .columns > div :nth-child(2) {
+  order: 2;
+  margin-bottom: 0.625rem;
+}
+
+footer .columns > div :nth-child(2) ul {
+  display: flex;
+  justify-content: center;
+  font-family: var(--global-quaternary-font-family);
+}
+
+footer .columns > div :nth-child(2) ul li {
+  padding: 0 17px;
+}
+
+footer .columns > div :nth-child(3) {
+  order: 1;
+  margin-bottom: 1.563rem;
+}
+
+/* Footer facebook social media icon */
+footer .columns > div :nth-child(3) a {
+  display: inline-flex;
+  border: 1px solid var(--global-color-dark-gray);
+  border-radius: 50%;
+  padding: 2px;
+  position: relative;
+}
+
+footer .columns > div :nth-child(3) a:hover {
+  border-color: var(--global-color-dark-blue);
+  background: var(--global-color-dark-blue);
+}
+
+footer .columns > div :nth-child(3) a .icon-facebook {
+  font-size: 0.938rem;
+}
+
+footer .columns > div :nth-child(3) a:hover .icon-facebook {
+  color: var(--global-color-white);
+}
+
+footer .columns > div :nth-child(3) a .icon-facebook::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+footer .columns > div :nth-child(4) {
+  order: 3;
+  margin-top: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+/** Footer desktop styles */
+@media only screen and (min-width: 900px) {
+  footer {
+    height: var(--footer-height-desktop);
+    padding: 0 15px;
+  }
+
   footer .columns > div {
-    flex-direction: column;
-    text-align: center;
+    flex-direction: row;
   }
 
   footer .columns > div :nth-child(1) {
-    order: 4;
-  }
-
-  footer .columns > div :nth-child(2) {
-    order: 2;
-  }
-
-  footer .columns > div :nth-child(3) {
     order: 1;
   }
 
-  footer .columns > div :nth-child(4) {
-    order: 3;
-  }
-}
-
-@media only screen and (min-width: 900px) {
   footer .columns > div :nth-child(2) {
     text-align: center;
     flex-grow: 2;
+    margin-bottom: 0;
   }
 
   footer .columns > div :nth-child(2) ul {
     display: inline-flex;
   }
-}
 
-footer .columns > div :nth-child(2) ul li {
-  padding: 0 17px;
+  footer .columns > div :nth-child(3) {
+    order: 3;
+    margin-bottom: 0;
+  }
+
+  footer .columns > div :nth-child(3) a {
+    padding: 7px;
+  }
+
+  footer .columns > div :nth-child(3) a .icon-facebook {
+    font-size: 1.25rem;
+  }
+
+  footer .columns > div :nth-child(4) {
+    position: relative;
+    margin-left: 1.25rem;
+    padding-left: 1.438rem;
+  }
+
+  footer .columns > div :nth-child(4)::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 1px;
+    height: 1.25rem;
+    background-color: var(--global-color-dim-gray);
+  }
 }
 
 /* TODO: Implement country selector popup */
