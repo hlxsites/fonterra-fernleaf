@@ -15,11 +15,13 @@
   --global-primary-font-family: mark-ot, helvetica, arial, sans-serif;
   --global-secondary-font-family: mark-ot-book, helvetica, arial, sans-serif;
   --global-tertiary-font-family: stag, georgia, "Times New Roman",times, serif;
+  --global-quaternary-font-family: stag-sans-book, helvetica, arial, sans-serif;
   --body-font-family: var(--global-primary-font-family);
   --heading-font-family: var(--global-tertiary-font-family);
   --heading-font-family-light: stag-sans-light, helvetica, arial, sans-serif;
   --fixed-font-family: monaco, menlo, monsolas, "Courier New", monospace;
-  
+ 
+
   /* Colors - Global Names */
   --global-color-black: #000;
   --global-color-white: #fff;  
@@ -62,6 +64,10 @@
 
   /* nav height */
   --nav-height: 4.375rem;
+
+  /* footer height */
+  --footer-height-mobile: 12.5rem;
+  --footer-height-desktop: 4.375rem;
 }
 
 @media (min-width: 600px) {
@@ -82,17 +88,28 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
 body {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1;
-  margin: 0;  
+  line-height: 1.5;
+  margin: 0;
   color: var(--text-color);
   display: none;
+  position: relative;
+  min-height: 100%;
+  padding-bottom: var(--footer-height-mobile);
 }
 
 body.appear {
-  display: unset;
+  display: block;
 }
 
 header {
@@ -270,6 +287,10 @@ main img {
 @media (min-width: 900px) {
   .section > div {
     padding: 30px 0;
+  }
+
+  body {
+    padding-bottom: var(--footer-height-desktop);
   }
 }
 
