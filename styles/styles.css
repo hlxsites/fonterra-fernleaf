@@ -29,6 +29,7 @@
   --global-color-silver: #c1c1c1;
   --global-color-platinum: #f0f0f0;
   --global-color-gray: #808080;
+  --global-color-gray64: #a3a3a3;
   --global-color-foggy-gray: #dadfe9;
   --global-color-dim-gray: #6c6c6c;
   --global-color-dark-gray: #242424;
@@ -303,4 +304,8 @@ main img {
 /* section metadata */
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+.hide {
+  visibility: hidden;
 }

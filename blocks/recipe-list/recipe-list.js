@@ -1,3 +1,5 @@
+import { getLanguage } from '../../scripts/scripts.js';
+
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
                 <img src="${row.image}">
@@ -15,7 +17,6 @@ async function loadData(path) {
   if (path && path.startsWith('/')) {
     const resp = await fetch(path);
     const listData = JSON.parse(await resp.text());
-    // TODO: Sort data based on lastModified
     return listData;
   }
   return null;
@@ -26,17 +27,17 @@ async function printList(list) {
   list.data.forEach((row) => {
     const li = document.createElement('li');
     li.innerHTML = getListHTML(row);
+    if (row.shortdescription === '0') {
+      li.querySelectorAll('.recipe-desc')[0].classList.add('hide');
+    }
     ul.append(li);
   });
   return ul;
 }
 
 export default async function decorate(block) {
-  console.log('process started!');
-  const path = '/query-index.json?limit=500&offset=0&sheet=en-recipe';
+  const path = `/query-index.json?limit=500&offset=0&sheet=${getLanguage()}-recipe`;
   const list = await loadData(path);
-  console.log('Printing response ... ');
-  console.log(list);
 
   block.textContent = '';
   if (list.data.length > 0) {
@@ -45,5 +46,4 @@ export default async function decorate(block) {
   } else {
     block.append('no result found');
   }
-  console.log('process finished!');
 }

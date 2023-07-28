@@ -9,7 +9,7 @@
 
 .recipe-card {
   display: block;
-  background: #FFF;
+  background: var(--global-color-white);
   box-shadow: 0 2px 3px 0 rgba(0,0,0,0.16);
   transition: all .3s ease;
 }
@@ -36,7 +36,7 @@
   font-size: 1.125rem;
   line-height: 1.375rem;
   height: 2.813rem;
-  color: #00338d;
+  color: var(--global-color-dark-blue);
   margin: 0;
 }
 
@@ -58,7 +58,7 @@
 }
 
 .recipe-card .recipe-info .recipe-card-icon {
-  color: #a3a3a3;
+  color: var(--global-color-gray64);
   text-transform: uppercase;
   display: inline-block;
   line-height: .6rem;
