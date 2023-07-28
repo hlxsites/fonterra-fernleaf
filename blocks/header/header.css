@@ -87,7 +87,9 @@ span.icon.icon-search::before {
   header nav>div.nav-sections>ul>li>a {
     color: var(--global-color-pine-green);
   }
-
+  header nav .nav-brand a {
+    display: contents;
+  }
 }
 
 @media (min-width: 900px) {
@@ -112,6 +114,13 @@ span.icon.icon-search::before {
 
   header nav>div.nav-sections>ul>li.nav-drop>ul>li>a {
     color: initial;
+    padding: inherit;
+  }
+  header nav>div.nav-sections>ul>li.nav-drop>ul>li>a:hover{
+    text-decoration: revert;
+  }
+  header nav .nav-brand a {
+    padding: inherit;
   }
 }
 
