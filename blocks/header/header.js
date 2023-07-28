@@ -36,11 +36,13 @@ function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
 }
 function resetNavSection() {
+  const nav = document.querySelector('nav');
   const navSection = nav.querySelector('.nav-sections');
   navSection.classList.remove('child-section-enable');
-  nav.querySelector(".nav-drop").classList.remove('child-section');
+  nav.querySelector('.nav-drop').classList.remove('child-section');
 }
 function enableSubNavSection(e) {
+  const nav = document.querySelector('nav');
   const navSection = nav.querySelector('.nav-sections');
   navSection.classList.add('child-section-enable');
   e.currentTarget.closest('.nav-drop').classList.add('child-section');
@@ -85,11 +87,11 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     navDrops.forEach((drop) => {
       drop.setAttribute('aria-expanded', false);
       if (forceExpanded === null) {
-        const mobileIcon = nav.querySelector('.mobile-icon')
+        const mobileIcon = nav.querySelector('.mobile-icon');
         if (!mobileIcon) {
-          drop.insertAdjacentHTML('afterbegin', "<a class='mobile-icon'><span class='arrow-right'></span></a>");
-          drop.querySelector('ul').insertAdjacentHTML('afterbegin', "<li class='nav-back-btn'><span>Back To Main Menu</span></li>");
-          drop.querySelector(".arrow-right").addEventListener('click', (e) => enableSubNavSection(e));
+          drop.insertAdjacentHTML('afterbegin', '<a class="mobile-icon"><span class="arrow-right"></span></a>');
+          drop.querySelector('ul').insertAdjacentHTML('afterbegin', '<li class="nav-back-btn"><span>Back To Main Menu</span></li>');
+          drop.querySelector('.arrow-right').addEventListener('click', (e) => enableSubNavSection(e));
         }
       }
       drop.removeAttribute('role');
@@ -137,14 +139,8 @@ export default async function decorate(block) {
     const navSections = nav.querySelector('.nav-sections');
     if (navSections) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        debugger
-        // navSection.querySelector("a").forEach((anchorSection)=>{
-        //   if(anchorSection.href === window.location.pathname){
-        //     navSection.classList.add("active")
-        //   }
-        // });
-        if (navSection.querySelector("a").href === window.location.href) {
-          navSection.classList.add("active")
+        if (navSection.querySelector('a').href === window.location.href) {
+          navSection.classList.add('active');
         }
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('mouseenter', () => {
@@ -173,9 +169,11 @@ export default async function decorate(block) {
     toggleMenu(nav, navSections, isDesktop.matches);
     isDesktop.addEventListener('change', () => {
       resetNavSection();
-      toggleMenu(nav, navSections, isDesktop.matches)
+      toggleMenu(nav, navSections, isDesktop.matches);
     });
-
+    nav.querySelector('.nav-brand').addEventListener('click', () => {
+      document.location.href = '/';
+    });
     decorateIcons(nav);
     const navWrapper = document.createElement('div');
     navWrapper.className = 'nav-wrapper';
