@@ -81,18 +81,18 @@ export default function decorate(block) {
   preProcess(block);
   block.innerHTML = '';
   if (isValidImg(SECTION_BG_DESKTOP) && isValidImg(SECTION_BG_MOBILE)) {
-    block.append(generateImage(SECTION_BG_DESKTOP, SECTION_BG_MOBILE, 'hero__bg'));
+    block.append(generateImage(SECTION_BG_DESKTOP, SECTION_BG_MOBILE, 'hero-bg'));
   } else if (isValidImg(SECTION_BG_DESKTOP) && !isValidImg(SECTION_BG_MOBILE)) {
-    block.append(generateSingleImage(SECTION_BG_DESKTOP, 'hero__bg'));
+    block.append(generateSingleImage(SECTION_BG_DESKTOP, 'hero-bg'));
   }
 
   if (isValidImg(SECTION_PRODUCT_DESKTOP) && isValidImg(SECTION_PRODUCT_MOBILE)) {
-    block.append(generateImage(SECTION_PRODUCT_DESKTOP, SECTION_PRODUCT_MOBILE, 'hero__product'));
+    block.append(generateImage(SECTION_PRODUCT_DESKTOP, SECTION_PRODUCT_MOBILE, 'hero-product'));
   }
 
   if (heroSections[SECTION_CONTENT]) {
     const divTag = document.createElement('div');
-    divTag.className = 'hero__description';
+    divTag.className = 'hero-description';
     divTag.innerHTML = heroSections[SECTION_CONTENT];
     block.append(divTag);
   }

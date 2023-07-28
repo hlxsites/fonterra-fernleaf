@@ -4,18 +4,18 @@
     position: relative;
 }
 
-.hero .hero__bg img,
-.hero .hero__product img {
+.hero .hero-bg img,
+.hero .hero-product img {
     width: 100%;
 }
 
-.hero .hero__description {
+.hero .hero-description {
     padding: 1.813rem 0.938rem;
     position: absolute;
     top: 0;
 }
 
-.hero .hero__description h4 {
+.hero .hero-description h4 {
     color: var(--global-color-pine-green);
     font-family: var(--global-tertiary-font-family);
     font-size: 1.5rem;
@@ -24,7 +24,7 @@
     margin: 0.938rem 0 0.313rem;
 }
 
-.hero .hero__description p {
+.hero .hero-description p {
     color: var(--global-color-dark-gray);
     font-size: .875rem;
     line-height: 1.25rem;
@@ -32,7 +32,7 @@
     padding: 0;
 }
 
-.hero .hero__description .button-container a {
+.hero .hero-description .button-container a {
     width:100%;
 }
 
@@ -41,7 +41,7 @@
     min-height: unset;
 }
 
-.hero.main .hero__bg img {
+.hero.main .hero-bg img {
     height: 18.6rem;
     object-fit: cover;
 }
@@ -52,12 +52,12 @@
     min-height: unset;
 }
 
-.recipe .hero .hero__bg {
+.recipe .hero .hero-bg {
     position: relative;
 }
 
-.recipe .hero .hero__bg::after,
-.product .hero .hero__bg::after {
+.recipe .hero .hero-bg::after,
+.product .hero .hero-bg::after {
     background-position: bottom;
     background-size: cover;
     bottom: 0;    
@@ -69,26 +69,26 @@
     top: 0;
 }
 
-.recipe .hero .hero__bg::after {
+.recipe .hero .hero-bg::after {
     background-image: url("../../styles/images/milk-splash-mobile.png");
 }
 
-.recipe .hero .hero__bg img {
+.recipe .hero .hero-bg img {
     height: 18.75rem;
     object-fit: cover;
 }
 
-.product .hero .hero__bg {
+.product .hero .hero-bg {
     position: absolute;
     z-index: 1;
 }
 
-.product .hero .hero__product {
+.product .hero .hero-product {
     position: relative;
     z-index: 2;
 }
 
-.product .hero .hero__bg::after {
+.product .hero .hero-bg::after {
     background-image: url("../../styles/images/product-milk-splash-mobile.png");
 }
 
@@ -98,81 +98,81 @@
         min-height: unset;
     }
 
-    .hero .hero__bg img {
+    .hero .hero-bg img {
         min-height: 500px;
         object-fit: cover;
     }
 
-    .hero .hero__description {
+    .hero .hero-description {
         padding: 0;
         top: 50%;
         transform: translate(0, -50%);
         width: 48%;
     }
 
-    .hero .hero__description .button-container a {
+    .hero .hero-description .button-container a {
         width: auto;
     }
     
     /* Main - Hero Banner */
-    .hero.main .hero__bg img {
+    .hero.main .hero-bg img {
         height: 18.6rem;
         min-height: unset;
     }
 
     /* Recipe & Product - Hero Banner */
-    .recipe .hero .hero__bg img {
+    .recipe .hero .hero-bg img {
         height: 18.75rem;
         min-height: unset;
     }
 
-    .recipe .hero .hero__bg::after {
+    .recipe .hero .hero-bg::after {
         background-image: url("../../styles/images/milk-splash-desktop.png");
     }
 
-    .product .hero .hero__bg img {
+    .product .hero .hero-bg img {
         min-height: unset;
         object-fit: unset;
     }
 
-    .product .hero .hero__bg::after {
+    .product .hero .hero-bg::after {
         background-image: url("../../styles/images/product-milk-splash-desktop.png");
     }
 }
 
 @media (min-width: 900px) {
     /* Hero Banner */
-    .hero .hero__description h4 {        
+    .hero .hero-description h4 {        
         font-size: 2.625rem;
         letter-spacing: .025rem;
         line-height: 4.063rem;
         margin: 0.938rem 0 1.188rem;
     }
 
-    .hero .hero__description p {
+    .hero .hero-description p {
         font-size: 1rem;
         line-height: 1.375rem;
     }
     
     /* Main - Hero Banner */
-    .hero.main .hero__bg img {
+    .hero.main .hero-bg img {
         height: 38.75rem;        
     }
 
     /* Recipe - Hero Banner */
-    .recipe .hero .hero__bg img {
+    .recipe .hero .hero-bg img {
         height: 29.875rem;
     }
 }
 
 @media (min-width: 1200px) {
     /* Main - Hero Banner */
-    .hero.main .hero__bg img {
+    .hero.main .hero-bg img {
         height: 43.625rem;
     }
 
     /* Recipe - Hero Banner */
-    .recipe .hero .hero__bg img {
+    .recipe .hero .hero-bg img {
         height: 25rem;
     }
 }
