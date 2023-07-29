@@ -1,0 +1,43 @@
+version: 1
+# https://www.hlx.live/docs/setup-indexing
+
+auto-generated: true
+indices:
+  default:
+    include:
+      - /**
+    exclude:
+      - '/drafts/**'
+      - '/fragments/**'
+    target: /query-index.json
+    properties:
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      shorttitle:
+        select: head > meta[name="shorttitle"]
+        value: attribute(el, "content")
+      shortdesc:
+        select: head > meta[name="shortdesc"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: match(attribute(el, "content"), "https:\/\/[^/]+(/.*)")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      language:
+        select: head > meta[name="language"]
+        value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      serves:
+        select: head > meta[name="serves"]
+        value: attribute(el, "content")
+      duration:
+        select: head > meta[name="duration"]
+        value: attribute(el, "content")
