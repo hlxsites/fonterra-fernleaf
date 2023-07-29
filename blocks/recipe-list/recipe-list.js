@@ -5,7 +5,7 @@ const getListHTML = (row) => `<div>
                 <img alt="${row.shorttitle}" src="${row.image}">
                 <div class="recipe-content">
                     <div class="recipe-title">${row.shorttitle}</div>
-                    <div class="recipe-desc">${row.shortdescription}</div>
+                    <div class="recipe-desc">${row.shortdesc}</div>
                     <div class="recipe-info">
                         <div class="recipe-card-icon icon-icon-time">${row.duration}</div>
                         <div class="recipe-card-icon icon-icon-user">${row.serves}</div>
@@ -27,7 +27,7 @@ async function printList(list) {
   list.data.forEach((row) => {
     const li = document.createElement('li');
     li.innerHTML = getListHTML(row);
-    if (row.shortdescription === '0') {
+    if (row.shortdesc === '0') {
       li.querySelectorAll('.recipe-desc')[0].classList.add('hide');
     }
     ul.append(li);
