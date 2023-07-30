@@ -34,6 +34,10 @@
   border-bottom: 1px solid #a3a3a3;
 }
 
+.story-list .hide {
+    display: none;
+}
+
 @media (min-width: 600px) {
   .story-list .story {
     padding: 3.563rem 0 3.625rem;
