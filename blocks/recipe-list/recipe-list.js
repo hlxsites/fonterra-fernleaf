@@ -2,7 +2,7 @@ import { getLanguage, adjustImageSize } from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
-                <img alt="${row.shorttitle}" src="${row.image}" width="500">
+                <img alt="${row.shorttitle}" src="${row.image}" width="500" height="318">
                 <div class="recipe-content">
                     <div class="recipe-title">${row.shorttitle}</div>
                     <div class="recipe-desc">${row.shortdesc}</div>
