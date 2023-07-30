@@ -26,6 +26,16 @@ footer .columns > div {
   align-items: center;
 }
 
+/* remove column block styles that impacts footer */
+footer .columns > div {
+  gap: 0;
+}
+
+footer .columns > div > div {
+  flex: none;
+}
+/* ends */
+
 footer .columns > div :nth-child(1) {
   order: 4;
 }

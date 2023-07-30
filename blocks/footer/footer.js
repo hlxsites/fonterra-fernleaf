@@ -2,6 +2,23 @@ import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 import { getLanguage } from '../../scripts/scripts.js';
 
 /**
+ * Updates the footer icons to be accessible
+ * @param {*} footer
+ */
+
+function decorateSocialIcons(footer) {
+  const footerIcons = footer.querySelectorAll(':scope .icon');
+  footerIcons.forEach((footerIcon) => {
+    const socialTitle = footerIcon.parentElement.nextSibling.textContent;
+    footerIcon.setAttribute('aria-label', socialTitle);
+    footerIcon.setAttribute('role', 'img');
+
+    // Remove the text from the Social Media links as aria-label is used instead on the icon
+    footerIcon.parentElement.nextSibling.textContent = '';
+  });
+}
+
+/**
  * loads and decorates the footer
  * @param {Element} block The footer block element
  */
@@ -21,6 +38,8 @@ export default async function decorate(block) {
     footer.innerHTML = html;
 
     decorateIcons(footer);
+    decorateSocialIcons(footer);
+
     block.append(footer);
   }
 }
