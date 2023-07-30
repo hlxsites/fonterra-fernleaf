@@ -2,9 +2,9 @@ import { getLanguage, adjustImageSize } from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div class="story-image"><img alt="${row.shorttitle}" src="${row.image}" width="300" height="218"></div>
             <div class="story-content">
-                <div class="story-title"><a href="${row.path}" title="${row.shorttitle}">${row.shorttitle}</a></div>
+                <div class="story-title"><a href="${row.path}" title="${row.shorttitle}" area-label="${row.shorttitle}">${row.shorttitle}</a></div>
                 <p class="story-desc">${row.description}</p>
-                <a href="${row.path}" title="${row.shorttitle}" class="button primary">Read More</a>
+                <a href="${row.path}" title="${row.shorttitle}" area-label="${row.shorttitle}" class="button primary">Read More</a>
             </div>`;
 
 async function loadData(path) {
