@@ -24,17 +24,13 @@ footer .columns > div {
   flex-direction: column;
   text-align: center;
   align-items: center;
+  gap: 0;/* reset column block style that impacts footer */
 }
 
-/* remove column block styles that impacts footer */
-footer .columns > div {
-  gap: 0;
-}
-
+/* reset column block styles that impacts footer */
 footer .columns > div > div {
   flex: none;
-}
-/* ends */
+}/* ends */
 
 footer .columns > div :nth-child(1) {
   order: 4;
