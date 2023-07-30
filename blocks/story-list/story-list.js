@@ -4,7 +4,7 @@ const getListHTML = (row) => `<div class="story-image"><img alt="${row.shorttitl
             <div class="story-content">
                 <div class="story-title"><a href="${row.path}" title="${row.shorttitle}" area-label="${row.shorttitle}">${row.shorttitle}</a></div>
                 <p class="story-desc">${row.description}</p>
-                <a href="${row.path}" title="${row.shorttitle}" area-label="${row.shorttitle}" class="button primary">Read More<div class="hide">${row.shorttitle}</div></a>
+                <a href="${row.path}" title="${row.shorttitle}" area-label="${row.shorttitle}" class="button primary"><p class="hide">${row.shorttitle}</p>Read More</a>
             </div>`;
 
 async function loadData(path) {
