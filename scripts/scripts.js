@@ -54,6 +54,22 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
 }
 
 /**
+ * Reducing image size to custom Reduced size
+ * @param {*} row
+ */
+export function adjustImageSize(img, newSize) {
+  if (img) {
+    const url = new URL(`${window.location.origin}${img}`);
+    const params = url.searchParams;
+    params.set('width', newSize);
+
+    url.search = params.toString();
+    return url.toString();
+  }
+  return img;
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
 function buildAutoBlocks(main) {

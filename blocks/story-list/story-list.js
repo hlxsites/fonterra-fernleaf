@@ -1,4 +1,4 @@
-import { getLanguage } from '../../scripts/scripts.js';
+import { getLanguage, adjustImageSize } from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div class="story-image"><img alt="${row.shorttitle}" src="${row.image}"></div>
             <div class="story-content">
@@ -19,6 +19,7 @@ async function loadData(path) {
 async function printList(list) {
   const ul = document.createElement('ul');
   list.data.forEach((row) => {
+    row.image = adjustImageSize(row.image, 300);
     const li = document.createElement('li');
     li.classList.add('story');
     li.innerHTML = getListHTML(row);

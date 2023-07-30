@@ -1,4 +1,4 @@
-import { getLanguage } from '../../scripts/scripts.js';
+import { getLanguage, adjustImageSize } from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
@@ -24,6 +24,7 @@ async function loadData(path) {
 async function printList(list) {
   const ul = document.createElement('ul');
   list.data.forEach((row) => {
+    row.image = adjustImageSize(row.image, 500);
     const li = document.createElement('li');
     li.innerHTML = getListHTML(row);
     if (row.shortdesc === '0') {
