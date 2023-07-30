@@ -83,11 +83,10 @@ function buildAutoBlocks(main) {
 */
 export function decorateLinkedPictures(container) {
   [...container.querySelectorAll('picture + br + a')]
-  // link text is an unformatted URL paste, and matches the link href
     .filter((a) => {
       try {
         // ignore domain in comparison
-        return new URL(a.href).pathname === new URL(a.textContent).pathname;
+        return new URL(a.href).pathname;
       } catch (e) {
         return false;
       }
@@ -97,7 +96,10 @@ export function decorateLinkedPictures(container) {
       picture.remove();
       const br = a.previousElementSibling;
       br.remove();
+      const txt = a.innerHTML;
       a.innerHTML = picture.outerHTML;
+      a.setAttribute('aria-label', txt);
+      a.setAttribute('title', txt);
     });
 }
 
