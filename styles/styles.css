@@ -314,11 +314,17 @@ main img {
 
 @media (min-width: 900px) {
   .section > div {
-    padding: 30px 0;
+    padding: 30px 0.938rem;
   }
 
   body {
     padding-bottom: var(--footer-height-desktop);
+  }
+}
+
+@media (min-width: 1020px) {
+  .section > div {
+    padding: 30px 0;
   }
 }
 
@@ -335,4 +341,90 @@ main .section.highlight {
 
 .hide {
   visibility: hidden;
+}
+
+/* Story theme */
+.story-tips-landing main {
+  padding-top: 1.875rem;
+}
+
+.story-tips-landing .section > div {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.story-tips-landing .section h1 {
+  margin: 0;
+}
+
+.story-tips-landing main::before,
+.story-tips main::before {
+  content: '';
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  margin-top: var(--nav-height);
+}
+
+.story-tips-landing main::before {
+  background-image: url("../../styles/images/article-landing-banner-mobile.jpeg");
+}
+
+.story-tips main::before {
+  background-image: url("../../styles/images/story-top-mobile.png");
+}
+
+.story-tips-landing main::after,
+.story-tips main::after {
+  content: '';
+  background-image: url("../../styles/images/article-bottom-mobile.png");
+  background-position: bottom;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  margin-bottom: var(--footer-height-mobile);
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
+
+.story-tips .section > div img {
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  .story-tips-landing main::before {
+    background-image: url("../../styles/images/article-landing-banner.jpeg");
+  }
+
+  .story-tips main::before {
+    background-image: url("../../styles/images/story-top-desktop.png");
+  }
+}
+
+@media (min-width: 900px) {
+  .story-tips-landing main {
+    padding-top: 7.625rem;  
+  }
+
+  .story-tips main {
+    padding: 5rem 0;
+  }
+
+  .story-tips-landing main::after,
+  .story-tips main::after {
+    background-image: url("../../styles/images/article-bottom-desktop.png");
+    margin-bottom: var(--footer-height-desktop);
+  }
+
+  .story-tips .section > div * {
+    max-width: 655px;
+  }
 }
