@@ -24,13 +24,15 @@ async function loadData(path) {
 async function printList(list) {
   const ul = document.createElement('ul');
   list.data.forEach((row) => {
-    row.image = adjustImageSize(row.image, 500);
-    const li = document.createElement('li');
-    li.innerHTML = getListHTML(row);
-    if (row.shortdesc === '0') {
-      li.querySelectorAll('.recipe-desc')[0].classList.add('hide');
+    if (row.shorttitle !== '0') {
+      row.image = adjustImageSize(row.image, 500);
+      const li = document.createElement('li');
+      li.innerHTML = getListHTML(row);
+      if (row.shortdesc === '0') {
+        li.querySelectorAll('.recipe-desc')[0].classList.add('hide');
+      }
+      ul.append(li);
     }
-    ul.append(li);
   });
   return ul;
 }
