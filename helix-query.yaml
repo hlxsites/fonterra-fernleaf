@@ -1,7 +1,6 @@
 version: 1
 # https://www.hlx.live/docs/setup-indexing
 
-auto-generated: true
 indices:
   default:
     include:
