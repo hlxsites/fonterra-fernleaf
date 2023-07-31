@@ -18,6 +18,15 @@ const LANGUAGES = new Set(['en', 'ms']);
 
 let language;
 
+export function isMobile() {
+  const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
+  if (width < 600) {
+    return true;
+  }
+
+  return false;
+}
+
 export function getLanguageFromPath(pathname, resetCache = false) {
   if (resetCache) {
     language = undefined;
@@ -45,6 +54,22 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
 }
 
 /**
+ * Reducing image size to custom Reduced size
+ * @param {*} row
+ */
+export function adjustImageSize(img, newSize) {
+  if (img) {
+    const url = new URL(`${window.location.origin}${img}`);
+    const params = url.searchParams;
+    params.set('width', newSize);
+
+    url.search = params.toString();
+    return url.toString();
+  }
+  return img;
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
 function buildAutoBlocks(main) {
@@ -58,11 +83,10 @@ function buildAutoBlocks(main) {
 */
 export function decorateLinkedPictures(container) {
   [...container.querySelectorAll('picture + br + a')]
-  // link text is an unformatted URL paste, and matches the link href
     .filter((a) => {
       try {
         // ignore domain in comparison
-        return new URL(a.href).pathname === new URL(a.textContent).pathname;
+        return new URL(a.href).pathname;
       } catch (e) {
         return false;
       }
@@ -72,7 +96,10 @@ export function decorateLinkedPictures(container) {
       picture.remove();
       const br = a.previousElementSibling;
       br.remove();
+      const txt = a.innerHTML;
       a.innerHTML = picture.outerHTML;
+      a.setAttribute('aria-label', txt);
+      a.setAttribute('title', txt);
     });
 }
 
