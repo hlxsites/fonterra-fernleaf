@@ -1,6 +1,6 @@
 import {
   isMobile,
-} from '../../scripts/scripts.js';
+} from '../../scripts/delayed.js';
 
 const SECTION_BG_DESKTOP = 'bg-desktop';
 const SECTION_BG_MOBILE = 'bg-mobile';
