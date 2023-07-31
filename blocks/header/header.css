@@ -55,7 +55,7 @@ header nav a:any-link {
   text-decoration: none;
 }
 
-header nav .nav-drop a:any-link {
+header nav .nav-drop ul a:any-link {
   text-transform: capitalize;
 }
 
