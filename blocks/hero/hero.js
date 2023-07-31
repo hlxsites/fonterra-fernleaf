@@ -38,21 +38,23 @@ function generateImage(imgDesktop, imgMobile, clsName) {
   const dImg = heroSections[imgDesktop];
   const mImg = heroSections[imgMobile];
   const hImg = document.createElement('picture');
+  const desktopSrcIndex = 1;
+  const imageSrcIndex = 3;
   let imgTag = '';
   [...dImg].forEach((item, index) => {
-    if (index !== 1 && index !== 3) {
+    if (index !== desktopSrcIndex && index !== imageSrcIndex) {
       hImg.append(item);
     }
-    if (index === 3 && !isMobile()) {
+    if (index === imageSrcIndex && !isMobile()) {
       imgTag = item;
     }
   });
 
   [...mImg].forEach((item, index) => {
-    if (index === 1) {
+    if (index === desktopSrcIndex) {
       hImg.append(item);
     }
-    if (index === 3 && isMobile()) {
+    if (index === imageSrcIndex && isMobile()) {
       imgTag = item;
     }
   });

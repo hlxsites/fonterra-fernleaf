@@ -7,6 +7,7 @@
 .hero .hero-bg img,
 .hero .hero-product img {
     width: 100%;
+    display: block;
 }
 
 .hero .inner-container {
@@ -15,6 +16,7 @@
 
 .hero .hero-content {
     padding: 1.813rem 0.938rem;
+    left: 0;
     position: absolute;
     top: 0;
 }
@@ -83,7 +85,9 @@
 }
 
 .product .hero .hero-bg {
+    left: 0;
     position: absolute;
+    top: 0;
     width: 100%;
     z-index: 1;
 }
