@@ -413,3 +413,45 @@
 .icon-star-full::before {
   content: "\e9d9" !important;
 }
+
+#my-button-class {
+  border-radius: 1.563rem;
+}
+
+.bottom-popup::before {
+  content: '';
+  position: absolute;
+  width: 90%;
+  height: 1px;
+  background-color: #c6c6c6;
+}
+
+.back-to-country::before {
+  content: "\e901";
+
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  font-size: 1.563rem;
+  color: #00338d;
+  font-family: 'iconanchor',Georgia,"Times New Roman",Times,serif;
+}
+
+.back-to-country {
+  background: #fff;
+}
+
+#my-button-class h3 {
+  color: #006938;
+}
+
+#my-button-class {
+  height: 100%;
+  width: 100%;
+}
+
+.back-to-country .btn-back-to, .back-to-country .flag-name {
+  font-family: "StagSans-Book",Helvetica,Arial,sans-serif;
+  font-size: .75rem;
+  vertical-align: middle;
+}
