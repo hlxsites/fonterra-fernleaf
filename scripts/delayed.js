@@ -14,8 +14,8 @@ export async function isMobile() {
 }
 
 // add serves and duration to recipe details page content
-const addServesAndDuration = {
-  content: (serves, duration) => {
+function AddServesAndDuration() {
+  this.content = (serves, duration) => {
     const servesContent = serves
       ? `<div class='serving'>
         <span class='icon icon-icon-user'></span><span class='text'>${serves}</span>
@@ -31,8 +31,8 @@ const addServesAndDuration = {
               ${servesContent}
               ${durationContent}
               </div>`;
-  },
-  render: () => {
+  };
+  this.render = () => {
     const servesMeta = document.querySelector("meta[name='serves']");
     const serves = servesMeta ? servesMeta.getAttribute('content') : '';
     const durationMeta = document.querySelector("meta[name='duration']");
@@ -44,14 +44,14 @@ const addServesAndDuration = {
         this.content(serves, duration),
       );
     }
-  },
-  init: () => {
+  };
+  this.init = () => {
     const isRecipePage = document
       .querySelector('body')
       .classList.contains('recipe');
     if (isRecipePage) {
       this.render();
     }
-  },
-};
-addServesAndDuration.init();
+  };
+}
+new AddServesAndDuration().init();
