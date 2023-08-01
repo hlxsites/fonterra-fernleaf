@@ -156,3 +156,7 @@ footer .language-selector {
   color: black;
   font-size: small;
 }
+
+footer .language-wrapper button {
+  text-transform: none;
+}

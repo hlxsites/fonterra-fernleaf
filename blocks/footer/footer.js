@@ -20,17 +20,11 @@ function decorateSocialIcons(footer) {
 
 function setlanguageButton(parent, txt) {
   parent.innerHTML = '<button type="button" class="language-selector"></button>';
-
   const languageButton = parent.querySelector('button');
   languageButton.innerText = txt;
   languageButton.addEventListener('click', () => {
     showLanguageSelector();
-    /* loadCSS('/styles/modals/languages.css', async () => {
-      const { showLanguageSelector } = await import('../../scripts/modals/languages.js');
-      showLanguageSelector();
-    }); */
   });
-  // languageButton.prepend(span);
 }
 
 /**
@@ -59,16 +53,15 @@ export default async function decorate(block) {
     const languageWrapper = document.createElement('div');
     languageWrapper.classList.add('language-wrapper');
 
-    /* language selector */
-    const text = footer.querySelector('div:last-child > p');
+    // language selector
+    const text = footer.querySelector('div:nth-child(4) > p');
     const buttonText = text.textContent.trim();
     setlanguageButton(languageWrapper, buttonText);
 
-    const language = footer.querySelector('div:last-child > p');
-    languageWrapper.append(language);
-    //
+    const language = footer.querySelector('div:nth-child(4) > p');
+    language.innerHTML = '';
+    language.appendChild(languageWrapper);
 
-    block.append(languageWrapper);
     block.append(footer);
   }
 }
