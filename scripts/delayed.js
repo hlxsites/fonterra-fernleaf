@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM } from './lib-franklin.js';
+import { sampleRUM, getMetadata } from './lib-franklin.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -33,22 +33,18 @@ function AddServesAndDuration() {
               </div>`;
   };
   this.render = () => {
-    const servesMeta = document.querySelector("meta[name='serves']");
-    const serves = servesMeta ? servesMeta.getAttribute('content') : '';
-    const durationMeta = document.querySelector("meta[name='duration']");
-    const duration = durationMeta ? durationMeta.getAttribute('content') : '';
+    const servesMeta = getMetadata('serves');
+    const durationMeta = getMetadata('duration');
     if (servesMeta || durationMeta) {
-      const recipeTitle = document.querySelector('h1');
+      const recipeTitle = document.body.querySelector('h1');
       recipeTitle.insertAdjacentHTML(
         'afterend',
-        this.content(serves, duration),
+        this.content(servesMeta, durationMeta),
       );
     }
   };
   this.init = () => {
-    const isRecipePage = document
-      .querySelector('body')
-      .classList.contains('recipe');
+    const isRecipePage = document.body.classList.contains('recipe');
     if (isRecipePage) {
       this.render();
     }
