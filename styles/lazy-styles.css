@@ -414,26 +414,21 @@
   content: "\e9d9" !important;
 }
 
-#my-button-class {
-  border-radius: 1.563rem;
-}
-
 .bottom-popup::before {
   content: '';
   position: absolute;
   width: 90%;
   height: 1px;
   background-color: #c6c6c6;
+  left: 5%;
 }
 
 .back-to-country::before {
   content: "\e901";
-
-  /* position: absolute;
-  top: 0;
-  left: 0; */
+  font-weight: 10;
   font-size: 1.563rem;
   color: #00338d;
+  vertical-align: middle;
   font-family: 'iconanchor',Georgia,"Times New Roman",Times,serif;
 }
 
@@ -441,28 +436,77 @@
   background: #fff;
 }
 
-#my-button-class h3 {
+#language-dialog h3 {
   color: #006938;
+  font-size: 2.625rem;
+  margin: 0;
 }
 
-#my-button-class {
-  height: 100%;
+#language-dialog {
+  padding: 0;
+  background-color: white;
+  border: 0;
   width: 100%;
-  max-width: 61.25rem;
-  max-height: 37rem;
+  min-height: 100%;
+  margin: 0;
+  max-width: 100%;
 }
 
-.back-to-country .btn-back-to, .back-to-country .flag-name {
-  font-family: "StagSans-Book",Helvetica,Arial,sans-serif;
-  font-size: .75rem;
-  vertical-align: middle;
-}
-
-@media screen and (max-width: 1023px) {
-  .country .container {
-    max-height: 100%;
-    max-width: 100%;
-    border-radius: 0;
-    padding: 1.25rem 1.25rem 0.625rem 1.25rem;
+@media (min-width: 1024px) {
+  #language-dialog {
+    width: 100%;
+    padding: 80px 80px 0;
+    background-color: white;
+    border: 0;
+    min-height: unset;
+    margin: auto;
+    height: 100%;
+    max-width: 61.25rem;
+    max-height: 37rem;
+    border-radius: 1.563rem;
   }
+}
+
+.back-to-country .flag-name {
+  color: black;
+  vertical-align: middle;
+  font-weight: 50;
+  text-transform: none;
+}
+
+.country-item .flag-name {
+  font-weight: 50;
+  font-size: smaller;
+}
+
+.back-to-country .flag-name:hover {
+  text-decoration: none;
+  color: #23527c;
+}
+
+.country-item > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.country-item > a:hover {
+  color: #23527c;
+  text-decoration: none;
+}
+
+.flag-icon {
+  vertical-align: middle;
+  width: 2rem;
+  border-radius: 50%;
+}
+
+.country-item {
+  display: flex;
+  gap: 25px;
+}
+
+.country-wrapper {
+  position: relative;
+  height: 67%;
 }

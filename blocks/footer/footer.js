@@ -21,7 +21,12 @@ function decorateSocialIcons(footer) {
 function setlanguageButton(parent, txt) {
   parent.innerHTML = '<button type="button" class="language-selector"></button>';
   const languageButton = parent.querySelector('button');
-  languageButton.innerText = txt;
+  // languageButton.innerText = txt;
+  // flag-malaysia.png
+  languageButton.innerHTML = `
+    <img src='../../styles/images/flag-malaysia.png' alt="${txt}">
+    <span>${txt}</span>
+  `;
   languageButton.addEventListener('click', () => {
     showLanguageSelector();
   });
@@ -49,7 +54,6 @@ export default async function decorate(block) {
     decorateIcons(footer);
     decorateSocialIcons(footer);
 
-    // code for language selector
     const languageWrapper = document.createElement('div');
     languageWrapper.classList.add('language-wrapper');
 

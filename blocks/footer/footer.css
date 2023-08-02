@@ -159,4 +159,10 @@ footer .language-selector {
 
 footer .language-wrapper button {
   text-transform: none;
+  font-weight: 50;
+}
+
+footer .language-selector img {
+  vertical-align: middle;
+  width: 1.25rem;
 }

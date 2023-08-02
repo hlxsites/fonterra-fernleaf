@@ -10,6 +10,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  fetchPlaceholders,
 } from './lib-franklin.js';
 
 import createModal from './modal.js';
@@ -105,30 +106,24 @@ export function decorateLinkedPictures(container) {
     });
 }
 
-/* function selectLanguage() {
-  const selected = document.querySelector('input[name="language"]:checked');
-  const paths = window.location.pathname.split('/');
-  paths[1] = selected.value.substring(1);
-  window.location.pathname = paths.join('/');
-  return false;
-} */
+function createModalContent(languages, placeholders) {
+  const languageMap = new Map();
+  languageMap.set('en', 'English');
+  languageMap.set('ms', 'Bahasa');
 
-function createModalContent(languages) {
   return `
     <div class="container">
       <h3 class="title-inline-large title-popup">
-      Choose a &nbsp;
-      <span>language</span>
-    </h3>
+        ${placeholders.dialogcontainertext}
+      </h3>
     </div>
     <div class="country-wrapper">
       <div class="country-list">
-        <p class="region"></p>
         <div class="country-item">
           ${[...languages].map((lang) => `
-          <a href="/${lang}" target="_blank" title="Malaysia (${lang})">
-            <img class="flag-icon" src="" alt="Malaysia (${lang})">
-            <span class="flag-name">Malaysia (${lang})</span>
+          <a href="/${lang}" target="_blank" title="Malaysia (${languageMap.get(lang)})">
+            <img class="flag-icon" src='../../styles/images/flag-malaysia.png' alt="Malaysia (${languageMap.get(lang)})">
+            <span class="flag-name">Malaysia <br>(${languageMap.get(lang)})</span>
           </a>            
         `).join('')}
         </div>
@@ -136,44 +131,20 @@ function createModalContent(languages) {
     </div>
     <div class="bottom-popup">
       <button class="back-to-country" data-close-popup="">
-        <img class="flag-icon" src="" alt="Malaysia (${language})" data-flag="">
-        <span class="btn-back-to">Back to&nbsp;</span>
-        <span class="flag-name" data-title-country="">Malaysia (${language})</span>
+        <img class="flag-icon" src='../../styles/images/flag-malaysia.png' alt="Malaysia (${languageMap.get(language)})" data-flag="">
+        <span class="flag-name" data-title-country="">${placeholders.dialogbacktocountrytext} Malaysia (${languageMap.get(language)})</span>
       </button>
     </div>
   `;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export async function showLanguageSelector() {
-  // const languagesPromise = await fetch('/languages.json')
-  // .then((resp) => resp.json()).then((resp) => resp.data);
-  // const placeholdersPromise = await fetchPlaceholders(`/${getLanguage()}`);
-
-  // const placeholders = await Promise.all(placeholdersPromise);
+  const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
 
   const dialogElement = createModal(
-    'my-button-class',
-    () => createModalContent(LANGUAGES),
+    'language-dialog',
+    () => createModalContent(LANGUAGES, placeholders),
     () => {
-      /* document.querySelectorAll('#language-form input').forEach((input) => {
-        input.addEventListener('click', () => {
-          // open a new tab with selected language
-        });
-      }); */
-
-      /* document.querySelector('#language-form').addEventListener('click', (e) => {
-        e.preventDefault();
-        // open a new tab with selected language
-
-        // return selectLanguage();
-      }); */
-
-      /* document.querySelector('#language-form').addEventListener('submit', (e) => {
-        e.preventDefault();
-        return selectLanguage();
-      }); */
-
       document.querySelector('.back-to-country').addEventListener('click', () => {
         dialogElement.close();
       });
