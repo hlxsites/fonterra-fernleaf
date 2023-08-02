@@ -415,12 +415,12 @@
 }
 
 /* recipe details page */
-.recipe-info {
+.recipe .recipe-info {
   display: flex;
   gap: 1.6rem
 }
 
-.recipe-info .serving, .recipe-info .pre-time {
+.recipe .recipe-info .serving, .recipe .recipe-info .pre-time {
   padding-top: .375rem;
   padding-bottom: .5rem;
   display: flex;
@@ -428,16 +428,16 @@
   gap: .5rem;
 }
 
-.recipe-info span.icon {
+.recipe .recipe-info span.icon {
   width: auto;
   height: auto;
 }
 
-.recipe-info span.icon::before {
+.recipe .recipe-info span.icon::before {
   font-size: 1.2rem;
 }
 
-.recipe-info span.text {
+.recipe .recipe-info span.text {
   font-size: 12px;
   text-transform: uppercase;
   vertical-align: middle;
