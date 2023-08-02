@@ -345,14 +345,14 @@ main .section.highlight {
 
 /* Full Width Banner */
 .full-width-banner {
-  height: 760px;
+  height: 730px;
   position: relative;
 }
 
 .full-width-banner img {
   width: 100%;
   display: block;
-  height: 760px;
+  height: 730px;
   object-fit: cover;
   object-position: bottom;
 }
