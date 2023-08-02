@@ -414,6 +414,38 @@
   content: "\e9d9" !important;
 }
 
+/* recipe details page */
+.recipe h1 + .recipe-info {
+  display: flex;
+  gap: 1.6rem
+}
+
+.recipe h1 + .recipe-info .serving, .recipe h1 + .recipe-info .pre-time {
+  padding-top: .375rem;
+  padding-bottom: .5rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.recipe h1 + .recipe-info span.icon {
+  width: auto;
+  height: auto;
+}
+
+.recipe h1 + .recipe-info span.icon::before {
+  font-size: 1.2rem;
+}
+
+.recipe h1 + .recipe-info span.text {
+  font-size: 12px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.recipe .columns-wrapper {
+  padding: 20px 0;
+}
 .bottom-popup::before {
   content: '';
   position: absolute;
