@@ -40,6 +40,8 @@ function GenerateBackGroundImages() {
         const img = document.createElement('img');
         img.setAttribute('loading', eager ? 'eager' : 'lazy');
         img.setAttribute('alt', alt);
+        img.setAttribute('width', br.width);
+        img.setAttribute('height', '100%');
         picture.appendChild(img);
         img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
       }
