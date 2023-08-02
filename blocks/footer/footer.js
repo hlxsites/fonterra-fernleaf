@@ -21,10 +21,8 @@ function decorateSocialIcons(footer) {
 function setlanguageButton(parent, txt) {
   parent.innerHTML = '<button type="button" class="language-selector"></button>';
   const languageButton = parent.querySelector('button');
-  // languageButton.innerText = txt;
-  // flag-malaysia.png
   languageButton.innerHTML = `
-    <img src='../../styles/images/flag-malaysia.png' alt="${txt}">
+    <img src='../../styles/images/flag-malaysia.png' alt="${txt}" height="30" width="25">
     <span>${txt}</span>
   `;
   languageButton.addEventListener('click', () => {
@@ -54,10 +52,10 @@ export default async function decorate(block) {
     decorateIcons(footer);
     decorateSocialIcons(footer);
 
+    // language selector
     const languageWrapper = document.createElement('div');
     languageWrapper.classList.add('language-wrapper');
 
-    // language selector
     const text = footer.querySelector('div:nth-child(4) > p');
     const buttonText = text.textContent.trim();
     setlanguageButton(languageWrapper, buttonText);

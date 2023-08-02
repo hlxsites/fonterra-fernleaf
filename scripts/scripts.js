@@ -122,7 +122,7 @@ function createModalContent(languages, placeholders) {
         <div class="country-item">
           ${[...languages].map((lang) => `
           <a href="/${lang}" target="_blank" title="Malaysia (${languageMap.get(lang)})">
-            <img class="flag-icon" src='../../styles/images/flag-malaysia.png' alt="Malaysia (${languageMap.get(lang)})">
+            <img class="flag-icon" src='../../styles/images/flag-malaysia.png' alt="Malaysia (${languageMap.get(lang)})" height="30" width="25">
             <span class="flag-name">Malaysia <br>(${languageMap.get(lang)})</span>
           </a>            
         `).join('')}
@@ -131,7 +131,7 @@ function createModalContent(languages, placeholders) {
     </div>
     <div class="bottom-popup">
       <button class="back-to-country" data-close-popup="">
-        <img class="flag-icon" src='../../styles/images/flag-malaysia.png' alt="Malaysia (${languageMap.get(language)})" data-flag="">
+        <img class="flag-icon" src='../../styles/images/flag-malaysia.png' alt="Malaysia (${languageMap.get(language)})" data-flag="" height="30" width="25">
         <span class="flag-name" data-title-country="">${placeholders.dialogbacktocountrytext} Malaysia (${languageMap.get(language)})</span>
       </button>
     </div>
@@ -147,6 +147,7 @@ export async function showLanguageSelector() {
     () => {
       document.querySelector('.back-to-country').addEventListener('click', () => {
         dialogElement.close();
+        document.body.classList.toggle('disable-scroll');
       });
     },
   );
@@ -154,6 +155,7 @@ export async function showLanguageSelector() {
   decorateIcons(dialogElement);
 
   dialogElement.showModal();
+  document.body.classList.toggle('disable-scroll');
 }
 
 /**

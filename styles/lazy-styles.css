@@ -417,10 +417,9 @@
 .bottom-popup::before {
   content: '';
   position: absolute;
-  width: 90%;
+  width: calc(100% - 6rem);
   height: 1px;
   background-color: #c6c6c6;
-  left: 5%;
 }
 
 .back-to-country::before {
@@ -432,18 +431,19 @@
   font-family: iconanchor, sans-serif;
 }
 
+
 .back-to-country {
   background: #fff;
+  padding: 0;
 }
 
+
 #language-dialog h3 {
-  color: #006938;
   font-size: 2.625rem;
-  margin: 0;
 }
 
 #language-dialog {
-  padding: 0;
+  padding: 1.25rem 1.25rem 0.625rem;
   background-color: white;
   border: 0;
   width: 100%;
@@ -455,7 +455,7 @@
 @media (min-width: 1024px) {
   #language-dialog {
     width: 100%;
-    padding: 80px 80px 0;
+    padding: 45px 45px 65px;
     background-color: white;
     border: 0;
     min-height: unset;
@@ -467,30 +467,67 @@
   }
 }
 
+.bottom-popup {
+  position: absolute;
+  bottom: 1rem;
+  width: 100%;
+}
+
+.container {
+  padding: 1rem 0;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 20px 0 10px;
+  }
+}
+
+.title-popup {
+  margin: 0;
+  color: #006938;
+  font-size: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .bottom-popup {
+    bottom: 1rem;
+  }
+}
+
+
 .back-to-country .flag-name {
   color: black;
   vertical-align: middle;
   font-weight: 50;
   text-transform: none;
+  white-space: normal;
 }
+
 
 .country-item .flag-name {
   font-weight: 50;
-  font-size: smaller;
-}
-
-.back-to-country .flag-name:hover {
-  text-decoration: none;
-  color: #23527c;
+  font-size: small;
 }
 
 .country-item > a {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 49%;
 }
 
-.country-item > a:hover {
+@media (min-width: 1024px) {
+  .country-item > a {
+    width: 14%;
+  }
+}
+
+.country-list {
+  padding-left: 1rem;
+}
+
+.country-item > a:hover, .back-to-country .flag-name:hover  {
   color: #23527c;
   text-decoration: none;
 }
@@ -506,7 +543,14 @@
   gap: 25px;
 }
 
-.country-wrapper {
-  position: relative;
-  height: 67%;
+@media (min-width: 1024px) {
+  .country-wrapper {
+    padding-top: 2rem;
+  }
+}
+
+.disable-scroll {
+  overflow: hidden;
+  opacity: 0.5;
+  background-color: #000;
 }

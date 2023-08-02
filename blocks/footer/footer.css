@@ -22,6 +22,7 @@ footer div > div {
 
 footer div > div:nth-child(1) {
   order: 4;
+  padding-left: 15px;
 }
 
 footer div > div:nth-child(2) {
@@ -77,15 +78,13 @@ footer div > div:nth-child(3) a .icon-facebook::before {
 
 footer div > div:nth-child(4) {
   order: 3;
-  margin-top: 0.625rem;
-  margin-bottom: 1.25rem;
+  padding-right: 15px;
 }
 
 /** Footer desktop styles */
 @media only screen and (min-width: 900px) {
   footer {
     height: var(--footer-height-desktop);
-    padding: 0 15px;
   }
 
   footer div > div {
@@ -165,4 +164,8 @@ footer .language-wrapper button {
 footer .language-selector img {
   vertical-align: middle;
   width: 1.25rem;
+}
+
+footer .block {
+  background-color: white;
 }
