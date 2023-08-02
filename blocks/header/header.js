@@ -40,14 +40,12 @@ function resetNavSection() {
   const nav = document.querySelector('nav');
   const navSection = nav.querySelector('.nav-sections');
   navSection.classList.remove('child-section-enable');
-  nav.querySelector('.nav-drop').classList.remove('child-section');
 }
 
-function enableSubNavSection(e) {
+function enableSubNavSection() {
   const nav = document.querySelector('nav');
   const navSection = nav.querySelector('.nav-sections');
   navSection.classList.add('child-section-enable');
-  e.currentTarget.closest('.nav-drop').classList.add('child-section');
   navSection.querySelector('.nav-back-btn').addEventListener('click', resetNavSection);
 }
 
