@@ -446,6 +446,7 @@
 .recipe .columns-wrapper {
   padding: 20px 0;
 }
+
 .bottom-popup::before {
   content: '';
   position: absolute;
