@@ -484,6 +484,13 @@
   max-width: 100%;
 }
 
+.country-item > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 49%;
+}
+
 @media (min-width: 1024px) {
   #language-dialog {
     width: 100%;
@@ -542,13 +549,6 @@
 .country-item .flag-name {
   font-weight: 50;
   font-size: small;
-}
-
-.country-item > a {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 49%;
 }
 
 .country-list {
