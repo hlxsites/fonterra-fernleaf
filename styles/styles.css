@@ -457,7 +457,6 @@ main .section.highlight {
   
   .full-width-banner .default-content-wrapper {
     padding: 6.25rem 0.938rem 0;
-    transform: translate(-50%, 0);
   }
 
   .full-width-banner .default-content-wrapper * {
