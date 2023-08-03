@@ -1,5 +1,6 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
-import { getLanguage, showLanguageSelector } from '../../scripts/scripts.js';
+import { getLanguage } from '../../scripts/scripts.js';
+import showLanguageSelector from '../../scripts/modals/languages.js';
 
 /**
  * Updates the footer icons to be accessible

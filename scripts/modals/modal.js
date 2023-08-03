@@ -1,4 +1,4 @@
-import { decorateIcons } from './lib-franklin.js';
+import { decorateIcons } from '../lib-franklin.js';
 
 export default function createModal(modalId, createContent, addEventListeners) {
   let dialogElement = document.getElementById(modalId);
