@@ -44,6 +44,7 @@
   --global-color-yellow: #fedf00;
   --global-color-selective-yellow: #f0ab00;
   --global-color-dark-goldenrod: #c18812;
+  --global-color-bahama-blue: #23527c;
 
   /* Colors - Alias Names */
   --text-color: var(--global-color-black);
@@ -508,3 +509,4 @@ main .section.highlight {
     max-width: 655px;
   }
 }
+

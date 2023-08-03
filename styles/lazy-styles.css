@@ -446,3 +446,126 @@
 .recipe .columns-wrapper {
   padding: 20px 0;
 }
+
+.bottom-popup::before {
+  content: '';
+  position: absolute;
+  width: calc(100% - 4rem);
+  height: 1px;
+  background-color: var(--global-color-silver);
+}
+
+.back-to-country::before {
+  content: "\e901";
+  font-weight: 10;
+  font-size: 1.563rem;
+  color: var(--global-color-dark-blue);
+  vertical-align: middle;
+  font-family: iconanchor, sans-serif;
+}
+
+.back-to-country {
+  background: var(--global-color-white);
+  padding: 0;
+}
+
+
+#language-dialog h3 {
+  font-size: 2.625rem;
+}
+
+#language-dialog {
+  padding: 1.25rem 1.25rem 0.625rem;
+  background-color: var(--global-color-white);
+  border: 0;
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  max-width: 100%;
+}
+
+.country-item > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 49%;
+  padding: 48px;
+}
+
+@media (min-width: 1024px) {
+  #language-dialog {
+    width: 100%;
+    padding: 45px 45px 65px;
+    background-color: var(--global-color-white);
+    border: 0;
+    min-height: unset;
+    margin: auto;
+    height: 100%;
+    max-width: 61.25rem;
+    max-height: 37rem;
+    border-radius: 1.563rem;
+  }
+
+  .container {
+    padding: 20px 0 10px;
+  }
+
+  .bottom-popup {
+    bottom: 1rem;
+  }
+
+  .country-item > a {
+    width: 14%;
+  }
+}
+
+.bottom-popup {
+  position: absolute;
+  bottom: 1rem;
+  width: 95%;
+}
+
+.container {
+  padding: 1rem 0;
+}
+
+.title-popup {
+  margin: 0;
+  color: var(--global-color-pine-green);
+  font-size: 2.5rem;
+}
+
+.back-to-country .flag-name {
+  color: var(--global-color-black);
+  vertical-align: middle;
+  font-weight: 50;
+  text-transform: none;
+  white-space: normal;
+}
+
+.country-item .flag-name {
+  font-weight: 50;
+  font-size: small;
+}
+
+.country-item > a:hover, .back-to-country .flag-name:hover  {
+  color: var(--global-color-bahama-blue);
+  text-decoration: none;
+}
+
+.flag-icon {
+  vertical-align: middle;
+  width: 2rem;
+  border-radius: 50%;
+}
+
+.country-item {
+  display: flex;
+  gap: 25px;
+}
+
+.disable-scroll {
+  overflow: hidden;
+  opacity: 0.5;
+  background-color: var(--global-color-black);
+}
