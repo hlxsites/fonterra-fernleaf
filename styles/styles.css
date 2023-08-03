@@ -44,6 +44,7 @@
   --global-color-yellow: #fedf00;
   --global-color-selective-yellow: #f0ab00;
   --global-color-dark-goldenrod: #c18812;
+  --global-color-bahama-blue: #23527c;
 
   /* Colors - Alias Names */
   --text-color: var(--global-color-black);
@@ -345,12 +346,16 @@ main .section.highlight {
 
 /* Full Width Banner */
 .full-width-banner {
+  height: 730px;
   position: relative;
 }
 
 .full-width-banner img {
   width: 100%;
   display: block;
+  height: 730px;
+  object-fit: cover;
+  object-position: bottom;
 }
 
 .full-width-banner .default-content-wrapper {
@@ -442,14 +447,17 @@ main .section.highlight {
 
 @media (min-width: 600px) {
   /* Full Width Banner */
+  .full-width-banner {
+    height: 452px;
+  }
+
   .full-width-banner img {
-    min-height: 500px;
+    height: 452px;
     object-fit: cover;
   }
   
   .full-width-banner .default-content-wrapper {
-    padding: 0 0.938rem;
-    transform: translate(-50%, 50%);
+    padding: 6.25rem 0.938rem 0;
   }
 
   .full-width-banner .default-content-wrapper * {
