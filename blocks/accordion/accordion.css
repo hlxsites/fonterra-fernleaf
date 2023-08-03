@@ -42,6 +42,8 @@ main .section .accordion-wrapper {
     padding-left: 3.875rem;
     font-size: 1.375rem;
     margin-top: unset;
+    width: 100%;
+    text-align: left;
 }
 
 .accordion-wrapper .accordion-section button[aria-expanded="false"]::after {
@@ -116,33 +118,41 @@ main .section .accordion-wrapper {
 }
 
 .accordion-wrapper .table-wrapper .table.block {
-    display: table;
+    /* display: table; */
     width: 100%;
     padding: 20px 26px;
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .accordion-wrapper .table-wrapper .table.block div {
-    display: table-row;
+    display: table;
     height: 50px;
 }
 
 .accordion-wrapper .table-wrapper .table.block div div {
     display: table-cell;
-    min-width: 50px;
     max-width: 200px;
-    padding-top: 12px;
-    padding-bottom: 12px;
     border-bottom: 1px solid #d3d3d3;
     vertical-align: middle;
 }
 
 .accordion-wrapper .table-wrapper .table.block div div:nth-child(1) {
     text-align: left;
+    min-width: 50px;
 }
 
 .accordion-wrapper .table-wrapper .table.block div div:nth-child(2) {
     text-align: right;
+    min-width: 50px;
+
+}
+
+.accordion-wrapper .table-wrapper .table.block div div:nth-child(3),
+.accordion-wrapper .table-wrapper .table.block div div:nth-child(4) {  
+    text-align: center;
+    width: 70px;
 }
 
 .accordion-wrapper .table-wrapper .table.block div div:first-child:last-child {
