@@ -22,7 +22,7 @@ function setlanguageButton(parent, txt) {
   parent.innerHTML = '<button type="button" class="language-selector"></button>';
   const languageButton = parent.querySelector('button');
   languageButton.innerHTML = `
-    <img src='../../styles/images/flag-malaysia.png' alt="${txt}" height="25">
+    <img src='../../styles/images/flag-malaysia.png' alt="${txt}">
     <span>${txt}</span>
   `;
   languageButton.addEventListener('click', () => {

@@ -159,6 +159,9 @@ footer .language-wrapper button {
 footer .language-selector img {
   vertical-align: middle;
   width: 1.25rem;
+  aspect-ratio: 1/1;
+  max-width: 100%;
+  height: auto;
 }
 
 footer .block {
