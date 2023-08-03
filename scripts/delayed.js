@@ -15,39 +15,38 @@ export async function isMobile() {
 
 function GenerateBackGroundImages() {
   this.addImageSource = (src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 600px)', width: '1920' }, { width: '1023' }]) => {
-    const picture = document.createElement('picture');
-    // webp
-    breakpoints.forEach((br, i) => {
-      const url = new URL(src[i], window.location.href);
-      const { pathname } = url;
-      const source = document.createElement('source');
-      if (br.media) source.setAttribute('media', br.media);
-      source.setAttribute('type', 'image/webp');
-      source.setAttribute('srcset', `${pathname}?width=${br.width}&format=webply&optimize=medium`);
-      picture.appendChild(source);
-    });
-    // fallback
-    breakpoints.forEach((br, i) => {
-      const url = new URL(src[i], window.location.href);
-      const { pathname } = url;
-      const ext = pathname.substring(pathname.lastIndexOf('.') + 1);
-      if (i < breakpoints.length - 1) {
-        const source = document.createElement('source');
-        if (br.media) source.setAttribute('media', br.media);
-        source.setAttribute('srcset', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
-        picture.appendChild(source);
-      } else {
-        const img = document.createElement('img');
-        img.setAttribute('loading', eager ? 'eager' : 'lazy');
-        img.setAttribute('alt', alt);
-        img.setAttribute('width', br.width);
-        img.setAttribute('height', '100%');
-        picture.appendChild(img);
-        img.setAttribute('src', `${pathname}?width=${br.width}&format=${ext}&optimize=medium`);
-      }
-    });
+    if (breakpoints.length && src.length) {
+      const picture = document.createElement('picture');
+      const sourceElements = breakpoints.map((mediaPoints, index) => {
+        const { pathname } = new URL(src[index], window.location.href);
+        return `<source type='image/webp' ${mediaPoints.media ? `media='${mediaPoints.media}'` : ''} srcset='${pathname}?width=${mediaPoints.width}&format=webply&optimize=medium'>`;
+      });
 
-    return picture;
+      const defaultIndex = 0;
+      const srcUrl = new URL(src[defaultIndex], window.location.href);
+      const sourcePathname = srcUrl?.pathname;
+      const ext = sourcePathname.substring(sourcePathname.lastIndexOf('.') + 1);
+      const fallbackSource = `<source ${breakpoints[defaultIndex].media ? `media='${breakpoints[defaultIndex].media}'` : ''} 
+                                      srcset='${sourcePathname}?width=${breakpoints[defaultIndex].width}&format=${ext}&optimize=medium'>`;
+      sourceElements.push(fallbackSource);
+
+      const defaultSrcIndex = breakpoints.length - 1;
+      const source = src[defaultSrcIndex] ? src[defaultSrcIndex] : src[0];
+      const imgUrl = new URL(source, window.location.href);
+      const imgPathname = imgUrl?.pathname;
+      const imgSrc = `<img src='${imgPathname}?width=${breakpoints[defaultSrcIndex].width}&format=${ext}&optimize=medium'
+                      alt=${alt}
+                      width='${breakpoints[defaultSrcIndex].width}'
+                      height='100%'
+                      loading='${eager ? 'eager' : 'lazy'}'>
+                    `;
+      sourceElements.push(imgSrc);
+
+      const combinedElements = sourceElements.join('');
+      picture.innerHTML = combinedElements;
+      return picture;
+    }
+    return false;
   };
 
   this.render = (banner) => {
