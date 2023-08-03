@@ -22,6 +22,7 @@ footer div > div {
 
 footer div > div:nth-child(1) {
   order: 4;
+  padding-left: 15px;
 }
 
 footer div > div:nth-child(2) {
@@ -77,15 +78,13 @@ footer div > div:nth-child(3) a .icon-facebook::before {
 
 footer div > div:nth-child(4) {
   order: 3;
-  margin-top: 0.625rem;
-  margin-bottom: 1.25rem;
+  padding-right: 15px;
 }
 
 /** Footer desktop styles */
 @media only screen and (min-width: 900px) {
   footer {
     height: var(--footer-height-desktop);
-    padding: 0 15px;
   }
 
   footer div > div {
@@ -145,7 +144,26 @@ footer div > div:nth-child(4) {
   }
 }
 
-/* TODO: Implement country selector popup */
-footer div.country-selector {
-  display: none;
+footer .language-selector {
+  background: none;
+  padding: 0;
+  color: var(--global-color-black);
+  font-size: small;
+}
+
+footer .language-wrapper button {
+  text-transform: none;
+  font-weight: 50;
+}
+
+footer .language-selector img {
+  vertical-align: middle;
+  width: 1.25rem;
+  aspect-ratio: 1/1;
+  max-width: 100%;
+  height: auto;
+}
+
+footer .block {
+  background-color: var(--global-color-white);
 }
