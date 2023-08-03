@@ -449,7 +449,7 @@
 
 /* Story tips page styles */
 .story-tips  h1 {
-  margin-top: 0;
+  margin-top: 0px;
 }
 
 .story-tips-action {
@@ -461,6 +461,10 @@
 .story-tips-action .print-btn {
   font-size: .75rem;
   color: var(--global-color-gray64);
+}
+
+.story-tips-action:hover {
+  text-decoration: none;
 }
 
 /* Print styles */
