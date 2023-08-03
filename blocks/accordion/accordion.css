@@ -4,7 +4,6 @@ main .section .accordion-wrapper {
 }
 
 .accordion-wrapper .accordion-section h4 {
-  margin-right: 18px;
   margin: unset;
 }
 
