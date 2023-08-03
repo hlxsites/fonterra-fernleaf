@@ -489,6 +489,7 @@
   align-items: center;
   gap: 10px;
   width: 49%;
+  padding: 48px;
 }
 
 @media (min-width: 1024px) {
@@ -515,10 +516,6 @@
 
   .country-item > a {
     width: 14%;
-  }
-
-  .country-wrapper {
-    padding-top: 2rem;
   }
 }
 
@@ -549,10 +546,6 @@
 .country-item .flag-name {
   font-weight: 50;
   font-size: small;
-}
-
-.country-list {
-  padding-left: 1rem;
 }
 
 .country-item > a:hover, .back-to-country .flag-name:hover  {
