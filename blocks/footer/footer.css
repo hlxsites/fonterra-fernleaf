@@ -147,7 +147,7 @@ footer div > div:nth-child(4) {
 footer .language-selector {
   background: none;
   padding: 0;
-  color: black;
+  color: var(--global-color-black);
   font-size: small;
 }
 
@@ -162,5 +162,5 @@ footer .language-selector img {
 }
 
 footer .block {
-  background-color: white;
+  background-color: var(--global-color-white);
 }

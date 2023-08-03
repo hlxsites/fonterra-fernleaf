@@ -138,6 +138,28 @@ function createModalContent(languages, placeholders) {
   `;
 }
 
+function applyStylesOnDialogOpenAndClose() {
+  document.body.classList.toggle('disable-scroll');
+}
+
+function isClickOutsidePadding(event) {
+  const dialog = document.getElementById('language-dialog');
+  const elementRect = dialog.getBoundingClientRect();
+  const clickX = event.clientX;
+  const clickY = event.clientY;
+
+  // Check if the click coordinates are outside the padding area
+  if (
+    clickX < elementRect.left
+    || clickX > elementRect.right
+    || clickY < elementRect.top
+    || clickY > elementRect.bottom
+  ) {
+    return true;
+  }
+  return false;
+}
+
 export async function showLanguageSelector() {
   const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
 
@@ -147,15 +169,33 @@ export async function showLanguageSelector() {
     () => {
       document.querySelector('.back-to-country').addEventListener('click', () => {
         dialogElement.close();
-        document.body.classList.toggle('disable-scroll');
+        applyStylesOnDialogOpenAndClose();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (dialogElement.open && event.key === 'Escape') {
+          dialogElement.close();
+          applyStylesOnDialogOpenAndClose();
+        }
       });
     },
   );
 
   decorateIcons(dialogElement);
 
+  document.addEventListener('click', (event) => {
+    const isButtonClick = event.target.closest('button') !== null;
+
+    if (dialogElement.open && !isButtonClick) {
+      if (isClickOutsidePadding(event)) {
+        dialogElement.close();
+        applyStylesOnDialogOpenAndClose();
+      }
+    }
+  });
+
   dialogElement.showModal();
-  document.body.classList.toggle('disable-scroll');
+  applyStylesOnDialogOpenAndClose();
 }
 
 /**

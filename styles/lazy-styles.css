@@ -450,23 +450,22 @@
 .bottom-popup::before {
   content: '';
   position: absolute;
-  width: calc(100% - 6rem);
+  width: calc(100% - 4rem);
   height: 1px;
-  background-color: #c6c6c6;
+  background-color: var(--global-color-silver);
 }
 
 .back-to-country::before {
   content: "\e901";
   font-weight: 10;
   font-size: 1.563rem;
-  color: #00338d;
+  color: var(--global-color-dark-blue);
   vertical-align: middle;
   font-family: iconanchor, sans-serif;
 }
 
-
 .back-to-country {
-  background: #fff;
+  background: var(--global-color-white);
   padding: 0;
 }
 
@@ -477,7 +476,7 @@
 
 #language-dialog {
   padding: 1.25rem 1.25rem 0.625rem;
-  background-color: white;
+  background-color: var(--global-color-white);
   border: 0;
   width: 100%;
   min-height: 100%;
@@ -489,7 +488,7 @@
   #language-dialog {
     width: 100%;
     padding: 45px 45px 65px;
-    background-color: white;
+    background-color: var(--global-color-white);
     border: 0;
     min-height: unset;
     margin: auto;
@@ -498,45 +497,47 @@
     max-height: 37rem;
     border-radius: 1.563rem;
   }
+
+  .container {
+    padding: 20px 0 10px;
+  }
+
+  .bottom-popup {
+    bottom: 1rem;
+  }
+
+  .country-item > a {
+    width: 14%;
+  }
+
+  .country-wrapper {
+    padding-top: 2rem;
+  }
 }
 
 .bottom-popup {
   position: absolute;
   bottom: 1rem;
-  width: 100%;
+  width: 95%;
 }
 
 .container {
   padding: 1rem 0;
 }
 
-@media (min-width: 1024px) {
-  .container {
-    padding: 20px 0 10px;
-  }
-}
-
 .title-popup {
   margin: 0;
-  color: #006938;
+  color: var(--global-color-pine-green);
   font-size: 2.5rem;
 }
 
-@media (min-width: 1024px) {
-  .bottom-popup {
-    bottom: 1rem;
-  }
-}
-
-
 .back-to-country .flag-name {
-  color: black;
+  color: var(--global-color-black);
   vertical-align: middle;
   font-weight: 50;
   text-transform: none;
   white-space: normal;
 }
-
 
 .country-item .flag-name {
   font-weight: 50;
@@ -550,18 +551,12 @@
   width: 49%;
 }
 
-@media (min-width: 1024px) {
-  .country-item > a {
-    width: 14%;
-  }
-}
-
 .country-list {
   padding-left: 1rem;
 }
 
 .country-item > a:hover, .back-to-country .flag-name:hover  {
-  color: #23527c;
+  color: var(--global-color-bahama-blue);
   text-decoration: none;
 }
 
@@ -576,14 +571,8 @@
   gap: 25px;
 }
 
-@media (min-width: 1024px) {
-  .country-wrapper {
-    padding-top: 2rem;
-  }
-}
-
 .disable-scroll {
   overflow: hidden;
   opacity: 0.5;
-  background-color: #000;
+  background-color: var(--global-color-black);
 }
