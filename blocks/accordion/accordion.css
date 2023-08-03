@@ -1,3 +1,4 @@
+
 main .section .accordion-wrapper {
     padding: revert;
     margin-top: -40px;
@@ -83,92 +84,29 @@ main .section .accordion-wrapper {
     border-bottom: unset;
 }
 
-.accordion-wrapper .accordion-panel div {
-    display: flex;
-    align-items: center;
-    margin-bottom: 4px;
-    width: fit-content;
-    text-align: inherit;
+.accordion-wrapper .columns-wrapper .columns>div {
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-left: 30px;
+    flex-direction: revert;
 }
 
-.accordion-wrapper .accordion-panel div div:last-child {
-    padding-left: 10px;
+.accordion-wrapper .columns-wrapper .columns-img-col {
+    display: contents;
 }
 
-.accordion-wrapper .table-wrapper {
-    background-color: #f6f6f6;
-    font-size: 14px;
-    color: var(--global-color-dim-gray);
-    font-weight: 300;
-    margin-top: -18px;
-    display: flex;
-    flex-wrap: wrap;
+.accordion-wrapper .columns-wrapper .columns-img-col img {
+    width: 60px;
+    height: 60px;
 }
 
-.accordion-wrapper .table-wrapper div ul {
-    margin: unset;
+.accordion-wrapper .columns-wrapper .columns div div:nth-child(2) {
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 77%;
 }
 
-.accordion-wrapper .table-wrapper div li {
-    list-style-type: none;
-}
-
-.accordion-wrapper .table-wrapper div li::before {
-    content: '- ';
-}
-
-.accordion-wrapper .table-wrapper .table.block {
-    /* display: table; */
-    width: 100%;
-    padding: 20px 26px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.accordion-wrapper .table-wrapper .table.block div {
-    display: table;
-    height: 50px;
-}
-
-.accordion-wrapper .table-wrapper .table.block div div {
-    display: table-cell;
-    max-width: 200px;
-    border-bottom: 1px solid #d3d3d3;
-    vertical-align: middle;
-}
-
-.accordion-wrapper .table-wrapper .table.block div div:nth-child(1) {
-    text-align: left;
-    min-width: 50px;
-}
-
-.accordion-wrapper .table-wrapper .table.block div div:nth-child(2) {
-    text-align: right;
-    min-width: 50px;
-
-}
-
-.accordion-wrapper .table-wrapper .table.block div div:nth-child(3),
-.accordion-wrapper .table-wrapper .table.block div div:nth-child(4) {  
-    text-align: center;
-    width: 70px;
-}
-
-.accordion-wrapper .table-wrapper .table.block div div:first-child:last-child {
-    text-align: center;
-}
-
-.accordion-wrapper .table-wrapper p {
-    font-size: 12px;
-    border-bottom: revert;
-    width: fit-content;
-    flex: 1 0 100%;
-    padding: 6px 26px;
-    margin-top: -12px;
-}
-
-@media (max-width: 900px) {
+ @media (max-width: 900px) {
     main .section .accordion-wrapper {
         padding-left: 22px;
         margin-top: unset;
@@ -197,13 +135,3 @@ main .section .accordion-wrapper {
     }
 }
 
-@media (max-width: 600px) {
-    .accordion-wrapper .table-wrapper .table.block:nth-child(1) {
-        padding-bottom: revert;
-    }
-
-    .accordion-wrapper .table-wrapper .table.block:nth-child(2) {
-        padding-top: revert;
-    }
-
-}

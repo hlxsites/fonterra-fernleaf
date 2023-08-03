@@ -1,7 +1,3 @@
-var div = document.createElement('div'); 
-div.appendChild(drop.querySelector("ul"));
-drop.append(div);
-
 /* header and nav layout */
 header .nav-wrapper {
   background-color: var(--global-color-white);

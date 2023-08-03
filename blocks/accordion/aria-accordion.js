@@ -4,7 +4,6 @@ const HEADINGS_SELECTOR = 'h1,h2,h3,h4,h5,h6';
 
 export const constants = {
   tagName: 'hlx-aria-accordion',
-  withControls: 'with-controls',
 };
 
 export class AriaAccordion extends HTMLElement {
@@ -51,11 +50,6 @@ export class AriaAccordion extends HTMLElement {
         }
       });
     });
-    if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
-      const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
-      expand.addEventListener('click', () => this.toggleAll(true));
-      collapse.addEventListener('click', () => this.toggleAll(false));
-    }
   }
 
   async decorate() {
@@ -96,21 +90,6 @@ export class AriaAccordion extends HTMLElement {
       panel.append(el.firstElementChild.nextElementSibling);
       el.append(panel);
     });
-    if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
-      const ids = [...this.querySelectorAll('[role="region"]')].map((el) => el.id).join(' ');
-      const div = document.createElement('div');
-      div.setAttribute('role', 'group');
-      const expand = document.createElement('button');
-      expand.setAttribute('aria-controls', ids);
-      expand.textContent = 'Expand All';
-      div.append(expand);
-      const collapse = document.createElement('button');
-      collapse.setAttribute('aria-controls', ids);
-      collapse.textContent = 'Collapse All';
-      collapse.disabled = true;
-      div.append(collapse);
-      this.prepend(div);
-    }
   }
 
   toggleAll(visible) {
@@ -118,11 +97,6 @@ export class AriaAccordion extends HTMLElement {
       btn.setAttribute('aria-expanded', visible);
       btn.parentElement.nextElementSibling.setAttribute('aria-hidden', !visible);
     });
-    if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
-      const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
-      expand.disabled = visible;
-      collapse.disabled = !visible;
-    }
   }
 
   toggleItem(el) {
@@ -134,11 +108,6 @@ export class AriaAccordion extends HTMLElement {
     }
     el.setAttribute('aria-expanded', !expanded);
     el.parentElement.nextElementSibling.setAttribute('aria-hidden', expanded);
-    if (this.attributes[constants.withControls] && this.attributes[constants.withControls].value === 'true') {
-      const [expand, collapse] = [...this.querySelectorAll('[role="group"] button')];
-      expand.disabled = !this.querySelector('button[aria-expanded="false"]');
-      collapse.disabled = !this.querySelector('button[aria-expanded="true"]');
-    }
   }
 
   focusItem(index) {

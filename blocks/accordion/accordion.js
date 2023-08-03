@@ -12,7 +12,6 @@ export default async function decorate(block) {
     accordion.firstElementChild.nextElementSibling.classList.add('text');
   });
   const element = document.createElement(constants.tagName);
-  element.setAttribute(constants.withControls, block.classList.contains('with-controls'));
   element.innerHTML = block.innerHTML;
   block.innerHTML = '';
   block.append(element);
@@ -42,8 +41,6 @@ export default async function decorate(block) {
         hasAsyncBlocks = true;
       }
     } catch (err) {
-      // eslint-disable-next-line no-console
-      console.error('Could not load accordion content.', err);
       text.parentElement.remove();
     }
   }));
