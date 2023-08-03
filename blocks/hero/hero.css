@@ -1,6 +1,5 @@
 /* Hero Banner */
 .hero {
-    min-height: 45.625rem;
     position: relative;
 }
 
@@ -10,54 +9,13 @@
     display: block;
 }
 
-.hero .inner-container {
-    padding: 0;
-}
-
-.hero .hero-content {
-    padding: 1.813rem 0.938rem;
-    left: 0;
-    position: absolute;
-    top: 0;
-}
-
-.hero .hero-content h4 {
-    color: var(--global-color-pine-green);
-    font-family: var(--global-tertiary-font-family);
-    font-size: 1.5rem;
-    font-weight: normal;
-    line-height: 2.625rem;
-    margin: 0.938rem 0 0.313rem;
-}
-
-.hero .hero-content p {
-    color: var(--global-color-dark-gray);
-    font-size: .875rem;
-    line-height: 1.25rem;
-    margin: 0;
-    padding: 0;
-}
-
-.hero .hero-content .button-container a {
-    width:100%;
-}
-
 /* Main - Hero Banner */
-.hero.main {
-    min-height: unset;
-}
-
 .hero.main .hero-bg img {
     height: 18.6rem;
     object-fit: cover;
 }
 
 /* Recipe & Product - Hero Banner */
-.recipe .hero,
-.product .hero {
-    min-height: unset;
-}
-
 .recipe .hero .hero-bg {
     position: relative;
 }
@@ -101,32 +59,7 @@
     background-image: url("../../styles/images/product-milk-splash-mobile.png");
 }
 
-@media (min-width: 600px) {
-    /* Hero Banner */
-    .hero {
-        min-height: unset;
-    }
-
-    .hero .hero-bg img {
-        min-height: 500px;
-        object-fit: cover;
-    }
-
-    .hero .hero-content {
-        padding: 0;
-        top: 50%;
-        transform: translate(0, -50%);
-        width: 100%;
-    }
-
-    .hero .hero-content .hero-description {
-        width: 48%;
-    }
-
-    .hero .hero-content .button-container a {
-        width: auto;
-    }
-    
+@media (min-width: 600px) {    
     /* Main - Hero Banner */
     .hero.main .hero-bg img {
         height: 18.6rem;
@@ -153,20 +86,7 @@
     }
 }
 
-@media (min-width: 900px) {
-    /* Hero Banner */
-    .hero .hero-content h4 {        
-        font-size: 2.625rem;
-        letter-spacing: .025rem;
-        line-height: 4.063rem;
-        margin: 0.938rem 0 1.188rem;
-    }
-
-    .hero .hero-content p {
-        font-size: 1rem;
-        line-height: 1.375rem;
-    }
-    
+@media (min-width: 900px) {    
     /* Main - Hero Banner */
     .hero.main .hero-bg img {
         height: 38.75rem;        
