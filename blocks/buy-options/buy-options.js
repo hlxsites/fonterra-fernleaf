@@ -1,6 +1,7 @@
 import {
   fetchPlaceholders,
-} from '../../scripts/scripts.js';
+} from '../../scripts/lib-franklin.js';
+import { getLanguage } from '../../scripts/scripts.js';
 
 const getHTML = (row) => `<a target="_blank" href="${row.link}" title="${row.brand}" aria-label="${row.brand}">
                 <img alt="${row.brand}" src="${row.img}" width="100" height="42">
@@ -33,7 +34,7 @@ async function generateBlock() {
 }
 
 export default async function decorate(block) {
-  const placeholder = await fetchPlaceholders();
+  const placeholder = await fetchPlaceholders(`/${getLanguage()}`);
   preProcess(block, placeholder);
   block.innerHTML = '';
 

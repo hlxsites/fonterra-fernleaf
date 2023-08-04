@@ -45,39 +45,6 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
 }
 
 /**
- * Gets placeholders object
- * @param {string} prefix
- */
-export async function fetchPlaceholders() {
-  window.placeholders = window.placeholders || {};
-
-  const loaded = window.placeholders[`${getLanguage()}-loaded`];
-  if (!loaded) {
-    window.placeholders[`${getLanguage()}-loaded`] = new Promise((resolve, reject) => {
-      try {
-        fetch(`/${getLanguage()}/placeholders.json`)
-          .then((resp) => resp.json())
-          .then((json) => {
-            const placeholders = {};
-            json.data.forEach((placeholder) => {
-              placeholders[placeholder.Key.toLowerCase()] = placeholder.Text;
-            });
-            window.placeholders[getLanguage()] = placeholders;
-            resolve();
-          });
-      } catch (e) {
-        // error loading placeholders
-        window.placeholders[getLanguage()] = {};
-        reject();
-      }
-    });
-  }
-
-  await window.placeholders[`${getLanguage()}-loaded`];
-  return (window.placeholders[getLanguage()]);
-}
-
-/**
  * Reducing image size to custom Reduced size
  * @param {*} row
  */
