@@ -12,8 +12,8 @@ let buyOptions = [];
 async function preProcess(block, placeholder) {
   buyOptions = [];
   [...block.children].forEach((row) => {
-    const data = {};
     if (row.children && row.children.length === 2) {
+      const data = {};
       data.brand = row.children[0].innerText;
       data.link = row.children[1].innerText;
       data.img = placeholder[`product${data.brand}`];
