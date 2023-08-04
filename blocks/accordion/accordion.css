@@ -54,7 +54,7 @@ main .section .accordion-wrapper {
 .accordion-wrapper .accordion-section button {
   background-color: transparent;
   font-family: var(--global-quaternary-font-family);
-  color: var(--global-color-selective-yellow) !important;
+  color: var(--global-color-selective-yellow);
   letter-spacing: 0.6px;
   box-shadow: unset;
   padding: 0.938rem 4.688rem 0.938rem 2.125rem;

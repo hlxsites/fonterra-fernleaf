@@ -22,10 +22,9 @@
 }
 
 .table-wrapper .table.block {
-    /* display: table; */
     width: 100%;
     padding: 20px 26px;
-    flex: 1;
+    flex: auto;
     display: flex;
     flex-direction: column;
 }
@@ -33,6 +32,7 @@
 .table-wrapper .table.block div {
     display: table;
     height: 50px;
+    word-break: break-word;
 }
 
 .table-wrapper .table.block div div {
@@ -70,4 +70,11 @@
     flex: 1 0 100%;
     padding: 6px 26px;
     margin-top: -12px;
+}
+
+@media (min-width: 600px) {
+    .table-wrapper .table.block{
+        flex: 1;
+    }
+
 }
