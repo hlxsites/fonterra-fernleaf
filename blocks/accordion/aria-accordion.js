@@ -28,10 +28,10 @@ export class AriaAccordion extends HTMLElement {
 
   handleClick = (ev) => {
     this.toggleItem(ev.currentTarget);
-    if (!ev.detail) { // it was triggered via keyboard space/enter  
+    if (!ev.detail) {
       ev.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-  }
+  };
 
   handleKeyDown = (ev) => {
     switch (ev.key) {
@@ -54,8 +54,7 @@ export class AriaAccordion extends HTMLElement {
       default:
         break;
     }
-  }
-
+  };
 
   async decorate() {
     let idBtn;
