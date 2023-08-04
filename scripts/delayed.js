@@ -35,7 +35,7 @@ function GenerateBackGroundImages() {
       const imgUrl = new URL(source, window.location.href);
       const imgPathname = imgUrl?.pathname;
       const imgSrc = `<img src='${imgPathname}?width=${breakpoints[defaultSrcIndex].width}&format=${ext}&optimize=medium'
-                      alt=${alt}
+                      alt='${alt}'
                       width='${breakpoints[defaultSrcIndex].width}'
                       height='100%'
                       loading='${eager ? 'eager' : 'lazy'}'>
