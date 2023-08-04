@@ -489,10 +489,10 @@
   align-items: center;
   gap: 10px;
   width: 49%;
-  padding: 48px;
+  padding: 30px 30px 30px 15px;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 900px) {
   #language-dialog {
     width: 100%;
     padding: 45px 45px 65px;
@@ -515,7 +515,7 @@
   }
 
   .country-item > a {
-    width: 14%;
+    width: auto;
   }
 }
 
@@ -567,7 +567,6 @@
 .disable-scroll {
   overflow: hidden;
   opacity: 0.5;
-  background-color: var(--global-color-black);
 }
 
 /* Story tips page styles */
