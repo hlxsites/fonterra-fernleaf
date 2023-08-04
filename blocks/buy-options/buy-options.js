@@ -13,11 +13,13 @@ async function preProcess(block, placeholder) {
   buyOptions = [];
   [...block.children].forEach((row) => {
     const data = {};
-    data.brand = row.children[0].innerText;
-    data.link = row.children[1].innerText;
-    data.img = placeholder[`product${data.brand}`];
+    if (row.children && row.children.length === 2) {
+      data.brand = row.children[0].innerText;
+      data.link = row.children[1].innerText;
+      data.img = placeholder[`product${data.brand}`];
 
-    buyOptions.push(data);
+      buyOptions.push(data);
+    }
   });
 }
 
