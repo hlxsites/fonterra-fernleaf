@@ -143,7 +143,7 @@ function GenerateBackGroundImages() {
       const desktopBg = elem.dataset.backgroundDesktop;
       const mobileBg = elem.dataset.backgroundMobile;
       if (desktopBg && mobileBg) {
-        const responsiveImages = this.addImageSource([desktopBg, mobileBg], '', false, [{ media: '(min-width: 600px)', width: '1920' }, { width: '750' }]);
+        const responsiveImages = this.addImageSource([desktopBg, mobileBg], '', true, [{ media: '(min-width: 600px)', width: '1920' }, { width: '700' }]);
         elem.append(responsiveImages);
       } else {
         elem.style.background = desktopBg || mobileBg;
