@@ -23,10 +23,6 @@ main .section .accordion-wrapper {
   flex-direction: revert;
 }
 
-.accordion-wrapper .columns-wrapper .columns-img-col {
-  display: contents;
-}
-
 .accordion-wrapper .columns-wrapper .columns-img-col img {
   width: 60px;
   height: 60px;
@@ -58,13 +54,9 @@ main .section .accordion-wrapper {
   letter-spacing: 0.6px;
   box-shadow: unset;
   padding: 0.938rem 4.688rem 0.938rem 2.125rem;
-  display: block;
   position: relative;
   padding-left: 3.125rem;
   margin-top: unset;
-  width: 100%;
-  text-align: left;
-  font-size: 13px;
 }
 
 .accordion-wrapper .accordion-section button[aria-expanded="false"]::after {
@@ -126,4 +118,9 @@ main .section .accordion-wrapper {
     font-size: 1.375rem;
     padding-left: 3.875rem;
   }
+
+  .accordion-wrapper .columns-wrapper .columns div div {
+    flex: unset;
+  }
+  
 }

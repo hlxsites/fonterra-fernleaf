@@ -38,7 +38,7 @@
 .table-wrapper .table.block div div {
     display: table-cell;
     max-width: 200px;
-    border-bottom: 1px solid #d3d3d3;
+    border-bottom: 1px solid var(--global-color-light-gray);
     vertical-align: middle;
 }
 

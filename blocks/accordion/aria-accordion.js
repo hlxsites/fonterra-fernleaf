@@ -21,36 +21,41 @@ export class AriaAccordion extends HTMLElement {
   attachListeners() {
     const items = this.querySelectorAll('button[aria-expanded]');
     items.forEach((item) => {
-      item.addEventListener('click', (ev) => {
-        this.toggleItem(ev.currentTarget);
-        if (!ev.detail) { // it was triggered via keyboard space/enter
-          ev.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }
-      });
-      item.addEventListener('keydown', (ev) => {
-        switch (ev.key) {
-          case 'Home':
-            ev.preventDefault();
-            this.focusItem(0);
-            break;
-          case 'ArrowUp':
-            ev.preventDefault();
-            this.focusItem(this.selectedIndex - 1);
-            break;
-          case 'ArrowDown':
-            ev.preventDefault();
-            this.focusItem(this.selectedIndex + 1);
-            break;
-          case 'End':
-            ev.preventDefault();
-            this.focusItem(this.itemsCount - 1);
-            break;
-          default:
-            break;
-        }
-      });
+      item.addEventListener('click', this.handleClick);
+      item.addEventListener('keydown', this.handleKeyDown);
     });
   }
+
+  handleClick = (ev) => {
+    this.toggleItem(ev.currentTarget);
+    if (!ev.detail) { // it was triggered via keyboard space/enter  
+      ev.currentTarget.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  handleKeyDown = (ev) => {
+    switch (ev.key) {
+      case 'Home':
+        ev.preventDefault();
+        this.focusItem(0);
+        break;
+      case 'ArrowUp':
+        ev.preventDefault();
+        this.focusItem(this.selectedIndex - 1);
+        break;
+      case 'ArrowDown':
+        ev.preventDefault();
+        this.focusItem(this.selectedIndex + 1);
+        break;
+      case 'End':
+        ev.preventDefault();
+        this.focusItem(this.itemsCount - 1);
+        break;
+      default:
+        break;
+    }
+  }
+
 
   async decorate() {
     let idBtn;
