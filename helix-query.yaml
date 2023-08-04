@@ -1,5 +1,4 @@
 version: 1
-# https://www.hlx.live/docs/setup-indexing
 
 indices:
   default:
@@ -7,7 +6,8 @@ indices:
       - /**
     exclude:
       - '/drafts/**'
-      - '/fragments/**'
+      - '/en/fragments/**'
+      - '/ms/fragments/**'
     target: /query-index.json
     properties:
       lastModified:
@@ -28,6 +28,9 @@ indices:
       description:
         select: head > meta[name="description"]
         value: attribute(el, "content")
+      tags:
+        select: head > meta[property="article:tag"]
+        values: attribute(el, 'content')
       language:
         select: head > meta[name="language"]
         value: attribute(el, "content")
