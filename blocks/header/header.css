@@ -55,9 +55,6 @@ header nav a:any-link {
   text-decoration: none;
 }
 
-header nav .nav-drop ul a:any-link {
-  text-transform: capitalize;
-}
 
 @media (min-width: 600px) {
   header nav {
@@ -122,14 +119,6 @@ header nav .nav-drop ul a:any-link {
     padding: inherit;
   }
   
-  header nav>div.nav-sections>ul>li.nav-drop>ul>li>a {
-    color: initial;
-    padding: inherit;
-  }
-
-  header nav>div.nav-sections>ul>li.nav-drop>ul>li>a:hover{
-    text-decoration: revert;
-  }
 }
 
 header nav p {
@@ -354,34 +343,6 @@ header nav .nav-sections ul>li>ul {
     font-weight: bold;
   }
 
-  header nav .nav-sections .nav-drop .mobile-icon span {
-    position: absolute;
-    right: 0;
-    padding: 18px 23px;
-    font-family: var(--global-georgia-font-family);
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
-    font-size: .875rem;
-  }
-
-  header nav .nav-sections .nav-drop .mobile-icon::before {
-    content: "";
-    position: absolute;
-    top: 4px;
-    height: 2.5rem;
-    width: 0.063rem;
-    background-color: var(--global-color-mercury);
-    right: 50px;
-  }
-
-  header nav .nav-sections .nav-drop .mobile-icon span::before {
-    content: "\e902";
-  }
-
   header nav .nav-tools {
     position: absolute;
     right: 32px;
@@ -401,11 +362,6 @@ header nav .nav-sections ul>li>ul {
 
   header nav[aria-expanded="true"] .nav-sections {
     align-self: unset;
-  }
-
-  header nav .nav-sections .nav-drop {
-    position: relative;
-    cursor: pointer;
   }
 
   header nav .nav-sections ul {
