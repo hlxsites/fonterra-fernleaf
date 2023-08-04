@@ -1,0 +1,15 @@
+.section div.buy-options-wrapper,
+.buy-options-container div:first-child {
+  padding: 0;
+}
+
+.buy-options ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+}
+
+.buy-options ul li {
+  padding-right: 2.5rem;
+}
