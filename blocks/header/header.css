@@ -2,7 +2,7 @@
 header .nav-wrapper {
   background-color: var(--global-color-white);
   width: 100%;
-  z-index: 2;
+  z-index: 999;
   position: fixed;
 }
 
@@ -50,16 +50,23 @@ span.icon.icon-search::before {
   font-size: 14px;
 }
 
+header nav a:any-link {
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+header nav .nav-drop ul a:any-link {
+  text-transform: capitalize;
+}
+
 @media (min-width: 600px) {
   header nav {
     padding-right: 43px;
     gap: 0;
   }
-
-
 }
 
-@media (max-width: 900px) {
+@media (max-width: 899px) {
   header nav .nav-sections>ul {
     display: block;
     background-color: var(--global-color-white);
@@ -81,7 +88,6 @@ span.icon.icon-search::before {
     background-color: var(--global-color-alabaster);
     font-size: 12px;
     padding: 1.125rem 1.875rem 1.25rem .938rem;
-    text-decoration: none;
   }
 
   header nav .nav-brand a {
@@ -91,8 +97,6 @@ span.icon.icon-search::before {
   header nav>div.nav-sections>ul>li>a {
     color: var(--global-color-pine-green);
   }
-
-
 }
 
 @media (min-width: 900px) {
@@ -111,7 +115,6 @@ span.icon.icon-search::before {
   header nav a:any-link {
     padding: 27px 10px;
     color: var(--global-color-pine-green);
-    text-decoration: none;
     font-weight: inherit;
   }
 
@@ -127,16 +130,12 @@ span.icon.icon-search::before {
   header nav>div.nav-sections>ul>li.nav-drop>ul>li>a:hover{
     text-decoration: revert;
   }
-
 }
-
 
 header nav p {
   margin: 0;
   line-height: 1;
 }
-
-
 
 /* hamburger */
 header nav .nav-hamburger {
@@ -230,8 +229,6 @@ header nav[aria-expanded="false"] .nav-hamburger-icon::after {
 header nav[aria-expanded="true"] .nav-hamburger-icon {
   height: 20px;
 }
-
-
 
 @media (min-width: 900px) {
   header nav .nav-hamburger {

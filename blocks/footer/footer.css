@@ -1,5 +1,5 @@
 footer {
-  padding: 20px 0 1.688rem;
+  padding: 0 0 1.688rem;
   font-size: var(--body-font-size-s);
   background-color: var(--background-color);
   position: absolute;
@@ -8,50 +8,43 @@ footer {
   height: var(--footer-height-mobile);
 }
 
-footer ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-footer ul li a:any-link {
+footer a:any-link {
   color: var(--global-color-dark-gray);
   text-decoration: none;
 }
 
-footer .columns > div {
+footer div > div {
   display: flex;
   flex-direction: column;
   text-align: center;
   align-items: center;
 }
 
-footer .columns > div :nth-child(1) {
+footer div > div:nth-child(1) {
   order: 4;
+  padding-left: 15px;
 }
 
-footer .columns > div :nth-child(2) {
+footer div > div:nth-child(2) {
+  flex-direction: row;
   order: 2;
-  margin-bottom: 0.625rem;
-}
-
-footer .columns > div :nth-child(2) ul {
-  display: flex;
-  justify-content: center;
   font-family: var(--global-quaternary-font-family);
 }
 
-footer .columns > div :nth-child(2) ul li {
+footer div > div:nth-child(2) a {
+  border-bottom: 1px solid transparent;
+}
+
+footer div > div:nth-child(2) p {
   padding: 0 17px;
 }
 
-footer .columns > div :nth-child(3) {
+footer div > div:nth-child(3) {
   order: 1;
-  margin-bottom: 1.563rem;
 }
 
 /* Footer facebook social media icon */
-footer .columns > div :nth-child(3) a {
+footer div > div:nth-child(3) a {
   display: inline-flex;
   border: 1px solid var(--global-color-dark-gray);
   border-radius: 50%;
@@ -59,87 +52,118 @@ footer .columns > div :nth-child(3) a {
   position: relative;
 }
 
-footer .columns > div :nth-child(3) a:hover {
+footer div > div:nth-child(2) a:hover {
+  border-bottom: 1px solid var(--global-color-black);
+}
+
+footer div > div:nth-child(3) a:hover {
   border-color: var(--global-color-dark-blue);
   background: var(--global-color-dark-blue);
 }
 
-footer .columns > div :nth-child(3) a .icon-facebook {
+footer div > div:nth-child(3) a .icon-facebook {
   font-size: 0.938rem;
 }
 
-footer .columns > div :nth-child(3) a:hover .icon-facebook {
+footer div > div:nth-child(3) a:hover .icon-facebook {
   color: var(--global-color-white);
 }
 
-footer .columns > div :nth-child(3) a .icon-facebook::before {
+footer div > div:nth-child(3) a .icon-facebook::before {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-footer .columns > div :nth-child(4) {
+footer div > div:nth-child(4) {
   order: 3;
-  margin-top: 0.625rem;
-  margin-bottom: 1.25rem;
+  padding-right: 15px;
 }
 
 /** Footer desktop styles */
 @media only screen and (min-width: 900px) {
   footer {
     height: var(--footer-height-desktop);
-    padding: 0 15px;
   }
 
-  footer .columns > div {
+  footer div > div {
     flex-direction: row;
   }
 
-  footer .columns > div :nth-child(1) {
+  footer div > div:nth-child(1) {
     order: 1;
   }
 
-  footer .columns > div :nth-child(2) {
+  footer div > div:nth-child(2) {
     text-align: center;
-    flex-grow: 2;
+    flex: 2;
     margin-bottom: 0;
   }
 
-  footer .columns > div :nth-child(2) ul {
-    display: inline-flex;
+  footer div > div:nth-child(2) p {
+    flex: 1;
   }
 
-  footer .columns > div :nth-child(3) {
+  footer div > div:nth-child(2) p:nth-child(1) {
+    text-align: right;
+  }
+  
+  footer div > div:nth-child(2) p:nth-child(2) {
+    text-align: left;
+  }
+
+  footer div > div:nth-child(3) {
     order: 3;
     margin-bottom: 0;
   }
 
-  footer .columns > div :nth-child(3) a {
+  footer div > div:nth-child(3) a {
     padding: 7px;
   }
 
-  footer .columns > div :nth-child(3) a .icon-facebook {
+  footer div > div:nth-child(3) a .icon-facebook {
     font-size: 1.25rem;
   }
 
-  footer .columns > div :nth-child(4) {
+  footer div > div:nth-child(4) {
     position: relative;
     margin-left: 1.25rem;
     padding-left: 1.438rem;
   }
 
-  footer .columns > div :nth-child(4)::before {
+  footer div > div:nth-child(4)::before {
     content: "";
     position: absolute;
     left: 0;
+    top: 50%;
+    transform: translate(0, -50%);
     width: 1px;
     height: 1.25rem;
     background-color: var(--global-color-dim-gray);
   }
 }
 
-/* TODO: Implement country selector popup */
-footer .columns.country-selector {
-  display: none;
+footer .language-selector {
+  background: none;
+  padding: 0;
+  color: var(--global-color-black);
+  font-size: small;
+}
+
+footer .language-wrapper button {
+  text-transform: none;
+  font-weight: 50;
+}
+
+footer .language-selector img {
+  vertical-align: middle;
+  width: 1.25rem;
+  aspect-ratio: 1/1;
+  max-width: 100%;
+  height: auto;
+}
+
+footer .block {
+  background-color: var(--global-color-white);
 }
