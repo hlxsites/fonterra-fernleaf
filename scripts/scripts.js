@@ -45,17 +45,6 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
 }
 
 /**
- * Sanitizes a name for use as class name.
- * @param {string} name The unsanitized name
- * @returns {string} The class name
- */
-export function toClassName(name) {
-  return name && typeof name === 'string'
-    ? name.toLowerCase().replace(/[^0-9a-z]/gi, '-')
-    : '';
-}
-
-/**
  * Gets placeholders object
  * @param {string} prefix
  */
