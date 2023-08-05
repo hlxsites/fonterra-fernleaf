@@ -13,3 +13,7 @@
 .buy-options ul li {
   padding-right: 2.5rem;
 }
+
+.buyoption a {
+  display: inline-block;
+}

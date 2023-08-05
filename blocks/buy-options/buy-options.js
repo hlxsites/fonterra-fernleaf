@@ -1,16 +1,14 @@
 import {
   fetchPlaceholders,
 } from '../../scripts/lib-franklin.js';
-import { getLanguage } from '../../scripts/scripts.js';
 
 const getHTML = (row) => `<a target="_blank" href="${row.link}" title="${row.brand}" aria-label="${row.brand}">
                 <img alt="${row.brand}" src="${row.img}" width="100" height="42">
             </a>`;
 
-let buyOptions = [];
+const buyOptions = [];
 
 async function preProcess(block, placeholder) {
-  buyOptions = [];
   [...block.children].forEach((row) => {
     if (row.children && row.children.length === 2) {
       const data = {};
