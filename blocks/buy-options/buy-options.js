@@ -36,7 +36,7 @@ async function generateBlock() {
 }
 
 export default async function decorate(block) {
-  const placeholder = await fetchPlaceholders(`/${getLanguage()}`);
+  const placeholder = await fetchPlaceholders();
   preProcess(block, placeholder);
   block.innerHTML = '';
 
