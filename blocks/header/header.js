@@ -1,5 +1,7 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
 import { getLanguage, decorateLinkedPictures } from '../../scripts/scripts.js';
+import createModal from '../../scripts/modals/modal.js';
+import createSearchModal from './search.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -153,5 +155,22 @@ export default async function decorate(block) {
     navWrapper.className = 'nav-wrapper';
     navWrapper.append(nav);
     block.append(navWrapper);
+
+    // Search Implementation
+    const navTools = nav.querySelector('.nav-tools');
+    if (navTools) {
+      navTools.querySelector('.icon-search').addEventListener('click', () => {
+        createSearchDialog(nav);
+      });
+    }
   }
+}
+
+function createSearchDialog(nav) {
+  createModal(
+    'search-dialog',
+    () => {
+      return createSearchModal(nav);
+    }
+  );
 }
