@@ -18,15 +18,6 @@ const LANGUAGES = new Set(['en', 'ms']);
 
 let language;
 
-export function isMobile() {
-  const width = (window.innerWidth > 0) ? window.innerWidth : window.screen.width;
-  if (width < 600) {
-    return true;
-  }
-
-  return false;
-}
-
 export function getLanguageFromPath(pathname, resetCache = false) {
   if (resetCache) {
     language = undefined;
