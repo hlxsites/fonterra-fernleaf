@@ -153,3 +153,22 @@ function AddPrintButton() {
   };
 }
 new AddPrintButton().init();
+
+// Update External Links to Open in New Tab
+function UpdateExternalLinks() {
+  this.updateLinks = () => {
+    const currentHost = (new URL(window.location.href))?.host;
+    const externalLinks = document.body.querySelectorAll('a');
+    [...externalLinks].forEach((link) => {
+      const linkHost = new URL(link.href).host;
+      if (linkHost !== currentHost) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+  };
+  this.init = () => {
+    this.updateLinks();
+  };
+}
+new UpdateExternalLinks().init();
