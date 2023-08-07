@@ -46,6 +46,7 @@
   --global-color-yellow: #fedf00;
   --global-color-selective-yellow: #f0ab00;
   --global-color-dark-goldenrod: #c18812;
+  --global-color-bahama-blue: #23527c;
 
   /* Colors - Alias Names */
   --text-color: var(--global-color-black);
@@ -345,6 +346,51 @@ main .section.highlight {
   visibility: hidden;
 }
 
+/* Full Width Banner */
+.full-width-banner {
+  height: 730px;
+  position: relative;
+}
+
+.full-width-banner img {
+  width: 100%;
+  display: block;
+  height: 730px;
+  object-fit: cover;
+  object-position: bottom;
+}
+
+.full-width-banner .default-content-wrapper {
+  left: 50%;
+  position: absolute;
+  padding: 1.813rem 0.938rem;
+  top: 0;
+  transform: translate(-50%, 0);
+  width: 100%;
+}
+
+.full-width-banner .default-content-wrapper h4 {
+  color: var(--global-color-pine-green);
+  font-family: var(--global-tertiary-font-family);
+  font-size: 1.5rem;
+  font-weight: normal;
+  line-height: 2.625rem;
+  margin: 0.938rem 0 0.313rem;
+  max-width: 20rem
+}
+
+.full-width-banner .default-content-wrapper p {
+  color: var(--global-color-dark-gray);
+  font-size: .875rem;
+  line-height: 1.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.full-width-banner .default-content-wrapper .button-container a {
+  width:100%;
+}
+
 /* Story theme */
 .story-tips-landing main {
   padding-top: 1.875rem;
@@ -402,6 +448,28 @@ main .section.highlight {
 }
 
 @media (min-width: 600px) {
+  /* Full Width Banner */
+  .full-width-banner {
+    height: 452px;
+  }
+
+  .full-width-banner img {
+    height: 452px;
+    object-fit: cover;
+  }
+  
+  .full-width-banner .default-content-wrapper {
+    padding: 6.25rem 0.938rem 0;
+  }
+
+  .full-width-banner .default-content-wrapper * {
+    max-width: 48% !important;
+  }
+
+  .full-width-banner .default-content-wrapper .button-container a {
+      width: auto;
+  }
+  
   .story-tips-landing main::before {
     background-image: url("../../styles/images/article-landing-banner.jpeg");
   }
@@ -412,6 +480,19 @@ main .section.highlight {
 }
 
 @media (min-width: 900px) {
+  /* Full Width Banner */
+  .full-width-banner .default-content-wrapper h4 {        
+    font-size: 2.625rem;
+    letter-spacing: .025rem;
+    line-height: 4.063rem;
+    margin: 0.938rem 0 1.188rem;
+  }
+
+  .full-width-banner .default-content-wrapper p {
+    font-size: 1rem;
+    line-height: 1.375rem;
+  }
+
   .story-tips-landing main {
     padding-top: 7.625rem;  
   }
@@ -430,3 +511,4 @@ main .section.highlight {
     max-width: 655px;
   }
 }
+

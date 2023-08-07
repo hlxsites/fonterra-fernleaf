@@ -1,5 +1,6 @@
 import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
 import { getLanguage } from '../../scripts/scripts.js';
+import showLanguageSelector from '../../scripts/modals/languages.js';
 
 /**
  * Updates the footer icons to be accessible
@@ -15,6 +16,18 @@ function decorateSocialIcons(footer) {
 
     // Remove the text from the Social Media links as aria-label is used instead on the icon
     footerIcon.parentElement.nextSibling.textContent = '';
+  });
+}
+
+function setlanguageButton(parent, txt) {
+  parent.innerHTML = '<button type="button" class="language-selector"></button>';
+  const languageButton = parent.querySelector('button');
+  languageButton.innerHTML = `
+    <img src='../../styles/images/flag-malaysia.png' alt="${txt}">
+    <span>${txt}</span>
+  `;
+  languageButton.addEventListener('click', () => {
+    showLanguageSelector();
   });
 }
 
@@ -39,6 +52,18 @@ export default async function decorate(block) {
 
     decorateIcons(footer);
     decorateSocialIcons(footer);
+
+    // language selector
+    const languageWrapper = document.createElement('div');
+    languageWrapper.classList.add('language-wrapper');
+
+    const text = footer.querySelector('div:nth-child(4) > p');
+    const buttonText = text.textContent.trim();
+    setlanguageButton(languageWrapper, buttonText);
+
+    const language = footer.querySelector('div:nth-child(4) > p');
+    language.innerHTML = '';
+    language.appendChild(languageWrapper);
 
     block.append(footer);
   }

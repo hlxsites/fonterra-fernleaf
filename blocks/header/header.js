@@ -36,19 +36,6 @@ function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
 }
 
-function resetNavSection() {
-  const nav = document.querySelector('nav');
-  const navSection = nav.querySelector('.nav-sections');
-  navSection.classList.remove('child-section-enable');
-}
-
-function enableSubNavSection() {
-  const nav = document.querySelector('nav');
-  const navSection = nav.querySelector('.nav-sections');
-  navSection.classList.add('child-section-enable');
-  navSection.querySelector('.nav-back-btn').addEventListener('click', resetNavSection);
-}
-
 /**
  * Toggles all nav sections
  * @param {Element} sections The container element
@@ -86,14 +73,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   } else {
     navDrops.forEach((drop) => {
       drop.setAttribute('aria-expanded', false);
-      if (forceExpanded === null) {
-        const mobileIcon = nav.querySelector('.mobile-icon');
-        if (!mobileIcon) {
-          drop.insertAdjacentHTML('afterbegin', '<a class="mobile-icon"><span class="arrow-right"></span></a>');
-          drop.querySelector('ul').insertAdjacentHTML('afterbegin', '<li class="nav-back-btn"><span>Back To Main Menu</span></li>');
-          drop.querySelector('.arrow-right').addEventListener('click', (e) => enableSubNavSection(e));
-        }
-      }
       drop.removeAttribute('role');
       drop.removeAttribute('tabindex');
       drop.removeEventListener('focus', focusNavSection);
@@ -162,18 +141,12 @@ export default async function decorate(block) {
     hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
         <span class="nav-hamburger-icon"></span>
       </button>`;
-    hamburger.addEventListener('click', () => {
-      resetNavSection();
-      toggleMenu(nav, navSections);
-    });
+    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
     nav.prepend(hamburger);
     nav.setAttribute('aria-expanded', 'false');
     // prevent mobile nav behavior on window resize
     toggleMenu(nav, navSections, isDesktop.matches);
-    isDesktop.addEventListener('change', () => {
-      resetNavSection();
-      toggleMenu(nav, navSections, isDesktop.matches);
-    });
+    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
     decorateIcons(nav);
     const navWrapper = document.createElement('div');
