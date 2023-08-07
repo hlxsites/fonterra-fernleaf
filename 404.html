@@ -15,57 +15,7 @@
   </script>
   <link rel="stylesheet" href="/styles/styles.css">
   <style>
-    main.error {
-      min-height: calc(100vh - var(--nav-height));
-      text-align: center;
-    }
-    div.default-content-wrapper {
-      padding: 0 0;
-    }
-    .error-hero {
-      padding-bottom: 2em;
-      background-color: #edf1f4;
-      position: relative;
-    }
-    .full-width-banner, .full-width-banner img {  
-      display: block;
-      object-fit: cover;
-      object-position: left;
-      height: 260px;
-    }
-    #hero-content {
-      position: relative;
-      z-index: 3;
-    }
-    .error-content {
-      margin: 4em 1em;
-    }
-
-    @media (min-width: 767px) {
-      h1 {
-        font-size: 4rem;
-      }
-      .error-hero {
-        min-height: 600px;
-      }
-      .full-width-banner {
-        width: 100%;
-        min-height: 600px;
-        position: absolute;
-        left: 0;
-      }
-      .full-width-banner img {
-        height: 100%;
-        left: 0;
-      }
-      #hero-content {
-        display: flex;
-        flex-direction: column;
-        text-align: left;
-        align-items: flex-start;
-        padding: 6em 1em 1em 1em;
-      }
-    }
+    
   </style>
   <link rel="stylesheet" href="/styles/lazy-styles.css">
 </head>
@@ -73,28 +23,44 @@
 <body>
   <header></header>
   <main class="error">
-    <div class="error-hero">
-      <span class="full-width-banner"
-      data-background-desktop="/images/media_13482f7c3c53e537c2eda3cb92e669aadb9ad2ebb.jpeg" 
-      data-background-mobile="/images/media_1d44b0b7748b059e6e583daa6eaf442586e801563.jpeg"></span>
-      <div id="hero-content">
-        <h1>Page not found</h1>
-        <p>The Content you requested could not be found.</p>
-        <button type="button" class="button-container">
-          <a href="https://www.fonterra.com/nz/en/contact-us.html" class="btn">
-            Contact us
-          </a>
-        </button>
+    <div>
+      <h1>Page not found</h1>
+      <p>The Content you requested could not be found.</p>
+      <p><a href="https://www.fonterra.com/nz/en/contact-us.html">Contact us</a></p>
+      <div class="section-metadata">
+        <div>
+          <div>background-desktop</div>
+          <div>
+            <picture>
+              <source type="image/webp" srcset="./media_13482f7c3c53e537c2eda3cb92e669aadb9ad2ebb.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+              <source type="image/webp" srcset="./media_13482f7c3c53e537c2eda3cb92e669aadb9ad2ebb.png?width=750&#x26;format=webply&#x26;optimize=medium">
+              <source type="image/png" srcset="./media_13482f7c3c53e537c2eda3cb92e669aadb9ad2ebb.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+              <img loading="lazy" alt="404 error" src="./media_13482f7c3c53e537c2eda3cb92e669aadb9ad2ebb.png?width=750&#x26;format=png&#x26;optimize=medium" width="1920" height="500">
+            </picture>
+          </div>
+        </div>
+        <div>
+          <div>background-mobile</div>
+          <div>
+            <picture>
+              <source type="image/webp" srcset="./media_1d44b0b7748b059e6e583daa6eaf442586e801563.png?width=2000&#x26;format=webply&#x26;optimize=medium" media="(min-width: 600px)">
+              <source type="image/webp" srcset="./media_1d44b0b7748b059e6e583daa6eaf442586e801563.png?width=750&#x26;format=webply&#x26;optimize=medium">
+              <source type="image/png" srcset="./media_1d44b0b7748b059e6e583daa6eaf442586e801563.png?width=2000&#x26;format=png&#x26;optimize=medium" media="(min-width: 600px)">
+              <img loading="lazy" alt="404 error" src="./media_1d44b0b7748b059e6e583daa6eaf442586e801563.png?width=750&#x26;format=png&#x26;optimize=medium" width="1023" height="1996">
+            </picture>
+          </div>
+        </div>
+        <div>
+          <div>Style</div>
+          <div>full-width-banner</div>
+        </div>
       </div>
     </div>
-    <div class="error-content">
+    
+    <div style="text-align: center;">
       <h2>This hasn't gone to plan.</h2>
       <p>We would appreciate you taking the time to tell us so we can fix this.</p>
-      <button type="button" class="button-container">
-        <a href="https://www.fonterra.com/nz/en/contact-us.html" class="btn" role="button" target="_self">
-          Fonterra contact us page
-        </a>
-      </button>
+      <p><a href="https://www.fonterra.com/nz/en/contact-us.html">Fonterra contact us page</a></p>
     </div>
   </main>
   <footer></footer>
