@@ -385,6 +385,10 @@ main .section.highlight {
   padding: 0;
 }
 
+.full-width-banner .default-content-wrapper a {
+  font-weight: 500;
+}
+
 .full-width-banner .default-content-wrapper .button-container a {
   width:100%;
 }
@@ -506,25 +510,31 @@ main .section.highlight {
 @media (min-width: 600px) {
   /* Full Width Banner */
   .full-width-banner {
-    height: 452px;
-  }
-
-  .full-width-banner img {
-    height: 452px;
-    object-fit: cover;
+    position: relative;
+    height: auto;
+    padding: 2.5rem 0.938rem;
   }
   
   .full-width-banner .default-content-wrapper {
-    padding: 6.25rem 0.938rem 0;
+    left: 0;
+    top: 0;
+    transform: none;
+    position: relative;
+    z-index: 10;
+    padding: 4rem 0 4.938rem;
   }
 
   .full-width-banner .default-content-wrapper * {
     max-width: 48% !important;
   }
 
-  .full-width-banner .default-content-wrapper .button-container a {
-      width: auto;
+  .full-width-banner img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
   }
+
   
   .story-tips-landing main::before {
     background-image: url("../../styles/images/article-landing-banner.jpeg");
