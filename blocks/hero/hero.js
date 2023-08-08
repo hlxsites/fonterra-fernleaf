@@ -51,7 +51,7 @@ async function processSplash() {
   const device = (await isMobile()) ? 'Mobile' : 'Desktop';
 
   Object.keys(placeholder).forEach((key) => {
-    if (key === `${rootHeroClassName}${device}-splash`) {
+    if (key === `${rootHeroClassName}${device}Splash`) {
       const heroBannerBlock = document.querySelector('.hero.block .hero-bg');
 
       if (!heroBannerBlock) {
