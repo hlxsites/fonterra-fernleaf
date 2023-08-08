@@ -1,7 +1,7 @@
 import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
-import { getLanguage, decorateLinkedPictures } from '../../scripts/scripts.js';
+import { getLanguage, decorateLinkedPictures, debounce } from '../../scripts/scripts.js';
 import createModal from '../../scripts/modals/modal.js';
-import createSearchModal from './search.js';
+import {createSearchModal, performSearch, clearData} from './search.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -160,17 +160,43 @@ export default async function decorate(block) {
     const navTools = nav.querySelector('.nav-tools');
     if (navTools) {
       navTools.querySelector('.icon-search').addEventListener('click', () => {
+        disablePageScroll();
         createSearchDialog(nav);
       });
     }
   }
 }
 
+function disablePageScroll() {
+  document.body.classList.toggle('disable-page-scroll');
+}
+
 function createSearchDialog(nav) {
-  createModal(
+  const searchDialogElement = createModal(
     'search-dialog',
-    () => {
+    () => {      
       return createSearchModal(nav);
+    },
+    () => {
+      const searchInput = document.querySelector('#search-dialog .search-input-field input');
+      searchInput.focus();   
+      const debouncedSearch = debounce(function() {  
+        const query = searchInput.value;      
+        query && query.length > 2 && performSearch(query);
+      }, 500);
+
+      searchInput.addEventListener('input', debouncedSearch);
+
+      document.querySelector('#search-dialog .close').addEventListener('click', () => {
+        if (searchDialogElement.open) {
+          searchInput.value = "";
+          searchDialogElement.close();
+          disablePageScroll();
+          clearData();
+        }
+      });
     }
   );
+  searchDialogElement.showModal();
 }
+
