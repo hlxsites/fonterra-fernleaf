@@ -451,6 +451,19 @@ main .section.highlight {
   overflow-wrap: break-word;
 }
 
+.recipe .columns a {
+  color: var( --global-color-dark-blue);
+  font-weight: 500;
+  transition: all .3s ease;
+  text-decoration: none;
+}
+
+.recipe .columns a:hover {
+color: var( --global-color-picton-blue);
+transition: all .3s ease;
+}
+
+
 /* Story theme */
 .story-tips-landing main {
   padding-top: 1.875rem;
