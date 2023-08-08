@@ -1,6 +1,10 @@
 import {
   isMobile,
+  mobileViewportChange,
 } from '../../scripts/delayed.js';
+import {
+  fetchPlaceholders,
+} from '../../scripts/lib-franklin.js';
 
 const SECTION_BG_DESKTOP = 'bg-desktop';
 const SECTION_BG_MOBILE = 'bg-mobile';
@@ -25,6 +29,52 @@ function preProcess(block) {
   });
 
   return null;
+}
+
+async function processSplash() {
+  const PRODUCT = 'product';
+  const RECIPE = 'recipe';
+  const product = document.querySelector(`.${PRODUCT}`);
+  const recipes = document.querySelector(`.${RECIPE}`);
+
+  if (!product && !recipes) {
+    return;
+  }
+
+  const placeholder = await fetchPlaceholders();
+
+  if (!placeholder) {
+    return;
+  }
+
+  const rootHeroClassName = product ? PRODUCT : RECIPE;
+  const device = (await isMobile()) ? 'Mobile' : 'Desktop';
+
+  Object.keys(placeholder).forEach((key) => {
+    if (key === `${rootHeroClassName}${device}-splash`) {
+      const heroBannerBlock = document.querySelector('.hero.block .hero-bg');
+
+      if (!heroBannerBlock) {
+        return;
+      }
+
+      const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
+
+      if (existingSplashPicture) {
+        existingSplashPicture.remove();
+      }
+
+      const picture = document.createElement('picture');
+      picture.className = 'hero-splash';
+
+      const img = document.createElement('img');
+      img.alt = '';
+      img.src = placeholder[key];
+
+      picture.appendChild(img);
+      heroBannerBlock.appendChild(picture);
+    }
+  });
 }
 
 function isValidImg(imgTag) {
@@ -105,4 +155,6 @@ export default function decorate(block) {
     divContent.appendChild(divInnerContainer);
     block.append(divContent);
   }
+  processSplash();
+  mobileViewportChange(processSplash);
 }

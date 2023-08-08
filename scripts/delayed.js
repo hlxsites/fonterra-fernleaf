@@ -13,6 +13,11 @@ export async function isMobile() {
   return mql.matches;
 }
 
+export async function mobileViewportChange(viewportChange) {
+  const mobileView = window.matchMedia('(max-width: 600px)');
+  mobileView.addEventListener('change', viewportChange);
+}
+
 // add serves and duration to recipe details page content
 function AddServesAndDuration() {
   this.content = (serves, duration) => {
