@@ -4,7 +4,6 @@
     font-size: 14px;
     color: var(--global-color-dim-gray);
     font-weight: 300;
-    margin-top: -18px;
     display: flex;
     flex-wrap: wrap;
 }

@@ -49,7 +49,6 @@ main .section .accordion-wrapper {
 
 .accordion-wrapper .accordion-section button {
   background-color: transparent;
-  font-family: var(--global-quaternary-font-family);
   color: var(--global-color-selective-yellow);
   letter-spacing: 0.6px;
   box-shadow: unset;
@@ -57,32 +56,27 @@ main .section .accordion-wrapper {
   position: relative;
   padding-left: 3.125rem;
   margin-top: unset;
+  margin-bottom: 0;
 }
 
-.accordion-wrapper .accordion-section button[aria-expanded="false"]::after {
+.accordion-wrapper .accordion-section button::after {
   right: auto;
-  left: 0.625rem;
-  color: var(--global-color-black);
-  font-size: 1.25rem;
-  font-weight: bold;
+   left: 0.625rem;
+   color: var(--global-color-black);
+   font-size: 1.25rem;
+   font-weight: bold;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   font-family: var(--global-georgia-font-family);
+ }
+
+.accordion-wrapper .accordion-section button[aria-expanded="false"]::after {
   content: "\e922";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--global-georgia-font-family);
 }
 
 .accordion-wrapper .accordion-section button[aria-expanded="true"]::after {
-  right: auto;
-  left: 0.625rem;
-  color: var(--global-color-black);
-  font-size: 1.25rem;
-  font-weight: bold;
   content: "\e91e";
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--global-georgia-font-family);
 }
 
 .accordion-wrapper .accordion-section button[aria-expanded="true"] {
