@@ -233,8 +233,7 @@ a:hover {
 
 /* buttons */
 a.button:any-link, button {
-  font-family: var(--global-tertiary-font-family);
-  font-size: 14px;
+  font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
   text-transform: uppercase;
@@ -396,6 +395,8 @@ main .section.highlight {
 }
 
 .full-width-banner .default-content-wrapper .button-container a {
+  font-family: var(--global-tertiary-font-family);
+  font-size: 14px;
   width:100%;
 }
 
@@ -527,7 +528,7 @@ transition: all .3s ease;
 }
 
 @media (min-width: 600px) {
-  a.button:any-link, button {
+  .full-width-banner .default-content-wrapper .button-container a {
     font-size: 18px;
   }
 
