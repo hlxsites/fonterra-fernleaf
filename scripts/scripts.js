@@ -11,7 +11,6 @@ import {
   loadCSS,
   getMetadata,
   buildBlock,
-  fetchPlaceholders,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -71,7 +70,6 @@ export function adjustImageSize(img, newSize) {
 function buildCarouselBlock(main) {
   const category = getMetadata('category');
   if (category === 'recipe' || category === 'product') {
-    // addCarouselHeader(main, category);
     const section = document.createElement('div');
     section.append(buildBlock('carousel', { elems: [category] }));
     main.append(section);
