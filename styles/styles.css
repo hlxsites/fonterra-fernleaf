@@ -38,6 +38,7 @@
   --global-color-dim-gray: #6c6c6c;
   --global-color-dark-gray: #242424;
   --global-color-light-gray: #d3d3d3;
+  --global-color-davys-gray: #595959
   --global-color-red: #ed1c24;
   --global-color-tomato-red: #e0271d;
   --global-color-scarlet: #e1271d;
@@ -47,6 +48,7 @@
   --global-color-selective-yellow: #f0ab00;
   --global-color-dark-goldenrod: #c18812;
   --global-color-bahama-blue: #23527c;
+  --global-color-philippine-bronze: #630;
 
   /* Colors - Alias Names */
   --text-color: var(--global-color-black);
@@ -231,7 +233,8 @@ a:hover {
 
 /* buttons */
 a.button:any-link, button {
-  font-family: var(--body-font-family);
+  font-family: var(--global-tertiary-font-family);
+  font-size: 14px;
   display: inline-block;
   box-sizing: border-box;
   text-transform: uppercase;
@@ -243,9 +246,10 @@ a.button:any-link, button {
   font-style: normal;
   font-weight: 600;
   cursor: pointer;
-  color: var(--global-color-dark-goldenrod);
+  color: var(--global-color-philippine-bronze);
   background-color: var(--global-color-yellow);
   margin: 16px 0;
+  min-width: 10.938rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -387,9 +391,84 @@ main .section.highlight {
   padding: 0;
 }
 
+.full-width-banner .default-content-wrapper a {
+  font-weight: 500;
+}
+
 .full-width-banner .default-content-wrapper .button-container a {
   width:100%;
 }
+
+/* recipe details page */
+
+.recipe .columns {
+  color: var(--global-color-dark-gray);
+}
+
+.recipe h1 {
+  margin-top: 0;
+}
+
+.recipe h1 + .recipe-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe h1 + .recipe-info .serving, .recipe h1 + .recipe-info .pre-time {
+  padding-top: .375rem;
+  padding-bottom: .5rem;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.recipe h1 + .recipe-info span.icon {
+  width: auto;
+  height: auto;
+}
+
+.recipe h1 + .recipe-info span.icon::before {
+  font-size: 1.2rem;
+}
+
+.recipe h1 + .recipe-info span.text {
+  font-size: 12px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.recipe h2 {
+  color: var(--global-color-selective-yellow);
+}
+
+/* stylelint-disable no-descending-specificity */
+.recipe h2 + p{
+  margin-bottom: 1.375rem;
+}
+
+.recipe .columns ul, .recipe .columns ol {
+  padding-left: 1.063rem;
+}
+
+.recipe .columns ul li, .recipe .columns ol li {
+  font-size: 14px;
+  margin-bottom: 1.219rem;
+  list-style-position: outside;
+  overflow-wrap: break-word;
+}
+
+.recipe .columns a {
+  color: var( --global-color-dark-blue);
+  font-weight: 500;
+  transition: all .3s ease;
+  text-decoration: none;
+}
+
+.recipe .columns a:hover {
+color: var( --global-color-picton-blue);
+transition: all .3s ease;
+}
+
 
 /* Story theme */
 .story-tips-landing main {
@@ -448,26 +527,40 @@ main .section.highlight {
 }
 
 @media (min-width: 600px) {
+  a.button:any-link, button {
+    font-size: 18px;
+  }
+
   /* Full Width Banner */
   .full-width-banner {
-    height: 452px;
-  }
-
-  .full-width-banner img {
-    height: 452px;
-    object-fit: cover;
+    position: relative;
+    height: auto;
+    padding: 2.5rem 0.938rem;
   }
   
+  
   .full-width-banner .default-content-wrapper {
-    padding: 6.25rem 0.938rem 0;
+    left: 0;
+    top: 0;
+    transform: none;
+    position: relative;
+    z-index: 10;
+    padding: 4rem 0 4.938rem;
   }
 
-  .full-width-banner .default-content-wrapper * {
+  .full-width-banner .default-content-wrapper *:not(a) {
     max-width: 48% !important;
   }
 
+  .full-width-banner img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+  }
+
   .full-width-banner .default-content-wrapper .button-container a {
-      width: auto;
+    width: auto;
   }
   
   .story-tips-landing main::before {
@@ -509,6 +602,24 @@ main .section.highlight {
 
   .story-tips .section > div * {
     max-width: 655px;
+  }
+
+  /* Recipe Details Page */
+  .recipe .columns-wrapper {
+    padding: 0;
+  }
+
+  .recipe h1 {
+    margin-top: 1rem;
+  }
+  
+  .recipe h1 + .recipe-info {
+    flex-direction: row;
+    gap: 1.6rem
+  }
+
+  .recipe .columns ul li, .recipe .columns ol li {
+    font-size: 1rem;
   }
 }
 

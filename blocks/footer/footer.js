@@ -1,4 +1,4 @@
-import { readBlockConfig, decorateIcons } from '../../scripts/lib-franklin.js';
+import { readBlockConfig } from '../../scripts/lib-franklin.js';
 import { getLanguage } from '../../scripts/scripts.js';
 import showLanguageSelector from '../../scripts/modals/languages.js';
 
@@ -50,7 +50,6 @@ export default async function decorate(block) {
     const footer = document.createElement('div');
     footer.innerHTML = html;
 
-    decorateIcons(footer);
     decorateSocialIcons(footer);
 
     // language selector

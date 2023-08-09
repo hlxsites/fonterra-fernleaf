@@ -58,6 +58,7 @@ function generateImage(imgDesktop, imgMobile, clsName) {
       imgTag = item;
     }
   });
+  imgTag.loading = 'eager';
   hImg.append(imgTag);
 
   const imgContainer = document.createElement('div');

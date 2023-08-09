@@ -1,0 +1,6 @@
+sitemaps:
+   fernleaf:
+     origin: https://www.fernleaf.com.my
+     source: /query-index.json
+     destination: /sitemap.xml
+     Lastmod: YYYY-MM-DD

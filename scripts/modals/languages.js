@@ -1,5 +1,4 @@
 import {
-  decorateIcons,
   fetchPlaceholders,
 } from '../lib-franklin.js';
 
@@ -81,8 +80,6 @@ export default async function showLanguageSelector() {
       });
     },
   );
-
-  decorateIcons(dialogElement);
 
   document.addEventListener('click', (event) => {
     const isButtonClick = event.target.closest('button') !== null;

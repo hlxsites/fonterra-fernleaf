@@ -59,14 +59,14 @@
 }
 
 .recipe-card .recipe-info .recipe-card-icon {
-  color: var(--global-color-gray64);
+  color: var(--global-color-davys-gray);
   text-transform: uppercase;
   display: inline-block;
   line-height: .6rem;
 }
 
 .recipe-card .recipe-info .recipe-card-icon:not(:first-child) {
-  border-left: 1px solid #dedede;
+  border-left: 1px solid var(--global-color-davys-gray);
   margin-left: 0.625rem;
   padding-left: 0.625rem;
 }
