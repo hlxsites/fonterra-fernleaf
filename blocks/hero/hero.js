@@ -11,6 +11,8 @@ const SECTION_BG_MOBILE = 'bg-mobile';
 const SECTION_PRODUCT_DESKTOP = 'product-desktop';
 const SECTION_PRODUCT_MOBILE = 'product-mobile';
 const SECTION_CONTENT = 'content';
+const LARGE_SPLASH = 'largeSplash';
+const SMALL_SPLASH = 'smallSplash';
 let heroSections = [];
 
 function preProcess(block) {
@@ -32,49 +34,37 @@ function preProcess(block) {
 }
 
 async function processSplash() {
-  const PRODUCT = 'product';
-  const RECIPE = 'recipe';
-  const product = document.querySelector(`.${PRODUCT}`);
-  const recipes = document.querySelector(`.${RECIPE}`);
+  const heroBannerBlock = document.querySelector('.hero.block .hero-bg');
 
-  if (!product && !recipes) {
-    return;
-  }
+  if (!heroBannerBlock) return;
+  if (document.querySelector('.hero.main')) return;
 
   const placeholder = await fetchPlaceholders();
+  const device = (await isMobile()) ? 'Mobile' : 'Desktop';
+  let splashKey;
 
-  if (!placeholder) {
-    return;
+  if (heroSections[SECTION_BG_DESKTOP] && heroSections[SECTION_PRODUCT_DESKTOP]) {
+    splashKey = `${LARGE_SPLASH}${device}`;
+  } else if (heroSections[SECTION_BG_DESKTOP]) {
+    splashKey = `${SMALL_SPLASH}${device}`;
   }
 
-  const rootHeroClassName = product ? PRODUCT : RECIPE;
-  const device = (await isMobile()) ? 'Mobile' : 'Desktop';
+  const imageURL = placeholder && placeholder[splashKey];
 
-  Object.keys(placeholder).forEach((key) => {
-    if (key === `${rootHeroClassName}${device}Splash`) {
-      const heroBannerBlock = document.querySelector('.hero.block .hero-bg');
+  if (imageURL) {
+    const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
+    if (existingSplashPicture) existingSplashPicture.remove();
 
-      if (!heroBannerBlock) {
-        return;
-      }
+    const picture = document.createElement('picture');
+    picture.className = 'hero-splash';
 
-      const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
+    const img = document.createElement('img');
+    img.alt = '';
+    img.src = imageURL;
 
-      if (existingSplashPicture) {
-        existingSplashPicture.remove();
-      }
-
-      const picture = document.createElement('picture');
-      picture.className = 'hero-splash';
-
-      const img = document.createElement('img');
-      img.alt = '';
-      img.src = placeholder[key];
-
-      picture.appendChild(img);
-      heroBannerBlock.appendChild(picture);
-    }
-  });
+    picture.appendChild(img);
+    heroBannerBlock.appendChild(picture);
+  }
 }
 
 function isValidImg(imgTag) {
