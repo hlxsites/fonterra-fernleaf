@@ -1,7 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getLanguage, decorateLinkedPictures, debounce } from '../../scripts/scripts.js';
 import createModal from '../../scripts/modals/modal.js';
-import {createSearchModal, performSearch, clearData} from './search.js';
+import {createSearchModal, performSearch, clearSearchResults} from './search.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -178,11 +178,12 @@ function createSearchDialog(nav) {
     },
     () => {
       const searchInput = document.querySelector('#search-dialog .search-input-field input');
-      searchInput.focus();   
+      searchInput.focus();
+      const debounceDelay = 500;
       const debouncedSearch = debounce(function() {  
         const query = searchInput.value;      
         query && query.length > 2 && performSearch(query);
-      }, 500);
+      }, debounceDelay);
 
       searchInput.addEventListener('input', debouncedSearch);
 
@@ -191,7 +192,7 @@ function createSearchDialog(nav) {
           searchInput.value = "";
           searchDialogElement.close();
           disablePageScroll();
-          clearData();
+          clearSearchResults();
         }
       });
     }

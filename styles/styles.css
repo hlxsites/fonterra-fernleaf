@@ -14,15 +14,15 @@
   /* fonts */
   --global-primary-font-family: mark-ot, helvetica, arial, sans-serif;
   --global-secondary-font-family: mark-ot-book, helvetica, arial, sans-serif;
-  --global-tertiary-font-family: stag, georgia, "Times New Roman",times, serif;
-  --global-quaternary-font-family: stag-sans-book, helvetica,arial,sans-serif;
-  --global-georgia-font-family: 'iconanchor','Georgia','Times New Roman','Times',serif;
+  --global-tertiary-font-family: stag, georgia, "Times New Roman", times, serif;
+  --global-quaternary-font-family: stag-sans-book, helvetica, arial, sans-serif;
+  --global-quinary-font-family: stag-sans-medium, helvetica, arial, sans-serif;
+  --global-georgia-font-family: 'iconanchor', 'Georgia', 'Times New Roman', 'Times', serif;
   --body-font-family: var(--global-primary-font-family);
   --heading-font-family: var(--global-tertiary-font-family);
   --heading-font-family-light: stag-sans-light, helvetica, arial, sans-serif;
   --fixed-font-family: monaco, menlo, monsolas, "Courier New", monospace;
  
-
   /* Colors - Global Names */
   --global-color-black: #000;
   --global-color-white: #fff;  
@@ -38,16 +38,18 @@
   --global-color-dim-gray: #6c6c6c;
   --global-color-dark-gray: #242424;
   --global-color-light-gray: #d3d3d3;
-  --global-color-davys-gray: #595959
+  --global-color-davys-gray: #595959;
+  --global-color-lavender-gray: #cbcbcd;
   --global-color-red: #ed1c24;
   --global-color-tomato-red: #e0271d;
   --global-color-scarlet: #e1271d;
   --global-color-pine-green: #006938;
+  --global-color-sky-blue: #3db7e4;
   --global-color-dark-blue: #00338d;
+  --global-color-bahama-blue: #23527c;
   --global-color-yellow: #fedf00;
   --global-color-selective-yellow: #f0ab00;
   --global-color-dark-goldenrod: #c18812;
-  --global-color-bahama-blue: #23527c;
   --global-color-philippine-bronze: #630;
 
   /* Colors - Alias Names */

@@ -1,17 +1,26 @@
-import { getLanguage } from '../../scripts/scripts.js';
+import { fetchSearch } from '../../scripts/scripts.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
-export function clearData() {
-    const searchProducts = ["products", "recipes", "stories"];
+/**
+ * Clear the category wise search results
+ */
+export function clearSearchResults() {
+    const searchProducts = ["product", "recipe", "story"];
     const searchContainer = document.querySelector("#search-dialog .search-results-container");
-    searchProducts.forEach((item) => {     
-        const productElem = `.${item} .product-list-results`;
-        const productList = searchContainer.querySelector(productElem);   
+    searchProducts.forEach((category) => {
+        const productList = searchContainer.querySelector(`.${category}-category-list`);   
         productList.innerHTML = "";
     });
 }
 
-const getListHTML = (name, item) => {
-    const productHTML = (name === "stories")
+/**
+ * Get the Product List HTML Structure
+ * @param {*}
+ *   categoryName, item
+ * @returns Returns the block of each product item
+ */
+const getProductListHTML = (categoryName, item) => {
+    const productHTML = (categoryName.toLowerCase() === "story")
     ? `<h6><a href="${item.path}">${item.title}</a></h6>`
     : `<a href="${item.path}">
             <picture>
@@ -22,40 +31,85 @@ const getListHTML = (name, item) => {
     return `<div class="product-list-item">${productHTML}</div>`;
 };
 
-export function performSearch(value) {
-    console.log('Searching for:', value);    
-    if (value) {
-        const searchProducts = ["products", "recipes", "stories"];
-        searchProducts.map((item) => {
-            return fetchData(item);
-        });
-    }
-  }
-
-async function loadData(path) {
-    if (path && path.startsWith('/')) {
-        const response = await fetch(path);
-        return response ? JSON.parse(await response.text()) : null;
-    }
-    return null;
-}
-
-async function fetchData(name) {
-    const apiNames = {
-        products: "",
-        recipes: "recipe",
-        stories: "story"
-    }
-    const path = `/query-index-old.json?limit=4&offset=0&sheet=${getLanguage()}${apiNames[name] ? `-${apiNames[name]}` : ''}`;
-    const list = await loadData(path);
+/**
+ * Add the Product HTML Structure
+ * @param {*}
+ *   categoryName, productList, placeholders
+ */
+const addProductsHTML = (categoryName, productList, placeholders) => {
+    const categoryElem = categoryName?.toLowerCase();
     const searchContainer = document.querySelector("#search-dialog .search-results-container");
-    const productElem = `.${name} .product-list-results`;
-    const productList = searchContainer.querySelector(productElem);
-    const products = list.data.map((item) => {
-        return getListHTML(name, item);
-    });            
-    productList.innerHTML = products.join('');
+    const productListElem = searchContainer.querySelector(`.${categoryElem}-category-list`);
+    const productPlaceholder = {
+        title: placeholders[`search${categoryName}Title`],
+        viewText: placeholders[`search${categoryName}ViewText`],
+        viewLink: placeholders[`search${categoryName}ViewLink`],
+        noResultText: placeholders[`search${categoryName}NoResultText`],
+        noResultLinkText: placeholders[`search${categoryName}NoResultLinkText`],
+        noResultLink: placeholders[`search${categoryName}NoResultLink`]
+    }
+
+    let productHTML = '';
+    if (productList.length) {
+        productHTML = `<div class="product-list-title">
+                            <h4>${productPlaceholder.title}</h4>
+                            <div class="more-products">
+                                <span class="split-bar"></span>
+                                <a href="${productPlaceholder.viewLink}">${productPlaceholder.viewText}</a>
+                            </div>
+                        </div>
+                        <div class="product-list-results">
+                            ${productList.map((item) => getProductListHTML(categoryName, item)).join('')}
+                        </div>
+                        <div class="product-list-action">
+                            <a class="button" href="${productPlaceholder.viewLink}">${productPlaceholder.viewText}</a>
+                        </div>`;
+    }
+    else {
+        productHTML = `<div class="product-list-title">
+                            <h4>${productPlaceholder.title}</h4>
+                        </div>
+                        <div class="no-product-list">
+                            <p><span>${productPlaceholder.noResultText}</span> | 
+                            <a href="${productPlaceholder.noResultLink}">${productPlaceholder.noResultLinkText}</a></p>
+                        </div>`;
+    }
+    productListElem.innerHTML = productHTML;
 }
+
+/**
+ * Perform the Search and add the products to the relevant category
+ * @param {*}
+ *   value
+ */
+export async function performSearch(value) {
+    const searchValue = value.trim().toLowerCase(); 
+    if (searchValue) {
+        /* Product Categories used commonly to identify the element as well as placeholders */
+        const productCategories = ["Product", "Recipe", "Story"];
+        const productCount = 4;
+        const placeholders = await fetchPlaceholders();
+        const searchData = await fetchSearch();
+        if (placeholders && searchData) {
+            productCategories.map((category) => {
+                const filteredResults = searchData.filter((el) => 
+                el.category.toLowerCase() === category.toLowerCase() && (
+                    el.title.toLowerCase().includes(searchValue) ||
+                    el.description.toLowerCase().includes(searchValue)
+                )
+                ).slice(0, productCount);
+                return addProductsHTML(category, filteredResults, placeholders);
+            });        
+        }
+    }
+}
+
+/**
+ * Create the Seach Modal
+ * @param {*}
+ *   nav
+ * @returns complete search wrapper
+ */
 
 export function createSearchModal(nav) {
     const headerLogo = nav.querySelector(".nav-brand").innerHTML;
@@ -63,55 +117,27 @@ export function createSearchModal(nav) {
       <div class="search-wrapper">
         <div class="search-header">
             ${headerLogo}
-            <span class="close">Close</span>
+            <button class="close">
+                <span class="icon-close"></span>
+            </button>
         </div>
         <div class="search-results-container">
             <div class="search-results">
                 <div class="search-input-box">
                     <div class="search-input-field">
                         <input type="text" name="search" placeholder="What are you looking for today?" title="Search" autocomplete="off">
-                        <span class="icon icon-search"><svg xmlns="http://www.w3.org/2000/svg"><use href="#icons-sprite-search"></use></svg></span>
+                        <span class="icon icon-search"></span>
                     </div>
                 </div>
                 <div class="search-list">
-                    <div class="product-list products">
-                        <div class="product-list-title">
-                            <h4>Products</h4>
-                            <div class="more-products">
-                                <span class="split-bar"></span>
-                                <a href="">See All</a>
-                            </div>
-                        </div>
-                        <div class="product-list-results"></div>
-                        <div class="product-list-action">
-                        <a class="button" href="">See All</a>
-                        </div>
-                    </div>
-                    <div class="product-list recipes">
-                        <div class="product-list-title">
-                            <h4>Recipe</h4>
-                            <div class="more-products">
-                                <span class="split-bar"></span>
-                                <a href="">See All</a>
-                            </div>
-                        </div>
-                        <div class="product-list-results"></div>
-                        <div class="product-list-action">
-                            <a class="button" href="">See All</a>
-                        </div>
-                    </div>
+                    <div class="product-list product-category-list"></div>
+                    <div class="product-list recipe-category-list"></div>
                 </div>
             </div>
-            <div class="suggestion-list stories">
-                <h4>Others</h4>
-                <div class="product-list-results"></div>
-                <div class="product-list-action">
-                <a class="button" href="">See All</a>
-                </div>
+            <div class="story-results">
+                <div class="suggestion-list story-category-list"></div>
             </div>
         </div>
       </div>
     `;
 }
-
-
