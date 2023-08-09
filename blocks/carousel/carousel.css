@@ -2,20 +2,34 @@
     display: flex;
 }*/
 
-.carousel .outerdiv {
+.carousel .recipe-slider-list, .carousel .product-slider-list {
     display: flex;
     overflow: hidden;
     gap: 1rem;
 }
 
-.carousel .innerdiv {
+.carousel .recipe-slider-item {
     flex: 0 0 calc(100% / 3 - .67rem);
 }
 
+.carousel .product-slider-item {
+    flex: 0 0 calc(100% / 4 - .67rem);
+}
+
+@media (max-width: 900px) {
+    .carousel .product-slider-item {
+      flex: 0 0 calc(100% / 3 - .67rem);
+    }
+}
+
 @media (max-width: 600px) {
-    .carousel .innerdiv {
+    .carousel .recipe-slider-item {
       flex: 0 0 calc(100% / 2 - .67rem);
     }
+
+    .carousel .product-slider-item {
+        flex: 0 0 calc(100% / 2 - .67rem);
+      }
 
     .carousel .scrollRight {
       font-size: 1.5rem;
@@ -92,15 +106,19 @@
 
 .scrollLeft::before {
     content: "\e901";
+    color: var( --global-color-pine-green);
 }
 
 .scrollRight::before {
     content: "\e902";
+    color: var( --global-color-pine-green);
 }
 
-.innerdiv img {
-  max-width: 300px; /* Your desired maximum width */
-  max-height: 200px; /* Your desired maximum height */
-  width: auto;
-  height: auto;
+.product-slider-item img, .recipe-slider-item img {
+  aspect-ratio: 1;
+}
+
+.carousel-header h3 {
+    font-size: 2rem;
+    padding-bottom: 1rem;
 }

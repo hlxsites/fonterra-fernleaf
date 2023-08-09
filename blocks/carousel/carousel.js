@@ -1,8 +1,9 @@
-import { getLanguage } from '../../scripts/scripts.js';
+import { getLanguage, fetchSearch } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 let current = 1;
 let numItems = 0;
+let category;
 
 async function loadData(path) {
   if (path && path.startsWith('/')) {
@@ -14,19 +15,19 @@ async function loadData(path) {
 
 function next(event) {
   const isRight = event.target.className === 'scrollRight';
-  const outerdiv = event.target.parentElement.parentElement.getElementsByClassName('outerdiv')[0];
+  const sliderList = event.target.parentElement.parentElement.getElementsByClassName(`${category}-slider-list`)[0];
   if (isRight) {
-    outerdiv.classList.add('slide-transition-right');
-    outerdiv.style.transform = 'translate3d(-25%, 0px,0px)';
+    sliderList.classList.add('slide-transition-right');
+    sliderList.style.transform = 'translate3d(-25%, 0px,0px)';
   } else {
-    outerdiv.classList.add('slide-transition-left');
-    outerdiv.style.transform = 'translate3d(25%, 0px,0px)';
+    sliderList.classList.add('slide-transition-left');
+    sliderList.style.transform = 'translate3d(25%, 0px,0px)';
   }
 }
 
 function changeOrder(event) {
-  const outerdiv = event.target.parentElement.parentElement.getElementsByClassName('outerdiv')[0];
-  const isRight = outerdiv.classList.contains('slide-transition-right');
+  const sliderList = event.target.parentElement.parentElement.getElementsByClassName(`${category}-slider-list`)[0];
+  const isRight = sliderList.classList.contains('slide-transition-right');
 
   if (isRight) {
     if (current === numItems) {
@@ -45,12 +46,12 @@ function changeOrder(event) {
   let order = 1;
 
   for (let i = current; i <= numItems; i += 1) {
-    outerdiv.querySelector('.innerdiv[data-position="' + i +'"]').style.order = order;
+    sliderList.querySelector(`.${category}-slider-item[data-position='${i}']`).style.order = order;
     order += 1;
   }
 
   for (let i = 1; i < current; i += 1) {
-    outerdiv.querySelector(".innerdiv[data-position='" + i +"']").style.order = order;
+    sliderList.querySelector(`.${category}-slider-item[data-position='${i}']`).style.order = order;
     order += 1;
   }
 
@@ -59,9 +60,9 @@ function changeOrder(event) {
   const ele = document.getElementById(''+current);
   ele.classList.add('bullet-active'); */
 
-  outerdiv.classList.remove('slide-transition-right');
-  outerdiv.classList.remove('slide-transition-left');
-  outerdiv.style.transform = 'translate3d(0px, 0px,0px)';
+  sliderList.classList.remove('slide-transition-right');
+  sliderList.classList.remove('slide-transition-left');
+  sliderList.style.transform = 'translate3d(0px, 0px,0px)';
 }
 
 /*
@@ -102,28 +103,36 @@ function createBullets() {
     bulletsContainer.appendChild(bullet);
   }
 
-  const outerdiv = document.querySelector('.outerdiv');
-  outerdiv.append(bulletsContainer);
+  const sliderList = document.querySelector(`.${category}-slider-list`);
+  sliderList.append(bulletsContainer);
+}
+
+async function addCarouselHeader(category) {
+  const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
+  const parentElement = document.querySelector('.carousel-container');
+  const section = document.createElement('div');
+  section.classList.add('carousel-header');
+  const headerText = category === 'recipe' ? placeholders.recipecarouselheading : placeholders.productscarouselheading;
+  section.innerHTML = `
+    <h3>
+      ${headerText}
+    </h3>`;
+  parentElement.insertBefore(section, parentElement.firstChild);
 }
 
 export default async function decorate(block) {
   // const h1 = block.querySelector('categoryUrl');
-  const category = block.innerText;
-  const path = '/query-index.json?limit=500&offset=0';
-  const list = await loadData(path);
-
-  const filteredItems = list.data.filter(
-    (c) => c.category === category
-      && c.language === getLanguage()
-      && c.path !== window.location.pathname
+  category = block.innerText;
+  const filteredItems = (await fetchSearch(category)).filter(
+    (c) => c.path !== window.location.pathname
   );
 
-  const placeholder = await fetchPlaceholders();
+  const placeholders = await fetchPlaceholders();
   let maxItemsInCarousel;
   if (category === 'recipe') {
-    maxItemsInCarousel = placeholder.maxitemsinrecipecarousel;
+    maxItemsInCarousel = placeholders.maxitemsinrecipecarousel;
   } else {
-    maxItemsInCarousel = placeholder.maxitemsinproductcarousel;
+    maxItemsInCarousel = placeholders.maxitemsinproductcarousel;
   }
 
   const randomItems = [];
@@ -134,8 +143,9 @@ export default async function decorate(block) {
     const randomItem = availableItems.splice(randomIndex, 1)[0];
     randomItems.push(randomItem);
   }
-
   block.textContent = '';
+  addCarouselHeader(category);
+
   if (randomItems.length > 0) {
     const categoryContainer = document.createElement('div');
 
@@ -144,7 +154,7 @@ export default async function decorate(block) {
 
       categoryElement.innerHTML = `
         <a href="${item.path}" title='${item.title}'>
-          <img src='${item.image}&height=900' alt='${item.image}'>
+          <img src='${item.image}' alt='${item.image}'>
         </a>
         <h3>
           <a href="${item.path}" title='${item.title}'>${item.title}</a>
@@ -155,8 +165,8 @@ export default async function decorate(block) {
     });
 
     // -----------------
-    const outerDiv = document.createElement('div');
-    outerDiv.classList.add('outerdiv');
+    const sliderList = document.createElement('div');
+    sliderList.classList.add(`${category}-slider-list`);
 
     const buttonl = document.createElement('button');
     buttonl.classList.add('scrollLeft');
@@ -167,15 +177,15 @@ export default async function decorate(block) {
     numItems = noOfItems;
 
     [...categoryContainer.children].forEach((row) => {
-      const innerDiv = document.createElement('div');
-      innerDiv.classList.add('innerdiv');
-      innerDiv.innerHTML = row.innerHTML;
-      innerDiv.style.order = current;
-      innerDiv.dataset.position = current;
+      const sliderItem = document.createElement('div');
+      sliderItem.classList.add(`${category}-slider-item`);
+      sliderItem.innerHTML = row.innerHTML;
+      sliderItem.style.order = current;
+      sliderItem.dataset.position = current;
       current += 1;
-      outerDiv.append(innerDiv);
+      sliderList.append(sliderItem);
     });
-    block.append(outerDiv);
+    block.append(sliderList);
     current = 1;
 
     /*
@@ -215,7 +225,7 @@ export default async function decorate(block) {
     button.addEventListener('click', next, this);
     block.append(button);
 
-    block.querySelector('.outerdiv').addEventListener('transitionend', (event) => {
+    block.querySelector(`.${category}-slider-list`).addEventListener('transitionend', (event) => {
       changeOrder(event);
     });
   } else {
