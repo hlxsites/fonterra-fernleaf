@@ -451,6 +451,10 @@
   max-width: 100%;
 }
 
+#language-dialog::backdrop {
+  background: rgb(0 0 0 / 50%);
+}
+
 .country-item > a {
   display: flex;
   align-items: center;
