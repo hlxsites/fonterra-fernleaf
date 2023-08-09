@@ -9,6 +9,8 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  getMetadata,
+  buildBlock,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -60,17 +62,35 @@ export function adjustImageSize(img, newSize) {
 }
 
 /**
+ * @param {Element} main
+ */
+function buildCarouselBlock(main) {
+  // const headline = main.querySelector(':scope > div > h1:first-child');
+  // const standfirst = main.querySelector(':scope > div > p:nth-child(2)');
+  // const authors = main.querySelector('div.authors');
+  // const picture = main.querySelector('picture');
+  // const caption = picture.parentElement.nextElementSibling.tagName === 'P' ? picture.parentElement.nextElementSibling : null;
+
+  const category = getMetadata('category');
+
+  const section = document.createElement('div');
+  section.append(buildBlock('carousel', { elems: [category] }));
+  main.append(section);
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
 function buildAutoBlocks(main) {
   try {
-    //buildHeroBlock(main);
+    // buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
 */
+
 export function decorateLinkedPictures(container) {
   [...container.querySelectorAll('picture + br + a')]
     .filter((a) => {
@@ -161,6 +181,7 @@ export function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateButtons(main);
   // buildAutoBlocks(main);
+  buildCarouselBlock(main);
   decorateSections(main);
   decorateBlocks(main);
 

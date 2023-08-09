@@ -1,4 +1,4 @@
-export default function decorate(block) {
+export default async function decorate(block) {
   const cols = [...block.firstElementChild.children];
   block.classList.add(`columns-${cols.length}-cols`);
 
