@@ -1,15 +1,10 @@
 main .section .accordion-wrapper {
-  padding-left: 22px;
+  padding-left: 12px;
   margin-top: unset;
 }
 
 .accordion-wrapper .accordion-section h4 {
   margin: unset;
-}
-
-.accordion-wrapper .accordion-section button[aria-expanded="true"]::after,
-.accordion-wrapper .accordion-section button[aria-expanded="false"]::after {
-  font-size: 15px;
 }
 
 .accordion-wrapper .table-wrapper p {
@@ -61,15 +56,15 @@ main .section .accordion-wrapper {
 
 .accordion-wrapper .accordion-section button::after {
   right: auto;
-   left: 0.625rem;
-   color: var(--global-color-black);
-   font-size: 1.25rem;
-   font-weight: bold;
-   position: absolute;
-   top: 50%;
-   transform: translateY(-50%);
-   font-family: var(--global-georgia-font-family);
- }
+  left: 0.625rem;
+  color: var(--global-color-black);
+  font-size: 1.25rem;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--global-georgia-font-family);
+}
 
 .accordion-wrapper .accordion-section button[aria-expanded="false"]::after {
   content: "\e922";
@@ -116,5 +111,4 @@ main .section .accordion-wrapper {
   .accordion-wrapper .columns-wrapper .columns div div {
     flex: unset;
   }
-  
 }
