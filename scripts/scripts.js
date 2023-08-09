@@ -167,15 +167,15 @@ export async function fetchSearch(category = '') {
 
     const resp = await fetch(path);
     window.searchData = JSON.parse(await resp.text()).data;
-  }
 
-  const results = window.searchData.filter((el) => el.language === getLanguage());
+    window.searchData = window.searchData.filter((el) => el.language === getLanguage());
+  }
 
   if (category !== '') {
-    return results.filter((el) => el.category === category);
+    return window.searchData.filter((el) => el.category === category);
   }
 
-  return results;
+  return window.searchData;
 }
 
 /**
