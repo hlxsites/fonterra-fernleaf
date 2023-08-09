@@ -75,10 +75,11 @@ function buildCarouselBlock(main) {
   // const caption = picture.parentElement.nextElementSibling.tagName === 'P' ? picture.parentElement.nextElementSibling : null;
 
   const category = getMetadata('category');
-
-  const section = document.createElement('div');
-  section.append(buildBlock('carousel', { elems: [category] }));
-  main.append(section);
+  if (category === 'recipe' || category === 'product') {
+    const section = document.createElement('div');
+    section.append(buildBlock('carousel', { elems: [category] }));
+    main.append(section);
+  }
 }
 
 /**

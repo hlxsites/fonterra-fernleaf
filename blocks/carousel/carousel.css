@@ -55,6 +55,8 @@
     font-size: 3rem;
     font-weight: 100;
     font-family: iconanchor, sans-serif;
+    min-width: 0;
+    padding-left: 0;
 }
 
 .carousel .scrollRight {
@@ -63,6 +65,8 @@
     font-size: 3rem;
     font-weight: 100;
     font-family: iconanchor, sans-serif;
+    min-width: 0;
+    padding-left: 0;
 }
 
 .scrollRight:hover,
