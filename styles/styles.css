@@ -248,7 +248,6 @@ a.button:any-link, button {
   color: var(--global-color-philippine-bronze);
   background-color: var(--global-color-yellow);
   margin: 16px 0;
-  min-width: 10.938rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -392,6 +391,7 @@ main .section.highlight {
 
 .full-width-banner .default-content-wrapper a {
   font-weight: 500;
+  min-width: 10.938rem;
 }
 
 .full-width-banner .default-content-wrapper .button-container a {
