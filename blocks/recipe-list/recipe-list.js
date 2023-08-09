@@ -1,4 +1,4 @@
-import { getLanguage, adjustImageSize } from '../../scripts/scripts.js';
+import { adjustImageSize, fetchSearch, CATEGORY_RECIPES } from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
@@ -13,17 +13,9 @@ const getListHTML = (row) => `<div>
                 </div>
             </a></div>`;
 
-async function loadData(path) {
-  if (path && path.startsWith('/')) {
-    const resp = await fetch(path);
-    return JSON.parse(await resp.text());
-  }
-  return null;
-}
-
 async function printList(list) {
   const ul = document.createElement('ul');
-  list.data.forEach((row) => {
+  list.forEach((row) => {
     if (row.shorttitle !== '0') {
       row.image = adjustImageSize(row.image, 500);
       const li = document.createElement('li');
@@ -38,11 +30,10 @@ async function printList(list) {
 }
 
 export default async function decorate(block) {
-  const path = `/query-index.json?limit=500&offset=0&sheet=${getLanguage()}-recipe`;
-  const list = await loadData(path);
+  const list = await fetchSearch(CATEGORY_RECIPES);
 
   block.textContent = '';
-  if (list.data.length > 0) {
+  if (list.length > 0) {
     const objects = await printList(list);
     block.append(objects);
   } else {

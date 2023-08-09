@@ -17,8 +17,16 @@
   }
 }
 
-.cards h4 {
+.cards h4,
+.cards h3 {
   margin-bottom: 0;
+}
+
+.cards h3 { 
+  font-family: var(--heading-font-family-light);
+  font-size: var(--heading-font-size-m);
+  font-weight: 400;
+  letter-spacing: normal;
 }
 
 .cards p {
@@ -27,6 +35,8 @@
 
 .cards a {
   text-decoration: none;
+  display: inline-block;
+  padding: 10px 0;
 }
 
 .cards a:hover {

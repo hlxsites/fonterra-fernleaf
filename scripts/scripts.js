@@ -16,6 +16,9 @@ import {
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 const LANGUAGES = new Set(['en', 'ms']);
+export const CATEGORY_STORIES = 'story';
+export const CATEGORY_PRODUCT = 'product';
+export const CATEGORY_RECIPES = 'recipe';
 
 let language;
 
@@ -169,6 +172,30 @@ function GenerateBackGroundImages() {
       this.render(banner);
     }
   };
+}
+
+/**
+ * Fetch filtered search results
+ * @param {*} cat The category filter
+ *   CATEGORY_STORIES, CATEGORY_PRODUCT, CATEGORY_RECIPES
+ * @returns List of search results
+ */
+export async function fetchSearch(category = '') {
+  window.searchData = window.searchData || {};
+  if (Object.keys(window.searchData).length === 0) {
+    const path = '/query-index.json?limit=500&offset=0';
+
+    const resp = await fetch(path);
+    window.searchData = JSON.parse(await resp.text()).data;
+  }
+
+  const results = window.searchData.filter((el) => el.language === getLanguage());
+
+  if (category !== '') {
+    return results.filter((el) => el.category === category);
+  }
+
+  return results;
 }
 
 /**
