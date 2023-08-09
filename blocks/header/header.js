@@ -1,7 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getLanguage, decorateLinkedPictures, debounce } from '../../scripts/scripts.js';
 import createModal from '../../scripts/modals/modal.js';
-import {createSearchModal, performSearch, clearSearchResults} from './search.js';
+import { createSearchModal, performSearch, clearSearchResults } from './search.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -90,6 +90,48 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * To disable the page scroll
+ */
+function disablePageScroll() {
+  document.body.classList.toggle('disable-page-scroll');
+}
+
+/**
+ * Create the Search Dialog
+ * @param {nav}
+ */
+
+function createSearchDialog(nav) {
+  const searchDialogElement = createModal(
+    'search-dialog',
+    () => createSearchModal(nav),
+    () => {
+      const searchInput = document.querySelector('#search-dialog .search-input-field input');
+      searchInput.focus();
+      const debounceDelay = 500;
+      const debouncedSearch = debounce(() => {
+        const query = searchInput.value;
+        if (query && query.length > 2) {
+          performSearch(query);
+        }
+      }, debounceDelay);
+
+      searchInput.addEventListener('input', debouncedSearch);
+
+      document.querySelector('#search-dialog .close').addEventListener('click', () => {
+        if (searchDialogElement.open) {
+          searchInput.value = '';
+          searchDialogElement.close();
+          disablePageScroll();
+          clearSearchResults();
+        }
+      });
+    },
+  );
+  searchDialogElement.showModal();
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -165,38 +207,3 @@ export default async function decorate(block) {
     }
   }
 }
-
-function disablePageScroll() {
-  document.body.classList.toggle('disable-page-scroll');
-}
-
-function createSearchDialog(nav) {
-  const searchDialogElement = createModal(
-    'search-dialog',
-    () => {      
-      return createSearchModal(nav);
-    },
-    () => {
-      const searchInput = document.querySelector('#search-dialog .search-input-field input');
-      searchInput.focus();
-      const debounceDelay = 500;
-      const debouncedSearch = debounce(function() {  
-        const query = searchInput.value;      
-        query && query.length > 2 && performSearch(query);
-      }, debounceDelay);
-
-      searchInput.addEventListener('input', debouncedSearch);
-
-      document.querySelector('#search-dialog .close').addEventListener('click', () => {
-        if (searchDialogElement.open) {
-          searchInput.value = "";
-          searchDialogElement.close();
-          disablePageScroll();
-          clearSearchResults();
-        }
-      });
-    }
-  );
-  searchDialogElement.showModal();
-}
-
