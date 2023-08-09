@@ -528,10 +528,6 @@ transition: all .3s ease;
 }
 
 @media (min-width: 600px) {
-  .full-width-banner .default-content-wrapper .button-container a {
-    font-size: 18px;
-  }
-
   /* Full Width Banner */
   .full-width-banner {
     position: relative;
@@ -561,6 +557,7 @@ transition: all .3s ease;
   }
 
   .full-width-banner .default-content-wrapper .button-container a {
+    font-size: 18px;
     width: auto;
   }
   
