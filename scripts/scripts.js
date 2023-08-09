@@ -160,7 +160,7 @@ function GenerateBackGroundImages() {
  *   CATEGORY_STORIES, CATEGORY_PRODUCT, CATEGORY_RECIPES
  * @returns List of search results
  */
-export async function fetchSearch(cat = '') {
+export async function fetchSearch(category = '') {
   window.searchData = window.searchData || {};
   if (Object.keys(window.searchData).length === 0) {
     const path = '/query-index.json?limit=500&offset=0';
@@ -169,11 +169,13 @@ export async function fetchSearch(cat = '') {
     window.searchData = JSON.parse(await resp.text()).data;
   }
 
-  if (cat !== '') {
-    return window.searchData.filter((el) => el.language === getLanguage() && el.category === cat);
+  const results = window.searchData.filter((el) => el.language === getLanguage());
+
+  if (category !== '') {
+    return results.filter((el) => el.category === category);
   }
 
-  return window.searchData.filter((el) => el.language === getLanguage());
+  return results;
 }
 
 /**
