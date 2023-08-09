@@ -6,18 +6,6 @@ header .nav-wrapper {
   position: fixed;
 }
 
-@keyframes slide-down {  
-  0% {  
-      max-height: 0;  
-      overflow: hidden;  
-  }  
-  
-  100% {  
-      max-height: 100vh;  /* adjust to a value larger than the element's height */  
-      overflow: visible;  
-  }  
-}
-
 header nav {
   box-sizing: border-box;
   display: grid;
@@ -283,14 +271,6 @@ header nav .nav-sections ul {
   font-weight: 400;
 }
 
-
-
-header nav .nav-sections ul>li>ul {
-  color: initial;
-}
-
-
-
 @media (max-width: 900px) {
   header nav .nav-sections ul>li {
     float: none;
@@ -418,36 +398,6 @@ header nav .nav-sections ul>li>ul {
 
   header nav .nav-sections>ul>li:hover::after {
     width: 100%;
-  }
-
-  header nav .nav-sections>ul>li>ul {
-    display: none;
-    position: relative;
-    animation: slide-down 400ms forwards; 
-  }
-
-  header nav .nav-sections>ul>li[aria-expanded="true"]>ul {
-    display: block;
-    background-color: var(--global-color-white);
-    white-space: initial;
-    position: fixed;
-    top: var(--nav-height);
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    list-style: none;
-    padding-top: 1.125rem;
-  }
-
-  header nav .nav-sections>ul>li>ul>li {
-    padding: 10px;
-    width: 480px;
-    margin: auto
-  }
-
-  header nav .nav-sections>ul>li>ul>li.nav-back-btn {
-    display: none;
   }
 
   header nav .nav-tools {

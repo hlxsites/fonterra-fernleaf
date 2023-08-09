@@ -1,4 +1,4 @@
-import { getMetadata, decorateIcons } from '../../scripts/lib-franklin.js';
+import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getLanguage, decorateLinkedPictures, debounce } from '../../scripts/scripts.js';
 import createModal from '../../scripts/modals/modal.js';
 import {createSearchModal, performSearch, clearData} from './search.js';
@@ -150,7 +150,6 @@ export default async function decorate(block) {
     toggleMenu(nav, navSections, isDesktop.matches);
     isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
-    decorateIcons(nav);
     const navWrapper = document.createElement('div');
     navWrapper.className = 'nav-wrapper';
     navWrapper.append(nav);

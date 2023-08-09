@@ -1,24 +1,19 @@
-import { getLanguage, adjustImageSize } from '../../scripts/scripts.js';
-
-const getListHTML = (row) => `<div class="story-image"><img alt="${row.shorttitle}" src="${row.image}" width="300" height="218"></div>
-            <div class="story-content">
-                <div class="story-title"><a href="${row.path}" title="${row.shorttitle}" area-label="${row.shorttitle}">${row.shorttitle}</a></div>
-                <p class="story-desc">${row.description}</p>
-                <a href="${row.path}" title="${row.shorttitle}" aria-label="${row.shorttitle}" class="button primary">Read More</a>
-            </div>`;
-
-async function loadData(path) {
-  if (path && path.startsWith('/')) {
-    const resp = await fetch(path);
-    const listData = JSON.parse(await resp.text());
-    return listData;
-  }
-  return null;
-}
+import {
+  getLanguage, adjustImageSize, fetchSearch, CATEGORY_STORIES,
+} from '../../scripts/scripts.js';
+import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 async function printList(list) {
+  const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
+  const getListHTML = (row) => `<div class="story-image"><img alt="${row.shorttitle}" src="${row.image}" width="300" height="218"></div>
+            <div class="story-content">
+                <div class="story-title"><a href="${row.path}" title="${row.shorttitle}" aria-label="${row.shorttitle}">${row.shorttitle}</a></div>
+                <p class="story-desc">${row.description}</p>
+                <a href="${row.path}" title="${row.shorttitle}" aria-label="${row.shorttitle}" class="button primary">${placeholders.readmore}</a>
+            </div>`;
+
   const ul = document.createElement('ul');
-  list.data.forEach((row) => {
+  list.forEach((row) => {
     row.image = adjustImageSize(row.image, 300);
     const li = document.createElement('li');
     li.classList.add('story');
@@ -30,11 +25,10 @@ async function printList(list) {
 }
 
 export default async function decorate(block) {
-  const path = `/query-index.json?limit=500&offset=0&sheet=${getLanguage()}-story`;
-  const list = await loadData(path);
+  const list = await fetchSearch(CATEGORY_STORIES);
 
   block.textContent = '';
-  if (list.data.length > 0) {
+  if (list.length > 0) {
     const objects = await printList(list);
     block.append(objects);
   } else {

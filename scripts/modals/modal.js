@@ -1,5 +1,3 @@
-import { decorateIcons } from '../lib-franklin.js';
-
 export default function createModal(modalId, createContent, addEventListeners) {
   let dialogElement = document.getElementById(modalId);
   if (!dialogElement) {
@@ -11,8 +9,6 @@ export default function createModal(modalId, createContent, addEventListeners) {
     dialogElement.innerHTML = `
         ${contentHTML}
     `;
-
-    decorateIcons(dialogElement);
 
     document.body.appendChild(dialogElement);
 
