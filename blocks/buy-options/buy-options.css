@@ -1,3 +1,8 @@
+.buy-options-container{
+  position: relative;
+  z-index: 5;
+}
+
 .section div.buy-options-wrapper,
 .buy-options-container div:first-child {
   padding: 0;

@@ -1,3 +1,19 @@
+.story-tips-landing .story-list-bg-top img{
+  position: absolute;
+  z-index: -1;
+}
+
+.story-tips-landing .story-list-bg-bottom img{
+  position: absolute;
+  z-index: -1;
+  bottom: var(--footer-height-mobile);
+}
+
+.story-list-container{
+  padding-top: 7.625rem;
+  padding-bottom: 4.563rem;
+}
+
 .story-list ul {
   list-style: none;
   padding: 0;
@@ -34,6 +50,7 @@
   border-bottom: 1px solid #a3a3a3;
 }
 
+
 @media (min-width: 600px) {
   .story-list .story {
     padding: 3.563rem 0 3.625rem;
@@ -51,6 +68,10 @@
 
   .story-list .story .story-content .button {
     width: auto;
+  }
+
+  .story-tips-landing .story-list-bg-bottom img{
+    bottom: var(--footer-height-desktop);
   }
 }
 
