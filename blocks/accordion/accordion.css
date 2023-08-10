@@ -5,6 +5,11 @@ main .section .accordion-wrapper {
 
 .section.accordion-container .accordion {
   border-bottom: 1px solid var(--global-color-light-gray);
+  padding: 0 0 1.25rem;;
+}
+
+.section.accordion-container > div.default-content-wrapper {
+  padding: 0 0 30px;
 }
 
 .accordion-wrapper .accordion-section h4 {
