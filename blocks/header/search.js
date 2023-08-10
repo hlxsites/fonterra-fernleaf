@@ -57,7 +57,7 @@ const addProductsHTML = (categoryName, productList, placeholders) => {
         </div>
     </div>
     <div class='product-list-results'>
-        ${productList.map((item) =>
+      ${productList.map((item) =>
     getProductListHTML(categoryName, item)).join('')}
     </div>
     <div class='product-list-action'>
@@ -86,17 +86,21 @@ export async function performSearch(value) {
     /* Product Categories used commonly to identify the element as well as placeholders */
     const productCategories = ['Product', 'Recipe', 'Story'];
     const productCount = 4;
-    const spinner = document.querySelector("#search-dialog .overlay-loading");
+    const spinner = document.querySelector('#search-dialog .overlay-loading');
     spinner.style.display = 'block';
-    const placeholders = await fetchPlaceholders();    
+    const placeholders = await fetchPlaceholders();
     const searchData = await fetchSearch();
     spinner.style.display = 'none';
     if (placeholders && searchData) {
+      let filteredResults = [];
       productCategories.map((category) => {
-        const filteredResults = searchData.filter((el) =>
-          /* eslint max-len: ["error", { "code": 200 }] */
+        filteredResults = searchData.filter((el) =>
           /* eslint implicit-arrow-linebreak: ["error", "below"] */
-          el.category.toLowerCase() === category.toLowerCase() && (el.title.toLowerCase().includes(searchValue) || el.description.toLowerCase().includes(searchValue))).slice(0, productCount);
+          /* eslint max-len: ["error", { "code": 300 }] */
+          el.category.toLowerCase() === category.toLowerCase() && (el.title.toLowerCase().includes(searchValue) || el.shorttitle.toLowerCase().includes(searchValue) || el.description.toLowerCase().includes(searchValue) || el.tags.toLowerCase().includes(searchValue)));
+        if (category !== 'Story') {
+          filteredResults = filteredResults.slice(0, productCount);
+        }
         return addProductsHTML(category, filteredResults, placeholders);
       });
     }
