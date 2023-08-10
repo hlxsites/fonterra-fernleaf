@@ -1,0 +1,112 @@
+.carousel .recipe-slider-list, .carousel .product-slider-list {
+    display: flex;
+    overflow: hidden;
+    gap: 1rem;
+}
+
+.carousel .recipe-slider-item {
+    flex: 0 0 calc(100% / 2 - .67rem);
+  }
+
+.carousel .product-slider-item {
+    flex: 0 0 calc(100% / 2 - .67rem);
+  }
+
+@media (min-width: 600px){
+    .carousel .product-slider-item {
+      flex: 0 0 calc(100% / 3 - .67rem);
+    }
+}
+
+@media (min-width: 900px) {
+    .carousel .recipe-slider-item {
+        flex: 0 0 calc(100% / 3 - .67rem);
+    }
+    
+    .carousel .product-slider-item {
+        flex: 0 0 calc(100% / 4 - .67rem);
+    }
+} 
+
+.slide-transition-right,
+.slide-transition-left {
+    transition: transform 0.3s step-end;
+}
+
+.carousel h3 {
+    font-family: Mark-OT,Helvetica,Arial,sans-serif;
+    font-size: .85rem;
+    letter-spacing: .013rem;
+    margin: 0 auto;
+    margin-top: 0.625rem;
+    text-align: center;
+}
+
+.carousel {
+    display: flex;
+}
+
+.carousel a:hover {
+    color: var(--global-color-bahama-blue);
+    text-decoration: none;
+}
+
+.carousel .scroll-left {
+    background-color: transparent;
+    overflow: initial;
+    font-size: 3rem;
+    font-weight: 100;
+    font-family: iconanchor, sans-serif;
+    min-width: 0;
+    padding-right: 3rem;
+}
+
+.carousel .scroll-right {
+    background-color: transparent;
+    overflow: initial;
+    font-size: 3rem;
+    font-weight: 100;
+    font-family: iconanchor, sans-serif;
+    min-width: 0;
+}
+
+.scroll-right:hover,
+.scroll-left:hover {
+    border: none;
+    overflow: initial;
+}
+
+.bullet {
+    margin: 8px;
+    background: black;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.bullet-active {
+    background: red;
+}
+
+.scroll-left::before {
+    content: "\e901";
+    color: var( --global-color-pine-green);
+}
+
+.scroll-right::before {
+    content: "\e902";
+    color: var( --global-color-pine-green);
+}
+
+.product-slider-item img, .recipe-slider-item img {
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.carousel-header h3 {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+}
