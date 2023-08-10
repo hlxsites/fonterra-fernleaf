@@ -1,6 +1,5 @@
 import {
   isMobile,
-  mobileViewportChange,
 } from '../../scripts/delayed.js';
 import {
   fetchPlaceholders,
@@ -40,31 +39,36 @@ async function processSplash() {
   if (document.querySelector('.hero.main')) return;
 
   const placeholder = await fetchPlaceholders();
-  const device = (await isMobile()) ? 'Mobile' : 'Desktop';
   let splashKey;
 
   if (heroSections[SECTION_BG_DESKTOP] && heroSections[SECTION_PRODUCT_DESKTOP]) {
-    splashKey = `${LARGE_SPLASH}${device}`;
+    splashKey = LARGE_SPLASH;
   } else if (heroSections[SECTION_BG_DESKTOP]) {
-    splashKey = `${SMALL_SPLASH}${device}`;
+    splashKey = SMALL_SPLASH;
   }
 
-  const imageURL = placeholder && placeholder[splashKey];
+  const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
+  if (existingSplashPicture) existingSplashPicture.remove();
 
-  if (imageURL) {
-    const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
-    if (existingSplashPicture) existingSplashPicture.remove();
+  const picture = document.createElement('picture');
+  picture.className = 'hero-splash';
 
-    const picture = document.createElement('picture');
-    picture.className = 'hero-splash';
+  const sourceDesktop = document.createElement('source');
+  sourceDesktop.media = '(min-width: 768px)';
+  sourceDesktop.srcset = placeholder[`${splashKey}Desktop`];
+  picture.appendChild(sourceDesktop);
 
-    const img = document.createElement('img');
-    img.alt = '';
-    img.src = imageURL;
+  const sourceMobile = document.createElement('source');
+  sourceMobile.media = '(max-width: 767px)';
+  sourceMobile.srcset = placeholder[`${splashKey}Mobile`];
+  picture.appendChild(sourceMobile);
 
-    picture.appendChild(img);
-    heroBannerBlock.appendChild(picture);
-  }
+  const img = document.createElement('img');
+  img.src = placeholder[`${splashKey}Desktop`];
+  img.alt = '';
+  picture.appendChild(img);
+
+  heroBannerBlock.appendChild(picture);
 }
 
 function isValidImg(imgTag) {
@@ -146,5 +150,4 @@ export default function decorate(block) {
     block.append(divContent);
   }
   processSplash();
-  mobileViewportChange(processSplash);
 }

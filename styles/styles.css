@@ -486,6 +486,23 @@ transition: all .3s ease;
   width: 100%;
 }
 
+.story-tips .story-list-bg-top img,
+.story-tips-landing .story-list-bg-top img{
+  position: absolute;
+  z-index: -1;
+}
+
+.story-tips .story-list-bg-bottom img,
+.story-tips-landing .story-list-bg-bottom img{
+  position: absolute;
+  z-index: -1;
+  bottom: var(--footer-height-mobile);
+}
+
+.story-tips .section > div * {
+  max-width: 100%;
+}
+
 @media (min-width: 600px) {
   a.button:any-link, button {
     font-size: 18px;
@@ -542,8 +559,9 @@ transition: all .3s ease;
     line-height: 1.375rem;
   }
 
-  .story-tips main {
-    padding: 5rem 0;
+  .story-tips .section{
+    padding-top: 6.625rem;
+    padding-bottom: 4.563rem;
   }
 
   .story-tips .section > div * {
@@ -566,6 +584,10 @@ transition: all .3s ease;
 
   .recipe .columns ul li, .recipe .columns ol li {
     font-size: 1rem;
+  }
+
+  .story-tips .story-list-bg-bottom img{
+    bottom: 0;
   }
 }
 
