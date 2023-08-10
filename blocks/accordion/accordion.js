@@ -1,6 +1,19 @@
 import { decorateBlock, loadBlocks } from '../../scripts/lib-franklin.js';
 import { constants } from './aria-accordion.js';
 
+function updateHeightValues(block) {
+  setTimeout(() => {
+    const accordions = block.querySelectorAll('.accordion-section');
+    [...accordions].forEach((accordion) => {
+      const text = accordion.querySelector('.text');
+      const region = accordion.querySelector('[role="region"]');
+      const height = text.offsetHeight;
+      const heightValue = height ? `${height}px` : 'auto';
+      region.style.maxHeight = heightValue;
+    });
+  }, 100);
+}
+
 export default async function decorate(block) {
   const accordions = [...block.children];
   accordions.forEach((accordion) => {
@@ -47,4 +60,8 @@ export default async function decorate(block) {
   if (hasAsyncBlocks) {
     await loadBlocks(document.querySelector('main'));
   }
+
+  // inline height values for accordion sections
+  updateHeightValues(block);
+  block.setAttribute('data-complete', 'true');
 }
