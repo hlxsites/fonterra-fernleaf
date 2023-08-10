@@ -4,15 +4,17 @@
     gap: 1rem;
 }
 
-.carousel .recipe-slider-item {
-    flex: 0 0 calc(100% / 3 - .67rem);
+@media (min-width: 900px) {
+    .carousel .recipe-slider-item {
+        flex: 0 0 calc(100% / 3 - .67rem);
+    }
+    
+    .carousel .product-slider-item {
+        flex: 0 0 calc(100% / 4 - .67rem);
+    }
 }
 
-.carousel .product-slider-item {
-    flex: 0 0 calc(100% / 4 - .67rem);
-}
-
-@media (max-width: 900px) {
+@media (min-width: 601px) and (max-width: 899px){
     .carousel .product-slider-item {
       flex: 0 0 calc(100% / 3 - .67rem);
     }
@@ -24,17 +26,9 @@
     }
 
     .carousel .product-slider-item {
-        flex: 0 0 calc(100% / 2 - .67rem);
-      }
-
-    .carousel .scroll-right {
-      font-size: 1.5rem;
+      flex: 0 0 calc(100% / 2 - .67rem);
     }
-
-    .carousel .scroll-left {
-      font-size: 1.5rem;
-    }
-  }
+}
 
 .slide-transition-right,
 .slide-transition-left {
