@@ -13,6 +13,26 @@ export async function isMobile() {
   return mql.matches;
 }
 
+export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
+  const picture = document.createElement('picture');
+  picture.className = pictureClass;
+
+  const sourceDesktop = document.createElement('source');
+  sourceDesktop.media = '(min-width: 768px)';
+  sourceDesktop.srcset = desktopImgUrl;
+  picture.appendChild(sourceDesktop);
+
+  const sourceMobile = document.createElement('source');
+  sourceMobile.media = '(max-width: 767px)';
+  sourceMobile.srcset = mobileImgUrl;
+  picture.appendChild(sourceMobile);
+
+  const img = document.createElement('img');
+  img.src = desktopImgUrl;
+  img.alt = '';
+  picture.appendChild(img);
+  return picture;
+}
 // add serves and duration to recipe details page content
 function AddServesAndDuration() {
   this.content = (serves, duration) => {
@@ -119,24 +139,24 @@ export function ProcessStoriesBgImage() {
 
     const createAndAppendPicture = (bgClass, bgConstant) => {
       if (document.querySelector(`.${bgClass}`)) document.querySelector(`.${bgClass}`).remove();
-      const picture = document.createElement('picture');
-      picture.className = bgClass;
+      // const picture = document.createElement('picture');
+      // picture.className = bgClass;
 
-      const sourceDesktop = document.createElement('source');
-      sourceDesktop.media = '(min-width: 768px)';
-      sourceDesktop.srcset = placeholder[`${bgConstant}Desktop`];
-      picture.appendChild(sourceDesktop);
+      // const sourceDesktop = document.createElement('source');
+      // sourceDesktop.media = '(min-width: 768px)';
+      // sourceDesktop.srcset = placeholder[`${bgConstant}Desktop`];
+      // picture.appendChild(sourceDesktop);
 
-      const sourceMobile = document.createElement('source');
-      sourceMobile.media = '(max-width: 767px)';
-      sourceMobile.srcset = placeholder[`${bgConstant}Mobile`];
-      picture.appendChild(sourceMobile);
+      // const sourceMobile = document.createElement('source');
+      // sourceMobile.media = '(max-width: 767px)';
+      // sourceMobile.srcset = placeholder[`${bgConstant}Mobile`];
+      // picture.appendChild(sourceMobile);
 
-      const img = document.createElement('img');
-      img.src = placeholder[`${bgConstant}Desktop`];
-      img.alt = '';
-      picture.appendChild(img);
-      return picture;
+      // const img = document.createElement('img');
+      // img.src = placeholder[`${bgConstant}Desktop`];
+      // img.alt = '';
+      // picture.appendChild(img);
+      return formPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
     };
 
     const topPicture = createAndAppendPicture(params.BG_TOP_CLASS, params.BG_TOP);

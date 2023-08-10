@@ -1,5 +1,6 @@
 import {
   isMobile,
+  formPictureTag,
 } from '../../scripts/delayed.js';
 import {
   fetchPlaceholders,
@@ -50,25 +51,7 @@ async function processSplash() {
   const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
   if (existingSplashPicture) existingSplashPicture.remove();
 
-  const picture = document.createElement('picture');
-  picture.className = 'hero-splash';
-
-  const sourceDesktop = document.createElement('source');
-  sourceDesktop.media = '(min-width: 768px)';
-  sourceDesktop.srcset = placeholder[`${splashKey}Desktop`];
-  picture.appendChild(sourceDesktop);
-
-  const sourceMobile = document.createElement('source');
-  sourceMobile.media = '(max-width: 767px)';
-  sourceMobile.srcset = placeholder[`${splashKey}Mobile`];
-  picture.appendChild(sourceMobile);
-
-  const img = document.createElement('img');
-  img.src = placeholder[`${splashKey}Desktop`];
-  img.alt = '';
-  picture.appendChild(img);
-
-  heroBannerBlock.appendChild(picture);
+  heroBannerBlock.appendChild(formPictureTag('hero-splash', placeholder[`${splashKey}Mobile`], placeholder[`${splashKey}Desktop`]));
 }
 
 function isValidImg(imgTag) {

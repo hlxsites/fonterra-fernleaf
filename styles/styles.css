@@ -503,6 +503,10 @@ transition: all .3s ease;
   max-width: 100%;
 }
 
+.story-tips .story-tips-action{
+  padding-top: 13px;
+}
+
 @media (min-width: 600px) {
   a.button:any-link, button {
     font-size: 18px;
@@ -560,12 +564,17 @@ transition: all .3s ease;
   }
 
   .story-tips .section{
-    padding-top: 6.625rem;
+    padding-top: 5.625rem;
     padding-bottom: 4.563rem;
   }
 
   .story-tips .section > div * {
     max-width: 655px;
+    padding-top: unset;
+  }
+
+  .story-tips .story-tips-action{
+    padding-top: unset;
   }
 
   /* Recipe Details Page */
