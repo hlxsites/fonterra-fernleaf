@@ -49,13 +49,12 @@ main .section .accordion-wrapper {
 }
 
 .accordion-wrapper .accordion[data-complete="true"] .accordion-section div[role="region"][aria-hidden="true"] {
-  min-height: 0;
+  min-height: 0!important;
   max-height: 0!important;
   height: 0;
 }
 
 .accordion-wrapper .accordion[data-complete="true"] .accordion-section div[role="region"][aria-hidden="false"] {
-  min-height: 200px;
   height: auto;
 }
 

@@ -12,10 +12,6 @@ export class AriaAccordion extends HTMLElement {
     this.itemsCount = this.children.length;
     this.decorate();
     this.attachListeners();
-    const firstAccordion = document.querySelector('.accordion-section:first-of-type h4 button');
-    if (firstAccordion) {
-      this.toggleItem(firstAccordion);
-    }
   }
 
   attachListeners() {

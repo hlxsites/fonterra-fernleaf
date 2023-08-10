@@ -10,6 +10,7 @@ function updateHeightValues(block) {
       const height = text.offsetHeight;
       const heightValue = height ? `${height}px` : 'auto';
       region.style.maxHeight = heightValue;
+      region.style.minHeight = heightValue;
     });
   }, 100);
 }
