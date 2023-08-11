@@ -9,8 +9,8 @@ import {
 const bgConfigParams = {
   BG_TOP: 'storyListBgTop',
   BG_BOTTOM: 'storyListBgBottom',
-  BG_TOP_CLASS: 'story-list-bg-top',
-  BG_BOTTOM_CLASS: 'story-list-bg-bottom',
+  BG_TOP_CLASS: 'story-page-bg-top',
+  BG_BOTTOM_CLASS: 'story-page-bg-bottom',
 };
 
 async function printList(list) {

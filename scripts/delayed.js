@@ -139,23 +139,6 @@ export function ProcessStoriesBgImage() {
 
     const createAndAppendPicture = (bgClass, bgConstant) => {
       if (document.querySelector(`.${bgClass}`)) document.querySelector(`.${bgClass}`).remove();
-      // const picture = document.createElement('picture');
-      // picture.className = bgClass;
-
-      // const sourceDesktop = document.createElement('source');
-      // sourceDesktop.media = '(min-width: 768px)';
-      // sourceDesktop.srcset = placeholder[`${bgConstant}Desktop`];
-      // picture.appendChild(sourceDesktop);
-
-      // const sourceMobile = document.createElement('source');
-      // sourceMobile.media = '(max-width: 767px)';
-      // sourceMobile.srcset = placeholder[`${bgConstant}Mobile`];
-      // picture.appendChild(sourceMobile);
-
-      // const img = document.createElement('img');
-      // img.src = placeholder[`${bgConstant}Desktop`];
-      // img.alt = '';
-      // picture.appendChild(img);
       return formPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
     };
 
@@ -168,10 +151,10 @@ export function ProcessStoriesBgImage() {
   this.init = () => {
     if (document.querySelector('body.story-tips')) {
       const bgConfigParams = {
-        BG_TOP: 'storyListBgTop',
-        BG_BOTTOM: 'storyListBgBottom',
-        BG_TOP_CLASS: 'story-list-bg-top',
-        BG_BOTTOM_CLASS: 'story-list-bg-bottom',
+        BG_TOP: 'storyTipsBgTop',
+        BG_BOTTOM: 'storyTipsBgBottom',
+        BG_TOP_CLASS: 'story-page-bg-top',
+        BG_BOTTOM_CLASS: 'story-page-bg-bottom',
       };
       const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
       boundAction();

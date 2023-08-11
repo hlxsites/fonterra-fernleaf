@@ -86,7 +86,7 @@
       margin: 1.875rem 0;
     }
 
-    .story-tips-landing .story-list-bg-bottom img{
+    .story-tips-landing .story-page-bg-bottom img{
       bottom: var(--footer-height-desktop);
     }
   }

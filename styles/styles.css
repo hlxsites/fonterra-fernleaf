@@ -486,16 +486,17 @@ transition: all .3s ease;
   width: 100%;
 }
 
-.story-tips .story-list-bg-top img,
-.story-tips-landing .story-list-bg-top img{
+.story-tips .story-page-bg-bottom img,
+.story-tips-landing .story-page-bg-bottom img,
+.story-tips .story-page-bg-top img,
+.story-tips-landing .story-page-bg-top img{
   position: absolute;
   z-index: -1;
+  width: 100%;
 }
 
-.story-tips .story-list-bg-bottom img,
-.story-tips-landing .story-list-bg-bottom img{
-  position: absolute;
-  z-index: -1;
+.story-tips .story-page-bg-bottom img,
+.story-tips-landing .story-page-bg-bottom img{
   bottom: var(--footer-height-mobile);
 }
 
@@ -595,7 +596,7 @@ transition: all .3s ease;
     font-size: 1rem;
   }
 
-  .story-tips .story-list-bg-bottom img{
+  .story-tips .story-page-bg-bottom img{
     bottom: 0;
   }
 }
