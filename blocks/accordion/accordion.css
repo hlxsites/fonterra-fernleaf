@@ -3,6 +3,11 @@ main .section .accordion-wrapper {
   margin-top: unset;
 }
 
+.section.accordion-container .accordion {
+  border-bottom: 1px solid var(--global-color-light-gray);
+  padding: 0 0 1.25rem;;
+}
+
 .accordion-wrapper .accordion-section h4 {
   margin: unset;
 }
@@ -29,14 +34,27 @@ main .section .accordion-wrapper {
   width: 77%;
 }
 
-.accordion-wrapper .accordion-section div[aria-hidden="true"] {
-  display: none;
+.accordion-wrapper .accordion-section {
+  overflow: hidden;
 }
 
-.accordion-wrapper .accordion-section div[aria-hidden="false"] {
-  display: block;
+/** style for accordion section animation */
+
+.accordion-wrapper .accordion-section div[role="region"] {
+  transition: min-height 0.3s ease-in-out, max-height 0.3s ease-in-out;
 }
 
+.accordion-wrapper .accordion[data-complete="true"] .accordion-section div[role="region"][aria-hidden="true"] {
+  min-height: 0!important;
+  max-height: 0!important;
+  height: 0;
+}
+
+.accordion-wrapper .accordion[data-complete="true"] .accordion-section div[role="region"][aria-hidden="false"] {
+  height: auto;
+}
+
+/** end of style for accordion section animation */
 .accordion-wrapper .accordion-wrapper .accordion-panel {
   margin: auto;
   padding-left: 22px;
@@ -110,5 +128,11 @@ main .section .accordion-wrapper {
 
   .accordion-wrapper .columns-wrapper .columns div div {
     flex: unset;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section.accordion-container > div.default-content-wrapper {
+    padding: 0 0 30px;
   }
 }

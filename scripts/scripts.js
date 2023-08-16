@@ -9,6 +9,8 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  getMetadata,
+  buildBlock,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -63,17 +65,30 @@ export function adjustImageSize(img, newSize) {
 }
 
 /**
+ * @param {Element} main
+ */
+function buildCarouselBlock(main) {
+  const category = getMetadata('category');
+  if (category === 'recipe' || category === 'product') {
+    const section = document.createElement('div');
+    section.append(buildBlock('carousel', { elems: [category] }));
+    main.append(section);
+  }
+}
+
+/**
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
 function buildAutoBlocks(main) {
   try {
-    //buildHeroBlock(main);
+    // buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
 */
+
 export function decorateLinkedPictures(container) {
   [...container.querySelectorAll('picture + br + a')]
     .filter((a) => {
@@ -167,15 +182,15 @@ export async function fetchSearch(category = '') {
 
     const resp = await fetch(path);
     window.searchData = JSON.parse(await resp.text()).data;
-  }
 
-  const results = window.searchData.filter((el) => el.language === getLanguage());
+    window.searchData = window.searchData.filter((el) => el.language === getLanguage());
+  }
 
   if (category !== '') {
-    return results.filter((el) => el.category === category);
+    return window.searchData.filter((el) => el.category === category);
   }
 
-  return results;
+  return window.searchData;
 }
 
 /**
@@ -188,6 +203,7 @@ export function decorateMain(main) {
   decorateLinkedPictures(main);
   decorateButtons(main);
   // buildAutoBlocks(main);
+  buildCarouselBlock(main);
   decorateSections(main);
   decorateBlocks(main);
 
@@ -244,6 +260,14 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+}
+
+export function debounce(func, delay) {
+  let timeoutId;
+  return () => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(func, delay);
+  };
 }
 
 loadPage();

@@ -10,44 +10,48 @@
  * governing permissions and limitations under the License.
  */
 
- :root {
+:root {
   /* fonts */
   --global-primary-font-family: mark-ot, helvetica, arial, sans-serif;
   --global-secondary-font-family: mark-ot-book, helvetica, arial, sans-serif;
-  --global-tertiary-font-family: stag, georgia, "Times New Roman",times, serif;
-  --global-quaternary-font-family: stag-sans-book, helvetica,arial,sans-serif;
-  --global-georgia-font-family: 'iconanchor','Georgia','Times New Roman','Times',serif;
+  --global-tertiary-font-family: stag, georgia, "Times New Roman", times, serif;
+  --global-quaternary-font-family: stag-sans-book, helvetica, arial, sans-serif;
+  --global-quinary-font-family: stag-sans-medium, helvetica, arial, sans-serif;
+  --global-georgia-font-family: "iconanchor", "Georgia", "Times New Roman",
+    "Times", serif;
   --body-font-family: var(--global-primary-font-family);
   --heading-font-family: var(--global-tertiary-font-family);
   --heading-font-family-light: stag-sans-light, helvetica, arial, sans-serif;
   --fixed-font-family: monaco, menlo, monsolas, "Courier New", monospace;
- 
 
   /* Colors - Global Names */
   --global-color-black: #000;
-  --global-color-white: #fff;  
+  --global-color-white: #fff;
   --global-color-snow: #f5f5f7;
   --global-color-silver: #c1c1c1;
   --global-color-platinum: #e3e3e3;
   --global-color-cultured: #f6f6f6;
-  --global-color-alabaster: #FBFBFB;
-  --global-color-mercury: #E5E5E5;
+  --global-color-alabaster: #fbfbfb;
+  --global-color-mercury: #e5e5e5;
   --global-color-gray: #808080;
   --global-color-gray64: #a3a3a3;
   --global-color-foggy-gray: #dadfe9;
   --global-color-dim-gray: #6c6c6c;
   --global-color-dark-gray: #242424;
   --global-color-light-gray: #d3d3d3;
-  --global-color-davys-gray: #595959
+  --global-color-davys-gray: #595959;
+  --global-color-lavender-gray: #cbcbcd;
   --global-color-red: #ed1c24;
   --global-color-tomato-red: #e0271d;
   --global-color-scarlet: #e1271d;
   --global-color-pine-green: #006938;
+  --global-color-sky-blue: #3db7e4;
   --global-color-dark-blue: #00338d;
+  --global-color-bahama-blue: #23527c;
+  --global-color-gradient-blue: #00266b1a;
   --global-color-yellow: #fedf00;
   --global-color-selective-yellow: #f0ab00;
   --global-color-dark-goldenrod: #c18812;
-  --global-color-bahama-blue: #23527c;
   --global-color-philippine-bronze: #630;
 
   /* Colors - Alias Names */
@@ -105,7 +109,7 @@
     --heading-font-size-s: 32px;
     --heading-font-size-xs: 30px;
   }
-  
+
   .inner-container {
     max-width: 870px;
     margin: 0 auto;
@@ -149,17 +153,21 @@ header {
   height: var(--nav-height);
 }
 
-h1, h2, h3,
-h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--heading-font-family);
   line-height: 1.25;
-  letter-spacing: .125rem;
+  letter-spacing: 0.125rem;
   margin-top: 1em;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
   scroll-margin: calc(var(--nav-height) + 1em);
 }
 
-h1 { 
+h1 {
   font-size: var(--heading-font-size-xxl);
   color: var(--global-color-pine-green);
   margin-bottom: 1.125rem;
@@ -167,28 +175,38 @@ h1 {
   font-weight: normal;
 }
 
-h2 { 
+h2 {
   font-size: var(--heading-font-size-xl);
   color: var(--global-color-scarlet);
   font-weight: bold;
 }
 
-h3 { 
+h3 {
   font-size: var(--heading-font-size-l);
   color: var(--global-color-selective-yellow);
 }
 
-h4 { 
+h4 {
   font-family: var(--heading-font-family-light);
   font-size: var(--heading-font-size-m);
   font-weight: 400;
   letter-spacing: normal;
 }
 
-h5 { font-size: var(--heading-font-size-s) }
-h6 { font-size: var(--heading-font-size-xs) }
+h5 {
+  font-size: var(--heading-font-size-s);
+}
 
-p, dl, ol, ul, pre, blockquote {
+h6 {
+  font-size: var(--heading-font-size-xs);
+}
+
+p,
+dl,
+ol,
+ul,
+pre,
+blockquote {
   margin-top: 1em;
   margin-bottom: 1em;
 }
@@ -200,13 +218,16 @@ hr {
   border-bottom: 1px solid var(--overlay-background-color);
 }
 
-code, pre, samp {
+code,
+pre,
+samp {
   font-family: var(--fixed-font-family);
   font-size: var(--body-font-size-s);
 }
 
-code, samp {
-  padding: .125em;
+code,
+samp {
+  padding: 0.125em;
 }
 
 pre {
@@ -216,7 +237,7 @@ pre {
 main pre {
   background-color: var(--overlay-background-color);
   padding: 1em;
-  border-radius: .25em;
+  border-radius: 0.25em;
   overflow-x: auto;
   white-space: pre;
 }
@@ -232,9 +253,9 @@ a:hover {
 }
 
 /* buttons */
-a.button:any-link, button {
-  font-family: var(--global-tertiary-font-family);
-  font-size: 14px;
+a.button:any-link,
+button {
+  font-family: var(--body-font-family);
   display: inline-block;
   box-sizing: border-box;
   text-transform: uppercase;
@@ -249,16 +270,16 @@ a.button:any-link, button {
   color: var(--global-color-philippine-bronze);
   background-color: var(--global-color-yellow);
   margin: 16px 0;
-  min-width: 10.938rem;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-a.button.secondary, button.secondary {
+a.button.secondary,
+button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 main input {
@@ -380,12 +401,12 @@ main .section.highlight {
   font-weight: normal;
   line-height: 2.625rem;
   margin: 0.938rem 0 0.313rem;
-  max-width: 20rem
+  max-width: 20rem;
 }
 
 .full-width-banner .default-content-wrapper p {
   color: var(--global-color-dark-gray);
-  font-size: .875rem;
+  font-size: 0.875rem;
   line-height: 1.25rem;
   margin: 0;
   padding: 0;
@@ -393,10 +414,13 @@ main .section.highlight {
 
 .full-width-banner .default-content-wrapper a {
   font-weight: 500;
+  min-width: 10.938rem;
 }
 
 .full-width-banner .default-content-wrapper .button-container a {
-  width:100%;
+  font-family: var(--global-tertiary-font-family);
+  font-size: 14px;
+  width: 100%;
 }
 
 /* recipe details page */
@@ -414,12 +438,13 @@ main .section.highlight {
   flex-direction: column;
 }
 
-.recipe h1 + .recipe-info .serving, .recipe h1 + .recipe-info .pre-time {
-  padding-top: .375rem;
-  padding-bottom: .5rem;
+.recipe h1 + .recipe-info .serving,
+.recipe h1 + .recipe-info .pre-time {
+  padding-top: 0.375rem;
+  padding-bottom: 0.5rem;
   display: flex;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
 }
 
 .recipe h1 + .recipe-info span.icon {
@@ -442,15 +467,17 @@ main .section.highlight {
 }
 
 /* stylelint-disable no-descending-specificity */
-.recipe h2 + p{
+.recipe h2 + p {
   margin-bottom: 1.375rem;
 }
 
-.recipe .columns ul, .recipe .columns ol {
+.recipe .columns ul,
+.recipe .columns ol {
   padding-left: 1.063rem;
 }
 
-.recipe .columns ul li, .recipe .columns ol li {
+.recipe .columns ul li,
+.recipe .columns ol li {
   font-size: 14px;
   margin-bottom: 1.219rem;
   list-style-position: outside;
@@ -458,15 +485,15 @@ main .section.highlight {
 }
 
 .recipe .columns a {
-  color: var( --global-color-dark-blue);
+  color: var(--global-color-dark-blue);
   font-weight: 500;
-  transition: all .3s ease;
+  transition: all 0.3s ease;
   text-decoration: none;
 }
 
 .recipe .columns a:hover {
-color: var( --global-color-picton-blue);
-transition: all .3s ease;
+  color: var(--global-color-picton-blue);
+  transition: all 0.3s ease;
 }
 
 .story-tips-landing .section > div {
@@ -509,18 +536,13 @@ transition: all .3s ease;
 }
 
 @media (min-width: 600px) {
-  a.button:any-link, button {
-    font-size: 18px;
-  }
-
   /* Full Width Banner */
   .full-width-banner {
     position: relative;
     height: auto;
     padding: 2.5rem 0.938rem;
   }
-  
-  
+
   .full-width-banner .default-content-wrapper {
     left: 0;
     top: 0;
@@ -534,7 +556,7 @@ transition: all .3s ease;
     max-width: 48% !important;
   }
 
-  .full-width-banner img{
+  .full-width-banner img {
     position: absolute;
     left: 0;
     top: 0;
@@ -542,6 +564,7 @@ transition: all .3s ease;
   }
 
   .full-width-banner .default-content-wrapper .button-container a {
+    font-size: 18px;
     width: auto;
   }
 
@@ -552,9 +575,9 @@ transition: all .3s ease;
 
 @media (min-width: 900px) {
   /* Full Width Banner */
-  .full-width-banner .default-content-wrapper h4 {        
+  .full-width-banner .default-content-wrapper h4 {
     font-size: 2.625rem;
-    letter-spacing: .025rem;
+    letter-spacing: 0.025rem;
     line-height: 4.063rem;
     margin: 0.938rem 0 1.188rem;
   }
@@ -564,9 +587,8 @@ transition: all .3s ease;
     line-height: 1.375rem;
   }
 
-  .story-tips .section{
-    padding-top: 5.625rem;
-    padding-bottom: 4.563rem;
+  .story-tips-landing main {
+    padding-top: 7.625rem;
   }
 
   .story-tips .section > div * {
@@ -580,19 +602,21 @@ transition: all .3s ease;
 
   /* Recipe Details Page */
   .recipe .columns-wrapper {
-    padding: 0;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .recipe h1 {
     margin-top: 1rem;
   }
-  
+
   .recipe h1 + .recipe-info {
     flex-direction: row;
-    gap: 1.6rem
+    gap: 1.6rem;
   }
 
-  .recipe .columns ul li, .recipe .columns ol li {
+  .recipe .columns ul li,
+  .recipe .columns ol li {
     font-size: 1rem;
   }
 
@@ -600,4 +624,3 @@ transition: all .3s ease;
     bottom: 0;
   }
 }
-
