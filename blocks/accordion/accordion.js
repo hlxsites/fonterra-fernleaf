@@ -9,7 +9,7 @@ function updateHeightValues(block) {
       const region = accordion.querySelector('[role="region"]');
       const height = text.offsetHeight;
       const heightValue = height ? `${height}px` : 'auto';
-      region.style.maxHeight = heightValue;
+      region.style.maxHeight = `calc(${heightValue} * 2)`;
       region.style.minHeight = heightValue;
     });
   }, 100);

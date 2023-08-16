@@ -562,6 +562,7 @@
 /* Story tips page styles */
 .story-tips  h1 {
   margin-top: 0;
+  font-size: 1.563rem;
 }
 
 .story-tips-action {
@@ -992,6 +993,11 @@
 
   #search-dialog .story-results .no-product-list {
     display: none;
+  }
+
+
+  .story-tips  h1 {
+    font-size: 2.313rem;
   }
 }
 

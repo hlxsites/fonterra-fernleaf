@@ -8,10 +8,6 @@ main .section .accordion-wrapper {
   padding: 0 0 1.25rem;;
 }
 
-.section.accordion-container > div.default-content-wrapper {
-  padding: 0 0 30px;
-}
-
 .accordion-wrapper .accordion-section h4 {
   margin: unset;
 }
@@ -132,5 +128,11 @@ main .section .accordion-wrapper {
 
   .accordion-wrapper .columns-wrapper .columns div div {
     flex: unset;
+  }
+}
+
+@media (min-width: 1200px) {
+  .section.accordion-container > div.default-content-wrapper {
+    padding: 0 0 30px;
   }
 }
