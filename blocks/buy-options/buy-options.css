@@ -3,11 +3,6 @@
   z-index: 5;
 }
 
-.section div.buy-options-wrapper,
-.buy-options-container div:first-child {
-  padding: 0;
-}
-
 .buy-options ul {
   margin: 0;
   padding: 0;
