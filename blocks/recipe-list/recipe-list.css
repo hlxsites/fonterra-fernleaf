@@ -1,10 +1,17 @@
+.recipe-list-container #recipes {
+  color: var( --global-color-tomato-red);
+  font-size: 1.563rem;
+  margin: 0;
+}
+
 .recipe-list ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+.recipe-list ul li {
+  margin: 1.25rem 0;
 }
 
 .recipe-card {
@@ -79,12 +86,30 @@
 }
 
 @media (min-width: 600px) {
+  .section.recipe-list-container > div {
+    padding: 0 1rem;
+  }
+
+  .recipe-list ul {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 30px;
+  }
+  
   .recipe-list ul li {
     flex-basis: 47.25%;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 900px) {
+  .recipe-list-container #recipes {
+    font-size: 2.313rem;
+  }
+
+  .recipe-list ul {
+    grid-template-columns: auto auto auto;
+  }
+
   .recipe-list ul li {
     flex-basis: 31.25%;
   }
