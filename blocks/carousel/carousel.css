@@ -4,6 +4,7 @@
     gap: 1rem;
 }
 
+
 .carousel .recipe-slider-item {
     flex: 0 0 calc(100% / 2 - .67rem);
   }
