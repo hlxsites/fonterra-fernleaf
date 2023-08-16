@@ -170,7 +170,7 @@ export default async function decorate(block) {
       const categoryElement = document.createElement('div');
 
       categoryElement.innerHTML = `
-        <a href="${item.path}" title='${item.title}'>
+        <a href="${item.path}" title='${item.shorttitle}'>
           <img src='${item.image}' alt='${item.image}'>
         </a>
         <h3>
