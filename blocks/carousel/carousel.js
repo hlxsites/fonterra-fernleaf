@@ -126,6 +126,7 @@ function autoScrollCarousel() {
   const carouselWrapper = document.querySelector('.carousel-wrapper');
   if (!showStaticCarousel() && interval === undefined) {
     interval = setInterval(next, 3000);
+
     // Stop the interval when the user interacts with the carousel
     carouselWrapper.addEventListener('mouseenter', () => clearInterval(interval));
     carouselWrapper.addEventListener('mouseleave', () => {
