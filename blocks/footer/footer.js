@@ -22,8 +22,10 @@ function decorateSocialIcons(footer) {
 function setlanguageButton(parent, txt) {
   parent.innerHTML = '<button type="button" class="language-selector"></button>';
   const languageButton = parent.querySelector('button');
+  // keep alt text empty to avoid screen reader reading the alt text
+  // https://www.w3.org/WAI/tutorials/images/decorative/ #2.Decorative image as part of a text link
   languageButton.innerHTML = `
-    <img src='../../styles/images/flag-malaysia.png' alt="Malaysia" height="30" width="25">
+    <img src='../../styles/images/flag-malaysia.png' alt="" height="30" width="25">
     <span>${txt}</span>
   `;
   languageButton.addEventListener('click', () => {
