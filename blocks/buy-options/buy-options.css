@@ -1,8 +1,3 @@
-.section div.buy-options-wrapper,
-.buy-options-container div:first-child {
-  padding: 0;
-}
-
 .buy-options ul {
   margin: 0;
   padding: 0;
@@ -16,4 +11,11 @@
 
 .buyoption a {
   display: inline-block;
+}
+
+@media (min-width: 1200px) {
+  .section div.buy-options-wrapper,
+  .buy-options-container div:first-child {
+    padding: 0;
+  }
 }
