@@ -11,6 +11,7 @@ import {
   loadCSS,
   getMetadata,
   buildBlock,
+  fetchPlaceholders
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -109,6 +110,27 @@ export function decorateLinkedPictures(container) {
       a.setAttribute('aria-label', txt);
       a.setAttribute('title', txt);
     });
+}
+/**
+ *
+ * @returns {Promise<void>}
+ */
+export async function load404() {
+  const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
+  const getBannerWrapper = (row) => `<h1 id="title">Page not found new</h1>
+  <p>The Content you requested could not be found.</p>
+  <p class="button-container">
+  <a href="https://www.fonterra.com/nz/en/contact-us.html" title="Contact us" class="button primary">Contact us</a>
+  </p>`;
+  const bannerWrapper = document.querySelector("main > div:nth-child(1) > div");
+  if (bannerWrapper) bannerWrapper.innerHTML = getBannerWrapper();
+
+  const getSectionWrapper = (row) => `<h2>This hasn't gone to plan new.</h2>
+  <p>We would appreciate you taking the time to tell us so we can fix this.</p>
+  <p class="button-container"><a href="https://www.fonterra.com/nz/en/contact-us.html" title="Fonterra contact us page" class="button primary">Fonterra contact us page</a></p>`;
+  const sectionWrapper = document.querySelector("main > div:nth-child(2) > div");
+  if (sectionWrapper) sectionWrapper.innerHTML = getSectionWrapper();
+  
 }
 
 function GenerateBackGroundImages() {

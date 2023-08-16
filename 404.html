@@ -12,6 +12,12 @@
   <script src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
   <script type="module">
     import { sampleRUM } from '/scripts/lib-franklin.js';
+    import { load404 } from '/scripts/scripts.js';
+
+    window.addEventListener('load', async () => {
+      sampleRUM('404', { source: document.referrer, target: window.location.href });
+      await load404();
+    });
   </script>
   <link rel="stylesheet" href="/styles/styles.css">
   <style>
@@ -24,7 +30,7 @@
   <header></header>
   <main class="error">
     <div>
-      <h1>Page not found</h1>
+      <h1 id="title">Page not found</h1>
       <p>The Content you requested could not be found.</p>
       <p><a href="https://www.fonterra.com/nz/en/contact-us.html">Contact us</a></p>
       <div class="section-metadata">
