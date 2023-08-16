@@ -2,6 +2,16 @@ import {
   getLanguage, adjustImageSize, fetchSearch, CATEGORY_STORIES,
 } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import {
+  ProcessStoriesBgImage,
+} from '../../scripts/delayed.js';
+
+const bgConfigParams = {
+  BG_TOP: 'storyListBgTop',
+  BG_BOTTOM: 'storyListBgBottom',
+  BG_TOP_CLASS: 'story-page-bg-top',
+  BG_BOTTOM_CLASS: 'story-page-bg-bottom',
+};
 
 async function printList(list) {
   const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
@@ -26,7 +36,6 @@ async function printList(list) {
 
 export default async function decorate(block) {
   const list = await fetchSearch(CATEGORY_STORIES);
-
   block.textContent = '';
   if (list.length > 0) {
     const objects = await printList(list);
@@ -34,4 +43,6 @@ export default async function decorate(block) {
   } else {
     block.append('no result found');
   }
+  const boundFunction = new ProcessStoriesBgImage().updateStoriesBgImage.bind(this, bgConfigParams);
+  boundFunction();
 }

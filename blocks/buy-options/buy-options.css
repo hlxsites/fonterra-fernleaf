@@ -1,3 +1,8 @@
+.buy-options-container{
+  position: relative;
+  z-index: 5;
+}
+
 .buy-options ul {
   margin: 0;
   padding: 0;

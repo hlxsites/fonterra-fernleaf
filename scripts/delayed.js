@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM, getMetadata } from './lib-franklin.js';
+import { sampleRUM, getMetadata, fetchPlaceholders } from './lib-franklin.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -13,6 +13,26 @@ export async function isMobile() {
   return mql.matches;
 }
 
+export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
+  const picture = document.createElement('picture');
+  picture.className = pictureClass;
+
+  const sourceDesktop = document.createElement('source');
+  sourceDesktop.media = '(min-width: 768px)';
+  sourceDesktop.srcset = desktopImgUrl;
+  picture.appendChild(sourceDesktop);
+
+  const sourceMobile = document.createElement('source');
+  sourceMobile.media = '(max-width: 767px)';
+  sourceMobile.srcset = mobileImgUrl;
+  picture.appendChild(sourceMobile);
+
+  const img = document.createElement('img');
+  img.src = desktopImgUrl;
+  img.alt = '';
+  picture.appendChild(img);
+  return picture;
+}
 // add serves and duration to recipe details page content
 function AddServesAndDuration() {
   this.content = (serves, duration) => {
@@ -114,3 +134,34 @@ function UpdateExternalLinks() {
   };
 }
 new UpdateExternalLinks().init();
+
+export function ProcessStoriesBgImage() {
+  this.updateStoriesBgImage = async (params) => {
+    const placeholder = await fetchPlaceholders();
+    const storyContainer = document.querySelector('main');
+
+    const createAndAppendPicture = (bgClass, bgConstant) => {
+      if (document.querySelector(`.${bgClass}`)) document.querySelector(`.${bgClass}`).remove();
+      return formPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
+    };
+
+    const topPicture = createAndAppendPicture(params.BG_TOP_CLASS, params.BG_TOP);
+    storyContainer.insertBefore(topPicture, storyContainer.firstChild);
+
+    const bottomPicture = createAndAppendPicture(params.BG_BOTTOM_CLASS, params.BG_BOTTOM);
+    storyContainer.appendChild(bottomPicture);
+  };
+  this.init = () => {
+    if (document.querySelector('body.story-tips')) {
+      const bgConfigParams = {
+        BG_TOP: 'storyTipsBgTop',
+        BG_BOTTOM: 'storyTipsBgBottom',
+        BG_TOP_CLASS: 'story-page-bg-top',
+        BG_BOTTOM_CLASS: 'story-page-bg-bottom',
+      };
+      const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
+      boundAction();
+    }
+  };
+}
+new ProcessStoriesBgImage().init();

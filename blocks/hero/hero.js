@@ -1,12 +1,18 @@
 import {
   isMobile,
+  formPictureTag,
 } from '../../scripts/delayed.js';
+import {
+  fetchPlaceholders,
+} from '../../scripts/lib-franklin.js';
 
 const SECTION_BG_DESKTOP = 'bg-desktop';
 const SECTION_BG_MOBILE = 'bg-mobile';
 const SECTION_PRODUCT_DESKTOP = 'product-desktop';
 const SECTION_PRODUCT_MOBILE = 'product-mobile';
 const SECTION_CONTENT = 'content';
+const LARGE_SPLASH = 'largeSplash';
+const SMALL_SPLASH = 'smallSplash';
 let heroSections = [];
 
 function preProcess(block) {
@@ -25,6 +31,27 @@ function preProcess(block) {
   });
 
   return null;
+}
+
+async function processSplash() {
+  const heroBannerBlock = document.querySelector('.hero.block .hero-bg');
+
+  if (!heroBannerBlock) return;
+  if (document.querySelector('.hero.main')) return;
+
+  const placeholder = await fetchPlaceholders();
+  let splashKey;
+
+  if (heroSections[SECTION_BG_DESKTOP] && heroSections[SECTION_PRODUCT_DESKTOP]) {
+    splashKey = LARGE_SPLASH;
+  } else if (heroSections[SECTION_BG_DESKTOP]) {
+    splashKey = SMALL_SPLASH;
+  }
+
+  const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
+  if (existingSplashPicture) existingSplashPicture.remove();
+
+  heroBannerBlock.appendChild(formPictureTag('hero-splash', placeholder[`${splashKey}Mobile`], placeholder[`${splashKey}Desktop`]));
 }
 
 function isValidImg(imgTag) {
@@ -105,4 +132,5 @@ export default function decorate(block) {
     divContent.appendChild(divInnerContainer);
     block.append(divContent);
   }
+  processSplash();
 }

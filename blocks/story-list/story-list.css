@@ -1,3 +1,9 @@
+
+.story-list-container{
+  padding-top: 7.625rem;
+  padding-bottom: 4.563rem;
+}
+
 .story-list ul {
   list-style: none;
   padding: 0;
@@ -34,6 +40,7 @@
   border-bottom: 1px solid #a3a3a3;
 }
 
+
 @media (min-width: 600px) {
   .story-list .story {
     padding: 3.563rem 0 3.625rem;
@@ -52,6 +59,9 @@
   .story-list .story .story-content .button {
     width: auto;
   }
+
+
+  
 }
 
 @media (min-width: 900px) {
@@ -74,5 +84,9 @@
 
     .story-list .story .story-desc {
       margin: 1.875rem 0;
+    }
+
+    .story-tips-landing .story-page-bg-bottom img{
+      bottom: var(--footer-height-desktop);
     }
   }
