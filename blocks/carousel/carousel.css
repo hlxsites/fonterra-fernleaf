@@ -1,4 +1,4 @@
-.carousel .recipe-slider-list, .carousel .product-slider-list {
+.carousel .slider-container {
     display: flex;
     overflow: hidden;
     gap: 1rem;
@@ -30,7 +30,7 @@
 
 .slide-transition-right,
 .slide-transition-left {
-    transition: transform 0.3s step-end;
+    transition: transform 0.5s step-end;
 }
 
 .carousel h3 {
@@ -76,11 +76,20 @@
     overflow: initial;
 }
 
+#bullets {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
 .bullet {
-    margin: 8px;
-    background: black;
-    height: 8px;
-    width: 8px;
+    margin: 0 0.438rem;
+    background: var(--global-color-foggy-gray);
+    padding: 0;
+    border: 0;
+    height: .75rem;
+    width: .75rem;
     border-radius: 50%;
     display: inline-block;
     margin-top: 20px;
@@ -88,7 +97,7 @@
 }
 
 .bullet-active {
-    background: red;
+    background: var(--global-color-pine-green);
 }
 
 .scroll-left::before {
