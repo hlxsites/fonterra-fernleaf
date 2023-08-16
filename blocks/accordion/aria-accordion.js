@@ -12,10 +12,6 @@ export class AriaAccordion extends HTMLElement {
     this.itemsCount = this.children.length;
     this.decorate();
     this.attachListeners();
-    const firstAccordion = document.querySelector('.accordion-section:first-of-type h4 button');
-    if (firstAccordion) {
-      this.toggleItem(firstAccordion);
-    }
   }
 
   attachListeners() {
@@ -59,9 +55,13 @@ export class AriaAccordion extends HTMLElement {
   async decorate() {
     let idBtn;
     let idPnl;
-    const previousHeadings = [...document.querySelectorAll(HEADINGS_SELECTOR)]
+    let previousHeadings = [...document.querySelectorAll(HEADINGS_SELECTOR)]
       // eslint-disable-next-line no-bitwise
       .filter((h) => h.compareDocumentPosition(this) & Node.DOCUMENT_POSITION_FOLLOWING);
+
+    // ignore the heading tags that are inside the accordion for calculating the heading level
+    previousHeadings = previousHeadings.filter((ele) => ele.closest(constants.tagName) == null);
+
     const headingLevel = previousHeadings.length
       ? Number(previousHeadings.pop().tagName.substring(1)) + 1
       : 1;
