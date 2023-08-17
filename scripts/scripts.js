@@ -11,7 +11,7 @@ import {
   loadCSS,
   getMetadata,
   buildBlock,
-  fetchPlaceholders
+  fetchPlaceholders,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -117,20 +117,30 @@ export function decorateLinkedPictures(container) {
  */
 export async function load404() {
   const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
-  const getBannerWrapper = (row) => `<h1 id="title">Page not found new</h1>
-  <p>The Content you requested could not be found.</p>
-  <p class="button-container">
-  <a href="https://www.fonterra.com/nz/en/contact-us.html" title="Contact us" class="button primary">Contact us</a>
-  </p>`;
-  const bannerWrapper = document.querySelector("main > div:nth-child(1) > div");
-  if (bannerWrapper) bannerWrapper.innerHTML = getBannerWrapper();
 
-  const getSectionWrapper = (row) => `<h2>This hasn't gone to plan new.</h2>
-  <p>We would appreciate you taking the time to tell us so we can fix this.</p>
-  <p class="button-container"><a href="https://www.fonterra.com/nz/en/contact-us.html" title="Fonterra contact us page" class="button primary">Fonterra contact us page</a></p>`;
-  const sectionWrapper = document.querySelector("main > div:nth-child(2) > div");
-  if (sectionWrapper) sectionWrapper.innerHTML = getSectionWrapper();
-  
+  const createBannerWrapper = () => `  
+      <h1 id="title">${placeholders.error404BannerTitle}</h1>  
+      <p>${placeholders.error404BannerDescription}</p>  
+      <p class="button-container">  
+        <a href="${placeholders.error404BannerButtonLink}" title="${placeholders.error404BannerButtonText}" class="button primary">${placeholders.error404BannerButtonText}</a>  
+      </p>`;
+
+  const createSectionWrapper = () => `  
+      <h2>${placeholders.error404SectionTitle}</h2>  
+      <p>${placeholders.error404SectionDescription}</p>  
+      <p class="button-container">  
+        <a href="${placeholders.error404SectionButtonLink}" title="${placeholders.error404SectionButtonText}" class="button primary">${placeholders.error404SectionButtonText}</a>  
+      </p>`;
+
+  const bannerWrapper = document.querySelector('main > div:nth-child(1) > div');
+  const sectionWrapper = document.querySelector('main > div:nth-child(2) > div');
+
+  if (bannerWrapper && placeholders) {
+    bannerWrapper.innerHTML = createBannerWrapper();
+  }
+  if (sectionWrapper && placeholders) {
+    sectionWrapper.innerHTML = createSectionWrapper();
+  }
 }
 
 function GenerateBackGroundImages() {
