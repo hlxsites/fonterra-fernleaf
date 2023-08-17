@@ -761,7 +761,7 @@
     }
 
     5% {
-      opacity: 0.2;
+      opacity: 0.3;
     }
 
     10% {
@@ -769,7 +769,7 @@
     }
 
     95% {
-      opacity: 0.2;
+      opacity: 0.3;
     }
 
     100% {
@@ -960,6 +960,7 @@
 
   #search-dialog .suggestion-list .product-list-item h6 {
     margin-top: 2.813rem;
+    font-size: 1rem;
   }
   
   #search-dialog .suggestion-list .product-list-item h6 a {
@@ -980,6 +981,10 @@
     display: block;
     position: absolute;
     top: 0;
+  }
+
+  #search-dialog .suggestion-list .product-list-results:hover {
+    animation-play-state: paused;
   }
 
   #search-dialog .suggestion-list .product-list-item {
