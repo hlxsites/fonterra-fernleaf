@@ -18,7 +18,8 @@ export function clearSearchResults() {
  * @returns Returns the block of each product item
  */
 const getProductListHTML = (categoryName, item) => {
-  const productHTML = (categoryName.toLowerCase() === 'story')
+  const storyCategory = 'story';
+  const productHTML = (categoryName.toLowerCase() === storyCategory)
     ? `<h6><a href='${item.path}'>${item.title}</a></h6>`
     : `<a href='${item.path}'>
         <picture>
@@ -36,6 +37,7 @@ const getProductListHTML = (categoryName, item) => {
  */
 const addProductsHTML = (categoryName, productList, placeholders) => {
   const categoryElem = categoryName?.toLowerCase();
+  const storyCategory = 'story';
   const searchContainer = document.querySelector('#search-dialog .search-results-container');
   const productListElem = searchContainer.querySelector(`.${categoryElem}-category-list`);
   const productPlaceholder = {
@@ -58,7 +60,7 @@ const addProductsHTML = (categoryName, productList, placeholders) => {
     <div class='product-list-results'>
       ${productList.map((item) => getProductListHTML(categoryName, item)).join('')}
     </div>
-    ${categoryName.toLowerCase() !== 'story' ? `
+    ${categoryName.toLowerCase() !== storyCategory ? `
     <div class='product-list-action'>
       <a class='button' href='${productPlaceholder.viewLink}'>${productPlaceholder.viewText}</a>
     </div>` : ''}
@@ -85,6 +87,7 @@ export async function performSearch(value) {
   if (searchValue) {
     /* Product Categories used commonly to identify the element as well as placeholders */
     const productCategories = ['Product', 'Recipe', 'Story'];
+    const storyIndex = 3;
     const productCount = 4;
     const spinner = document.querySelector('#search-dialog .overlay-loading');
     spinner.style.display = 'block';
@@ -93,9 +96,9 @@ export async function performSearch(value) {
     spinner.style.display = 'none';
     if (placeholders && searchData) {
       let filteredResults = [];
-      productCategories.map((category) => {
+      productCategories.map((category, index) => {
         filteredResults = searchData.filter((el) => el.category.toLowerCase() === category.toLowerCase() && ['title', 'shorttitle', 'description', 'tags'].some((field) => el[field].toLowerCase().includes(searchValue.toLowerCase())));
-        if (category !== 'Story') {
+        if (index !== storyIndex) {
           filteredResults = filteredResults.slice(0, productCount);
         }
         return addProductsHTML(category, filteredResults, placeholders);
