@@ -338,6 +338,7 @@ main img {
   max-width: 61.25rem;
   margin: 0 auto;
   padding: 0 0.938rem;
+  word-wrap: break-word;
 }
 
 @media (min-width: 900px) {
@@ -503,6 +504,10 @@ main .section.highlight {
 
 .story-tips-landing .section h1 {
   margin: 0;
+  line-height: 1;
+  padding-top: 10px;
+  width: 300px;
+  letter-spacing: 0;
 }
 
 .story-tips .section h2 {
@@ -517,6 +522,10 @@ main .section.highlight {
   background-image: url("../../styles/images/story-top-mobile.png");
 }
 
+.story-tips .default-content-wrapper {
+  padding-bottom: 4.563rem;
+}
+
 .story-tips .section > div img {
   width: 100%;
 }
@@ -524,14 +533,14 @@ main .section.highlight {
 .story-tips .story-page-bg-bottom img,
 .story-tips-landing .story-page-bg-bottom img,
 .story-tips .story-page-bg-top img,
-.story-tips-landing .story-page-bg-top img{
+.story-tips-landing .story-page-bg-top img {
   position: absolute;
   z-index: -1;
   width: 100%;
 }
 
 .story-tips .story-page-bg-bottom img,
-.story-tips-landing .story-page-bg-bottom img{
+.story-tips-landing .story-page-bg-bottom img {
   bottom: var(--footer-height-mobile);
 }
 
@@ -539,7 +548,12 @@ main .section.highlight {
   max-width: 100%;
 }
 
-.story-tips .story-tips-action{
+.story-tips .section > div h1 {
+  line-height: 1;
+  margin-top: 10px;
+}
+
+.story-tips .story-tips-action {
   padding-top: 13px;
 }
 
@@ -579,6 +593,10 @@ main .section.highlight {
   .story-tips main::before {
     background-image: url("../../styles/images/story-top-desktop.png");
   }
+
+  .story-tips-landing .section h1 {
+    width: 100%;
+  }
 }
 
 @media (min-width: 900px) {
@@ -595,9 +613,8 @@ main .section.highlight {
     line-height: 1.375rem;
   }
 
-  .story-tips .section{
+  .story-tips .section {
     padding-top: 5.625rem;
-    padding-bottom: 4.563rem;
   }
 
   .story-tips .section > div * {
@@ -605,7 +622,7 @@ main .section.highlight {
     padding-top: unset;
   }
 
-  .story-tips .story-tips-action{
+  .story-tips .story-tips-action {
     padding-top: unset;
   }
 
@@ -629,7 +646,7 @@ main .section.highlight {
     font-size: 1rem;
   }
 
-  .story-tips .story-page-bg-bottom img{
+  .story-tips .story-page-bg-bottom img {
     bottom: 0;
   }
 }

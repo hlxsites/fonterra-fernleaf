@@ -51,7 +51,9 @@ async function processSplash() {
   const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
   if (existingSplashPicture) existingSplashPicture.remove();
 
-  heroBannerBlock.appendChild(formPictureTag('hero-splash', placeholder[`${splashKey}Mobile`], placeholder[`${splashKey}Desktop`]));
+  if (splashKey && placeholder[`${splashKey}Mobile`] && placeholder[`${splashKey}Desktop`]) {
+    heroBannerBlock.appendChild(formPictureTag('hero-splash', placeholder[`${splashKey}Mobile`], placeholder[`${splashKey}Desktop`]));
+  }
 }
 
 function isValidImg(imgTag) {
