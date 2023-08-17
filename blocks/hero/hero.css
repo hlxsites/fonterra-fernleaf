@@ -9,17 +9,6 @@
     display: block;
 }
 
-/* Main - Hero Banner */
-.hero.main .hero-bg img {
-    height: 18.6rem;
-    object-fit: cover;
-}
-
-/* Recipe & Product - Hero Banner */
-.recipe .hero .hero-bg {
-    position: relative;
-}
-
 .hero .hero-splash {
     background-position: bottom;
     background-size: cover;
@@ -32,13 +21,23 @@
     background-repeat: no-repeat;
 }
 
+/* Main - Hero Banner */
+.main .hero-bg img {
+    height: 18.6rem;
+    object-fit: cover;
+}
 
-.recipe .hero .hero-bg img {
+/* Recipe & Product - Hero Banner */
+.recipe .hero .hero-bg {
+    position: relative;
+}
+
+.recipe .hero-bg img {
     height: 18.75rem;
     object-fit: cover;
 }
 
-.product .hero .hero-bg {
+.product .hero-bg {
     left: 0;
     position: absolute;
     top: 0;
@@ -46,54 +45,50 @@
     z-index: 1;
 }
 
-.product .hero .hero-product {
+.product .hero-product {
     position: relative;
     z-index: 2;
 }
 
-
 @media (min-width: 600px) {    
     /* Main - Hero Banner */
-    .hero.main .hero-bg img {
+    .main .hero-bg img {
         height: 18.6rem;
         min-height: unset;
     }
 
     /* Recipe & Product - Hero Banner */
-    .recipe .hero .hero-bg img {
+    .recipe .hero-bg img {
         height: 18.75rem;
         min-height: unset;
     }
 
-
-    .product .hero .hero-bg img {
+    .product .hero-bg img {
         min-height: unset;
         object-fit: unset;
     }
-
-
 }
 
 @media (min-width: 900px) {    
     /* Main - Hero Banner */
-    .hero.main .hero-bg img {
+    .main .hero-bg img {
         height: 38.75rem;        
     }
 
     /* Recipe - Hero Banner */
-    .recipe .hero .hero-bg img {
+    .recipe .hero-bg img {
         height: 29.875rem;
     }
 }
 
 @media (min-width: 1200px) {
     /* Main - Hero Banner */
-    .hero.main .hero-bg img {
+    .main .hero-bg img {
         height: 43.625rem;
     }
 
     /* Recipe - Hero Banner */
-    .recipe .hero .hero-bg img {
+    .recipe .hero-bg img {
         height: 25rem;
     }
 }
