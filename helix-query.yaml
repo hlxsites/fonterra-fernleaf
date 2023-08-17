@@ -45,3 +45,6 @@ indices:
       duration:
         select: head > meta[name="duration"]
         value: attribute(el, "content")
+      tags:
+        select: head > meta[property="article:tag"]
+        values: attribute(el, "content")
