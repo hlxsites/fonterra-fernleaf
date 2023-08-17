@@ -824,7 +824,7 @@
   }
 
   #search-dialog .overlay-loading {
-    width: calc(100% - 540px);
+    width: calc(100% - 480px);
     height: auto;
     margin-top: 6.25rem;
   }
@@ -861,7 +861,7 @@
   #search-dialog .search-input-box {
     order: 2;
     position: relative;
-    width: 540px;
+    width: 480px;
   }
 
   #search-dialog .search-input-field .icon-search {
@@ -871,7 +871,7 @@
 
   #search-dialog .search-list {
     order: 1;
-    width: calc(100% - 540px);
+    width: calc(100% - 480px);
   }
 
   #search-dialog .product-list.recipe-category-list {
@@ -882,7 +882,7 @@
     left: 0;
     position: absolute;
     top: 250px;
-    width: 31.25rem;
+    width: 480px;
     z-index: 2;
   }
 
@@ -947,7 +947,7 @@
 
   #search-dialog .story-results {
     height: 500px;
-    left: calc(100% - 540px);
+    left: calc(100% - 480px);
     overflow: hidden;
     position: absolute;
     top: 0;

@@ -47,19 +47,22 @@ const addProductsHTML = (categoryName, productList, placeholders) => {
   };
   let productHTML = '';
   if (productList.length) {
-    productHTML = `<div class='product-list-title'>
-    <h4>${productPlaceholder.title}</h4>
-        <div class='more-products'>
-            <span class='split-bar'></span>
-            <a href='${productPlaceholder.viewLink}'>${productPlaceholder.viewText}</a>
-        </div>
+    productHTML = `
+    <div class='product-list-title'>
+      <h4>${productPlaceholder.title}</h4>
+      <div class='more-products'>
+        <span class='split-bar'></span>
+        <a href='${productPlaceholder.viewLink}'>${productPlaceholder.viewText}</a>
+      </div>
     </div>
     <div class='product-list-results'>
       ${productList.map((item) => getProductListHTML(categoryName, item)).join('')}
     </div>
+    ${categoryName.toLowerCase() !== 'story' ? `
     <div class='product-list-action'>
-        <a class='button' href='${productPlaceholder.viewLink}'>${productPlaceholder.viewText}</a>
-    </div>`;
+      <a class='button' href='${productPlaceholder.viewLink}'>${productPlaceholder.viewText}</a>
+    </div>` : ''}
+    `;
   } else {
     productHTML = `<div class='product-list-title'>
     <h4>${productPlaceholder.title}</h4>
