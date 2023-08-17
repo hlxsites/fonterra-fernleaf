@@ -11,6 +11,7 @@ import {
   loadCSS,
   getMetadata,
   buildBlock,
+  fetchPlaceholders,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -109,6 +110,37 @@ export function decorateLinkedPictures(container) {
       a.setAttribute('aria-label', txt);
       a.setAttribute('title', txt);
     });
+}
+/**
+ *
+ * @returns {Promise<void>}
+ */
+export async function load404() {
+  const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
+
+  const createBannerWrapper = () => `  
+      <h1 id="title">${placeholders.error404BannerTitle}</h1>  
+      <p>${placeholders.error404BannerDescription}</p>  
+      <p class="button-container">  
+        <a href="${placeholders.error404BannerButtonLink}" title="${placeholders.error404BannerButtonText}" class="button primary">${placeholders.error404BannerButtonText}</a>  
+      </p>`;
+
+  const createSectionWrapper = () => `  
+      <h2>${placeholders.error404SectionTitle}</h2>  
+      <p>${placeholders.error404SectionDescription}</p>  
+      <p class="button-container">  
+        <a href="${placeholders.error404SectionButtonLink}" title="${placeholders.error404SectionButtonText}" class="button primary">${placeholders.error404SectionButtonText}</a>  
+      </p>`;
+
+  const bannerWrapper = document.querySelector('main > div:nth-child(1) > div');
+  const sectionWrapper = document.querySelector('main > div:nth-child(2) > div');
+
+  if (bannerWrapper && placeholders) {
+    bannerWrapper.innerHTML = createBannerWrapper();
+  }
+  if (sectionWrapper && placeholders) {
+    sectionWrapper.innerHTML = createSectionWrapper();
+  }
 }
 
 function GenerateBackGroundImages() {
