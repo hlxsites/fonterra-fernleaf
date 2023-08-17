@@ -6,10 +6,8 @@ import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
  */
 export function clearSearchResults() {
   const searchProducts = ['product', 'recipe', 'story'];
-  const searchContainer = document.querySelector('#search-dialog .search-results-container');
   searchProducts.forEach((category) => {
-    const productList = searchContainer.querySelector(`.${category}-category-list`);
-    productList.innerHTML = '';
+    document.querySelector(`#search-dialog .search-results-container .${category}-category-list`).innerHTML = '';
   });
 }
 
@@ -57,8 +55,7 @@ const addProductsHTML = (categoryName, productList, placeholders) => {
         </div>
     </div>
     <div class='product-list-results'>
-      ${productList.map((item) =>
-    getProductListHTML(categoryName, item)).join('')}
+      ${productList.map((item) => getProductListHTML(categoryName, item)).join('')}
     </div>
     <div class='product-list-action'>
         <a class='button' href='${productPlaceholder.viewLink}'>${productPlaceholder.viewText}</a>
@@ -94,10 +91,7 @@ export async function performSearch(value) {
     if (placeholders && searchData) {
       let filteredResults = [];
       productCategories.map((category) => {
-        filteredResults = searchData.filter((el) =>
-          /* eslint implicit-arrow-linebreak: ["error", "below"] */
-          /* eslint max-len: ["error", { "code": 300 }] */
-          el.category.toLowerCase() === category.toLowerCase() && (el.title.toLowerCase().includes(searchValue) || el.shorttitle.toLowerCase().includes(searchValue) || el.description.toLowerCase().includes(searchValue) || el.tags.toLowerCase().includes(searchValue)));
+        filteredResults = searchData.filter((el) => el.category.toLowerCase() === category.toLowerCase() && ['title', 'shorttitle', 'description', 'tags'].some((field) => el[field].toLowerCase().includes(searchValue.toLowerCase())));
         if (category !== 'Story') {
           filteredResults = filteredResults.slice(0, productCount);
         }
