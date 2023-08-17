@@ -629,7 +629,7 @@
 }
 
 #search-dialog .search-results-container {
-  margin: 0 auto;
+  margin: 0 auto 26px;
   max-width: 1366px;
   padding: 0 0.938rem;
 }
@@ -830,7 +830,6 @@
   }
 
   #search-dialog .search-results-container {
-    height: 100%;
     position: relative;
     padding: 0 1.875rem;
   }
