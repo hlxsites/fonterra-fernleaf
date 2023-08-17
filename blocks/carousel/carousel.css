@@ -131,6 +131,7 @@
 .product-slider-item img, .recipe-slider-item img {
   aspect-ratio: 1;
   object-fit: cover;
+  width: 100%;
 }
 
 .carousel-header h3 {
