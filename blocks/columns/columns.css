@@ -1,5 +1,6 @@
 .section > div.columns-wrapper {
   padding-top: 0;
+  padding-bottom: 6.25rem;
 }
 
 .columns > div {
@@ -29,7 +30,7 @@
   display: inline-block;
 }
 
-.columns a.button {
+.product .columns a.button {
   font-family: var(--global-tertiary-font-family);
   font-weight: bold;
   text-transform: none;
