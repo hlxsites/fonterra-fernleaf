@@ -39,7 +39,6 @@
 
 @media (min-width: 900px) {
   .columns > div {
-    align-items: flex-start;
     flex-direction: unset;
     gap: 32px;
     align-items: end;
