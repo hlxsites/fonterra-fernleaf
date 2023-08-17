@@ -4,21 +4,48 @@
     gap: 1rem;
 }
 
+.carousel .recipe-slider-list, .carousel .product-slider-list {
+    overflow: hidden;
+}
+
 .carousel-container {
     margin-bottom: 2rem;
 }
 
 .carousel .recipe-slider-item {
     flex: 0 0 calc(100% / 2 - .67rem);
-  }
+}
 
 .carousel .product-slider-item {
     flex: 0 0 calc(100% / 2 - .67rem);
-  }
+}
+
+.carousel .scroll-left {
+    background-color: transparent;
+    overflow: initial;
+    font-size: 1.5rem;
+    font-weight: 100;
+    font-family: iconanchor, sans-serif;
+    min-width: 0;
+    padding-right: 3rem;
+}
+
+.carousel .scroll-right {
+    background-color: transparent;
+    overflow: initial;
+    font-size: 1.5rem;
+    font-weight: 100;
+    font-family: iconanchor, sans-serif;
+    min-width: 0;
+}
 
 @media (min-width: 600px){
     .carousel .product-slider-item {
       flex: 0 0 calc(100% / 3 - .67rem);
+    }
+
+    .carousel .scroll-right, .carousel .scroll-left{
+        font-size: 1.5rem;
     }
 }
 
@@ -29,6 +56,10 @@
     
     .carousel .product-slider-item {
         flex: 0 0 calc(100% / 4 - .67rem);
+    }
+
+    .carousel .scroll-right, .carousel .scroll-left{
+        font-size: 3rem;
     }
 } 
 
@@ -55,24 +86,7 @@
     text-decoration: none;
 }
 
-.carousel .scroll-left {
-    background-color: transparent;
-    overflow: initial;
-    font-size: 3rem;
-    font-weight: 100;
-    font-family: iconanchor, sans-serif;
-    min-width: 0;
-    padding-right: 3rem;
-}
 
-.carousel .scroll-right {
-    background-color: transparent;
-    overflow: initial;
-    font-size: 3rem;
-    font-weight: 100;
-    font-family: iconanchor, sans-serif;
-    min-width: 0;
-}
 
 .scroll-right:hover,
 .scroll-left:hover {
@@ -117,6 +131,7 @@
 .product-slider-item img, .recipe-slider-item img {
   aspect-ratio: 1;
   object-fit: cover;
+  width: 100%;
 }
 
 .carousel-header h3 {
