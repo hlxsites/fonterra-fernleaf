@@ -22,22 +22,22 @@
 }
 
 /* Main - Hero Banner */
-.main .hero-bg img {
+.hero.main .hero-bg img {
     height: 18.6rem;
     object-fit: cover;
 }
 
 /* Recipe & Product - Hero Banner */
-.recipe .hero .hero-bg {
+.hero.recipe .hero-bg {
     position: relative;
 }
 
-.recipe .hero-bg img {
+.hero.recipe .hero-bg img {
     height: 18.75rem;
     object-fit: cover;
 }
 
-.product .hero-bg {
+.hero.product .hero-bg {
     left: 0;
     position: absolute;
     top: 0;
@@ -45,25 +45,25 @@
     z-index: 1;
 }
 
-.product .hero-product {
+.hero.product .hero-product {
     position: relative;
     z-index: 2;
 }
 
 @media (min-width: 600px) {    
     /* Main - Hero Banner */
-    .main .hero-bg img {
+    .hero.main .hero-bg img {
         height: 18.6rem;
         min-height: unset;
     }
 
     /* Recipe & Product - Hero Banner */
-    .recipe .hero-bg img {
+    .hero.recipe .hero-bg img {
         height: 18.75rem;
         min-height: unset;
     }
 
-    .product .hero-bg img {
+    .hero.product .hero-bg img {
         min-height: unset;
         object-fit: unset;
     }
@@ -71,24 +71,24 @@
 
 @media (min-width: 900px) {    
     /* Main - Hero Banner */
-    .main .hero-bg img {
+    .hero.main .hero-bg img {
         height: 38.75rem;        
     }
 
     /* Recipe - Hero Banner */
-    .recipe .hero-bg img {
+    .hero.recipe .hero-bg img {
         height: 29.875rem;
     }
 }
 
 @media (min-width: 1200px) {
     /* Main - Hero Banner */
-    .main .hero-bg img {
+    .hero.main .hero-bg img {
         height: 43.625rem;
     }
 
     /* Recipe - Hero Banner */
-    .recipe .hero-bg img {
+    .hero.recipe .hero-bg img {
         height: 25rem;
     }
 }
