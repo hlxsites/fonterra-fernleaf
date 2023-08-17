@@ -539,8 +539,17 @@ main .section.highlight {
   max-width: 100%;
 }
 
-.story-tips .story-tips-action{
+.story-tips .section:first-of-type .default-content-wrapper {
+  position: relative;
+  padding-top: 35px;
+  white-space: pre-line;
+}
+
+.story-tips .story-tips-action {
   padding-top: 13px;
+  position: absolute;
+  top: 0;
+  display: none;
 }
 
 @media (min-width: 600px) {
@@ -578,6 +587,10 @@ main .section.highlight {
 
   .story-tips main::before {
     background-image: url("../../styles/images/story-top-desktop.png");
+  }
+
+  .story-tips .story-tips-action {
+    display: block;
   }
 }
 
