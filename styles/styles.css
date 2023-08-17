@@ -245,6 +245,7 @@ main pre {
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
+  display: inline-block;
 }
 
 a:hover {
