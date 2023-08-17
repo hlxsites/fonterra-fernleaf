@@ -123,7 +123,7 @@ function UpdateExternalLinks() {
       // open the attribute in a new tab if it's not a javascript link and
       // it's not a link to the current host
       // eslint-disable-next-line no-script-url
-      if ((linkHost !== 'javascript:void(0)') && (linkHost.indexOf('#') === 0) && (linkHost !== currentHost)) {
+      if ((linkHost !== 'javascript:void(0)') && (linkHost !== currentHost)) {
         link.setAttribute('target', '_blank');
         link.setAttribute('rel', 'noopener noreferrer');
       }
