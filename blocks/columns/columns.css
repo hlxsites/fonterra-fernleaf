@@ -69,18 +69,18 @@
     order: unset;
   }
 
-  .columns > div > div:last-child {
-    flex: 2;
-  }
-
   .columns.product-category > div{
     align-items: end;
     text-align: center;
   }
 
+  .columns > div > div:last-child {
+    flex: 2;
+  }
+
   .columns.product-category > div > div {
-    flex-basis: min-content;
     flex: 1;
+    flex-basis: min-content;
   }
 
   .columns.product > div > div:last-child {
