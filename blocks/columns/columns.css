@@ -33,7 +33,7 @@
   width: 100%;
 }
 
-.columns.columns-3-cols strong a.button {
+.columns strong a.button {
   font-family: var(--global-tertiary-font-family);
   font-weight: bold;
   text-transform: none;
