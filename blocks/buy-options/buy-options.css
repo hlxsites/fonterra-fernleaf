@@ -7,10 +7,6 @@
   z-index: 5;
 }
 
-.buy-options-container .default-content-wrapper {
-  padding: 0;
-}
-
 .buy-options {
   border-bottom: 1px solid var(--global-color-light-gray);
   padding-bottom: 30px;

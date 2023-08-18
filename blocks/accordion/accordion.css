@@ -133,6 +133,6 @@ main .section .accordion-wrapper {
 
 @media (min-width: 900px) {
   .section.accordion-container > div.default-content-wrapper {
-    padding: 0 0 30px;
+    padding: 0 0.938rem 30px;
   }
 }
