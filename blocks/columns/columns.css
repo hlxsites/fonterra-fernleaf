@@ -69,7 +69,7 @@
     order: unset;
   }
 
-  .columns.product-category > div{
+  .columns.product-category > div {
     align-items: end;
     text-align: center;
   }
