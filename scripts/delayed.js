@@ -30,6 +30,8 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const img = document.createElement('img');
   img.src = desktopImgUrl;
   img.alt = '';
+  img.width = '1024';
+  img.height = '750';
   picture.appendChild(img);
   return picture;
 }
