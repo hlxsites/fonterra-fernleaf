@@ -1,6 +1,11 @@
+.section > div.columns-wrapper {
+  padding-top: 0;
+  padding-bottom: 6.25rem;
+}
+
 .columns > div {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .columns img {
@@ -9,6 +14,8 @@
 
 .columns > div > div {
   order: 1;
+  flex-basis: 50%;
+  text-align: center;
 }
 
 .columns > div > .columns-img-col {
@@ -19,11 +26,23 @@
   display: block;
 }
 
+.product .columns a.button {
+  font-family: var(--global-tertiary-font-family);
+  font-weight: bold;
+  text-transform: none;
+  background: none;
+  color: var(--global-color-black);
+  padding: 0;
+  margin: 0;
+  white-space: break-spaces;
+}
+
 @media (min-width: 900px) {
   .columns > div {
-    align-items: flex-start;
     flex-direction: unset;
     gap: 32px;
+    align-items: end;
+    text-align: center;
   }
 
   .columns > div > div {
