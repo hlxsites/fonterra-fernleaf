@@ -550,11 +550,19 @@ main .section.highlight {
 
 .story-tips .section > div h1 {
   line-height: 1;
-  margin-top: 10px;
+}
+
+.story-tips .section:first-of-type .default-content-wrapper {
+  position: relative;
+  padding-top: 35px;
+  white-space: pre-line;
 }
 
 .story-tips .story-tips-action {
   padding-top: 13px;
+  position: absolute;
+  top: 0;
+  display: none;
 }
 
 @media (min-width: 600px) {
@@ -596,6 +604,10 @@ main .section.highlight {
 
   .story-tips-landing .section h1 {
     width: 100%;
+  }
+
+  .story-tips .story-tips-action {
+    display: block;
   }
 }
 
