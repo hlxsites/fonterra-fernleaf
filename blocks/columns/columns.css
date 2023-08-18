@@ -10,7 +10,6 @@
 
 .columns > div > div {
   order: 1;
-  flex-basis: 50%;
 }
 
 .columns.product-category > div > div {
@@ -50,6 +49,10 @@
     flex-flow: row wrap;
   }
 
+  .columns.product-category > div > div {
+    flex-basis: 50%;
+  }
+
   .columns.product > div > div:last-child {
     flex-basis: 100%;
   }
@@ -71,6 +74,10 @@
     text-align: center;
   }
 
+  .columns.product-category > div > div {
+    flex-basis: min-content;
+  }
+
   .columns.product > div > div:last-child {
     flex-basis: min-content;
   }
@@ -82,4 +89,5 @@
   .columns .button-container .button {
     width: auto;
   }
+
 }
