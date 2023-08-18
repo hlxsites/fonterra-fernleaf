@@ -85,9 +85,8 @@ const addProductsHTML = (categoryName, productList, placeholders) => {
 export async function performSearch(value) {
   const searchValue = value.trim().toLowerCase();
   if (searchValue) {
-    /* Product Categories used commonly to identify the element as well as placeholders */
-    const productCategories = ['Product', 'Recipe', 'Story'];
-    const storyIndex = 3;
+    const categories = ['Product', 'Recipe', 'Story'];
+    const searchCategories = ['title', 'shorttitle', 'description', 'tags'];
     const productCount = 4;
     const spinner = document.querySelector('#search-dialog .overlay-loading');
     spinner.style.display = 'block';
@@ -95,14 +94,26 @@ export async function performSearch(value) {
     const searchData = await fetchSearch();
     spinner.style.display = 'none';
     if (placeholders && searchData) {
-      let filteredResults = [];
-      productCategories.map((category, index) => {
-        filteredResults = searchData.filter((el) => el.category.toLowerCase() === category.toLowerCase() && ['title', 'shorttitle', 'description', 'tags'].some((field) => el[field].toLowerCase().includes(searchValue.toLowerCase())));
-        if (index !== storyIndex) {
-          filteredResults = filteredResults.slice(0, productCount);
+      const filteredResults = searchData.filter((el) => searchCategories.some((prop) => el[prop]
+        .toLowerCase()
+        .includes(searchValue.toLowerCase())));
+      const categorizedItems = filteredResults.reduce((result, el) => {
+        if (el.category === categories[0].toLowerCase()
+          && result.product.length < productCount) {
+          result.product.push(el);
+        } else if (el.category === categories[1].toLowerCase()
+          && result.recipe.length < productCount) {
+          result.recipe.push(el);
+        } else {
+          result.story.push(el);
         }
-        return addProductsHTML(category, filteredResults, placeholders);
-      });
+        return result;
+      }, { product: [], recipe: [], story: [] });
+      categories.map((category) => addProductsHTML(
+        category,
+        categorizedItems[category.toLowerCase()],
+        placeholders,
+      ));
     }
   }
 }
