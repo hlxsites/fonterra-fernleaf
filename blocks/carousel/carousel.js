@@ -191,6 +191,7 @@ export default async function decorate(block) {
     const buttonl = document.createElement('button');
     buttonl.classList.add('scroll-left');
     buttonl.id = 'id-scroll-left';
+    buttonl.setAttribute('aria-label', 'Scroll Left');
     buttonl.addEventListener('click', next, this);
     block.append(buttonl);
 
@@ -223,6 +224,7 @@ export default async function decorate(block) {
     const button = document.createElement('button');
     button.classList.add('scroll-right');
     button.id = 'id-scroll-right';
+    button.setAttribute('aria-label', 'Scroll Right');
     button.addEventListener('click', next, this);
     block.append(button);
 
