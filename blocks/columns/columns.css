@@ -88,6 +88,10 @@
     flex-basis: min-content;
   }
 
+  .recipe .columns > div > div:last-child {
+    flex: 1;
+  }
+
   .columns.product > div > .columns-img-col {
     order: 0;
   }
