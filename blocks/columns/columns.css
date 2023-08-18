@@ -5,16 +5,19 @@
 
 .columns > div {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .columns > div > div {
   order: 1;
   flex-basis: 50%;
+}
+
+.columns.product-category > div > div {
   text-align: center;
 }
 
-.columns > div > .columns-img-col {
+.columns.product > div > .columns-img-col {
   order: 1;
   text-align: right;
   align-self: center;
@@ -28,9 +31,10 @@
 
 .columns > div > .columns-img-col img {
   display: inline-block;
+  width: 100%;
 }
 
-.product .columns a.button {
+.columns.columns-3-cols strong a.button {
   font-family: var(--global-tertiary-font-family);
   font-weight: bold;
   text-transform: none;
@@ -41,12 +45,20 @@
   white-space: break-spaces;
 }
 
+@media (min-width: 600px) {
+  .columns > div {
+    flex-flow: row wrap;
+  }
+
+  .columns.product > div > div:last-child {
+    flex-basis: 100%;
+  }
+}
+
 @media (min-width: 900px) {
   .columns > div {
     flex-direction: unset;
     gap: 32px;
-    align-items: end;
-    text-align: center;
   }
 
   .columns > div > div {
@@ -54,11 +66,16 @@
     order: unset;
   }
 
-  .columns > div > div:last-child {
-    flex-grow: 2;
+  .columns.product-category > div{
+    align-items: end;
+    text-align: center;
   }
 
-  .columns > div > .columns-img-col {
+  .columns.product > div > div:last-child {
+    flex-basis: min-content;
+  }
+
+  .columns.product > div > .columns-img-col {
     order: 0;
   }
 

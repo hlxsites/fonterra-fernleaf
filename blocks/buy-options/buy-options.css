@@ -1,5 +1,5 @@
 .section div.buy-options-wrapper {
-  padding: 0;
+  padding: 0 15px;
 }
 
 .buy-options-container{
@@ -28,11 +28,5 @@
 @media (min-width: 900px) {
   .buy-options ul {
     gap: 40px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .section div.buy-options-wrapper {
-    padding: 0;
   }
 }
