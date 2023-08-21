@@ -117,8 +117,7 @@ function createSearchDialog(nav) {
         const query = searchInput.value;
         if (query && query.length > 2) {
           searchDialog.performSearch(query);
-        }
-        else {
+        } else {
           searchDialog.clearSearchResults();
         }
       }, debounceDelay);
