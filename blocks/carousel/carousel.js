@@ -168,7 +168,7 @@ export default async function decorate(block) {
 
     randomItems.forEach((item) => {
       const categoryElement = document.createElement('div');
-      const updatedImageUrl = replaceImageWidth(item.image, 600);
+      const updatedImageUrl = replaceImageWidth(item.image, 450);
 
       categoryElement.innerHTML = `
         <a href="${item.path}" title='${item.shorttitle}'>
