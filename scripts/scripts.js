@@ -238,6 +238,16 @@ export async function fetchSearch(category = '') {
 }
 
 /**
+ * Push custom events to Google Tag manager
+ * @param {*} data
+ */
+export async function pushToGTM(data) {
+  // submit to datalayer
+  const dataLayer = window.dataLayer || [];
+  dataLayer.push(data);
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
