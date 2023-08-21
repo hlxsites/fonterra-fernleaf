@@ -162,7 +162,6 @@ export default function Search() {
           }
           return result;
         }, { product: [], recipe: [], story: [] });
-        
         this.categories.map((category) => this.addProductsHTML(
           category,
           categorizedItems[category.toLowerCase()],
