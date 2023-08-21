@@ -46,10 +46,22 @@ export function getLanguageFromPath(pathname, resetCache = false) {
   return language;
 }
 
-export function replaceImageWidth(url, newWidth) {
+/* export function replaceImageWidth(url, newWidth) {
   const regex = /width=\d+/;
   const updatedUrl = url.replace(regex, `width=${newWidth}`);
   return updatedUrl;
+} */
+
+export function setOrUpdateImageWidth(url, newWidth) {
+  const urlObject = new URL(url);
+
+  if (!urlObject.searchParams.has('width')) {
+    urlObject.searchParams.append('width', newWidth);
+  } else {
+    urlObject.searchParams.set('width', newWidth);
+  }
+
+  return urlObject.toString();
 }
 
 export function getLanguage(curPath = window.location.pathname, resetCache = false) {

@@ -1,4 +1,4 @@
-import { getLanguage, fetchSearch, replaceImageWidth } from '../../scripts/scripts.js';
+import { getLanguage, fetchSearch, setOrUpdateImageWidth } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 let current = 1;
@@ -168,7 +168,7 @@ export default async function decorate(block) {
 
     randomItems.forEach((item) => {
       const categoryElement = document.createElement('div');
-      const updatedImageUrl = replaceImageWidth(item.image, 250);
+      const updatedImageUrl = setOrUpdateImageWidth(item.image, 250);
 
       categoryElement.innerHTML = `
         <a href="${item.path}" title='${item.shorttitle}'>
