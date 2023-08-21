@@ -177,13 +177,13 @@ h1 {
 
 h2 {
   font-size: var(--heading-font-size-xl);
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-dark-goldenrod);
   font-weight: bold;
 }
 
 h3 {
   font-size: var(--heading-font-size-l);
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-dark-goldenrod);
 }
 
 h4 {
