@@ -1,4 +1,4 @@
-import { getLanguage, fetchSearch, setOrUpdateImageWidth, BASE_URL } from '../../scripts/scripts.js';
+import { getLanguage, fetchSearch, adjustImageSize } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 let current = 1;
@@ -168,11 +168,11 @@ export default async function decorate(block) {
 
     randomItems.forEach((item) => {
       const categoryElement = document.createElement('div');
-      const updatedImageUrl = setOrUpdateImageWidth(BASE_URL + item.image, 250);
+      const updatedImageUrl = adjustImageSize(item.image, 250);
 
       categoryElement.innerHTML = `
         <a href="${item.path}" title='${item.shorttitle}'>
-          <img src='${updatedImageUrl}' alt='${updatedImageUrl}'>
+          <img src='${updatedImageUrl}' alt='${item.shorttitle}'>
         </a>
         <h3>
           <a href="${item.path}" title='${item.shorttitle}'>${item.shorttitle}</a>

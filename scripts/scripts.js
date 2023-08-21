@@ -46,24 +46,6 @@ export function getLanguageFromPath(pathname, resetCache = false) {
   return language;
 }
 
-/* export function replaceImageWidth(url, newWidth) {
-  const regex = /width=\d+/;
-  const updatedUrl = url.replace(regex, `width=${newWidth}`);
-  return updatedUrl;
-} */
-
-export function setOrUpdateImageWidth(url, newWidth) {
-  const urlObject = new URL(url);
-
-  if (!urlObject.searchParams.has('width')) {
-    urlObject.searchParams.append('width', newWidth);
-  } else {
-    urlObject.searchParams.set('width', newWidth);
-  }
-
-  return urlObject.toString();
-}
-
 export function getLanguage(curPath = window.location.pathname, resetCache = false) {
   return getLanguageFromPath(curPath, resetCache);
 }
@@ -76,7 +58,12 @@ export function adjustImageSize(img, newSize) {
   if (img) {
     const url = new URL(`${BASE_URL}${img}`);
     const params = url.searchParams;
-    params.set('width', newSize);
+
+    if (!params.has('width')) {
+      params.append('width', newSize);
+    } else {
+      params.set('width', newSize);
+    }
 
     url.search = params.toString();
     return url.toString();
