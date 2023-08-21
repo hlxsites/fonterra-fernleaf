@@ -161,17 +161,20 @@ export default function Search() {
             result.story.push(el);
           }
           return result;
-        }, { product: [], recipe: [], story: [] });        
+        }, { product: [], recipe: [], story: [] });
+
         if (filteredResults.length > 0) {
           sampleRUM('search', { source: '.search-input-field > input', target: value });
         } else {
           sampleRUM('nullsearch', { source: '.search-input-field > input', target: value });
         }
+
         this.categories.map((category) => this.addProductsHTML(
           category,
           categorizedItems[category.toLowerCase()],
           placeholders,
         ));
+
         if (categorizedItems.story.length) {
           new Animation(this.dialogElem).init();
         }
