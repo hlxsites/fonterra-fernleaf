@@ -20,6 +20,7 @@ const LANGUAGES = new Set(['en', 'ms']);
 export const CATEGORY_STORIES = 'story';
 export const CATEGORY_PRODUCT = 'product';
 export const CATEGORY_RECIPES = 'recipe';
+export const BASE_URL = window.location.origin;
 
 let language;
 
@@ -55,9 +56,19 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
  */
 export function adjustImageSize(img, newSize) {
   if (img) {
-    const url = new URL(`${window.location.origin}${img}`);
+    let url;
+    if (img.startsWith('/')) {
+      url = new URL(`${BASE_URL}${img}`);
+    } else {
+      url = new URL(`${img}`);
+    }
     const params = url.searchParams;
-    params.set('width', newSize);
+
+    if (params.has('width')) {
+      params.set('width', newSize);
+    } else {
+      params.append('width', newSize);
+    }
 
     url.search = params.toString();
     return url.toString();
@@ -223,6 +234,16 @@ export async function fetchSearch(category = '') {
   }
 
   return window.searchData;
+}
+
+/**
+ * Push custom events to Google Tag manager
+ * @param {*} data
+ */
+export async function pushToGTM(data) {
+  // submit to datalayer
+  const dataLayer = window.dataLayer || [];
+  dataLayer.push(data);
 }
 
 /**

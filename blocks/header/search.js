@@ -1,5 +1,5 @@
 import { fetchSearch } from '../../scripts/scripts.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, sampleRUM } from '../../scripts/lib-franklin.js';
 
 function Animation(dialogElem) {
   this.dialogElem = dialogElem;
@@ -162,6 +162,13 @@ export default function Search() {
           }
           return result;
         }, { product: [], recipe: [], story: [] });
+        
+        if (filteredResults.length > 0) {
+          sampleRUM('search', { source: '.search-input-field > input', target: searchData });
+        } else {
+          sampleRUM('nullsearch', { source: '.search-input-field > input', target: searchData });
+        }
+
         this.categories.map((category) => this.addProductsHTML(
           category,
           categorizedItems[category.toLowerCase()],

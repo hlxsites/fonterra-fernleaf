@@ -38,6 +38,11 @@ main .section .accordion-wrapper {
   overflow: hidden;
 }
 
+.accordion-section h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /** style for accordion section animation */
 
 .accordion-wrapper .accordion-section div[role="region"] {
@@ -62,7 +67,7 @@ main .section .accordion-wrapper {
 
 .accordion-wrapper .accordion-section button {
   background-color: transparent;
-  color: var(--global-color-selective-yellow);
+  color: var(--global-color-philippine-bronze);
   letter-spacing: 0.6px;
   box-shadow: unset;
   padding: 0.938rem 4.688rem 0.938rem 2.125rem;
@@ -131,8 +136,8 @@ main .section .accordion-wrapper {
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 900px) {
   .section.accordion-container > div.default-content-wrapper {
-    padding: 0 0 30px;
+    padding: 0 0.938rem 30px;
   }
 }

@@ -20,16 +20,20 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const sourceDesktop = document.createElement('source');
   sourceDesktop.media = '(min-width: 768px)';
   sourceDesktop.srcset = desktopImgUrl;
+  sourceDesktop.type = 'image/webp';
   picture.appendChild(sourceDesktop);
 
   const sourceMobile = document.createElement('source');
   sourceMobile.media = '(max-width: 767px)';
+  sourceDesktop.type = 'image/webp';
   sourceMobile.srcset = mobileImgUrl;
   picture.appendChild(sourceMobile);
 
   const img = document.createElement('img');
   img.src = desktopImgUrl;
   img.alt = '';
+  img.width = '1024';
+  img.height = '750';
   picture.appendChild(img);
   return picture;
 }
@@ -165,3 +169,37 @@ export function ProcessStoriesBgImage() {
   };
 }
 new ProcessStoriesBgImage().init();
+
+/**
+ * Google Tag Manager implementation
+* */
+function GoogleTagManager() {
+  this.loadGTM = () => {
+    const scriptTag = document.createElement('script');
+    scriptTag.innerHTML = `
+    (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+            'gtm.start':
+                new Date().getTime(), event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+            j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src =
+            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-NX6JQZG');
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('set', {
+        'cookie_flags': 'SameSite=None;Secure'
+    });
+    `;
+    document.head.prepend(scriptTag);
+  };
+}
+
+if (!window.location.hostname.includes('localhost') && !document.location.hostname.includes('.hlx.page')) {
+  new GoogleTagManager().loadGTM();
+}

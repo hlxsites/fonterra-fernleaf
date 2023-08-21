@@ -1,5 +1,5 @@
 import { readBlockConfig } from '../../scripts/lib-franklin.js';
-import { getLanguage } from '../../scripts/scripts.js';
+import { getLanguage, BASE_URL } from '../../scripts/scripts.js';
 import showLanguageSelector from '../../scripts/modals/languages.js';
 
 /**
@@ -25,7 +25,7 @@ function setlanguageButton(parent, txt) {
   // keep alt text empty to avoid screen reader reading the alt text
   // https://www.w3.org/WAI/tutorials/images/decorative/ #2.Decorative image as part of a text link
   languageButton.innerHTML = `
-    <img src='../../styles/images/flag-malaysia.png' alt="" height="30" width="25">
+    <img src='${BASE_URL}/styles/images/flag-malaysia.png' alt="" height="30" width="25">
     <span>${txt}</span>
   `;
   languageButton.addEventListener('click', () => {
