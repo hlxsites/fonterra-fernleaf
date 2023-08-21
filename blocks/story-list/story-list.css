@@ -32,6 +32,8 @@
 }
 
 .story-list .story .story-content .button {
+  font-family: var(--global-tertiary-font-family);
+  min-width: 10rem;
   margin: 0;
   width: 100%;
 }

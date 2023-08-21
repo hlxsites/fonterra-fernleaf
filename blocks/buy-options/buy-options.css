@@ -1,26 +1,32 @@
+.section div.buy-options-wrapper {
+  padding: 0 15px;
+}
+
 .buy-options-container{
   position: relative;
   z-index: 5;
 }
 
+.buy-options {
+  border-bottom: 1px solid var(--global-color-light-gray);
+  padding-bottom: 30px;
+}
+
 .buy-options ul {
   margin: 0;
   padding: 0;
-  display: flex;
+  display: inline-flex;
   list-style: none;
-}
-
-.buy-options ul li {
-  padding-right: 2.5rem;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 
 .buyoption a {
   display: inline-block;
 }
 
-@media (min-width: 1200px) {
-  .section div.buy-options-wrapper,
-  .buy-options-container div:first-child {
-    padding: 0;
+@media (min-width: 900px) {
+  .buy-options ul {
+    gap: 40px;
   }
 }

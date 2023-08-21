@@ -20,16 +20,20 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const sourceDesktop = document.createElement('source');
   sourceDesktop.media = '(min-width: 768px)';
   sourceDesktop.srcset = desktopImgUrl;
+  sourceDesktop.type = 'image/webp';
   picture.appendChild(sourceDesktop);
 
   const sourceMobile = document.createElement('source');
   sourceMobile.media = '(max-width: 767px)';
+  sourceDesktop.type = 'image/webp';
   sourceMobile.srcset = mobileImgUrl;
   picture.appendChild(sourceMobile);
 
   const img = document.createElement('img');
   img.src = desktopImgUrl;
   img.alt = '';
+  img.width = '1024';
+  img.height = '750';
   picture.appendChild(img);
   return picture;
 }

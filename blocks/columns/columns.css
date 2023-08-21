@@ -1,29 +1,82 @@
-.columns > div {
-  display: flex;
-  flex-direction: column;
+.section > div.columns-wrapper {
+  padding-top: 0;
+  padding-bottom: 6.25rem;
 }
 
-.columns img {
-  width: 100%;
+.columns > div {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .columns > div > div {
   order: 1;
+  flex-basis: 50%;
+  text-align: center;
 }
 
-.columns > div > .columns-img-col {
-  order: 0;
+.columns.product-category > div > div {
+  text-align: center;
+}
+
+.columns.product > div > .columns-img-col {
+  order: 1;
+  text-align: right;
+  align-self: center;
+}
+
+.columns .button-container .button {
+  width: 100%;
+  font-family: var(--global-tertiary-font-family);
+  min-width: 10.938rem;
 }
 
 .columns > div > .columns-img-col img {
-  display: block;
+  display: inline-block;
+  width: 100%;
+}
+
+.columns strong a.button {
+  font-family: var(--global-tertiary-font-family);
+  font-weight: bold;
+  text-transform: none;
+  background: none;
+  color: var(--global-color-black);
+  padding: 0;
+  margin: 0;
+  white-space: break-spaces;
+}
+
+@media (min-width: 600px) {
+  .columns > div {
+    flex-flow: row wrap;
+  }
+
+  .columns.product-category > div > div {
+    flex-basis: 50%;
+  }
+
+  .columns.product > div > div:last-child {
+    flex-basis: 100%;
+  }
+}
+
+.product .columns a.button {
+  font-family: var(--global-tertiary-font-family);
+  font-weight: bold;
+  text-transform: none;
+  background: none;
+  color: var(--global-color-black);
+  padding: 0;
+  margin: 0;
+  white-space: break-spaces;
 }
 
 @media (min-width: 900px) {
   .columns > div {
-    align-items: flex-start;
     flex-direction: unset;
     gap: 32px;
+    align-items: end;
+    text-align: center;
   }
 
   .columns > div > div {
@@ -31,7 +84,34 @@
     order: unset;
   }
 
-  .columns.col-1by3 > div > div:last-child {
-    flex-grow: 2;
+  .columns.product-category > div {
+    align-items: end;
+    text-align: center;
+  }
+
+  .columns > div > div:last-child {
+    flex: 2;
+  }
+
+  .columns.product-category > div > div {
+    flex: 1;
+    flex-basis: min-content;
+  }
+
+  .columns.product > div > div:last-child {
+    flex: 1;
+    flex-basis: min-content;
+  }
+
+  .recipe .columns > div > div:last-child {
+    flex: 1;
+  }
+
+  .columns.product > div > .columns-img-col {
+    order: 0;
+  }
+
+  .columns .button-container .button {
+    width: auto;
   }
 }
