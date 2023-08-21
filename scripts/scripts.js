@@ -67,7 +67,6 @@ export function adjustImageSize(img, newSize) {
     if (params.has('width')) {
       params.set('width', newSize);
     } else {
-      // params === undefined && !
       params.append('width', newSize);
     }
 
