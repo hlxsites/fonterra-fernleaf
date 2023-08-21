@@ -1,4 +1,4 @@
-import { getLanguage, fetchSearch } from '../../scripts/scripts.js';
+import { getLanguage, fetchSearch, adjustImageSize } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 let current = 1;
@@ -168,10 +168,11 @@ export default async function decorate(block) {
 
     randomItems.forEach((item) => {
       const categoryElement = document.createElement('div');
+      const updatedImageUrl = adjustImageSize(item.image, 250);
 
       categoryElement.innerHTML = `
         <a href="${item.path}" title='${item.shorttitle}'>
-          <img src='${item.image}' alt='${item.image}'>
+          <img src='${updatedImageUrl}' alt='${item.shorttitle}'>
         </a>
         <h3>
           <a href="${item.path}" title='${item.shorttitle}'>${item.shorttitle}</a>
@@ -191,6 +192,7 @@ export default async function decorate(block) {
     const buttonl = document.createElement('button');
     buttonl.classList.add('scroll-left');
     buttonl.id = 'id-scroll-left';
+    buttonl.setAttribute('aria-label', 'Scroll Left');
     buttonl.addEventListener('click', next, this);
     block.append(buttonl);
 
@@ -223,6 +225,7 @@ export default async function decorate(block) {
     const button = document.createElement('button');
     button.classList.add('scroll-right');
     button.id = 'id-scroll-right';
+    button.setAttribute('aria-label', 'Scroll Right');
     button.addEventListener('click', next, this);
     block.append(button);
 

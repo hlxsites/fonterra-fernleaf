@@ -1,9 +1,14 @@
 import {
-  fetchPlaceholders,
+  fetchPlaceholders, getMetadata,
 } from '../../scripts/lib-franklin.js';
 
+import {
+  pushToGTM,
+  adjustImageSize,
+} from '../../scripts/scripts.js';
+
 const getHTML = (row) => `<a target="_blank" href="${row.link}" title="${row.brand}" aria-label="${row.brand}">
-                <img alt="${row.brand}" src="${row.img}" width="100" height="42">
+                <img alt="${row.brand}" src="${adjustImageSize(row.img, 100)}" width="100" height="42">
             </a>`;
 
 const buyOptions = [];
@@ -21,12 +26,39 @@ async function preProcess(block, placeholder) {
   });
 }
 
+/**
+ * Push click actions to Google Tag manager
+ */
+async function trackAction(linkContainer) {
+  linkContainer.querySelector('a').addEventListener('click', (e) => {
+    const link = e.currentTarget;
+    const label = link.title;
+    const linkUrl = link.href;
+    const productTitle = getMetadata('shorttitle');
+    const productCategory = getMetadata('category');
+
+    pushToGTM({
+      event: 'trackEvent',
+      'eventDetails.category': 'purchase intent',
+      'eventDetails.action': 'click',
+      'eventDetails.label': label.toLowerCase(),
+      clickUrl: linkUrl,
+      clickElementType: 'image',
+      sectionName: 'content block',
+      productName: productTitle.toLowerCase(),
+      productCategory: productCategory.toLowerCase().trim(),
+      ecommercePlatform: label.toLowerCase(),
+    });
+  });
+}
+
 async function generateBlock() {
   const ul = document.createElement('ul');
   buyOptions.forEach((row) => {
     const li = document.createElement('li');
     li.classList.add('buyoption');
     li.innerHTML = getHTML(row);
+    trackAction(li);
 
     ul.append(li);
   });
