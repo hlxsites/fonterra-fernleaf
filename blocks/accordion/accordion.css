@@ -3,6 +3,10 @@ main .section .accordion-wrapper {
   margin-top: unset;
 }
 
+.section.accordion-container{
+  padding: 0 0.938rem;
+}
+
 .section.accordion-container .accordion {
   border-bottom: 1px solid var(--global-color-light-gray);
   padding: 0 0 1.25rem;;
