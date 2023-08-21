@@ -1,5 +1,5 @@
 import { fetchSearch } from '../../scripts/scripts.js';
-import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
+import { fetchPlaceholders, sampleRUM } from '../../scripts/lib-franklin.js';
 
 /**
  * Clear the category wise search results
@@ -100,6 +100,12 @@ export async function performSearch(value) {
         filteredResults = searchData.filter((el) => el.category.toLowerCase() === category.toLowerCase() && ['title', 'shorttitle', 'description', 'tags'].some((field) => el[field].toLowerCase().includes(searchValue.toLowerCase())));
         if (index !== storyIndex) {
           filteredResults = filteredResults.slice(0, productCount);
+        }
+
+        if (filteredResults.length > 0) {
+          sampleRUM('search', { source: '.search-input-field > input', target: searchData });
+        } else {
+          sampleRUM('nullsearch', { source: '.search-input-field > input', target: searchData });
         }
         return addProductsHTML(category, filteredResults, placeholders);
       });
