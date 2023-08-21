@@ -164,9 +164,9 @@ export default function Search() {
         }, { product: [], recipe: [], story: [] });
 
         if (filteredResults.length > 0) {
-          sampleRUM('search', { source: '.search-input-field > input', target: value });
+          sampleRUM('search', { source: '.search-input-field > input', target: searchValue });
         } else {
-          sampleRUM('nullsearch', { source: '.search-input-field > input', target: value });
+          sampleRUM('nullsearch', { source: '.search-input-field > input', target: searchValue });
         }
 
         this.categories.map((category) => this.addProductsHTML(
