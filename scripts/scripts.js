@@ -45,6 +45,12 @@ export function getLanguageFromPath(pathname, resetCache = false) {
   return language;
 }
 
+export function replaceImageWidth(url, newWidth) {
+  const regex = /width=\d+/;
+  const updatedUrl = url.replace(regex, `width=${newWidth}`);
+  return updatedUrl;
+}
+
 export function getLanguage(curPath = window.location.pathname, resetCache = false) {
   return getLanguageFromPath(curPath, resetCache);
 }
@@ -55,7 +61,7 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
  */
 export function adjustImageSize(img, newSize) {
   if (img) {
-    const url = new URL(`${window.location.origin}${img}`);
+    const url = new URL(`${BASE_URL}${img}`);
     const params = url.searchParams;
     params.set('width', newSize);
 
