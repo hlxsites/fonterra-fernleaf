@@ -56,13 +56,19 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
  */
 export function adjustImageSize(img, newSize) {
   if (img) {
-    const url = new URL(`${BASE_URL}${img}`);
+    let url;
+    if (img.startsWith('/')) {
+      url = new URL(`${BASE_URL}${img}`);
+    } else {
+      url = new URL(`${img}`);
+    }
     const params = url.searchParams;
 
-    if (!params.has('width')) {
-      params.append('width', newSize);
-    } else {
+    if (params.has('width')) {
       params.set('width', newSize);
+    } else {
+      // params === undefined && !
+      params.append('width', newSize);
     }
 
     url.search = params.toString();
