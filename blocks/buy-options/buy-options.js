@@ -3,7 +3,7 @@ import {
 } from '../../scripts/lib-franklin.js';
 
 const getHTML = (row) => `<a target="_blank" href="${row.link}" title="${row.brand}" aria-label="${row.brand}">
-                <img alt="${row.brand}" src="${row.img}" width="150" height="63">
+                <img alt="${row.brand}" src="${row.img}" width="100" height="42">
             </a>`;
 
 const buyOptions = [];
