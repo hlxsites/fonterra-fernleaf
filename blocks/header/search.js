@@ -101,14 +101,14 @@ export async function performSearch(value) {
         if (index !== storyIndex) {
           filteredResults = filteredResults.slice(0, productCount);
         }
-
-        if (filteredResults.length > 0) {
-          sampleRUM('search', { source: '.search-input-field > input', target: searchData });
-        } else {
-          sampleRUM('nullsearch', { source: '.search-input-field > input', target: searchData });
-        }
         return addProductsHTML(category, filteredResults, placeholders);
       });
+
+      if (filteredResults.length > 0) {
+        sampleRUM('search', { source: '.search-input-field > input', target: searchValue });
+      } else {
+        sampleRUM('nullsearch', { source: '.search-input-field > input', target: searchValue });
+      }
     }
   }
 }
