@@ -177,13 +177,13 @@ h1 {
 
 h2 {
   font-size: var(--heading-font-size-xl);
-  color: var(--global-color-scarlet);
+  color: var(--global-color-philippine-bronze);
   font-weight: bold;
 }
 
 h3 {
   font-size: var(--heading-font-size-l);
-  color: var(--global-color-selective-yellow);
+  color: var(--global-color-philippine-bronze);
 }
 
 h4 {
@@ -464,7 +464,7 @@ main .section.highlight {
 }
 
 .recipe h2 {
-  color: var(--global-color-selective-yellow);
+  color: var(--global-color-philippine-bronze);
 }
 
 /* stylelint-disable no-descending-specificity */
