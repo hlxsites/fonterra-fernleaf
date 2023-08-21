@@ -173,7 +173,6 @@ function GoogleTagManager() {
   this.loadGTM = () => {
     const scriptTag = document.createElement('script');
     scriptTag.innerHTML = `
-    // googleTagManager
     (function (w, d, s, l, i) {
         w[l] = w[l] || [];
         w[l].push({
