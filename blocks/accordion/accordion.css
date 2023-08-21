@@ -38,6 +38,11 @@ main .section .accordion-wrapper {
   overflow: hidden;
 }
 
+.accordion-section h3 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
 /** style for accordion section animation */
 
 .accordion-wrapper .accordion-section div[role="region"] {
