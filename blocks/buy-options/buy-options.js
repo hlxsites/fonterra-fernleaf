@@ -4,7 +4,7 @@ import {
 
 import {
   pushToGTM,
-  adjustImageSize
+  adjustImageSize,
 } from '../../scripts/scripts.js';
 
 const getHTML = (row) => `<a target="_blank" href="${row.link}" title="${row.brand}" aria-label="${row.brand}">
