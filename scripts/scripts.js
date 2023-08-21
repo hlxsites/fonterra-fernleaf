@@ -168,14 +168,14 @@ function GenerateBackGroundImages() {
       const sourcePathname = srcUrl?.pathname;
       const ext = sourcePathname.substring(sourcePathname.lastIndexOf('.') + 1);
       const fallbackSource = `<source ${breakpoints[defaultIndex].media ? `media='${breakpoints[defaultIndex].media}'` : ''} 
-                                      srcset='${sourcePathname}?width=${breakpoints[defaultIndex].width}&format=${ext}&optimize=medium'>`;
+                                      srcset='${sourcePathname}?width=${breakpoints[defaultIndex].width}&format=webply&optimize=medium'>`;
       sourceElements.push(fallbackSource);
 
       const defaultSrcIndex = breakpoints.length - 1;
       const source = src[defaultSrcIndex] ? src[defaultSrcIndex] : src[0];
       const imgUrl = new URL(source, window.location.href);
       const imgPathname = imgUrl?.pathname;
-      const imgSrc = `<img src='${imgPathname}?width=${breakpoints[defaultSrcIndex].width}&format=${ext}&optimize=medium'
+      const imgSrc = `<img src='${imgPathname}?width=${breakpoints[defaultSrcIndex].width}&format=webply&optimize=medium'
                       alt='${alt}'
                       width='${breakpoints[defaultSrcIndex].width}'
                       height='100%'
