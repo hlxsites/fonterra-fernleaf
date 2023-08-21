@@ -1,4 +1,4 @@
-import { fetchSearch } from '../../scripts/scripts.js';
+import { fetchSearch, removeImageProps } from '../../scripts/scripts.js';
 import { fetchPlaceholders, sampleRUM } from '../../scripts/lib-franklin.js';
 
 function Animation(dialogElem) {
@@ -79,7 +79,7 @@ export default function Search() {
       ? `<h6><a href='${item.path}'>${item.title}</a></h6>`
       : `<span class='item-img'><a href='${item.path}'>
           <picture>
-              <img src='${item.image}'>
+              <img src='${removeImageProps(item.image)}'>
           </picture>
       </a></span>
       <h6><a href='${item.path}'>${item.title}</a></h6>`;
@@ -161,14 +161,12 @@ export default function Search() {
             result.story.push(el);
           }
           return result;
-        }, { product: [], recipe: [], story: [] });
-        
+        }, { product: [], recipe: [], story: [] });        
         if (filteredResults.length > 0) {
-          sampleRUM('search', { source: '.search-input-field > input', target: searchData });
+          sampleRUM('search', { source: '.search-input-field > input', target: value });
         } else {
-          sampleRUM('nullsearch', { source: '.search-input-field > input', target: searchData });
+          sampleRUM('nullsearch', { source: '.search-input-field > input', target: value });
         }
-
         this.categories.map((category) => this.addProductsHTML(
           category,
           categorizedItems[category.toLowerCase()],
