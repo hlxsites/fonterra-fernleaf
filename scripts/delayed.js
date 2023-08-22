@@ -13,7 +13,6 @@ export async function isMobile() {
   return mql.matches;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export function isTablet() {
   const mql = window.matchMedia('(min-width: 900px)');
   return mql.matches;
