@@ -36,7 +36,7 @@
 
 .table-wrapper .table.block div div {
     display: table-cell;
-    max-width: 200px;
+    width: 20px;
     border-bottom: 1px solid var(--global-color-light-gray);
     vertical-align: middle;
 }
@@ -48,14 +48,12 @@
 
 .table-wrapper .table.block div div:nth-child(2) {
     text-align: right;
-    min-width: 50px;
 
 }
 
 .table-wrapper .table.block div div:nth-child(3),
 .table-wrapper .table.block div div:nth-child(4) {
     text-align: center;
-    width: 70px;
 }
 
 .table-wrapper .table.block div div:first-child:last-child {
