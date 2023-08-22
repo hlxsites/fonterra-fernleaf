@@ -105,6 +105,7 @@
     margin: 0 0.438rem;
     background: var(--global-color-foggy-gray);
     padding: 0;
+    outline: none;
     border: 0;
     height: .75rem;
     width: .75rem;

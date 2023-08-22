@@ -126,6 +126,7 @@ function createBullets() {
     }
     bullet.classList.add('bullet');
     bullet.id = i;
+    bullet.setAttribute('aria-label', `bullet-item-${i}`);
     bulletsContainer.appendChild(bullet);
     bullet.addEventListener('click', handleBulletClick);
   }
@@ -235,7 +236,6 @@ export default async function decorate(block) {
     buttonl.id = 'id-scroll-left';
     buttonl.setAttribute('aria-label', 'Scroll Left');
     buttonl.addEventListener('click', (event) => {
-      event.preventDefault();
       next(event, false);
     });
     block.append(buttonl);
@@ -272,7 +272,6 @@ export default async function decorate(block) {
     button.id = 'id-scroll-right';
     button.setAttribute('aria-label', 'Scroll Right');
     button.addEventListener('click', (event) => {
-      event.preventDefault();
       next(event, true);
     });
     block.append(button);
