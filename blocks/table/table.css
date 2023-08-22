@@ -43,6 +43,7 @@
 
 .table-wrapper .table.block div div:nth-child(1) {
     text-align: left;
+    min-width: 50px;
 }
 
 .table-wrapper .table.block div div:nth-child(2) {

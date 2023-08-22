@@ -117,6 +117,10 @@ main .section .accordion-wrapper {
   font-family: var(--global-tertiary-font-family);
 }
 
+.section.accordion-container > div.default-content-wrapper {
+  padding: 0;
+}
+
 @media (min-width: 900px) {
   .accordion-wrapper .accordion-panel {
     margin: auto;
@@ -131,10 +135,5 @@ main .section .accordion-wrapper {
   .accordion-wrapper .columns-wrapper .columns div div {
     flex: unset;
   }
-}
 
-@media (min-width: 900px) {
-  .section.accordion-container > div.default-content-wrapper {
-    padding: 0 0.938rem;
-  }
 }
