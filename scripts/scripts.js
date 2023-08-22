@@ -20,7 +20,8 @@ const LANGUAGES = new Set(['en', 'ms']);
 export const CATEGORY_STORIES = 'story';
 export const CATEGORY_PRODUCT = 'product';
 export const CATEGORY_RECIPES = 'recipe';
-export const BASE_URL = window.location.origin;
+// eslint-disable-next-line max-len
+export const BASE_URL = window.location.origin !== 'null' ? window.location.origin : window.parent.location.origin;
 
 let language;
 
