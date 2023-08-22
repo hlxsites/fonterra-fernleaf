@@ -1,6 +1,10 @@
 main .section .accordion-wrapper {
-  padding-left: 12px;
+  padding: unset;
   margin-top: unset;
+}
+
+.section.accordion-container{
+  padding: 0 0.938rem;
 }
 
 .section.accordion-container .accordion {
@@ -8,8 +12,12 @@ main .section .accordion-wrapper {
   padding: 0 0 1.25rem;;
 }
 
-.accordion-wrapper .accordion-section h4 {
+.accordion-wrapper .accordion-section > :first-child{
   margin: unset;
+}
+
+.accordion-wrapper .table-wrapper {
+  border-top: 3px solid var(--global-color-platinum);
 }
 
 .accordion-wrapper .table-wrapper p {
@@ -36,11 +44,6 @@ main .section .accordion-wrapper {
 
 .accordion-wrapper .accordion-section {
   overflow: hidden;
-}
-
-.accordion-section h3 {
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 /** style for accordion section animation */
@@ -98,7 +101,6 @@ main .section .accordion-wrapper {
 }
 
 .accordion-wrapper .accordion-section button[aria-expanded="true"] {
-  border-bottom: 3px solid var(--global-color-platinum);
   width: 100%;
   text-align: left;
   border-radius: revert;
@@ -115,12 +117,11 @@ main .section .accordion-wrapper {
   font-family: var(--global-tertiary-font-family);
 }
 
-@media (min-width: 900px) {
-  main .section .accordion-wrapper {
-    padding: revert;
-    margin-top: -40px;
-  }
+.section.accordion-container > div.default-content-wrapper {
+  padding: 0;
+}
 
+@media (min-width: 900px) {
   .accordion-wrapper .accordion-panel {
     margin: auto;
     padding-left: 22px;
@@ -134,10 +135,5 @@ main .section .accordion-wrapper {
   .accordion-wrapper .columns-wrapper .columns div div {
     flex: unset;
   }
-}
 
-@media (min-width: 900px) {
-  .section.accordion-container > div.default-content-wrapper {
-    padding: 0 0.938rem 30px;
-  }
 }
