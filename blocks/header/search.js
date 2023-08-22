@@ -69,6 +69,7 @@ function Animation(dialogElem) {
       this.startAnimation();
     } else {
       this.searchResults.removeAttribute('style');
+      this.searchResultItems.forEach((item) => item.removeAttribute('style'));
       this.stopAnimation();
     }
   });
