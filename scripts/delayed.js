@@ -178,10 +178,10 @@ new ProcessStoriesBgImage().init();
 export function ProcessCategoryBgImage() {
   this.updateCategoryBgImage = async (params) => {
     const placeholder = await fetchPlaceholders();
-    const recipeContainer = document.querySelector('main');
-    if (recipeContainer && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
+    const categoryContainer = document.querySelector('main');
+    if (categoryContainer && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
       const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
-      recipeContainer.appendChild(pictureTag);
+      categoryContainer.appendChild(pictureTag);
     }
   };
   this.init = () => {
