@@ -10,8 +10,6 @@
 
 .columns > div > div {
   order: 1;
-  flex-basis: 50%;
-  text-align: center;
 }
 
 .columns.product-category > div > div {
@@ -75,8 +73,6 @@
   .columns > div {
     flex-direction: unset;
     gap: 32px;
-    align-items: end;
-    text-align: center;
   }
 
   .columns > div > div {
