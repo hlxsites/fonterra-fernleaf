@@ -566,6 +566,16 @@ main .section.highlight {
   display: none;
 }
 
+.story-tips ul {
+  padding: 0 0.938rem;
+}
+
+.story-tips a {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--global-color-dark-blue);
+}
+
 @media (min-width: 600px) {
   /* Full Width Banner */
   .full-width-banner {

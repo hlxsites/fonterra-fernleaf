@@ -13,6 +13,11 @@ export async function isMobile() {
   return mql.matches;
 }
 
+export function isTablet() {
+  const mql = window.matchMedia('(min-width: 900px)');
+  return mql.matches;
+}
+
 export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const picture = document.createElement('picture');
   picture.className = pictureClass;

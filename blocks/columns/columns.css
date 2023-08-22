@@ -10,12 +10,11 @@
 
 .columns > div > div {
   order: 1;
-  flex-basis: 50%;
-  text-align: center;
 }
 
 .columns.product-category > div > div {
   text-align: center;
+  flex-basis: 50%;
 }
 
 .columns.product > div > .columns-img-col {
@@ -51,32 +50,15 @@
     flex-flow: row wrap;
   }
 
-  .columns.product-category > div > div {
-    flex-basis: 50%;
-  }
-
   .columns.product > div > div:last-child {
     flex-basis: 100%;
   }
-}
-
-.product .columns a.button {
-  font-family: var(--global-tertiary-font-family);
-  font-weight: bold;
-  text-transform: none;
-  background: none;
-  color: var(--global-color-black);
-  padding: 0;
-  margin: 0;
-  white-space: break-spaces;
 }
 
 @media (min-width: 900px) {
   .columns > div {
     flex-direction: unset;
     gap: 32px;
-    align-items: end;
-    text-align: center;
   }
 
   .columns > div > div {
@@ -86,7 +68,6 @@
 
   .columns.product-category > div {
     align-items: end;
-    text-align: center;
   }
 
   .columns > div > div:last-child {

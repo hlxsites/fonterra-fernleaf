@@ -77,6 +77,14 @@ export function adjustImageSize(img, newSize) {
 }
 
 /**
+ * Remove image properties
+ * @param {url}
+ */
+export function removeImageProps(url) {
+  return url ? url.split('?')[0] : '';
+}
+
+/**
  * @param {Element} main
  */
 function buildCarouselBlock(main) {

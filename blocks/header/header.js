@@ -1,7 +1,7 @@
 import { getMetadata } from '../../scripts/lib-franklin.js';
 import { getLanguage, decorateLinkedPictures, debounce } from '../../scripts/scripts.js';
 import createModal from '../../scripts/modals/modal.js';
-import { createSearchModal, performSearch, clearSearchResults } from './search.js';
+import Search from './search.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -102,28 +102,34 @@ function disablePageScroll() {
  */
 
 function createSearchDialog(nav) {
+  const dialogId = 'search-dialog';
+  const searchDialog = new Search();
   const searchDialogElement = createModal(
-    'search-dialog',
-    () => createSearchModal(nav),
+    dialogId,
+    () => searchDialog.createSearchModal(nav),
     () => {
-      const searchInput = document.querySelector('#search-dialog .search-input-field input');
+      const dialogElem = document.querySelector(`#${dialogId}`);
+      searchDialog.initComponent(dialogElem);
+      const searchInput = dialogElem.querySelector('.search-input-field input');
       searchInput.focus();
       const debounceDelay = 500;
       const debouncedSearch = debounce(() => {
         const query = searchInput.value;
         if (query && query.length > 2) {
-          performSearch(query);
+          searchDialog.performSearch(query);
+        } else {
+          searchDialog.clearSearchResults();
         }
       }, debounceDelay);
 
       searchInput.addEventListener('input', debouncedSearch);
 
-      document.querySelector('#search-dialog .close').addEventListener('click', () => {
+      dialogElem.querySelector('.close').addEventListener('click', () => {
         if (searchDialogElement.open) {
           searchInput.value = '';
           searchDialogElement.close();
           disablePageScroll();
-          clearSearchResults();
+          searchDialog.clearSearchResults();
         }
       });
     },
