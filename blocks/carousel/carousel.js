@@ -288,7 +288,7 @@ export default async function decorate(block) {
     let touchEndX = 0;
     carouselContainer.addEventListener('touchstart', (event) => {
       touchStartX = event.touches[0].clientX;
-    });
+    }, { passive: true });
 
     carouselContainer.addEventListener('touchend', (event) => {
       touchEndX = event.changedTouches[0].clientX;
@@ -299,7 +299,7 @@ export default async function decorate(block) {
       } else if (swipeDistance < -swipeThreshold) {
         next(event, false);
       }
-    });
+    }, { passive: true });
   } else {
     block.append('no result found');
   }
