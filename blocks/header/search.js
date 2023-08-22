@@ -6,9 +6,10 @@ function Animation(dialogElem) {
   this.resultsWrapper = this.dialogElem.querySelector('.story-results');
   this.resultsWrapperHeight = this.resultsWrapper?.offsetHeight || 460;
   this.searchResults = this.dialogElem.querySelector('.suggestion-list .product-list-results');
-  this.searchResultsHeight = -(this.searchResults.offsetHeight);
+  this.searchResultsHeight = this.searchResults.offsetHeight;
+  this.searchResultItems = this.searchResults.querySelectorAll('.product-list-item');
   this.speed = 0.5;
-  this.scroll = this.searchResultsHeight;
+  this.scroll = -(this.searchResultsHeight);
 
   this.bindEvents = () => {
     this.searchResults.addEventListener('mouseenter', this.stopAnimation);
@@ -18,11 +19,30 @@ function Animation(dialogElem) {
   };
 
   this.marquee = () => {
+    const range = {
+      top: -100,
+      middle: 80,
+      bottom: 350,
+    };
     this.scroll += this.speed;
     if (this.scroll > this.resultsWrapperHeight) {
-      this.scroll = this.searchResultsHeight;
+      this.scroll = -(this.searchResultsHeight);
     }
+
     this.searchResults.style.transform = `translateY(${this.scroll}px)`;
+
+    this.searchResultItems.forEach((item) => {
+      const itemPosition = this.scroll + item.offsetTop;
+      if (itemPosition < range.top
+            || (itemPosition > range.middle && itemPosition < range.bottom)) {
+        item.style.opacity = 1;
+        item.style.transform = 'scale(1)';
+      } else {
+        item.style.opacity = 0.3;
+        item.style.transform = 'scale(0.98)';
+      }
+      item.style.transition = 'opacity 3s ease, transform 1s ease';
+    });
   };
 
   this.stopAnimation = () => {

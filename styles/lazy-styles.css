@@ -862,7 +862,7 @@
   #search-dialog .search-input-box .search-input-field {
     left: 0;
     position: absolute;
-    top: 250px;
+    top: 220px;
     width: 480px;
     z-index: 2;
   }
@@ -963,6 +963,7 @@
   
   #search-dialog .suggestion-list .product-list-results {
     display: block;
+    margin-top: 0;
   }
 
   #search-dialog .suggestion-list .product-list-item {
