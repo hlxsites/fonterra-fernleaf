@@ -7,9 +7,31 @@ let category;
 let noOfBullets = 0;
 let bulletCurrent = 1;
 let interval;
+let diff = 1;
 
-function next(event) {
-  const isRight = event === undefined || event.target.className === 'scroll-right';
+function next(event, rightScroll) {
+/* function next(event, diff) {
+  let loop = diff;
+  if (loop === undefined) {
+    loop = 1;
+  }
+  const isRight = loop > 0 || event === undefined || event.target.className === 'scroll-right';
+  for (let i = 0; i < Math.abs(loop); i += 1) {
+    const sliderList = document.querySelector('.slider-container');
+    if (isRight) {
+      sliderList.classList.add('slide-transition-right');
+      sliderList.style.transform = 'translate3d(-25%, 0px,0px)';
+    } else {
+      sliderList.classList.add('slide-transition-left');
+      sliderList.style.transform = 'translate3d(25%, 0px,0px)';
+    }
+  } */
+  // let loop = diff;
+  // if (loop === undefined) {
+  //  loop = 1;
+  // }
+  const isRight = rightScroll || event === undefined || event.target.className === 'scroll-right';
+  // for (let i = 0; i < loop; i += 1) {
   const sliderList = document.querySelector('.slider-container');
   if (isRight) {
     sliderList.classList.add('slide-transition-right');
@@ -18,19 +40,26 @@ function next(event) {
     sliderList.classList.add('slide-transition-left');
     sliderList.style.transform = 'translate3d(25%, 0px,0px)';
   }
+// }
 }
 
 function changeOrder() {
   const sliderList = document.querySelector('.slider-container');
   const isRight = sliderList.classList.contains('slide-transition-right');
+  console.log(`diff- ${diff} current- ${current} bullet- ${bulletCurrent}`);
   if (isRight) {
-    current = (current === numItems) ? 1 : current + 1;
-    bulletCurrent = (bulletCurrent === noOfBullets) ? 1 : bulletCurrent + 1;
+    //current = (current === numItems) ? 1 : current + diff;
+    //bulletCurrent = (bulletCurrent === noOfBullets) ? 1 : bulletCurrent + diff;
+     current = (current + diff > numItems) ? current + diff - numItems : current + diff;
+     bulletCurrent = (bulletCurrent + diff > noOfBullets) ? bulletCurrent + diff - noOfBullets : bulletCurrent + diff;
   } else {
-    current = (current === 1) ? numItems : current - 1;
-    bulletCurrent = (bulletCurrent === 1) ? noOfBullets : bulletCurrent - 1;
+    //current = (current === 1) ? numItems : current - diff;
+    //bulletCurrent = (bulletCurrent === 1) ? noOfBullets : bulletCurrent - diff;
+    current = (current - diff < 1) ? current - diff + numItems : current - diff;
+    bulletCurrent = (bulletCurrent - diff < 1) ? bulletCurrent - diff + noOfBullets : bulletCurrent - diff;
   }
 
+  console.log(`bullet after- ${bulletCurrent}`);
   let order = 1;
   for (let i = current; i <= numItems; i += 1) {
     sliderList.querySelector(`.${category}-slider-item[data-position='${i}']`).style.order = order;
@@ -44,12 +73,15 @@ function changeOrder() {
 
   const e1 = document.querySelector('.bullet-active');
   e1.classList.remove('bullet-active');
-  const ele = document.getElementById((((bulletCurrent - 1) % (noOfBullets)) + 1));
+  const ele = document.getElementById(bulletCurrent);
+
+  //const ele = document.getElementById((((bulletCurrent - 1) % (noOfBullets)) + 1));
   ele.classList.add('bullet-active');
 
   sliderList.classList.remove('slide-transition-right');
   sliderList.classList.remove('slide-transition-left');
   sliderList.style.transform = 'translate3d(0px, 0px, 0px)';
+  diff = 1;
 }
 
 function fetchItemsInCarousel() {
@@ -78,6 +110,16 @@ function showStaticCarousel() {
   return false;
 }
 
+function handleBulletClick(event) {
+  const clickedBullet = event.target.getAttribute('id');
+
+  const activeBulletElement = document.querySelector('.bullet-active');
+  const activeBullet = activeBulletElement.getAttribute('id');
+  const diff2 = clickedBullet - activeBullet;
+  diff = Math.abs(diff2);
+  next(event, diff2 > 0);
+}
+
 function createBullets() {
   const bulletsContainer = document.getElementById('bullets');
   // Clear existing bullets before re-creating them
@@ -85,13 +127,15 @@ function createBullets() {
 
   noOfBullets = fetchNumberOfBullets();
   for (let i = 1; i <= noOfBullets; i += 1) {
-    const bullet = document.createElement('span');
+    // const bullet = document.createElement('span');
+    const bullet = document.createElement('button');
     if (i === 1) {
       bullet.classList.add('bullet-active');
     }
     bullet.classList.add('bullet');
     bullet.id = i;
     bulletsContainer.appendChild(bullet);
+    bullet.addEventListener('click', handleBulletClick);
   }
   const sliderList = document.getElementById(`id-${category}-slider-list`);
   sliderList.append(bulletsContainer);
@@ -236,6 +280,50 @@ export default async function decorate(block) {
       autoScrollCarousel();
     });
     resizeObserverToShowOrHideCarousel.observe(carouselContainer);
+
+    // let startX = 0;
+    // let scrollLeft = 0;
+    // let isScrolling = false;
+    let touchStartX = 0;
+    let touchEndX = 0;
+    carouselContainer.addEventListener('touchstart', (event) => {
+      touchStartX = event.touches[0].clientX;
+    });
+
+    carouselContainer.addEventListener('touchmove', (event) => {
+      touchEndX = event.touches[0].clientX;
+    });
+
+    carouselContainer.addEventListener('touchend', (event) => {
+      // touchEndX = event.changedTouches[0].clientX;
+      const swipeThreshold = 50; // Minimum distance for a swipe to be recognized as one item
+      const swipeDistance = touchStartX - touchEndX;
+      // if diff is +ve then right else left
+      if (swipeDistance > swipeThreshold) {
+        next(event, true);
+      } else if (swipeDistance < -swipeThreshold) {
+        next(event, false);
+      }
+    });
+    /* carouselContainer.addEventListener('touchstart', (e) => {
+      isScrolling = true;
+      startX = e.touches[0].clientX;
+      console.log(`Start: ${startX}`);
+      scrollLeft = carouselContainer.scrollLeft;
+    });
+
+    carouselContainer.addEventListener('touchmove', (e) => {
+      if (!isScrolling) return;
+      console.log(`End: ${e.touches[0].clientX}`);
+      const x = e.touches[0].clientX - startX;
+      console.log(`Diff: ${x}`);
+      // if diff is +ve then left else right
+      carouselContainer.scrollLeft = scrollLeft - x;
+    });
+
+    carouselContainer.addEventListener('touchend', () => {
+      isScrolling = false;
+    }); */
   } else {
     block.append('no result found');
   }
