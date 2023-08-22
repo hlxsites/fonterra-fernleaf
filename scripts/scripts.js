@@ -101,13 +101,13 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   picture.className = pictureClass;
 
   const sourceDesktop = document.createElement('source');
-  sourceDesktop.media = '(min-width: 768px)';
+  sourceDesktop.media = '(min-width: 601px)';
   sourceDesktop.srcset = desktopImgUrl;
   sourceDesktop.type = 'image/webp';
   picture.appendChild(sourceDesktop);
 
   const sourceMobile = document.createElement('source');
-  sourceMobile.media = '(max-width: 767px)';
+  sourceMobile.media = '(max-width: 600px)';
   sourceDesktop.type = 'image/webp';
   sourceMobile.srcset = mobileImgUrl;
   picture.appendChild(sourceMobile);
