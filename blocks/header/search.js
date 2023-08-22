@@ -1,4 +1,5 @@
 import { fetchSearch, removeImageProps } from '../../scripts/scripts.js';
+import { isTablet } from '../../scripts/delayed.js';
 import { fetchPlaceholders, sampleRUM } from '../../scripts/lib-franklin.js';
 
 function Animation(dialogElem) {
@@ -14,6 +15,11 @@ function Animation(dialogElem) {
   this.bindEvents = () => {
     this.searchResults.addEventListener('mouseenter', this.stopAnimation);
     this.searchResults.addEventListener('mouseleave', this.startAnimation);
+  };
+
+  this.removeEvents = () => {
+    this.searchResults.removeEventListener('mouseenter', this.stopAnimation);
+    this.searchResults.removeEventListener('mouseleave', this.startAnimation);
   };
 
   this.marquee = () => {
@@ -59,15 +65,16 @@ function Animation(dialogElem) {
 
   this.init = () => {
     this.resizeObserver.observe(this.resultsWrapper);
-    this.bindEvents();
   };
 
   this.resizeObserver = new ResizeObserver(() => {
-    if (window.matchMedia('(min-width: 900px)').matches) {
+    if (isTablet()) {
+      this.bindEvents();
       this.startAnimation();
     } else {
       this.searchResults.removeAttribute('style');
       this.searchResultItems.forEach((item) => item.removeAttribute('style'));
+      this.removeEvents();
       this.stopAnimation();
     }
   });
