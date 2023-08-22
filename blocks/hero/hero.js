@@ -1,7 +1,6 @@
 import {
-  isMobile,
   formPictureTag,
-} from '../../scripts/delayed.js';
+} from '../../scripts/scripts.js';
 import {
   fetchPlaceholders,
 } from '../../scripts/lib-franklin.js';
@@ -14,6 +13,13 @@ const SECTION_CONTENT = 'content';
 const LARGE_SPLASH = 'largeSplash';
 const SMALL_SPLASH = 'smallSplash';
 let heroSections = [];
+
+/** Check mobile view port */
+function isMobile() {
+  const mql = window.matchMedia('(max-width: 600px)');
+
+  return mql.matches;
+}
 
 function preProcess(block) {
   heroSections = [];
