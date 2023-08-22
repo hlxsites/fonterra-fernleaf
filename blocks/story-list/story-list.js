@@ -1,10 +1,7 @@
 import {
-  getLanguage, adjustImageSize, fetchSearch, CATEGORY_STORIES,
+  getLanguage, adjustImageSize, fetchSearch, CATEGORY_STORIES, ProcessStoriesBgImage,
 } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
-import {
-  ProcessStoriesBgImage,
-} from '../../scripts/delayed.js';
 
 const bgConfigParams = {
   BG_TOP: 'storyListBgTop',
