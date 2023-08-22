@@ -65,7 +65,7 @@
 
 .slide-transition-right,
 .slide-transition-left {
-    transition: transform 0.5s step-end;
+    transition: transform 0.5s ease-in 0.3s;
 }
 
 .carousel h3 {
