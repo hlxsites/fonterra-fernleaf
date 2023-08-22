@@ -6,7 +6,7 @@ function Animation(dialogElem) {
   this.resultsWrapper = this.dialogElem.querySelector('.story-results');
   this.resultsWrapperHeight = this.resultsWrapper?.offsetHeight || 460;
   this.searchResults = this.dialogElem.querySelector('.suggestion-list .product-list-results');
-  this.searchResultsHeight = this.searchResults.offsetHeight;
+  this.searchResultsHeight = this.searchResults.offsetHeight + 70;
   this.searchResultItems = this.searchResults.querySelectorAll('.product-list-item');
   this.speed = 0.5;
   this.scroll = -(this.searchResultsHeight);
