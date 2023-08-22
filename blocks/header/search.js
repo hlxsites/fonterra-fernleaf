@@ -13,9 +13,7 @@ function Animation(dialogElem) {
 
   this.bindEvents = () => {
     this.searchResults.addEventListener('mouseenter', this.stopAnimation);
-    this.searchResults.addEventListener('touchstart', this.stopAnimation);
     this.searchResults.addEventListener('mouseleave', this.startAnimation);
-    this.searchResults.addEventListener('touchend', this.startAnimation);
   };
 
   this.marquee = () => {
