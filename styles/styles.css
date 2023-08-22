@@ -53,6 +53,8 @@
   --global-color-selective-yellow: #f0ab00;
   --global-color-dark-goldenrod: #c18812;
   --global-color-philippine-bronze: #630;
+  --global-color-strong-green: #006636;
+  --global-color-strong-red: #AE1C14;
 
   /* Colors - Alias Names */
   --text-color: var(--global-color-black);
@@ -169,7 +171,7 @@ h6 {
 
 h1 {
   font-size: var(--heading-font-size-xxl);
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   margin-bottom: 1.125rem;
   line-height: 4.063rem;
   font-weight: normal;
@@ -177,13 +179,13 @@ h1 {
 
 h2 {
   font-size: var(--heading-font-size-xl);
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-strong-red);
   font-weight: bold;
 }
 
 h3 {
   font-size: var(--heading-font-size-l);
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-strong-red);
 }
 
 h4 {
@@ -397,7 +399,7 @@ main .section.highlight {
 }
 
 .full-width-banner .default-content-wrapper h4 {
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   font-family: var(--global-tertiary-font-family);
   font-size: 1.5rem;
   font-weight: normal;
@@ -465,7 +467,7 @@ main .section.highlight {
 }
 
 .recipe h2 {
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-strong-red);
 }
 
 /* stylelint-disable no-descending-specificity */
@@ -574,6 +576,10 @@ main .section.highlight {
   text-decoration: none;
   font-weight: 600;
   color: var(--global-color-dark-blue);
+}
+
+#protein-milk-powder-for-the-whole-family, #protein-susu-tepung-untuk-seisi-keluarga {
+  color: var( --global-color-strong-red);
 }
 
 @media (min-width: 600px) {

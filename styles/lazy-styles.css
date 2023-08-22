@@ -535,7 +535,7 @@
 
 .title-popup {
   margin: 0;
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   font-size: 2.5rem;
 }
 
@@ -654,7 +654,7 @@
   background-color: var(--global-color-white);
   border: 0;
   border-radius: 3.125rem;
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   font-family: var(--heading-font-family-light);
   font-size: .875rem;
   height: 35px;
@@ -675,7 +675,7 @@
 }
 
 #search-dialog .search-input-field input::placeholder {
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
 }
 
 #search-dialog .product-list .more-products,
