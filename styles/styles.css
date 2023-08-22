@@ -576,6 +576,13 @@ main .section.highlight {
   color: var(--global-color-dark-blue);
 }
 
+.bottom-bg img{
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  bottom: var(--footer-height-mobile);
+}
+
 @media (min-width: 600px) {
   /* Full Width Banner */
   .full-width-banner {
@@ -671,5 +678,9 @@ main .section.highlight {
 
   .story-tips .story-page-bg-bottom img {
     bottom: 0;
+  }
+
+  .bottom-bg img{
+    bottom: var(--footer-height-desktop);
   }
 }

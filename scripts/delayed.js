@@ -170,6 +170,27 @@ export function ProcessStoriesBgImage() {
 }
 new ProcessStoriesBgImage().init();
 
+export function ProcessCategoryBgImage() {
+  this.updateCategoryBgImage = async (params) => {
+    const placeholder = await fetchPlaceholders();
+    const recipeContainer = document.querySelector('main');
+    if (recipeContainer && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
+      const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
+      recipeContainer.appendChild(pictureTag);
+    }
+  };
+  this.init = () => {
+    if (document.querySelector('main .product-category')) {
+      const bgConfigParams = {
+        bgKey: 'categoryBgBottom',
+        bgClass: 'bottom-bg',
+      };
+      const boundAction = this.updateCategoryBgImage.bind(this, bgConfigParams);
+      boundAction();
+    }
+  };
+}
+new ProcessCategoryBgImage().init();
 /**
  * Google Tag Manager implementation
 * */
