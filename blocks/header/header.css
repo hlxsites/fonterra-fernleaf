@@ -24,7 +24,7 @@ span.icon.icon-search svg {
 }
 
 span.icon.icon-search {
-  background: var(--global-color-pine-green);
+  background: var(--global-color-strong-green);
   border-radius: 50%;
   color: white;
   position: relative;
@@ -84,7 +84,7 @@ header nav a:any-link {
   }
 
   header nav>div.nav-sections>ul>li>a {
-    color: var(--global-color-pine-green);
+    color: var(--global-color-strong-green);
   }
 }
 
@@ -103,7 +103,7 @@ header nav a:any-link {
 
   header nav a:any-link {
     padding: 27px 10px;
-    color: var(--global-color-pine-green);
+    color: var(--global-color-strong-green);
     font-weight: inherit;
   }
 
@@ -253,7 +253,7 @@ header nav .nav-sections {
   display: none;
   visibility: hidden;
   background-color: var(--overlay-color);
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   position: absolute;
   width: 100%;
 }
@@ -323,7 +323,7 @@ header nav .nav-sections ul {
     text-transform: uppercase;
     font-size: .875rem;
     cursor: pointer;
-    color: var(--global-color-pine-green);
+    color: var(--global-color-strong-green);
     font-weight: bold;
   }
 

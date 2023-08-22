@@ -115,17 +115,17 @@
 }
 
 .bullet-active {
-    background: var(--global-color-pine-green);
+    background: var(--global-color-strong-green);
 }
 
 .scroll-left::before {
     content: "\e901";
-    color: var( --global-color-pine-green);
+    color: var(--global-color-strong-green);
 }
 
 .scroll-right::before {
     content: "\e902";
-    color: var( --global-color-pine-green);
+    color: var(--global-color-strong-green);
 }
 
 .product-slider-item img, .recipe-slider-item img {

@@ -70,7 +70,7 @@ main .section .accordion-wrapper {
 
 .accordion-wrapper .accordion-section button {
   background-color: transparent;
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-strong-red);
   letter-spacing: 0.6px;
   box-shadow: unset;
   padding: 0.938rem 4.688rem 0.938rem 2.125rem;

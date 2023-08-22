@@ -1,16 +1,26 @@
 import { getLanguage, fetchSearch, adjustImageSize } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
+// maintains current state for carousel items
 let current = 1;
+// total number of items in carousel
 let numItems = 0;
 let category;
+// total number of bullets for carousel
 let noOfBullets = 0;
+// maintains current state for carousel bullets
 let bulletCurrent = 1;
 let interval;
+// difference between active and clicked bullets in carousel
 let bulletDiff = 1;
 
-function next(event, rightScroll) {
-  const isRight = rightScroll || event === undefined || event.target.className === 'scroll-right';
+/**
+ * Handler for button click, initiates transition
+ * @param {*} event
+ */
+function next(event, isRightScroll) {
+  // event === undefined for autoscroll
+  const isRight = isRightScroll || event === undefined || event.target.className === 'scroll-right';
   const sliderList = document.querySelector('.slider-container');
   if (isRight) {
     sliderList.classList.add('slide-transition-right');
@@ -21,6 +31,9 @@ function next(event, rightScroll) {
   }
 }
 
+/**
+ * Handler after transition completes
+ */
 function changeOrder() {
   const sliderList = document.querySelector('.slider-container');
   const isRight = sliderList.classList.contains('slide-transition-right');
@@ -78,6 +91,9 @@ function fetchNumberOfBullets() {
   return (numItems - fetchItemsInCarousel() + 1);
 }
 
+/**
+ * Checks if we want to hide carousel buttons, animation and bullets
+ */
 function showStaticCarousel() {
   if (numItems === fetchItemsInCarousel()) {
     return true;
@@ -85,6 +101,9 @@ function showStaticCarousel() {
   return false;
 }
 
+/**
+ * Handler for carousel bullet click
+ */
 function handleBulletClick(event) {
   const clickedBullet = event.target.getAttribute('id');
 
@@ -114,6 +133,9 @@ function createBullets() {
   sliderList.append(bulletsContainer);
 }
 
+/**
+ * Hides carousel buttons, animation and bullets for static carousel
+ */
 function showHideCarousel() {
   const bulletsContainer = document.getElementById('bullets');
   const leftButton = document.getElementById('id-scroll-left');
@@ -172,6 +194,7 @@ export default async function decorate(block) {
   const randomItems = [];
   const availableItems = [...filteredItems];
 
+  // fetch random items for carousel
   while (randomItems.length < maxItemsInCarousel && availableItems.length > 0) {
     const randomIndex = Math.floor(Math.random() * availableItems.length);
     const randomItem = availableItems.splice(randomIndex, 1)[0];
@@ -206,6 +229,7 @@ export default async function decorate(block) {
     const noOfItems = categoryContainer.children.length;
     numItems = noOfItems;
 
+    // append left button for carousel to block
     const buttonl = document.createElement('button');
     buttonl.classList.add('scroll-left');
     buttonl.id = 'id-scroll-left';
@@ -242,6 +266,7 @@ export default async function decorate(block) {
     });
     resizeObserver.observe(carouselContainer);
 
+    // append right button for carousel to block
     const button = document.createElement('button');
     button.classList.add('scroll-right');
     button.id = 'id-scroll-right';

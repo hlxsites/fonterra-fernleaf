@@ -1,5 +1,5 @@
 .recipe-list-container #recipes {
-  color: var( --global-color-tomato-red);
+  color: var(--global-color-strong-red);
   font-size: 1.563rem;
   margin: 0;
 }
