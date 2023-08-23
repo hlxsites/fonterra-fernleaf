@@ -179,7 +179,7 @@ function autoScrollCarousel() {
 }
 
 export default async function decorate(block) {
-  category = block.innerText;
+  category = block.innerText.replace(/\s/g, '');
   const filteredItems = (await fetchSearch(category)).filter(
     (c) => c.path !== window.location.pathname,
   );
