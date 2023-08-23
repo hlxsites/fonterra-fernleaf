@@ -12,6 +12,7 @@ import {
   getMetadata,
   buildBlock,
   fetchPlaceholders,
+  toClassName,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -381,6 +382,14 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  const context = {
+    getMetadata,
+    toClassName,
+  };
+  // eslint-disable-next-line import/no-relative-packages
+  const { initConversionTracking } = await import('../plugins/rum-conversion/src/index.js');
+  await initConversionTracking.call(context, document);
 }
 
 /**
