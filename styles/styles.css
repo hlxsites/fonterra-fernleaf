@@ -572,16 +572,8 @@ main .section.highlight {
   padding-bottom: 0;
 }
 
-[lang="ms"] .story-tips .section.embed-container .embed-wrapper {
-  padding: 0;
-}
-
 [lang="ms"] .story-tips .section.embed-container .embed-wrapper .embed-gif{
   margin: 0;
-}
-
-[lang="ms"] .story-tips .section.embed-container .embed-wrapper ~ .default-content-wrapper {
-  padding: 0;
 }
 
 .story-tips .story-tips-action {
@@ -712,5 +704,19 @@ main .section.highlight {
 
   .bottom-bg img{
     bottom: var(--footer-height-desktop);
+  }
+}
+
+@media (min-width: 1020px) {
+  [lang="ms"] .story-tips .section.embed-container .embed-wrapper {
+    padding: 0;
+  }
+  
+  [lang="ms"] .story-tips .section.embed-container .embed-wrapper .embed-gif{
+    margin: 0;
+  }
+  
+  [lang="ms"] .story-tips .section.embed-container .embed-wrapper ~ .default-content-wrapper {
+    padding: 0;
   }
 }
