@@ -568,6 +568,14 @@ main .section.highlight {
   white-space: pre-line;
 }
 
+[lang="ms"] .story-tips .section:first-of-type .default-content-wrapper {
+  padding-bottom: 0;
+}
+
+[lang="ms"] .story-tips .section.picture-container .picture-wrapper .picture{
+  margin: 0;
+}
+
 .story-tips .story-tips-action {
   padding-top: 13px;
   position: absolute;
@@ -701,5 +709,19 @@ main .section.highlight {
 
   .bottom-bg img{
     bottom: var(--footer-height-desktop);
+  }
+}
+
+@media (min-width: 1020px) {
+  [lang="ms"] .story-tips .section.picture-container .picture-wrapper {
+    padding: 0;
+  }
+
+  [lang="ms"] .story-tips .section.picture-container .picture-wrapper .picture{
+    margin: 0;
+  }
+
+  [lang="ms"] .story-tips .section.picture-container .picture-wrapper ~ .default-content-wrapper {
+    padding: 0;
   }
 }
