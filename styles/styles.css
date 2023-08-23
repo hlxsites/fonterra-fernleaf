@@ -500,6 +500,10 @@ main .section.highlight {
   transition: all 0.3s ease;
 }
 
+.story-tips {
+  -webkit-font-smoothing: antialiased;
+}
+
 .story-tips-landing .section > div {
   padding-top: 0;
   padding-bottom: 0;
@@ -557,7 +561,10 @@ main .section.highlight {
 
 .story-tips .section:first-of-type .default-content-wrapper {
   position: relative;
-  padding-top: 35px;
+  padding-top: 40px;
+}
+
+[lang="en"] .story-tips .section:first-of-type .default-content-wrapper {
   white-space: pre-line;
 }
 
@@ -592,7 +599,6 @@ main .section.highlight {
 .product #protein-milk-powder-for-the-whole-family, .product #protein-susu-tepung-untuk-seisi-keluarga {
   color: var(--global-color-strong-green);
 }
-
 
 @media (min-width: 600px) {
   /* Full Width Banner */
@@ -665,6 +671,7 @@ main .section.highlight {
 
   .story-tips .story-tips-action {
     padding-top: unset;
+    font-weight: normal;
   }
 
   /* Recipe Details Page */
