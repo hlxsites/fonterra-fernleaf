@@ -1,7 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import { sampleRUM, getMetadata, fetchPlaceholders } from './lib-franklin.js';
-// eslint-disable-next-line import/no-cycle
-import { formPictureTag } from './scripts.js';
+import { sampleRUM, getMetadata } from './lib-franklin.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -110,58 +108,6 @@ function UpdateExternalLinks() {
 }
 new UpdateExternalLinks().init();
 
-export function ProcessStoriesBgImage() {
-  this.updateStoriesBgImage = async (params) => {
-    const placeholder = await fetchPlaceholders();
-    const storyContainer = document.querySelector('main');
-
-    const createAndAppendPicture = (bgClass, bgConstant) => {
-      if (document.querySelector(`.${bgClass}`)) document.querySelector(`.${bgClass}`).remove();
-      return formPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
-    };
-
-    const topPicture = createAndAppendPicture(params.BG_TOP_CLASS, params.BG_TOP);
-    storyContainer.insertBefore(topPicture, storyContainer.firstChild);
-
-    const bottomPicture = createAndAppendPicture(params.BG_BOTTOM_CLASS, params.BG_BOTTOM);
-    storyContainer.appendChild(bottomPicture);
-  };
-  this.init = () => {
-    if (document.querySelector('body.story-tips')) {
-      const bgConfigParams = {
-        BG_TOP: 'storyTipsBgTop',
-        BG_BOTTOM: 'storyTipsBgBottom',
-        BG_TOP_CLASS: 'story-page-bg-top',
-        BG_BOTTOM_CLASS: 'story-page-bg-bottom',
-      };
-      const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
-      boundAction();
-    }
-  };
-}
-new ProcessStoriesBgImage().init();
-
-export function ProcessBottomBgImage() {
-  this.updateBgImage = async (params) => {
-    const placeholder = await fetchPlaceholders();
-    const container = document.querySelector('main');
-    if (container && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
-      const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
-      container.appendChild(pictureTag);
-    }
-  };
-  this.init = () => {
-    if (document.querySelector('main .product-category')) {
-      const bgConfigParams = {
-        bgKey: 'categoryBgBottom',
-        bgClass: 'bottom-bg',
-      };
-      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
-      boundAction();
-    }
-  };
-}
-new ProcessBottomBgImage().init();
 /**
  * Google Tag Manager implementation
 * */

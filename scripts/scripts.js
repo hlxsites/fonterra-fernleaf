@@ -203,6 +203,26 @@ export function ProcessStoriesBgImage() {
     }
   };
 }
+export function ProcessBottomBgImage() {
+  this.updateBgImage = async (params) => {
+    const placeholder = await fetchPlaceholders();
+    const container = document.querySelector('main');
+    if (container && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
+      const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
+      container.appendChild(pictureTag);
+    }
+  };
+  this.init = () => {
+    if (document.querySelector('main .product-category')) {
+      const bgConfigParams = {
+        bgKey: 'categoryBgBottom',
+        bgClass: 'bottom-bg',
+      };
+      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
+      boundAction();
+    }
+  };
+}
 
 function GenerateBackGroundImages() {
   this.addImageSource = (src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 600px)', width: '1920' }, { width: '1023' }]) => {
@@ -305,6 +325,7 @@ function buildAutoBlocks(main) {
     decorateLinkedPictures(main);
 
     new ProcessStoriesBgImage().init();
+    new ProcessBottomBgImage().init();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

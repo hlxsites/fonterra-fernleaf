@@ -1,7 +1,9 @@
-import { adjustImageSize, fetchSearch, CATEGORY_RECIPES } from '../../scripts/scripts.js';
 import {
+  adjustImageSize,
+  fetchSearch,
+  CATEGORY_RECIPES,
   ProcessBottomBgImage,
-} from '../../scripts/delayed.js';
+} from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
