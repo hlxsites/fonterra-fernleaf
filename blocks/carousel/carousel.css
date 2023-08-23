@@ -101,7 +101,7 @@
     margin-top: 20px;
   }
 
-.bullet {
+.bullet-old {
     margin: 0 0.438rem;
     background: var(--global-color-foggy-gray);
     padding: 0;
@@ -113,6 +113,35 @@
     display: inline-block;
     margin-top: 20px;
     margin-bottom: 0;
+}
+
+.bullet {
+    background: var(--global-color-foggy-gray);
+    outline: none;
+    height: 15px;
+    width: 15px;
+    padding: 0 !important;
+    display: block;
+    margin: 5px;
+    border-radius: 10px;
+    box-shadow: none;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.bullet-diff {
+    top: 0;
+    position: relative;
+    display: block;
+    height: 15px;
+    width: 15px;
+    padding: 0 !important;
+    margin: 5px;
+    border-radius: 10px;
+    background-color: var(--highlight-background-color);
+    box-shadow: none;
+    cursor: pointer;
+    border: 1px solid transparent;
 }
 
 .bullet-active {
