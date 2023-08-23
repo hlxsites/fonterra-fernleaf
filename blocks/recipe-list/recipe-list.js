@@ -1,10 +1,7 @@
 import { adjustImageSize, fetchSearch, CATEGORY_RECIPES } from '../../scripts/scripts.js';
 import {
-  formPictureTag,
+  ProcessBottomBgImage,
 } from '../../scripts/delayed.js';
-import {
-  fetchPlaceholders,
-} from '../../scripts/lib-franklin.js';
 
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
@@ -18,6 +15,10 @@ const getListHTML = (row) => `<div>
                     </div>
                 </div>
             </a></div>`;
+const bgConfigParams = {
+  bgKey: 'recipesBgBottom',
+  bgClass: 'recipes-bottom-bg',
+};
 
 async function printList(list) {
   const ul = document.createElement('ul');
@@ -35,17 +36,6 @@ async function printList(list) {
   return ul;
 }
 
-async function formBgImage() {
-  const placeholder = await fetchPlaceholders();
-  const bgKey = 'recipesBgBottom';
-  const bgClass = 'recipes-bottom-bg';
-  const recipeContainer = document.querySelector('main');
-  if (recipeContainer && placeholder[`${bgKey}Mobile`] && placeholder[`${bgKey}Desktop`]) {
-    const pictureTag = formPictureTag(bgClass, placeholder[`${bgKey}Mobile`], placeholder[`${bgKey}Desktop`]);
-    recipeContainer.appendChild(pictureTag);
-  }
-}
-
 export default async function decorate(block) {
   const list = await fetchSearch(CATEGORY_RECIPES);
 
@@ -53,7 +43,8 @@ export default async function decorate(block) {
   if (list.length > 0) {
     const objects = await printList(list);
     block.append(objects);
-    formBgImage();
+    const boundFunction = new ProcessBottomBgImage().updateBgImage.bind(this, bgConfigParams);
+    boundFunction();
   } else {
     block.append('no result found');
   }

@@ -96,18 +96,30 @@ function buildCarouselBlock(main) {
   }
 }
 
-/**
- * Builds all synthetic blocks in a container element.
- * @param {Element} main The container element
-function buildAutoBlocks(main) {
-  try {
-    // buildHeroBlock(main);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Auto Blocking failed', error);
-  }
+export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
+  const picture = document.createElement('picture');
+  picture.className = pictureClass;
+
+  const sourceDesktop = document.createElement('source');
+  sourceDesktop.media = '(min-width: 601px)';
+  sourceDesktop.srcset = desktopImgUrl;
+  sourceDesktop.type = 'image/webp';
+  picture.appendChild(sourceDesktop);
+
+  const sourceMobile = document.createElement('source');
+  sourceMobile.media = '(max-width: 600px)';
+  sourceDesktop.type = 'image/webp';
+  sourceMobile.srcset = mobileImgUrl;
+  picture.appendChild(sourceMobile);
+
+  const img = document.createElement('img');
+  img.src = desktopImgUrl;
+  img.alt = '';
+  img.width = '1024';
+  img.height = '750';
+  picture.appendChild(img);
+  return picture;
 }
-*/
 
 export function decorateLinkedPictures(container) {
   [...container.querySelectorAll('picture + br + a')]
@@ -160,6 +172,36 @@ export async function load404() {
   if (sectionWrapper && placeholders) {
     sectionWrapper.innerHTML = createSectionWrapper();
   }
+}
+
+export function ProcessStoriesBgImage() {
+  this.updateStoriesBgImage = async (params) => {
+    const placeholder = await fetchPlaceholders();
+    const storyContainer = document.querySelector('main');
+
+    const createAndAppendPicture = (bgClass, bgConstant) => {
+      if (document.querySelector(`.${bgClass}`)) document.querySelector(`.${bgClass}`).remove();
+      return formPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
+    };
+
+    const topPicture = createAndAppendPicture(params.BG_TOP_CLASS, params.BG_TOP);
+    storyContainer.insertBefore(topPicture, storyContainer.firstChild);
+
+    const bottomPicture = createAndAppendPicture(params.BG_BOTTOM_CLASS, params.BG_BOTTOM);
+    storyContainer.appendChild(bottomPicture);
+  };
+  this.init = () => {
+    if (document.querySelector('body.story-tips')) {
+      const bgConfigParams = {
+        BG_TOP: 'storyTipsBgTop',
+        BG_BOTTOM: 'storyTipsBgBottom',
+        BG_TOP_CLASS: 'story-page-bg-top',
+        BG_BOTTOM_CLASS: 'story-page-bg-bottom',
+      };
+      const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
+      boundAction();
+    }
+  };
 }
 
 function GenerateBackGroundImages() {
@@ -255,19 +297,32 @@ export async function pushToGTM(data) {
 }
 
 /**
+ * Builds all synthetic blocks in a container element.
+ * @param {Element} main The container element
+ */
+function buildAutoBlocks(main) {
+  try {
+    decorateLinkedPictures(main);
+
+    new ProcessStoriesBgImage().init();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
-  decorateLinkedPictures(main);
   decorateButtons(main);
-  // buildAutoBlocks(main);
+  buildAutoBlocks(main);
   buildCarouselBlock(main);
   decorateSections(main);
   decorateBlocks(main);
-
   (new GenerateBackGroundImages()).init();
 }
 

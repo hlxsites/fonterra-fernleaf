@@ -1,47 +1,13 @@
 // eslint-disable-next-line import/no-cycle
 import { sampleRUM, getMetadata, fetchPlaceholders } from './lib-franklin.js';
+// eslint-disable-next-line import/no-cycle
+import { formPictureTag } from './scripts.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
 
 // add more delayed functionality here
 
-// eslint-disable-next-line import/prefer-default-export
-export async function isMobile() {
-  const mql = window.matchMedia('(max-width: 600px)');
-
-  return mql.matches;
-}
-
-export function isTablet() {
-  const mql = window.matchMedia('(min-width: 900px)');
-  return mql.matches;
-}
-
-export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
-  const picture = document.createElement('picture');
-  picture.className = pictureClass;
-
-  const sourceDesktop = document.createElement('source');
-  sourceDesktop.media = '(min-width: 768px)';
-  sourceDesktop.srcset = desktopImgUrl;
-  sourceDesktop.type = 'image/webp';
-  picture.appendChild(sourceDesktop);
-
-  const sourceMobile = document.createElement('source');
-  sourceMobile.media = '(max-width: 767px)';
-  sourceDesktop.type = 'image/webp';
-  sourceMobile.srcset = mobileImgUrl;
-  picture.appendChild(sourceMobile);
-
-  const img = document.createElement('img');
-  img.src = desktopImgUrl;
-  img.alt = '';
-  img.width = '1024';
-  img.height = '750';
-  picture.appendChild(img);
-  return picture;
-}
 // add serves and duration to recipe details page content
 function AddServesAndDuration() {
   this.content = (serves, duration) => {
@@ -175,13 +141,13 @@ export function ProcessStoriesBgImage() {
 }
 new ProcessStoriesBgImage().init();
 
-export function ProcessCategoryBgImage() {
-  this.updateCategoryBgImage = async (params) => {
+export function ProcessBottomBgImage() {
+  this.updateBgImage = async (params) => {
     const placeholder = await fetchPlaceholders();
-    const categoryContainer = document.querySelector('main');
-    if (categoryContainer && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
+    const container = document.querySelector('main');
+    if (container && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
       const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
-      categoryContainer.appendChild(pictureTag);
+      container.appendChild(pictureTag);
     }
   };
   this.init = () => {
@@ -190,12 +156,12 @@ export function ProcessCategoryBgImage() {
         bgKey: 'categoryBgBottom',
         bgClass: 'bottom-bg',
       };
-      const boundAction = this.updateCategoryBgImage.bind(this, bgConfigParams);
+      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
       boundAction();
     }
   };
 }
-new ProcessCategoryBgImage().init();
+new ProcessBottomBgImage().init();
 /**
  * Google Tag Manager implementation
 * */
