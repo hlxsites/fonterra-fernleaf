@@ -568,6 +568,22 @@ main .section.highlight {
   white-space: pre-line;
 }
 
+[lang="ms"] .story-tips .section:first-of-type .default-content-wrapper {
+  padding-bottom: 0;
+}
+
+[lang="ms"] .story-tips .section.embed-container .embed-wrapper {
+  padding: 0;
+}
+
+[lang="ms"] .story-tips .section.embed-container .embed-wrapper .embed-gif{
+  margin: 0;
+}
+
+[lang="ms"] .story-tips .section.embed-container .embed-wrapper ~ .default-content-wrapper {
+  padding: 0;
+}
+
 .story-tips .story-tips-action {
   padding-top: 13px;
   position: absolute;
