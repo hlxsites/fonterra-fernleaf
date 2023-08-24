@@ -554,6 +554,10 @@ main .section.highlight {
   padding-bottom: 4.563rem;
 }
 
+.story-tips .section > div img {
+  width: 100%;
+}
+
 .story-tips .story-page-bg-bottom img,
 .story-tips-landing .story-page-bg-bottom img,
 .story-tips .story-page-bg-top img,
