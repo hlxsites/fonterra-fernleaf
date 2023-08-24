@@ -147,6 +147,10 @@ body {
   padding-bottom: var(--footer-height-mobile);
 }
 
+main {
+  position: relative;
+}
+
 body.appear {
   display: block;
 }
@@ -563,9 +567,14 @@ main .section.highlight {
   width: 100%;
 }
 
+.story-tips .story-page-bg-top img,
+.story-tips-landing .story-page-bg-top img {
+  top: 0;
+}
+
 .story-tips .story-page-bg-bottom img,
 .story-tips-landing .story-page-bg-bottom img {
-  bottom: var(--footer-height-mobile);
+  bottom: 0;
 }
 
 .story-tips .section > div * {
