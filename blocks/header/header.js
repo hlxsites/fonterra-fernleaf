@@ -101,7 +101,7 @@ function disablePageScroll() {
  * @param {nav}
  */
 
-function createSearchDialog(nav) {
+function createSearchDialog(nav, searchValue) {
   const dialogId = 'search-dialog';
   const searchDialog = new Search();
   const searchDialogElement = createModal(
@@ -123,6 +123,11 @@ function createSearchDialog(nav) {
       }, debounceDelay);
 
       searchInput.addEventListener('input', debouncedSearch);
+
+      if (searchValue) {
+        searchInput.value = searchValue;
+        debouncedSearch();
+      }
 
       dialogElem.querySelector('.close').addEventListener('click', () => {
         if (searchDialogElement.open) {
@@ -210,6 +215,14 @@ export default async function decorate(block) {
         disablePageScroll();
         createSearchDialog(nav);
       });
+    }
+
+    const currentUrl = new URL(window.location.href);
+    const paramName = 'search';
+    const paramValue = currentUrl.searchParams.get(paramName);
+    if (paramValue) {
+      disablePageScroll();
+      createSearchDialog(nav, paramValue);
     }
   }
 }
