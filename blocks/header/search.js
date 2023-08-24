@@ -164,8 +164,11 @@ export default function Search() {
  *   value
  */
   this.performSearch = async (value) => {
-    const searchValue = value.trim().toLowerCase();
+    const searchValue = value.trim().toLowerCase();    
     if (searchValue) {
+      const currentUrl = new URL(window.location.href);
+      currentUrl.searchParams.set('search', searchValue);
+      history.pushState(null, null, currentUrl.toString());
       const spinner = this.dialogElem.querySelector('.overlay-loading');
       spinner.style.display = 'block';
       const placeholders = await fetchPlaceholders();
