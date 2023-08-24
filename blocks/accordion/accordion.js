@@ -24,6 +24,13 @@ export default async function decorate(block) {
       accordion.firstElementChild.classList.add('is-multiline');
     }
     accordion.firstElementChild.nextElementSibling.classList.add('text');
+    const lastElementChildHTML = accordion.lastElementChild.innerHTML;
+    if (lastElementChildHTML === 'expand') {
+      accordion.firstElementChild.nextElementSibling.classList.add('default-expand');
+      accordion.lastElementChild.remove();
+    } else if (lastElementChildHTML === '') {
+      accordion.lastElementChild.remove();
+    }
   });
   const element = document.createElement(constants.tagName);
   element.innerHTML = block.innerHTML;
