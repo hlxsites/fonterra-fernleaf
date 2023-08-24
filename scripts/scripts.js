@@ -103,22 +103,16 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   picture.className = pictureClass;
 
   const sourceDesktop = document.createElement('source');
-  sourceDesktop.media = '(min-width: 601px)';
+  sourceDesktop.media = '(min-width: 600px)';
   sourceDesktop.srcset = desktopImgUrl;
   sourceDesktop.type = 'image/webp';
   picture.appendChild(sourceDesktop);
 
-  const sourceMobile = document.createElement('source');
-  sourceMobile.media = '(max-width: 600px)';
-  sourceDesktop.type = 'image/webp';
-  sourceMobile.srcset = mobileImgUrl;
-  picture.appendChild(sourceMobile);
-
   const img = document.createElement('img');
-  img.src = desktopImgUrl;
+  img.src = mobileImgUrl;
   img.alt = '';
-  img.width = '1024';
-  img.height = '750';
+  img.width = '512';
+  img.height = '375';
   picture.appendChild(img);
   return picture;
 }
