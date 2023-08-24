@@ -7,7 +7,7 @@ import {
 } from '../../scripts/scripts.js';
 
 const getHTML = (row) => `<a target="_blank" href="${row.link}" title="${row.brand}" aria-label="${row.brand}">
-                <img alt="${row.brand}" src="${row.img}">
+                <img alt="${row.brand}" src="${row.img}" width="150" height="63">
             </a>`;
 
 const buyOptions = [];
