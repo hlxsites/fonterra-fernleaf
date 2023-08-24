@@ -8,7 +8,7 @@ import {
 } from '../../scripts/scripts.js';
 
 const getHTML = (row) => `<a target="_blank" href="${row.link}" title="${row.brand}" aria-label="${row.brand}">
-                <img alt="${row.brand}" src="${adjustImageSize(row.img, 100)}" width="100">
+                <img alt="${row.brand}" src="${adjustImageSize(row.img, 150)}" width="150">
             </a>`;
 
 const buyOptions = [];
