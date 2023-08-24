@@ -1,0 +1,12 @@
+.block.picture {
+  opacity: 0;
+}
+
+.block.picture img {
+  width: 100%;
+  height: auto;
+}
+
+.block.picture.picture-is-loaded {
+  opacity: 1;
+}
