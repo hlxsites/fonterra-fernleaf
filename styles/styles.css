@@ -561,7 +561,6 @@ main .section.highlight {
   position: absolute;
   z-index: -1;
   width: 100%;
-  top: 0;
 }
 
 .story-tips .story-page-bg-bottom img,
