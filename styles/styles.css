@@ -147,6 +147,10 @@ body {
   padding-bottom: var(--footer-height-mobile);
 }
 
+main {
+  position: relative;;
+}
+
 body.appear {
   display: block;
 }

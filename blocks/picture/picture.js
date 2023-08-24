@@ -1,7 +1,6 @@
 /*
  * Picture Block
  * Show image and gifs directly on your page
- * https://www.hlx.live/developer/block-collection/embed
  */
 
 const IMG_DESKTOP = 'desktop';
@@ -14,6 +13,7 @@ function createPicture(content) {
   const alt = content?.IMG_ALT ? content.IMG_ALT : ' ';
 
   let picture;
+  // If desktop and mobile images are configured, create images sources accordingly
   if (mobileImgUrl && desktopImgUrl) {
     picture = document.createElement('picture');
     const sourceDesktop = document.createElement('source');
@@ -30,6 +30,7 @@ function createPicture(content) {
     }
   }
 
+  // create image tag
   const img = document.createElement('img');
   img.src = desktopImgUrl || mobileImgUrl;
   img.alt = '';
@@ -37,6 +38,8 @@ function createPicture(content) {
   img.height = '750';
   img.alt = alt;
 
+  // if only one image is configured, return it
+  // else append img and return picture tag
   if (mobileImgUrl && desktopImgUrl) {
     picture.appendChild(img);
   } else {
@@ -66,6 +69,7 @@ const loadPicture = (block) => {
 };
 
 export default function decorate(block) {
+  // load picture when it is in viewport
   const observer = new IntersectionObserver((entries) => {
     if (entries.some((e) => e.isIntersecting)) {
       observer.disconnect();
