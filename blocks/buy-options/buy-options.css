@@ -27,7 +27,8 @@
 
 .buyoption img {
   height: 42px;
-  width: 100px;
+  max-width: 100px;
+  width: auto;
 }
 
 @media (min-width: 900px) {
