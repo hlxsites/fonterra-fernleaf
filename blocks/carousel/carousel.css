@@ -65,7 +65,7 @@
 
 .slide-transition-right,
 .slide-transition-left {
-    transition: transform 0.5s step-end;
+    transition: transform 0.5s ease-in 0.3s;
 }
 
 .carousel h3 {
@@ -105,9 +105,10 @@
     margin: 0 0.438rem;
     background: var(--global-color-foggy-gray);
     padding: 0;
+    outline: none;
     border: 0;
-    height: .75rem;
-    width: .75rem;
+    height: 15px;
+    width: 15px;
     border-radius: 50%;
     display: inline-block;
     margin-top: 20px;
@@ -115,17 +116,17 @@
 }
 
 .bullet-active {
-    background: var(--global-color-pine-green);
+    background: var(--global-color-strong-green);
 }
 
 .scroll-left::before {
     content: "\e901";
-    color: var( --global-color-pine-green);
+    color: var(--global-color-strong-green);
 }
 
 .scroll-right::before {
     content: "\e902";
-    color: var( --global-color-pine-green);
+    color: var(--global-color-strong-green);
 }
 
 .product-slider-item img, .recipe-slider-item img {

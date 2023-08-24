@@ -1,4 +1,9 @@
-import { adjustImageSize, fetchSearch, CATEGORY_RECIPES } from '../../scripts/scripts.js';
+import {
+  adjustImageSize,
+  fetchSearch,
+  CATEGORY_RECIPES,
+  ProcessBottomBgImage,
+} from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
@@ -12,6 +17,10 @@ const getListHTML = (row) => `<div>
                     </div>
                 </div>
             </a></div>`;
+const bgConfigParams = {
+  bgKey: 'recipesBgBottom',
+  bgClass: 'recipes-bottom-bg',
+};
 
 async function printList(list) {
   const ul = document.createElement('ul');
@@ -36,6 +45,8 @@ export default async function decorate(block) {
   if (list.length > 0) {
     const objects = await printList(list);
     block.append(objects);
+    const boundFunction = new ProcessBottomBgImage().updateBgImage.bind(this, bgConfigParams);
+    boundFunction();
   } else {
     block.append('no result found');
   }

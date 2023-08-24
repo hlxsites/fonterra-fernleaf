@@ -12,6 +12,7 @@ import {
   getMetadata,
   buildBlock,
   fetchPlaceholders,
+  toClassName,
 } from './lib-franklin.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -20,7 +21,8 @@ const LANGUAGES = new Set(['en', 'ms']);
 export const CATEGORY_STORIES = 'story';
 export const CATEGORY_PRODUCT = 'product';
 export const CATEGORY_RECIPES = 'recipe';
-export const BASE_URL = window.location.origin;
+// eslint-disable-next-line max-len
+export const BASE_URL = window.location.origin !== 'null' ? window.location.origin : window.parent.location.origin;
 
 let language;
 
@@ -96,18 +98,24 @@ function buildCarouselBlock(main) {
   }
 }
 
-/**
- * Builds all synthetic blocks in a container element.
- * @param {Element} main The container element
-function buildAutoBlocks(main) {
-  try {
-    // buildHeroBlock(main);
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.error('Auto Blocking failed', error);
-  }
+export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
+  const picture = document.createElement('picture');
+  picture.className = pictureClass;
+
+  const sourceDesktop = document.createElement('source');
+  sourceDesktop.media = '(min-width: 600px)';
+  sourceDesktop.srcset = desktopImgUrl;
+  sourceDesktop.type = 'image/webp';
+  picture.appendChild(sourceDesktop);
+
+  const img = document.createElement('img');
+  img.src = mobileImgUrl;
+  img.alt = '';
+  img.width = '360';
+  img.height = '264';
+  picture.appendChild(img);
+  return picture;
 }
-*/
 
 export function decorateLinkedPictures(container) {
   [...container.querySelectorAll('picture + br + a')]
@@ -160,6 +168,56 @@ export async function load404() {
   if (sectionWrapper && placeholders) {
     sectionWrapper.innerHTML = createSectionWrapper();
   }
+}
+
+export function ProcessStoriesBgImage() {
+  this.updateStoriesBgImage = async (params) => {
+    const placeholder = await fetchPlaceholders();
+    const storyContainer = document.querySelector('main');
+
+    const createAndAppendPicture = (bgClass, bgConstant) => {
+      if (document.querySelector(`.${bgClass}`)) document.querySelector(`.${bgClass}`).remove();
+      return formPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
+    };
+
+    const topPicture = createAndAppendPicture(params.BG_TOP_CLASS, params.BG_TOP);
+    storyContainer.insertBefore(topPicture, storyContainer.firstChild);
+
+    const bottomPicture = createAndAppendPicture(params.BG_BOTTOM_CLASS, params.BG_BOTTOM);
+    storyContainer.appendChild(bottomPicture);
+  };
+  this.init = () => {
+    if (document.querySelector('body.story-tips')) {
+      const bgConfigParams = {
+        BG_TOP: 'storyTipsBgTop',
+        BG_BOTTOM: 'storyTipsBgBottom',
+        BG_TOP_CLASS: 'story-page-bg-top',
+        BG_BOTTOM_CLASS: 'story-page-bg-bottom',
+      };
+      const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
+      boundAction();
+    }
+  };
+}
+export function ProcessBottomBgImage() {
+  this.updateBgImage = async (params) => {
+    const placeholder = await fetchPlaceholders();
+    const container = document.querySelector('main');
+    if (container && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
+      const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
+      container.appendChild(pictureTag);
+    }
+  };
+  this.init = () => {
+    if (document.querySelector('main .product-category')) {
+      const bgConfigParams = {
+        bgKey: 'categoryBgBottom',
+        bgClass: 'bottom-bg',
+      };
+      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
+      boundAction();
+    }
+  };
 }
 
 function GenerateBackGroundImages() {
@@ -255,19 +313,33 @@ export async function pushToGTM(data) {
 }
 
 /**
+ * Builds all synthetic blocks in a container element.
+ * @param {Element} main The container element
+ */
+function buildAutoBlocks(main) {
+  try {
+    decorateLinkedPictures(main);
+
+    new ProcessStoriesBgImage().init();
+    new ProcessBottomBgImage().init();
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('Auto Blocking failed', error);
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
-  decorateLinkedPictures(main);
   decorateButtons(main);
-  // buildAutoBlocks(main);
+  buildAutoBlocks(main);
   buildCarouselBlock(main);
   decorateSections(main);
   decorateBlocks(main);
-
   (new GenerateBackGroundImages()).init();
 }
 
@@ -276,7 +348,7 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  document.documentElement.lang = 'en';
+  document.documentElement.lang = getLanguage();
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
@@ -305,6 +377,14 @@ async function loadLazy(doc) {
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
+
+  const context = {
+    getMetadata,
+    toClassName,
+  };
+  // eslint-disable-next-line import/no-relative-packages
+  const { initConversionTracking } = await import('../plugins/rum-conversion/src/index.js');
+  await initConversionTracking.call(context, document);
 }
 
 /**

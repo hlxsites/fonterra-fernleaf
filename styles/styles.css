@@ -12,8 +12,8 @@
 
 :root {
   /* fonts */
-  --global-primary-font-family: mark-ot, helvetica, arial, sans-serif;
-  --global-secondary-font-family: mark-ot-book, helvetica, arial, sans-serif;
+  --global-primary-font-family: mark-ot, verdana, arial, sans-serif;
+  --global-secondary-font-family: mark-ot-book, verdana, arial, sans-serif;
   --global-tertiary-font-family: stag, georgia, "Times New Roman", times, serif;
   --global-quaternary-font-family: stag-sans-book, helvetica, arial, sans-serif;
   --global-quinary-font-family: stag-sans-medium, helvetica, arial, sans-serif;
@@ -53,6 +53,8 @@
   --global-color-selective-yellow: #f0ab00;
   --global-color-dark-goldenrod: #c18812;
   --global-color-philippine-bronze: #630;
+  --global-color-strong-green: #006636;
+  --global-color-strong-red: #AE1C14;
 
   /* Colors - Alias Names */
   --text-color: var(--global-color-black);
@@ -145,6 +147,10 @@ body {
   padding-bottom: var(--footer-height-mobile);
 }
 
+main {
+  position: relative;
+}
+
 body.appear {
   display: block;
 }
@@ -169,7 +175,7 @@ h6 {
 
 h1 {
   font-size: var(--heading-font-size-xxl);
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   margin-bottom: 1.125rem;
   line-height: 4.063rem;
   font-weight: normal;
@@ -177,13 +183,13 @@ h1 {
 
 h2 {
   font-size: var(--heading-font-size-xl);
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-strong-red);
   font-weight: bold;
 }
 
 h3 {
   font-size: var(--heading-font-size-l);
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-strong-red);
 }
 
 h4 {
@@ -397,7 +403,7 @@ main .section.highlight {
 }
 
 .full-width-banner .default-content-wrapper h4 {
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   font-family: var(--global-tertiary-font-family);
   font-size: 1.5rem;
   font-weight: normal;
@@ -465,7 +471,7 @@ main .section.highlight {
 }
 
 .recipe h2 {
-  color: var(--global-color-philippine-bronze);
+  color: var(--global-color-strong-red);
 }
 
 /* stylelint-disable no-descending-specificity */
@@ -498,6 +504,32 @@ main .section.highlight {
   transition: all 0.3s ease;
 }
 
+/* Story tips page styles */
+.story-tips  h1 {
+  margin-top: 0;
+  font-size: 1.563rem;
+}
+
+.story-tips-action {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  white-space: normal;
+}
+
+.story-tips-action .print-btn {
+  font-size: .75rem;
+  color: var(--global-color-gray64);
+}
+
+.story-tips-action:hover {
+  text-decoration: none;
+}
+
+.story-tips p {
+  -webkit-font-smoothing: antialiased;
+}
+
 .story-tips-landing .section > div {
   padding-top: 0;
   padding-bottom: 0;
@@ -505,7 +537,6 @@ main .section.highlight {
 
 .story-tips-landing .section h1 {
   margin: 0;
-  line-height: 1;
   padding-top: 10px;
   width: 300px;
   letter-spacing: 0;
@@ -517,10 +548,6 @@ main .section.highlight {
   font-size: 1.313rem;
   letter-spacing: 0;
   margin: 3.438rem 0 2.25rem;
-}
-
-.story-tips main::before {
-  background-image: url("../../styles/images/story-top-mobile.png");
 }
 
 .story-tips .default-content-wrapper {
@@ -540,9 +567,14 @@ main .section.highlight {
   width: 100%;
 }
 
+.story-tips .story-page-bg-top img,
+.story-tips-landing .story-page-bg-top img {
+  top: 0;
+}
+
 .story-tips .story-page-bg-bottom img,
 .story-tips-landing .story-page-bg-bottom img {
-  bottom: var(--footer-height-mobile);
+  bottom: 0;
 }
 
 .story-tips .section > div * {
@@ -555,8 +587,19 @@ main .section.highlight {
 
 .story-tips .section:first-of-type .default-content-wrapper {
   position: relative;
-  padding-top: 35px;
+  padding-top: 40px;
+}
+
+[lang="en"] .story-tips .section:first-of-type .default-content-wrapper {
   white-space: pre-line;
+}
+
+[lang="ms"] .story-tips .section:first-of-type .default-content-wrapper {
+  padding-bottom: 0;
+}
+
+[lang="ms"] .story-tips .section.picture-container .picture-wrapper .picture{
+  margin: 0;
 }
 
 .story-tips .story-tips-action {
@@ -575,6 +618,22 @@ main .section.highlight {
   font-weight: 600;
   color: var(--global-color-dark-blue);
 }
+
+.bottom-bg img{
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  bottom: var(--footer-height-mobile);
+}
+
+#protein-milk-powder-for-the-whole-family, #protein-susu-tepung-untuk-seisi-keluarga {
+  color: var(--global-color-strong-red);
+}
+
+.product #protein-milk-powder-for-the-whole-family, .product #protein-susu-tepung-untuk-seisi-keluarga {
+  color: var(--global-color-strong-green);
+}
+
 
 @media (min-width: 600px) {
   /* Full Width Banner */
@@ -609,10 +668,6 @@ main .section.highlight {
     width: auto;
   }
 
-  .story-tips main::before {
-    background-image: url("../../styles/images/story-top-desktop.png");
-  }
-
   .story-tips-landing .section h1 {
     width: 100%;
   }
@@ -636,6 +691,10 @@ main .section.highlight {
     line-height: 1.375rem;
   }
 
+  .story-tips  h1 {
+    font-size: 2.313rem;
+  }
+
   .story-tips .section {
     padding-top: 5.625rem;
   }
@@ -647,6 +706,7 @@ main .section.highlight {
 
   .story-tips .story-tips-action {
     padding-top: unset;
+    font-weight: normal;
   }
 
   /* Recipe Details Page */
@@ -671,5 +731,23 @@ main .section.highlight {
 
   .story-tips .story-page-bg-bottom img {
     bottom: 0;
+  }
+
+  .bottom-bg img{
+    bottom: var(--footer-height-desktop);
+  }
+}
+
+@media (min-width: 1020px) {
+  [lang="ms"] .story-tips .section.picture-container .picture-wrapper {
+    padding: 0;
+  }
+
+  [lang="ms"] .story-tips .section.picture-container .picture-wrapper .picture{
+    margin: 0;
+  }
+
+  [lang="ms"] .story-tips .section.picture-container .picture-wrapper ~ .default-content-wrapper {
+    padding: 0;
   }
 }

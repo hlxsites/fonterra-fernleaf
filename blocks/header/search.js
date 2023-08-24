@@ -1,6 +1,10 @@
 import { fetchSearch, removeImageProps } from '../../scripts/scripts.js';
-import { isTablet } from '../../scripts/delayed.js';
 import { fetchPlaceholders, sampleRUM } from '../../scripts/lib-franklin.js';
+
+function isTablet() {
+  const mql = window.matchMedia('(min-width: 900px)');
+  return mql.matches;
+}
 
 function Animation(dialogElem) {
   this.dialogElem = dialogElem;

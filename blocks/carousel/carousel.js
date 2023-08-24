@@ -1,15 +1,26 @@
 import { getLanguage, fetchSearch, adjustImageSize } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
+// maintains current state for carousel items
 let current = 1;
+// total number of items in carousel
 let numItems = 0;
 let category;
+// total number of bullets for carousel
 let noOfBullets = 0;
+// maintains current state for carousel bullets
 let bulletCurrent = 1;
 let interval;
+// difference between active and clicked bullets in carousel
+let bulletDiff = 1;
 
-function next(event) {
-  const isRight = event === undefined || event.target.className === 'scroll-right';
+/**
+ * Handler for button click, initiates transition
+ * @param {*} event
+ */
+function next(event, isRightScroll) {
+  // event === undefined for autoscroll
+  const isRight = isRightScroll || event === undefined || event.target.className === 'scroll-right';
   const sliderList = document.querySelector('.slider-container');
   if (isRight) {
     sliderList.classList.add('slide-transition-right');
@@ -20,15 +31,22 @@ function next(event) {
   }
 }
 
+/**
+ * Handler after transition completes
+ */
 function changeOrder() {
   const sliderList = document.querySelector('.slider-container');
   const isRight = sliderList.classList.contains('slide-transition-right');
   if (isRight) {
-    current = (current === numItems) ? 1 : current + 1;
-    bulletCurrent = (bulletCurrent === noOfBullets) ? 1 : bulletCurrent + 1;
+    current = (current + bulletDiff > numItems)
+      ? current + bulletDiff - numItems : current + bulletDiff;
+    bulletCurrent = (bulletCurrent + bulletDiff > noOfBullets)
+      ? bulletCurrent + bulletDiff - noOfBullets : bulletCurrent + bulletDiff;
   } else {
-    current = (current === 1) ? numItems : current - 1;
-    bulletCurrent = (bulletCurrent === 1) ? noOfBullets : bulletCurrent - 1;
+    current = (current - bulletDiff < 1)
+      ? current - bulletDiff + numItems : current - bulletDiff;
+    bulletCurrent = (bulletCurrent - bulletDiff < 1)
+      ? bulletCurrent - bulletDiff + noOfBullets : bulletCurrent - bulletDiff;
   }
 
   let order = 1;
@@ -44,12 +62,14 @@ function changeOrder() {
 
   const e1 = document.querySelector('.bullet-active');
   e1.classList.remove('bullet-active');
-  const ele = document.getElementById((((bulletCurrent - 1) % (noOfBullets)) + 1));
+  const ele = document.getElementById(bulletCurrent);
+
   ele.classList.add('bullet-active');
 
   sliderList.classList.remove('slide-transition-right');
   sliderList.classList.remove('slide-transition-left');
   sliderList.style.transform = 'translate3d(0px, 0px, 0px)';
+  bulletDiff = 1;
 }
 
 function fetchItemsInCarousel() {
@@ -71,6 +91,9 @@ function fetchNumberOfBullets() {
   return (numItems - fetchItemsInCarousel() + 1);
 }
 
+/**
+ * Checks if we want to hide carousel buttons, animation and bullets
+ */
 function showStaticCarousel() {
   if (numItems === fetchItemsInCarousel()) {
     return true;
@@ -78,25 +101,42 @@ function showStaticCarousel() {
   return false;
 }
 
+/**
+ * Handler for carousel bullet click
+ */
+function handleBulletClick(event) {
+  const clickedBullet = event.target.getAttribute('id');
+
+  const activeBulletElement = document.querySelector('.bullet-active');
+  const activeBullet = activeBulletElement.getAttribute('id');
+  const diff = clickedBullet - activeBullet;
+  bulletDiff = Math.abs(diff);
+  next(event, diff > 0);
+}
+
 function createBullets() {
   const bulletsContainer = document.getElementById('bullets');
-  // Clear existing bullets before re-creating them
   bulletsContainer.innerHTML = '';
 
   noOfBullets = fetchNumberOfBullets();
   for (let i = 1; i <= noOfBullets; i += 1) {
-    const bullet = document.createElement('span');
+    const bullet = document.createElement('button');
     if (i === 1) {
       bullet.classList.add('bullet-active');
     }
     bullet.classList.add('bullet');
     bullet.id = i;
+    bullet.setAttribute('aria-label', `bullet-item-${i}`);
     bulletsContainer.appendChild(bullet);
+    bullet.addEventListener('click', handleBulletClick);
   }
   const sliderList = document.getElementById(`id-${category}-slider-list`);
   sliderList.append(bulletsContainer);
 }
 
+/**
+ * Hides carousel buttons, animation and bullets for static carousel
+ */
 function showHideCarousel() {
   const bulletsContainer = document.getElementById('bullets');
   const leftButton = document.getElementById('id-scroll-left');
@@ -139,7 +179,7 @@ function autoScrollCarousel() {
 }
 
 export default async function decorate(block) {
-  category = block.innerText;
+  category = block.innerText.replace(/\s/g, '');
   const filteredItems = (await fetchSearch(category)).filter(
     (c) => c.path !== window.location.pathname,
   );
@@ -155,6 +195,7 @@ export default async function decorate(block) {
   const randomItems = [];
   const availableItems = [...filteredItems];
 
+  // fetch random items for carousel
   while (randomItems.length < maxItemsInCarousel && availableItems.length > 0) {
     const randomIndex = Math.floor(Math.random() * availableItems.length);
     const randomItem = availableItems.splice(randomIndex, 1)[0];
@@ -189,11 +230,14 @@ export default async function decorate(block) {
     const noOfItems = categoryContainer.children.length;
     numItems = noOfItems;
 
+    // append left button for carousel to block
     const buttonl = document.createElement('button');
     buttonl.classList.add('scroll-left');
     buttonl.id = 'id-scroll-left';
     buttonl.setAttribute('aria-label', 'Scroll Left');
-    buttonl.addEventListener('click', next, this);
+    buttonl.addEventListener('click', (event) => {
+      next(event, false);
+    });
     block.append(buttonl);
 
     const sliderContainer = document.createElement('div');
@@ -222,11 +266,14 @@ export default async function decorate(block) {
     });
     resizeObserver.observe(carouselContainer);
 
+    // append right button for carousel to block
     const button = document.createElement('button');
     button.classList.add('scroll-right');
     button.id = 'id-scroll-right';
     button.setAttribute('aria-label', 'Scroll Right');
-    button.addEventListener('click', next, this);
+    button.addEventListener('click', (event) => {
+      next(event, true);
+    });
     block.append(button);
 
     block.querySelector(`.${category}-slider-list`).addEventListener('transitionend', changeOrder);
@@ -236,6 +283,23 @@ export default async function decorate(block) {
       autoScrollCarousel();
     });
     resizeObserverToShowOrHideCarousel.observe(carouselContainer);
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    carouselContainer.addEventListener('touchstart', (event) => {
+      touchStartX = event.touches[0].clientX;
+    }, { passive: true });
+
+    carouselContainer.addEventListener('touchend', (event) => {
+      touchEndX = event.changedTouches[0].clientX;
+      const swipeThreshold = 50; // Minimum distance for a swipe to be recognized as one item
+      const swipeDistance = touchStartX - touchEndX;
+      if (swipeDistance > swipeThreshold) {
+        next(event, true);
+      } else if (swipeDistance < -swipeThreshold) {
+        next(event, false);
+      }
+    }, { passive: true });
   } else {
     block.append('no result found');
   }

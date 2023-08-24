@@ -535,7 +535,7 @@
 
 .title-popup {
   margin: 0;
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   font-size: 2.5rem;
 }
 
@@ -557,29 +557,6 @@
 
 .disable-page-scroll {
   overflow: hidden;
-}
-
-/* Story tips page styles */
-.story-tips  h1 {
-  margin-top: 0;
-  font-size: 1.563rem;
-  line-height: 1.5;
-}
-
-.story-tips-action {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  white-space: normal;
-}
-
-.story-tips-action .print-btn {
-  font-size: .75rem;
-  color: var(--global-color-gray64);
-}
-
-.story-tips-action:hover {
-  text-decoration: none;
 }
 
 /* Search Dialog Styles */
@@ -654,7 +631,7 @@
   background-color: var(--global-color-white);
   border: 0;
   border-radius: 3.125rem;
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
   font-family: var(--heading-font-family-light);
   font-size: .875rem;
   height: 35px;
@@ -675,7 +652,7 @@
 }
 
 #search-dialog .search-input-field input::placeholder {
-  color: var(--global-color-pine-green);
+  color: var(--global-color-strong-green);
 }
 
 #search-dialog .product-list .more-products,
@@ -977,12 +954,6 @@
 
   #search-dialog .story-results .no-product-list {
     display: none;
-  }
-
-
-  .story-tips  h1 {
-    font-size: 2.313rem;
-    line-height: 1;
   }
 }
 
