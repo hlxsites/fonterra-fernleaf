@@ -240,7 +240,7 @@ export default function Search() {
             <div class='search-results'>
                 <div class='search-input-box'>
                     <div class='search-input-field'>
-                        <input type='text' name='search' placeholder='What are you looking for today?' title='Search' autocomplete='off'>
+                        <input type='text' name='search' autofocus placeholder='What are you looking for today?' title='Search' autocomplete='off'>
                         <span class='icon icon-search'></span>
                     </div>
                 </div>

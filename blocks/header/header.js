@@ -5,6 +5,8 @@ import Search from './search.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
+const currentUrl = new URL(window.location.href);
+const searchParamName = 'search';
 
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
@@ -111,7 +113,6 @@ function createSearchDialog(nav, searchValue) {
       const dialogElem = document.querySelector(`#${dialogId}`);
       searchDialog.initComponent(dialogElem);
       const searchInput = dialogElem.querySelector('.search-input-field input');
-      searchInput.focus();
       const debounceDelay = 500;
       const debouncedSearch = debounce(() => {
         const query = searchInput.value;
@@ -131,6 +132,9 @@ function createSearchDialog(nav, searchValue) {
 
       dialogElem.querySelector('.close').addEventListener('click', () => {
         if (searchDialogElement.open) {
+          currentUrl.searchParams.delete(searchParamName);
+          /* eslint-disable no-restricted-globals */
+          history.pushState(null, null, currentUrl.toString());
           searchInput.value = '';
           searchDialogElement.close();
           disablePageScroll();
@@ -211,18 +215,19 @@ export default async function decorate(block) {
     // Search Implementation
     const navTools = nav.querySelector('.nav-tools');
     if (navTools) {
-      navTools.querySelector('.icon-search').addEventListener('click', () => {
+      const searchParamValue = currentUrl.searchParams.get(searchParamName);
+      if (searchParamValue) {
+        disablePageScroll();
+        createSearchDialog(nav, searchParamValue);
+      }
+
+      const searchIcon = navTools.querySelector('.icon-search');
+      searchIcon.outerHTML = `<a class="search-action" href="#">${searchIcon.outerHTML}</a>`;
+      navTools.querySelector('.search-action').addEventListener('click', (e) => {
+        e.preventDefault();
         disablePageScroll();
         createSearchDialog(nav);
       });
-    }
-
-    const currentUrl = new URL(window.location.href);
-    const paramName = 'search';
-    const paramValue = currentUrl.searchParams.get(paramName);
-    if (paramValue) {
-      disablePageScroll();
-      createSearchDialog(nav, paramValue);
     }
   }
 }
