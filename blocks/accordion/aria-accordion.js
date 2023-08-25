@@ -69,9 +69,10 @@ export class AriaAccordion extends HTMLElement {
       idBtn = Math.random().toString(32).substring(2);
       idPnl = Math.random().toString(32).substring(2);
 
+      const defaultExpanded = !!el.querySelector('.default-expand');
       const button = document.createElement('button');
       button.id = idBtn;
-      button.setAttribute('aria-expanded', false);
+      button.setAttribute('aria-expanded', defaultExpanded);
       button.setAttribute('aria-controls', idPnl);
       button.setAttribute('tabindex', i === this.selectedIndex ? 0 : -1);
       if (el.firstElementChild.matches(HEADINGS_SELECTOR)) {
@@ -89,7 +90,7 @@ export class AriaAccordion extends HTMLElement {
       const panel = document.createElement('div');
       panel.id = idPnl;
       panel.setAttribute('role', 'region');
-      panel.setAttribute('aria-hidden', true);
+      panel.setAttribute('aria-hidden', !defaultExpanded);
       panel.setAttribute('aria-labelledby', idBtn);
       panel.append(el.firstElementChild.nextElementSibling);
       el.append(panel);
