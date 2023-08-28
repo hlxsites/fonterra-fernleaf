@@ -594,7 +594,9 @@
   color: var(--global-color-black);
   cursor: pointer;
   font-size: .938rem;
+  margin: 0 20px 0 0;
   min-width: unset;
+  padding: 10px;
 }
 
 #search-dialog .search-header p {
@@ -644,6 +646,7 @@
 }
 
 #search-dialog .search-input-field .icon-search {
+  cursor: text;
   height: 35px;
   position: absolute;
   right: 0;
@@ -802,6 +805,7 @@
 
   #search-dialog .search-header button.close {
     font-size: 1.188rem;
+    margin-right: 40px;
   }
 
   #search-dialog .search-header img {
@@ -825,6 +829,10 @@
   #search-dialog .search-input-field .icon-search {
     height: 60px;
     width: 60px;
+  }
+
+  #search-dialog .search-input-field .icon-search::before {
+    font-size: 1.813rem;
   }
 
   #search-dialog .search-list {
