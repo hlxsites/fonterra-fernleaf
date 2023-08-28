@@ -222,7 +222,8 @@ export default async function decorate(block) {
       }
 
       const searchIcon = navTools.querySelector('.icon-search');
-      searchIcon.outerHTML = `<a class="search-action" href="#">${searchIcon.outerHTML}</a>`;
+      const searchLabel = 'Search';
+      searchIcon.outerHTML = `<a class="search-action" href="#" aria-label=${searchLabel}>${searchIcon.outerHTML}</a>`;
       navTools.querySelector('.search-action').addEventListener('click', (e) => {
         e.preventDefault();
         disablePageScroll();
