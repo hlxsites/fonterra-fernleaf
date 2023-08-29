@@ -512,7 +512,7 @@ main .section.highlight {
 }
 
 /* Story tips page styles */
-.story-tips  main h1 {
+.story-tips h1 {
   margin-top: 0;
   font-size: 1.563rem;
 }
