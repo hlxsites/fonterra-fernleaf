@@ -129,10 +129,7 @@
 
 * {
   box-sizing: border-box;
-}
-
-*:focus {
-  outline: 2px solid #109cde;
+  outline-color: var(--global-color-sky-blue);
 }
 
 html {
