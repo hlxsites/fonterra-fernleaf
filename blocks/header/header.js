@@ -231,4 +231,14 @@ export default async function decorate(block) {
       });
     }
   }
+
+  const headerWrapper = document.querySelector('.header-wrapper');
+  // Add skip link
+  const skipLink = document.createElement('a');
+  skipLink.href = '#main';
+  skipLink.className = 'skip-link';
+  skipLink.innerText = 'Skip to main content';
+  document.body.insertBefore(skipLink, headerWrapper);
+  const main = document.querySelector('main');
+  main.id = 'main';
 }

@@ -28,6 +28,7 @@
   font-weight: 400;
   letter-spacing: normal;
   text-align: left;
+  color: var(--link-color);
 }
 
 .cards p {
@@ -40,7 +41,7 @@
   padding: 10px 0;
 }
 
-.cards a:hover {
+.cards ul>li>a:hover, .cards ul>li>a:focus {
   opacity: .6;
   transition: all .3s ease;
 }

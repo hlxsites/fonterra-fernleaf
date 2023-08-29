@@ -377,7 +377,7 @@ header nav .nav-sections ul {
     align-items: center;
   }
 
-  header nav .nav-sections>ul>li::after {
+  header nav .nav-sections>ul>li>a::after {
     content: "";
     position: absolute;
     bottom: 2px;
@@ -388,7 +388,7 @@ header nav .nav-sections ul {
     transition: width 0.3s;
   }
 
-  header nav .active::after {
+  header nav .nav-sections>ul>li.active>a::after {
     width: 100% !important;
   }
 
@@ -396,7 +396,7 @@ header nav .nav-sections ul {
     font-weight: bold;
   }
 
-  header nav .nav-sections>ul>li:hover::after {
+  header nav .nav-sections>ul>li>a:hover::after, header nav .nav-sections>ul>li>a:focus::after {
     width: 100%;
   }
 
@@ -421,4 +421,30 @@ header nav .nav-sections ul {
   .icon-search {
     padding-bottom: 19px;
   }
+}
+
+
+.skip-link {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  z-index: 1000;
+  color: var(--global-color-white);
+}
+
+.skip-link:focus {
+  clip: auto;
+  height: auto;
+  overflow: auto;
+  width: auto;
+  color: var(--global-color-white);
+  background: var(--global-color-dark-gray);
+  left: 5px;
+  top: 5px;
+  padding: 5px 10px;
+  border: 3px solid var(--global-color-white);
+  font-size: 1.3em;
 }
