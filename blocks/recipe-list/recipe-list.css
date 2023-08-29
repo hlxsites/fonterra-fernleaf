@@ -36,7 +36,7 @@
   position: absolute;
   z-index: -1;
   width: 100%;
-  bottom: var(--footer-height-mobile);
+  bottom: 0;
 }
 
 .recipe .recipe-card:hover img {
@@ -123,10 +123,6 @@
 
   .recipe .recipe-list ul li {
     flex-basis: 31.25%;
-  }
-
-  .recipe .recipes-bottom-bg img{
-    bottom: var(--footer-height-desktop);
   }
 
   .recipe .section div.recipe-list-wrapper {
