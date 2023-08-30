@@ -113,7 +113,9 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl, lazy) 
   img.alt = '';
   img.width = '360';
   img.height = '264';
-  img.loading = lazy ? lazy : 'eager';
+  if (lazy) {
+    img.loading = lazy;
+  }
   picture.appendChild(img);
   return picture;
 }
@@ -206,7 +208,7 @@ export function ProcessBottomBgImage() {
     const container = document.querySelector('main');
     if (container && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
       const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`], 'lazy');
-      container.prepend(pictureTag);
+      container.appendChild(pictureTag);
     }
   };
   this.init = () => {
