@@ -98,7 +98,7 @@ function buildCarouselBlock(main) {
   }
 }
 
-export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
+export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl, lazy) {
   const picture = document.createElement('picture');
   picture.className = pictureClass;
 
@@ -113,7 +113,7 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   img.alt = '';
   img.width = '360';
   img.height = '264';
-  img.loading = 'lazy';
+  img.loading = lazy ? lazy : 'eager';
   picture.appendChild(img);
   return picture;
 }
@@ -205,8 +205,8 @@ export function ProcessBottomBgImage() {
     const placeholder = await fetchPlaceholders();
     const container = document.querySelector('main');
     if (container && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
-      const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
-      container.appendChild(pictureTag);
+      const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`], 'lazy');
+      container.prepend(pictureTag);
     }
   };
   this.init = () => {

@@ -342,6 +342,10 @@ main img {
   width: 100%;
 }
 
+.section {
+  position: relative;
+}
+
 .section > div {
   max-width: 61.25rem;
   margin: 0 auto;
@@ -630,7 +634,6 @@ main .section.highlight {
 
 .bottom-bg img{
   position: absolute;
-  z-index: -1;
   width: 100%;
   bottom: 0;
 }
