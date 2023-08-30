@@ -64,7 +64,6 @@ const loadPicture = (block) => {
   });
   block.textContent = '';
   block.appendChild(createPicture(content));
-  block.classList = 'block picture';
   block.classList.add('picture-is-loaded');
 };
 
