@@ -635,6 +635,14 @@ main .section.highlight {
   bottom: 0;
 }
 
+.product .picture-wrapper {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  bottom: 0;
+  max-width: none;
+}
+
 #protein-milk-powder-for-the-whole-family, #protein-susu-tepung-untuk-seisi-keluarga {
   color: var(--global-color-strong-red);
 }
