@@ -17,6 +17,10 @@
   flex-basis: 50%;
 }
 
+.columns.product-category p:first-child a {
+  min-height: 255px;
+}
+
 .columns.product-category .button-container a:hover, .columns.product-category .button-container a:focus {
   color: var(--global-color-dark-blue);
   outline: 0;
@@ -57,6 +61,10 @@
 
   .columns.product > div > div:last-child {
     flex-basis: 100%;
+  }
+
+  .columns.product-category p:first-child a {
+    min-height: 312px;
   }
 }
 
