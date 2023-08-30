@@ -105,7 +105,6 @@
     margin: 0 0.438rem;
     background: var(--global-color-foggy-gray);
     padding: 0;
-    outline: none;
     border: 0;
     height: 15px;
     width: 15px;
@@ -113,6 +112,10 @@
     display: inline-block;
     margin-top: 20px;
     margin-bottom: 0;
+}
+
+.bullet:hover:not(.bullet-active) {
+    background: var(--global-color-sky-blue);
 }
 
 .bullet-active {
