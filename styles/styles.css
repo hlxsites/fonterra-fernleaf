@@ -620,7 +620,7 @@ main .section.highlight {
 }
 
 .bottom-bg img{
-  position: absolute;
+  position: relative;
   z-index: -1;
   width: 100%;
   bottom: 0;
