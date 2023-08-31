@@ -98,8 +98,8 @@ function disablePageScroll() {
   document.body.classList.toggle('disable-page-scroll');
 }
 
-/** 
- * Create a skip to main link 
+/**
+ * Create a skip to main link
  */
 function addSkipToMain() {
   const headerWrapper = document.querySelector('.header-wrapper');
@@ -112,7 +112,7 @@ function addSkipToMain() {
   // add id to main element to support skip link
   const main = document.querySelector('main');
   main.id = 'main';
- }
+}
 
 /**
  * Create the Search Dialog
