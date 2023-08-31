@@ -111,8 +111,8 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const img = document.createElement('img');
   img.src = mobileImgUrl;
   img.alt = '';
-  img.width = '360';
-  img.height = '264';
+  img.width = '200';
+  img.height = '100';
   picture.appendChild(img);
   return picture;
 }
