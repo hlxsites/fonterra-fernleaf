@@ -29,8 +29,8 @@ export default function decorate(block) {
     img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]));
   });
   ul.querySelectorAll('img').forEach((img) => {
-    img.width = '320';
-    img.height = '330';
+    img.width = '750';
+    img.height = '774';
   });
   block.textContent = '';
   block.append(ul);
