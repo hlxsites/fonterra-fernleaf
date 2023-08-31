@@ -45,3 +45,13 @@
   opacity: .6;
   transition: all .3s ease;
 }
+
+.cards a img {
+  aspect-ratio: 490 / 506;
+}
+
+@media (min-width: 900px) {
+  .cards a img {
+    aspect-ratio: 750 / 774;
+  }
+}
