@@ -3,6 +3,10 @@
   padding-bottom: 6.25rem;
 }
 
+.section .columns-container{
+  min-height: 200px;
+}
+
 .columns > div {
   display: flex;
   flex-wrap: wrap;

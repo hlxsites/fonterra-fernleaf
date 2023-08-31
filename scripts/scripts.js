@@ -111,8 +111,8 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const img = document.createElement('img');
   img.src = mobileImgUrl;
   img.alt = '';
-  img.width = '200';
-  img.height = '100';
+  img.width = '360';
+  img.height = '264';
   picture.appendChild(img);
   return picture;
 }
@@ -320,8 +320,7 @@ function buildAutoBlocks(main) {
   try {
     decorateLinkedPictures(main);
 
-      new ProcessStoriesBgImage().init();
-      new ProcessBottomBgImage().init();
+    new ProcessStoriesBgImage().init();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
