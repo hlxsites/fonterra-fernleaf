@@ -189,7 +189,6 @@ export default async function decorate(block) {
             navSection.classList.add('active');
           }
         }
-        
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('mouseenter', () => {
           if (isDesktop.matches) {
