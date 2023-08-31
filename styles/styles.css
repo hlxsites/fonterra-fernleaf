@@ -422,6 +422,9 @@ main .section.highlight {
 
 .full-width-banner .default-content-wrapper a {
   font-weight: 500;
+}
+
+.full-width-banner .default-content-wrapper a.button {
   min-width: 10.938rem;
 }
 
