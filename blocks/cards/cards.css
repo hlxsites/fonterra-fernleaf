@@ -46,12 +46,16 @@
   transition: all .3s ease;
 }
 
-/* .cards a img {
+.cards a img {
   aspect-ratio: 490 / 506;
 }
 
 @media (min-width: 900px) {
+  .cards ul>li {
+    min-height: 505px;
+  }
+  
   .cards a img {
     aspect-ratio: 750 / 774;
   }
-} */
+}
