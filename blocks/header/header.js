@@ -98,6 +98,22 @@ function disablePageScroll() {
   document.body.classList.toggle('disable-page-scroll');
 }
 
+/** 
+ * Create a skip to main link 
+ */
+function addSkipToMain() {
+  const headerWrapper = document.querySelector('.header-wrapper');
+  // create and insert skip link before header
+  const skipLink = document.createElement('a');
+  skipLink.href = '#main';
+  skipLink.className = 'skip-link';
+  skipLink.innerText = 'Skip to main content';
+  document.body.insertBefore(skipLink, headerWrapper);
+  // add id to main element to support skip link
+  const main = document.querySelector('main');
+  main.id = 'main';
+ }
+
 /**
  * Create the Search Dialog
  * @param {nav}
@@ -231,4 +247,7 @@ export default async function decorate(block) {
       });
     }
   }
+
+  // Add skip link
+  addSkipToMain();
 }

@@ -422,3 +422,28 @@ header nav .nav-sections ul {
     padding-bottom: 19px;
   }
 }
+
+.skip-link {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  z-index: 1000;
+  color: var(--global-color-white);
+}
+
+.skip-link:focus {
+  clip: auto;
+  height: auto;
+  overflow: auto;
+  width: auto;
+  color: var(--global-color-white);
+  background: var(--global-color-dark-gray);
+  left:200px;
+  top: 20px;
+  padding: 5px 10px;
+  border: 3px solid var(--global-color-white);
+  font-size: 0.8rem;
+}
