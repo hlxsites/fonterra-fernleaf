@@ -19,7 +19,7 @@ const getListHTML = (row) => `<div>
             </a></div>`;
 const bgConfigParams = {
   bgKey: 'recipesBgBottom',
-  bgClass: 'recipes-bottom-bg',
+  bgClass: 'bottom-bg',
 };
 
 async function printList(list) {

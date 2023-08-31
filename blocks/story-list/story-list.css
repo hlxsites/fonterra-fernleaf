@@ -88,8 +88,4 @@
   .story-list .story .story-desc {
     margin: 1.875rem 0;
   }
-
-  .story-tips-landing .story-page-bg-bottom img {
-    bottom: var(--footer-height-desktop);
-  }
 }

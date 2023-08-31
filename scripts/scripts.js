@@ -113,6 +113,7 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   img.alt = '';
   img.width = '360';
   img.height = '264';
+  img.style.display = 'none';
   picture.appendChild(img);
   return picture;
 }
@@ -192,7 +193,7 @@ export function ProcessStoriesBgImage() {
         BG_TOP: 'storyTipsBgTop',
         BG_BOTTOM: 'storyTipsBgBottom',
         BG_TOP_CLASS: 'story-page-bg-top',
-        BG_BOTTOM_CLASS: 'story-page-bg-bottom',
+        BG_BOTTOM_CLASS: 'bottom-bg',
       };
       const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
       boundAction();
@@ -387,13 +388,25 @@ async function loadLazy(doc) {
   await initConversionTracking.call(context, document);
 }
 
+// Show background image
+function showBgImage() {
+  const bgImageElement = document.querySelector('.bottom-bg img');
+  if (bgImageElement) {
+    bgImageElement.style.display = 'block';
+  }
+}
+
 /**
  * Loads everything that happens a lot later,
  * without impacting the user experience.
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => {
+    import('./delayed.js');
+    // Showing bg image after delay
+    showBgImage();
+  }, 3000);
   // load anything that can be postponed to the latest here
 }
 

@@ -32,13 +32,6 @@
   text-decoration: none;
 }
 
-.recipe .recipes-bottom-bg img{
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  bottom: var(--footer-height-mobile);
-}
-
 .recipe .recipe-card:hover img {
   opacity: .7;
 }
@@ -123,10 +116,6 @@
 
   .recipe .recipe-list ul li {
     flex-basis: 31.25%;
-  }
-
-  .recipe .recipes-bottom-bg img{
-    bottom: var(--footer-height-desktop);
   }
 
   .recipe .section div.recipe-list-wrapper {
