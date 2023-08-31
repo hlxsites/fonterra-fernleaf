@@ -320,8 +320,8 @@ function buildAutoBlocks(main) {
   try {
     decorateLinkedPictures(main);
 
-    new ProcessStoriesBgImage().init();
-    new ProcessBottomBgImage().init();
+      new ProcessStoriesBgImage().init();
+      new ProcessBottomBgImage().init();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

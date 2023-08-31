@@ -623,7 +623,7 @@ main .section.highlight {
   position: absolute;
   z-index: -1;
   width: 100%;
-  bottom: var(--footer-height-mobile);
+  bottom: 0;
 }
 
 #protein-milk-powder-for-the-whole-family, #protein-susu-tepung-untuk-seisi-keluarga {
@@ -734,7 +734,7 @@ main .section.highlight {
   }
 
   .bottom-bg img{
-    bottom: var(--footer-height-desktop);
+    bottom: 0;
   }
 }
 
