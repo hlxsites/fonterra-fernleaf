@@ -9,7 +9,7 @@ function wrapCardwithLink(row, li) {
   li.append(a);
   // wrap the card with the anchor link
   const cardLink = li.querySelector('a');
-  cardLink.append(row);
+  cardLink.innerHTML = row.innerHTML;
 }
 
 export default function decorate(block) {
@@ -27,6 +27,11 @@ export default function decorate(block) {
   });
   ul.querySelectorAll('img').forEach((img) => {
     img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]));
+  });
+
+  ul.querySelectorAll('img').forEach((img) => {
+    img.width = '200';
+    img.height = '300';
   });
   block.textContent = '';
   block.append(ul);
