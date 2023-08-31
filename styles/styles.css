@@ -505,7 +505,7 @@ main .section.highlight {
 }
 
 /* Story tips page styles */
-.story-tips  h1 {
+.story-tips h1 {
   margin-top: 0;
   font-size: 1.563rem;
 }
@@ -613,10 +613,15 @@ main .section.highlight {
   padding: 0 0.938rem;
 }
 
-.story-tips a {
+.story-tips .section a {
   text-decoration: none;
   font-weight: 600;
   color: var(--global-color-dark-blue);
+}
+
+.story-tips  .section  a:hover, .story-tips .section a:focus {
+  color: var(--global-color-sky-blue);
+  outline: 0;
 }
 
 .bottom-bg img{
