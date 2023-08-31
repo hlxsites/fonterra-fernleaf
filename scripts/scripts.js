@@ -111,8 +111,8 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const img = document.createElement('img');
   img.src = mobileImgUrl;
   img.alt = '';
-  img.width = '200';
-  img.height = '100';
+  img.width = '360';
+  img.height = '264';
   picture.appendChild(img);
   return picture;
 }
@@ -335,7 +335,6 @@ function buildAutoBlocks(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
-  
   decorateButtons(main);
   buildAutoBlocks(main);
   buildCarouselBlock(main);
