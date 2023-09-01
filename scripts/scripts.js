@@ -259,11 +259,11 @@ function GenerateBackGroundImages() {
   };
 
   this.render = (banner) => {
-    banner.forEach((elem) => {
+    banner.forEach((elem, index) => {
       const desktopBg = elem.dataset.backgroundDesktop;
       const mobileBg = elem.dataset.backgroundMobile;
       if (desktopBg && mobileBg) {
-        const responsiveImages = this.addImageSource([desktopBg, mobileBg], '', true, [{ media: '(min-width: 600px)', width: '1920' }, { width: '700' }]);
+        const responsiveImages = this.addImageSource([desktopBg, mobileBg], '', !index, [{ media: '(min-width: 600px)', width: '1920' }, { width: '700' }]);
         elem.append(responsiveImages);
       } else {
         elem.style.background = desktopBg || mobileBg;
