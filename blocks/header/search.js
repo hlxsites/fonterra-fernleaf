@@ -175,7 +175,7 @@ export default function Search() {
       spinner.style.display = 'block';
       const searchData = await fetchSearch();
       spinner.style.display = 'none';
-      if (searchData && searchData.length) {
+      if (searchData && searchData?.length) {
         const filteredResults = searchData.filter((el) => this.searchCategories
           .some((prop) => el[prop]
             .toLowerCase()
