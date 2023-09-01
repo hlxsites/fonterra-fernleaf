@@ -143,7 +143,6 @@ function createBullets() {
     bullet.id = i;
     bullet.setAttribute('aria-label', `bullet-item-${i}`);
     bullet.setAttribute('tabindex', i === 1 ? '0' : '-1');
-    bullet.setAttribute('role', 'tab');
     bulletsContainer.appendChild(bullet);
     bullet.addEventListener('click', handleBulletClick);
   }
