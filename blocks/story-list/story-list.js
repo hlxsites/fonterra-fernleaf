@@ -16,7 +16,7 @@ async function printList(list) {
             <div class="story-content">
                 <div class="story-title"><a href="${row.path}" title="${row.shorttitle}" aria-label="${row.shorttitle}">${row.shorttitle}</a></div>
                 <p class="story-desc">${row.description}</p>
-                <a href="${row.path}" title="${row.shorttitle}" aria-label="${row.shorttitle}" class="button primary">${placeholders.readmore}</a>
+                <a href="${row.path}" title="${row.shorttitle}" aria-label="${row.shorttitle}" class="button primary"><span class="sr-only" >${row.shorttitle}</span>${placeholders.readmore}</a>
             </div>`;
 
   const ul = document.createElement('ul');

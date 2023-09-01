@@ -743,3 +743,16 @@ main .section.highlight {
     padding: 0;
   }
 }
+
+/* screen reader only */
+
+.sr-only {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  overflow: hidden;
+  white-space: nowrap;
+}
