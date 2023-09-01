@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { getLanguage, decorateLinkedPictures, debounce } from '../../scripts/scripts.js';
 import createModal from '../../scripts/modals/modal.js';
 import Search from './search.js';
@@ -119,15 +119,15 @@ function addSkipToMain() {
  * @param {nav}
  */
 
-function createSearchDialog(nav, searchValue) {
+function createSearchDialog(nav, placeholders, searchValue) {
   const dialogId = 'search-dialog';
   const searchDialog = new Search();
   const searchDialogElement = createModal(
     dialogId,
-    () => searchDialog.createSearchModal(nav),
+    () => searchDialog.createSearchModal(nav, placeholders),
     () => {
       const dialogElem = document.querySelector(`#${dialogId}`);
-      searchDialog.initComponent(dialogElem);
+      searchDialog.initSearchModal(dialogElem);
       const searchInput = dialogElem.querySelector('.search-input-field input');
       const debounceDelay = 500;
       const debouncedSearch = debounce(() => {
@@ -237,10 +237,11 @@ export default async function decorate(block) {
     // Search Implementation
     const navTools = nav.querySelector('.nav-tools');
     if (navTools) {
+      const placeholders = await fetchPlaceholders();
       const searchParamValue = currentUrl.searchParams.get(searchParamName);
       if (searchParamValue) {
         disablePageScroll();
-        createSearchDialog(nav, searchParamValue);
+        createSearchDialog(nav, placeholders, searchParamValue);
       }
 
       const searchIcon = navTools.querySelector('.icon-search');
@@ -249,7 +250,7 @@ export default async function decorate(block) {
       navTools.querySelector('.search-action').addEventListener('click', (e) => {
         e.preventDefault();
         disablePageScroll();
-        createSearchDialog(nav);
+        createSearchDialog(nav, placeholders);
       });
     }
   }
