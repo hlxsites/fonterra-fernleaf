@@ -623,6 +623,7 @@ main .section.highlight {
   z-index: -1;
   width: 100%;
   bottom: 0;
+  aspect-ratio: 2/3 auto;
 }
 
 #protein-milk-powder-for-the-whole-family, #protein-susu-tepung-untuk-seisi-keluarga {
