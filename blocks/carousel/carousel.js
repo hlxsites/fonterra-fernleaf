@@ -46,6 +46,13 @@ function fetchItemsInCarousel() {
   return itemsInCarousel;
 }
 
+function updateTabIndexForCarouselItems(sliderList, key, tabIndexValue) {
+  // accessibility fixes
+  sliderList.querySelector(`.${category}-slider-item[data-position='${key}']`).setAttribute('tabindex', `${tabIndexValue}`);
+  sliderList.querySelector(`.${category}-slider-item[data-position='${key}'] a`).setAttribute('tabindex', `${tabIndexValue}`);
+  sliderList.querySelector(`.${category}-slider-item[data-position='${key}'] h3 a`).setAttribute('tabindex', `${tabIndexValue}`);
+}
+
 /**
  * Handler after transition completes
  */
@@ -69,20 +76,15 @@ function changeOrder() {
   for (let i = current; i <= numItems; i += 1) {
     tabIndexValue = order <= fetchItemsInCarousel() ? '0' : '-1';
     sliderList.querySelector(`.${category}-slider-item[data-position='${i}']`).style.order = order;
-    // accessibility fixes
-    sliderList.querySelector(`.${category}-slider-item[data-position='${i}']`).setAttribute('tabindex', `${tabIndexValue}`);
-    sliderList.querySelector(`.${category}-slider-item[data-position='${i}'] a`).setAttribute('tabindex', `${tabIndexValue}`);
-    sliderList.querySelector(`.${category}-slider-item[data-position='${i}'] h3 a`).setAttribute('tabindex', `${tabIndexValue}`);
+    updateTabIndexForCarouselItems(sliderList, i, tabIndexValue);
     order += 1;
   }
 
   tabIndexValue = -1;
   for (let i = 1; i < current; i += 1) {
+    tabIndexValue = order <= fetchItemsInCarousel() ? '0' : '-1';
     sliderList.querySelector(`.${category}-slider-item[data-position='${i}']`).style.order = order;
-    // accessibility fixes
-    sliderList.querySelector(`.${category}-slider-item[data-position='${i}']`).setAttribute('tabindex', `${tabIndexValue}`);
-    sliderList.querySelector(`.${category}-slider-item[data-position='${i}'] a`).setAttribute('tabindex', `${tabIndexValue}`);
-    sliderList.querySelector(`.${category}-slider-item[data-position='${i}'] h3 a`).setAttribute('tabindex', `${tabIndexValue}`);
+    updateTabIndexForCarouselItems(sliderList, i, tabIndexValue);
     order += 1;
   }
 
@@ -248,14 +250,26 @@ export default async function decorate(block) {
     numItems = noOfItems;
 
     // append left button for carousel to block
-    const buttonl = document.createElement('button');
-    buttonl.classList.add('scroll-left');
-    buttonl.id = 'id-scroll-left';
-    buttonl.setAttribute('aria-label', 'Scroll Left');
-    buttonl.addEventListener('click', (event) => {
+    const buttonLeft = document.createElement('button');
+    buttonLeft.classList.add('scroll-left');
+    buttonLeft.id = 'id-scroll-left';
+    buttonLeft.setAttribute('tabindex', '0');
+    buttonLeft.setAttribute('aria-label', 'Scroll Left');
+    buttonLeft.addEventListener('click', (event) => {
       next(event, false);
     });
-    block.append(buttonl);
+    block.append(buttonLeft);
+
+    // append right button for carousel to block
+    const buttonRight = document.createElement('button');
+    buttonRight.classList.add('scroll-right');
+    buttonRight.id = 'id-scroll-right';
+    buttonRight.setAttribute('tabindex', '0');
+    buttonRight.setAttribute('aria-label', 'Scroll Right');
+    buttonRight.addEventListener('click', (event) => {
+      next(event, true);
+    });
+    block.append(buttonRight);
 
     const sliderContainer = document.createElement('div');
     sliderContainer.classList.add('slider-container');
@@ -286,16 +300,6 @@ export default async function decorate(block) {
       createBullets();
     });
     resizeObserver.observe(carouselContainer);
-
-    // append right button for carousel to block
-    const button = document.createElement('button');
-    button.classList.add('scroll-right');
-    button.id = 'id-scroll-right';
-    button.setAttribute('aria-label', 'Scroll Right');
-    button.addEventListener('click', (event) => {
-      next(event, true);
-    });
-    block.append(button);
 
     block.querySelector(`.${category}-slider-list`).addEventListener('transitionend', changeOrder);
 
