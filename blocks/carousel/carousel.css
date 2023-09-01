@@ -6,6 +6,8 @@
 
 .carousel .recipe-slider-list, .carousel .product-slider-list {
     overflow: hidden;
+    padding-left: 3rem;
+    padding-right: 3rem;
 }
 
 .carousel-container {
@@ -22,46 +24,39 @@
 
 .carousel .scroll-left {
     background-color: transparent;
-    overflow: initial;
-    font-size: 1.5rem;
+    font-size: 0;
     font-weight: 100;
     font-family: iconanchor, sans-serif;
-    min-width: 0;
-    padding-right: 3rem;
+    padding: 0;
+    position: absolute;
+    margin: 0;
+    top: 30%;
 }
 
 .carousel .scroll-right {
     background-color: transparent;
-    overflow: initial;
-    font-size: 1.5rem;
+    font-size: 0;
     font-weight: 100;
     font-family: iconanchor, sans-serif;
-    min-width: 0;
+    right: 0;
+    padding: 0;
+    position: absolute;
+    margin: 0;
+    top: 30%;
 }
 
-@media (min-width: 600px){
-    .carousel .product-slider-item {
-      flex: 0 0 calc(100% / 3 - .67rem);
-    }
-
-    .carousel .scroll-right, .carousel .scroll-left{
-        font-size: 1.5rem;
-    }
+.scroll-left::before {
+    content: "\e901";
+    color: var(--global-color-strong-green);
+    font-size: 1.5rem;
 }
 
-@media (min-width: 900px) {
-    .carousel .recipe-slider-item {
-        flex: 0 0 calc(100% / 3 - .67rem);
-    }
-    
-    .carousel .product-slider-item {
-        flex: 0 0 calc(100% / 4 - .67rem);
-    }
-
-    .carousel .scroll-right, .carousel .scroll-left{
-        font-size: 3rem;
-    }
-} 
+.scroll-right::before {
+    content: "\e902";
+    color: var(--global-color-strong-green);
+    right: 0;
+    font-size: 1.5rem;
+}
 
 .slide-transition-right,
 .slide-transition-left {
@@ -70,7 +65,8 @@
 
 .carousel h3 {
     font-family: Mark-OT,Helvetica,Arial,sans-serif;
-    font-size: .85rem;
+    font-size: 1rem;
+    font-weight: 500;
     letter-spacing: .013rem;
     margin: 0 auto;
     margin-top: 0.625rem;
@@ -79,6 +75,11 @@
 
 .carousel {
     display: flex;
+    position: relative;
+}
+
+.carousel a {
+    display: unset;
 }
 
 .carousel a:hover {
@@ -86,12 +87,9 @@
     text-decoration: none;
 }
 
-
-
 .scroll-right:hover,
 .scroll-left:hover {
     border: none;
-    overflow: initial;
 }
 
 #bullets {
@@ -105,7 +103,6 @@
     margin: 0 0.438rem;
     background: var(--global-color-foggy-gray);
     padding: 0;
-    outline: none;
     border: 0;
     height: 15px;
     width: 15px;
@@ -115,18 +112,12 @@
     margin-bottom: 0;
 }
 
+.bullet:hover:not(.bullet-active) {
+    background: var(--global-color-sky-blue);
+}
+
 .bullet-active {
     background: var(--global-color-strong-green);
-}
-
-.scroll-left::before {
-    content: "\e901";
-    color: var(--global-color-strong-green);
-}
-
-.scroll-right::before {
-    content: "\e902";
-    color: var(--global-color-strong-green);
 }
 
 .product-slider-item img, .recipe-slider-item img {
@@ -136,6 +127,34 @@
 }
 
 .carousel-header h3 {
-    font-size: 2rem;
-    padding-bottom: 1rem;
+    font-size: 2.25rem;
+    padding-bottom: 0;
 }
+
+.carousel-wrapper {
+    padding-top: 0;
+}
+
+@media (min-width: 600px){
+    .carousel .product-slider-item {
+      flex: 0 0 calc(100% / 3 - .67rem);
+    }
+
+    .scroll-left::before, .scroll-right::before {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 900px) {
+    .carousel .recipe-slider-item {
+        flex: 0 0 calc(100% / 3 - .67rem);
+    }
+    
+    .carousel .product-slider-item {
+        flex: 0 0 calc(100% / 4 - .67rem);
+    }
+
+    .scroll-left::before, .scroll-right::before {
+        font-size: 3rem;
+    }
+} 
