@@ -377,7 +377,7 @@ header nav .nav-sections ul {
     align-items: center;
   }
 
-  header nav .nav-sections>ul>li::after {
+  header nav .nav-sections>ul>li>a::after {
     content: "";
     position: absolute;
     bottom: 2px;
@@ -388,7 +388,7 @@ header nav .nav-sections ul {
     transition: width 0.3s;
   }
 
-  header nav .active::after {
+  header nav .nav-sections>ul>li.active>a::after {
     width: 100% !important;
   }
 
@@ -396,7 +396,7 @@ header nav .nav-sections ul {
     font-weight: bold;
   }
 
-  header nav .nav-sections>ul>li:hover::after {
+  header nav .nav-sections>ul>li>a:hover::after, header nav .nav-sections>ul>li>a:focus::after {
     width: 100%;
   }
 
@@ -409,7 +409,6 @@ header nav .nav-sections ul {
     font-size: 18px;
   }
 }
-
 
 /* search icon */
 .icon-search {

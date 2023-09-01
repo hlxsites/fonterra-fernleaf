@@ -182,6 +182,12 @@ export default async function decorate(block) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
         if (navSection.querySelector('a').href === window.location.href) {
           navSection.classList.add('active');
+        } else { // make the category page link active for sub pages as well
+          const pageCategory = new URL(window.location.href).pathname.split('/')[2];
+          const linkCategory = new URL(navSection.querySelector('a').href).pathname.split('/')[2];
+          if (pageCategory === linkCategory) {
+            navSection.classList.add('active');
+          }
         }
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('mouseenter', () => {

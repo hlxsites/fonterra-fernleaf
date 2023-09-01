@@ -129,6 +129,7 @@
 
 * {
   box-sizing: border-box;
+  outline-color: var(--global-color-sky-blue);
 }
 
 html {
