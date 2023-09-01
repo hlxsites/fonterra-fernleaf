@@ -7,7 +7,7 @@ import {
 
 const getListHTML = (row) => `<div>
             <a class="recipe-card" href="${row.path}" title="${row.shorttitle}">
-                <img alt="${row.shorttitle}" src="${row.image}" width="500" height="318">
+                <img alt="${row.shorttitle}" loading="lazy" src="${row.image}" width="500" height="318">
                 <div class="recipe-content">
                     <div class="recipe-title">${row.shorttitle}</div>
                     <div class="recipe-desc">${row.shortdesc}</div>

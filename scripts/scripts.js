@@ -394,7 +394,7 @@ async function loadLazy(doc) {
 function showBgImage() {
   const bgImageElement = document.querySelector('.bottom-bg img');
   if (bgImageElement) {
-    bgImageElement.style.display = 'block';
+    bgImageElement.removeAttribute('style');
   }
 }
 

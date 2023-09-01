@@ -18,6 +18,12 @@
   max-height: 12.5rem;
   flex-basis: 100%;
   margin: 1.875rem auto;
+  min-height: 140px;
+  
+}
+
+.story-list .story .story-image img{
+  aspect-ratio: 200/140 auto;
 }
 
 .story-list .story .story-title a {
