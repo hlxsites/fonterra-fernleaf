@@ -54,9 +54,6 @@ async function processSplash() {
     splashKey = SMALL_SPLASH;
   }
 
-  const existingSplashPicture = heroBannerBlock.querySelector('picture.hero-splash');
-  if (existingSplashPicture) existingSplashPicture.remove();
-
   if (splashKey && placeholder[`${splashKey}Mobile`] && placeholder[`${splashKey}Desktop`]) {
     heroBannerBlock.appendChild(createPictureTag('hero-splash', placeholder[`${splashKey}Mobile`], placeholder[`${splashKey}Desktop`]));
   }
