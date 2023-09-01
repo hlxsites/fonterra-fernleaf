@@ -1,5 +1,5 @@
 import {
-  formPictureTag,
+  createPictureTag,
 } from '../../scripts/scripts.js';
 import {
   fetchPlaceholders,
@@ -58,7 +58,7 @@ async function processSplash() {
   if (existingSplashPicture) existingSplashPicture.remove();
 
   if (splashKey && placeholder[`${splashKey}Mobile`] && placeholder[`${splashKey}Desktop`]) {
-    heroBannerBlock.appendChild(formPictureTag('hero-splash', placeholder[`${splashKey}Mobile`], placeholder[`${splashKey}Desktop`]));
+    heroBannerBlock.appendChild(createPictureTag('hero-splash', placeholder[`${splashKey}Mobile`], placeholder[`${splashKey}Desktop`]));
   }
 }
 

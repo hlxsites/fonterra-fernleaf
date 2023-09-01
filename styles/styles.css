@@ -568,6 +568,7 @@ main .section.highlight {
   z-index: -1;
   width: 100%;
   top: 0;
+  aspect-ratio: 454/178 auto;
 }
 
 .story-tips .section > div * {

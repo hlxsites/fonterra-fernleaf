@@ -12,7 +12,7 @@ const bgConfigParams = {
 
 async function printList(list) {
   const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
-  const getListHTML = (row) => `<div class="story-image"><img alt="${row.shorttitle}" src="${row.image}" width="300" height="218"></div>
+  const getListHTML = (row,index) => `<div class="story-image"><img alt="${row.shorttitle}" loading="${!index ? 'eager' : 'lazy'}" src="${row.image}" width="300" height="218"></div>
             <div class="story-content">
                 <div class="story-title"><a href="${row.path}" title="${row.shorttitle}" aria-label="${row.shorttitle}">${row.shorttitle}</a></div>
                 <p class="story-desc">${row.description}</p>
@@ -40,6 +40,10 @@ export default async function decorate(block) {
   } else {
     block.append('no result found');
   }
-  const boundFunction = new ProcessStoriesBgImage().updateStoriesBgImage.bind(this, bgConfigParams);
-  boundFunction();
+  setTimeout(() => {
+    const boundFunction = new ProcessStoriesBgImage().updateStoriesBgImage.bind(this, bgConfigParams);
+    boundFunction();
+  }, 3000);
+  
+  
 }

@@ -98,9 +98,10 @@ function buildCarouselBlock(main) {
   }
 }
 
-export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
+//Build picture tag
+export function createPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const picture = document.createElement('picture');
-  picture.className = pictureClass;
+  picture.className = `${pictureClass} bg-img`;
 
   const sourceDesktop = document.createElement('source');
   sourceDesktop.media = '(min-width: 600px)';
@@ -113,9 +114,7 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   img.alt = '';
   img.width = '360';
   img.height = '264';
-  if (pictureClass === 'bottom-bg') {
-    img.style.display = 'none';
-  }
+  img.style.display = 'none';
   picture.appendChild(img);
   return picture;
 }
@@ -181,7 +180,7 @@ export function ProcessStoriesBgImage() {
 
     const createAndAppendPicture = (bgClass, bgConstant) => {
       if (document.querySelector(`.${bgClass}`)) document.querySelector(`.${bgClass}`).remove();
-      return formPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
+      return createPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
     };
 
     const topPicture = createAndAppendPicture(params.BG_TOP_CLASS, params.BG_TOP);
@@ -209,7 +208,7 @@ export function ProcessBottomBgImage() {
     const placeholder = await fetchPlaceholders();
     const container = document.querySelector('main');
     if (container && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
-      const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
+      const pictureTag = createPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
       container.appendChild(pictureTag);
     }
   };
@@ -394,7 +393,7 @@ async function loadLazy(doc) {
 
 // Show background image
 function showBgImage() {
-  const bgImageElement = document.querySelector('.bottom-bg img');
+  const bgImageElement = document.querySelector('.bg-img img');
   if (bgImageElement) {
     bgImageElement.removeAttribute('style');
   }
