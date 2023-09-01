@@ -1,10 +1,7 @@
 import { fetchSearch, removeImageProps } from '../../scripts/scripts.js';
-import { fetchPlaceholders, sampleRUM } from '../../scripts/lib-franklin.js';
+import { sampleRUM } from '../../scripts/lib-franklin.js';
 
-function isTablet() {
-  const mql = window.matchMedia('(min-width: 900px)');
-  return mql.matches;
-}
+const isDesktop = window.matchMedia('(min-width: 900px)');
 
 function Animation(dialogElem) {
   this.dialogElem = dialogElem;
@@ -72,7 +69,7 @@ function Animation(dialogElem) {
   };
 
   this.resizeObserver = new ResizeObserver(() => {
-    if (isTablet()) {
+    if (isDesktop.matches) {
       this.bindEvents();
       this.startAnimation();
     } else {
@@ -109,7 +106,7 @@ export default function Search() {
       ? `<h6><a href='${item.path}'>${item.title}</a></h6>`
       : `<span class='item-img'><a href='${item.path}'>
           <picture>
-              <img src='${removeImageProps(item.image)}'>
+              <img src='${removeImageProps(item.image)}' alt='${item.title}' />
           </picture>
       </a></span>
       <h6><a href='${item.path}'>${item.title}</a></h6>`;
@@ -119,18 +116,18 @@ export default function Search() {
   /**
  * Add the Product HTML Structure
  * @param {*}
- *   categoryName, productList, placeholders
+ *   categoryName, productList
  */
-  this.addProductsHTML = (categoryName, productList, placeholders) => {
+  this.addProductsHTML = (categoryName, productList) => {
     const categoryElem = categoryName?.toLowerCase();
     const searchContainer = this.dialogElem.querySelector('.search-results-container');
     const productListElem = searchContainer.querySelector(`.${categoryElem}-category-list`);
     const productPlaceholder = {
-      title: placeholders[`search${categoryName}Title`],
-      viewText: placeholders[`search${categoryName}ViewText`],
-      viewLink: placeholders[`search${categoryName}ViewLink`],
-      noResultText: placeholders[`search${categoryName}NoResultText`],
-      noResultLinkText: placeholders[`search${categoryName}NoResultLinkText`],
+      title: this.placeholders[`search${categoryName}Title`],
+      viewText: this.placeholders[`search${categoryName}ViewText`],
+      viewLink: this.placeholders[`search${categoryName}ViewLink`],
+      noResultText: this.placeholders[`search${categoryName}NoResultText`],
+      noResultLinkText: this.placeholders[`search${categoryName}NoResultLinkText`],
     };
     let productHTML = '';
     if (productList.length) {
@@ -176,10 +173,9 @@ export default function Search() {
       history.pushState(null, null, currentUrl.toString());
       const spinner = this.dialogElem.querySelector('.overlay-loading');
       spinner.style.display = 'block';
-      const placeholders = await fetchPlaceholders();
       const searchData = await fetchSearch();
       spinner.style.display = 'none';
-      if (placeholders && searchData) {
+      if (searchData && searchData.length) {
         const filteredResults = searchData.filter((el) => this.searchCategories
           .some((prop) => el[prop]
             .toLowerCase()
@@ -199,7 +195,6 @@ export default function Search() {
         this.categories.map((category) => this.addProductsHTML(
           category,
           categorizedItems[category.toLowerCase()],
-          placeholders,
         ));
 
         if (categorizedItems.story.length) {
@@ -221,8 +216,11 @@ export default function Search() {
    *   nav
    * @returns complete search wrapper
    */
-  this.createSearchModal = (nav) => {
+  this.createSearchModal = (nav, placeholders) => {
     const headerLogo = nav.querySelector('.nav-brand').innerHTML;
+    const searchTitle = 'Search';
+    this.placeholders = placeholders;
+
     return `
       <div class="overlay-loading">
         <div class="loading-wrapper">
@@ -240,7 +238,7 @@ export default function Search() {
             <div class='search-results'>
                 <div class='search-input-box'>
                     <div class='search-input-field'>
-                        <input type='text' name='search' autofocus placeholder='What are you looking for today?' title='Search' autocomplete='off'>
+                        <input type='text' name='search' autofocus placeholder='${this.placeholders?.searchPlaceholderText}' title=${searchTitle} autocomplete='off'>
                         <span class='icon icon-search'></span>
                     </div>
                 </div>
@@ -257,7 +255,7 @@ export default function Search() {
   `;
   };
 
-  this.initComponent = (dialogElem) => {
+  this.initSearchModal = (dialogElem) => {
     this.dialogElem = dialogElem;
     this.clearSearchResults();
   };
