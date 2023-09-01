@@ -98,7 +98,7 @@ function buildCarouselBlock(main) {
   }
 }
 
-//Build picture tag
+// Build picture tag
 export function createPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const picture = document.createElement('picture');
   picture.className = `${pictureClass} bg-img`;
@@ -393,9 +393,11 @@ async function loadLazy(doc) {
 
 // Show background image
 function showBgImage() {
-  const bgImageElement = document.querySelector('.bg-img img');
-  if (bgImageElement) {
-    bgImageElement.removeAttribute('style');
+  const bgImageElement = document.querySelectorAll('.bg-img img');
+  if (bgImageElement && bgImageElement.length) {
+    bgImageElement.forEach((elem) => {
+      elem.removeAttribute('style');
+    });
   }
 }
 
