@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/lib-franklin.js';
+import { getMetadata, fetchPlaceholders } from '../../scripts/lib-franklin.js';
 import { getLanguage, decorateLinkedPictures, debounce } from '../../scripts/scripts.js';
 import createModal from '../../scripts/modals/modal.js';
 import Search from './search.js';
@@ -99,19 +99,35 @@ function disablePageScroll() {
 }
 
 /**
+ * Create a skip to main link
+ */
+function addSkipToMain() {
+  const headerWrapper = document.querySelector('.header-wrapper');
+  // create and insert skip link before header
+  const skipLink = document.createElement('a');
+  skipLink.href = '#main';
+  skipLink.className = 'skip-link';
+  skipLink.innerText = 'Skip to main content';
+  document.body.insertBefore(skipLink, headerWrapper);
+  // add id to main element to support skip link
+  const main = document.querySelector('main');
+  main.id = 'main';
+}
+
+/**
  * Create the Search Dialog
  * @param {nav}
  */
 
-function createSearchDialog(nav, searchValue) {
+function createSearchDialog(nav, placeholders, searchValue) {
   const dialogId = 'search-dialog';
   const searchDialog = new Search();
   const searchDialogElement = createModal(
     dialogId,
-    () => searchDialog.createSearchModal(nav),
+    () => searchDialog.createSearchModal(nav, placeholders),
     () => {
       const dialogElem = document.querySelector(`#${dialogId}`);
-      searchDialog.initComponent(dialogElem);
+      searchDialog.initSearchModal(dialogElem);
       const searchInput = dialogElem.querySelector('.search-input-field input');
       const debounceDelay = 500;
       const debouncedSearch = debounce(() => {
@@ -182,6 +198,12 @@ export default async function decorate(block) {
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
         if (navSection.querySelector('a').href === window.location.href) {
           navSection.classList.add('active');
+        } else { // make the category page link active for sub pages as well
+          const pageCategory = new URL(window.location.href).pathname.split('/')[2];
+          const linkCategory = new URL(navSection.querySelector('a').href).pathname.split('/')[2];
+          if (pageCategory === linkCategory) {
+            navSection.classList.add('active');
+          }
         }
         if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
         navSection.addEventListener('mouseenter', () => {
@@ -215,10 +237,11 @@ export default async function decorate(block) {
     // Search Implementation
     const navTools = nav.querySelector('.nav-tools');
     if (navTools) {
+      const placeholders = await fetchPlaceholders();
       const searchParamValue = currentUrl.searchParams.get(searchParamName);
       if (searchParamValue) {
         disablePageScroll();
-        createSearchDialog(nav, searchParamValue);
+        createSearchDialog(nav, placeholders, searchParamValue);
       }
 
       const searchIcon = navTools.querySelector('.icon-search');
@@ -227,8 +250,11 @@ export default async function decorate(block) {
       navTools.querySelector('.search-action').addEventListener('click', (e) => {
         e.preventDefault();
         disablePageScroll();
-        createSearchDialog(nav);
+        createSearchDialog(nav, placeholders);
       });
     }
   }
+
+  // Add skip link
+  addSkipToMain();
 }

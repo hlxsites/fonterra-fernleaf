@@ -52,7 +52,7 @@ footer div > div:nth-child(3) a {
   position: relative;
 }
 
-footer div > div:nth-child(2) a:hover {
+footer div > div:nth-child(2) a:hover, footer div > div:nth-child(2) a:focus {
   border-bottom: 1px solid var(--global-color-black);
 }
 

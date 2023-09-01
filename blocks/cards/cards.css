@@ -28,6 +28,7 @@
   font-weight: 400;
   letter-spacing: normal;
   text-align: left;
+  color: var(--link-color);
 }
 
 .cards p {
@@ -40,7 +41,21 @@
   padding: 10px 0;
 }
 
-.cards a:hover {
+.cards ul>li>a:hover, .cards ul>li>a:focus {
   opacity: .6;
   transition: all .3s ease;
+}
+
+.cards a img {
+  aspect-ratio: 490 / 506;
+}
+
+@media (min-width: 900px) {
+  .cards ul>li {
+    min-height: 505px;
+  }
+  
+  .cards a img {
+    aspect-ratio: 750 / 774;
+  }
 }

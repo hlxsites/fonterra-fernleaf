@@ -141,6 +141,7 @@ export function decorateLinkedPictures(container) {
       a.setAttribute('title', txt);
     });
 }
+
 /**
  *
  * @returns {Promise<void>}
@@ -202,6 +203,7 @@ export function ProcessStoriesBgImage() {
     }
   };
 }
+
 export function ProcessBottomBgImage() {
   this.updateBgImage = async (params) => {
     const placeholder = await fetchPlaceholders();
