@@ -113,7 +113,9 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   img.alt = '';
   img.width = '360';
   img.height = '264';
-  img.style.display = 'none';
+  if (pictureClass === 'bottom-bg') {
+    img.style.display = 'none';
+  }
   picture.appendChild(img);
   return picture;
 }
