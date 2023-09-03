@@ -25,6 +25,47 @@ export const CATEGORY_RECIPES = 'recipe';
 export const BASE_URL = window.location.origin !== 'null' ? window.location.origin : window.parent.location.origin;
 
 let language;
+const SECTION_BG_MOBILE = 'bg-mobile';
+const SECTION_BG_DESKTOP = 'bg-desktop';
+const PRODUCT_IMG_MOBILE = 'product-mobile';
+const PRODUCT_IMG_DESKTOP = 'product-desktop';
+
+export function createPicture(props) {
+  const desktopImgUrl = props[SECTION_BG_DESKTOP] || props[PRODUCT_IMG_DESKTOP];
+  const mobileImgUrl = props[SECTION_BG_MOBILE] || props[PRODUCT_IMG_MOBILE];
+  const picture = document.createElement('picture');
+  if (desktopImgUrl) {
+    const sourceDesktop = document.createElement('source');
+    const { pathname } = new URL(desktopImgUrl, window.location.href);
+    sourceDesktop.type = 'image/webp';
+    sourceDesktop.srcset = `${pathname}?width=1920&format=webply&optimize=medium`;
+    sourceDesktop.media = '(min-width: 600px)';
+    picture.appendChild(sourceDesktop);
+  }
+
+  if (mobileImgUrl) {
+    const sourceMobile = document.createElement('source');
+    const { pathname } = new URL(mobileImgUrl, window.location.href);
+    sourceMobile.type = 'image/webp';
+    sourceMobile.srcset = `${pathname}?width=1024&format=webply&optimize=medium`;
+    picture.appendChild(sourceMobile);
+  }
+
+  const img = document.createElement('img');
+  const { pathname } = new URL(mobileImgUrl, window.location.href);
+  img.src = `${pathname}?width=1024&format=webply&optimize=medium`;
+  img.alt = props.alt || '';
+  img.loading = props.loading || 'lazy';
+  img.width = '1024';
+  img.height = '793';
+
+  if (mobileImgUrl && desktopImgUrl) {
+    picture.appendChild(img);
+  } else {
+    return img;
+  }
+  return picture;
+}
 
 export function getLanguageFromPath(pathname, resetCache = false) {
   if (resetCache) {
@@ -222,64 +263,6 @@ export function ProcessBottomBgImage() {
   };
 }
 
-function GenerateBackGroundImages() {
-  this.addImageSource = (src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 600px)', width: '1920' }, { width: '1023' }]) => {
-    if (breakpoints.length && src.length) {
-      const picture = document.createElement('picture');
-      const sourceElements = breakpoints.map((mediaPoints, index) => {
-        const { pathname } = new URL(src[index], window.location.href);
-        return `<source type='image/webp' ${mediaPoints.media ? `media='${mediaPoints.media}'` : ''} srcset='${pathname}?width=${mediaPoints.width}&format=webply&optimize=medium'>`;
-      });
-
-      const defaultIndex = 0;
-      const srcUrl = new URL(src[defaultIndex], window.location.href);
-      const sourcePathname = srcUrl?.pathname;
-      const ext = sourcePathname.substring(sourcePathname.lastIndexOf('.') + 1);
-      const fallbackSource = `<source ${breakpoints[defaultIndex].media ? `media='${breakpoints[defaultIndex].media}'` : ''} 
-                                      srcset='${sourcePathname}?width=${breakpoints[defaultIndex].width}&format=${ext}&optimize=medium'>`;
-      sourceElements.push(fallbackSource);
-
-      const defaultSrcIndex = breakpoints.length - 1;
-      const source = src[defaultSrcIndex] ? src[defaultSrcIndex] : src[0];
-      const imgUrl = new URL(source, window.location.href);
-      const imgPathname = imgUrl?.pathname;
-      const imgSrc = `<img src='${imgPathname}?width=${breakpoints[defaultSrcIndex].width}&format=${ext}&optimize=medium'
-                      alt='${alt}'
-                      width='${breakpoints[defaultSrcIndex].width}'
-                      height='100%'
-                      loading='${eager ? 'eager' : 'lazy'}'>
-                    `;
-      sourceElements.push(imgSrc);
-
-      const combinedElements = sourceElements.join('');
-      picture.innerHTML = combinedElements;
-      return picture;
-    }
-    return false;
-  };
-
-  this.render = (banner) => {
-    banner.forEach((elem) => {
-      const desktopBg = elem.dataset.backgroundDesktop;
-      const mobileBg = elem.dataset.backgroundMobile;
-      if (desktopBg && mobileBg) {
-        const responsiveImages = this.addImageSource([desktopBg, mobileBg], '', true, [{ media: '(min-width: 600px)', width: '1920' }, { width: '700' }]);
-        elem.append(responsiveImages);
-      } else {
-        elem.style.background = desktopBg || mobileBg;
-      }
-    });
-  };
-
-  this.init = () => {
-    const main = document.querySelector('main');
-    const banner = main.querySelectorAll('.full-width-banner');
-    if (banner) {
-      this.render(banner);
-    }
-  };
-}
-
 /**
  * Fetch filtered search results
  * @param {*} cat The category filter
@@ -331,18 +314,86 @@ function buildAutoBlocks(main) {
 }
 
 /**
+ * Builds Hero Banner in a container element.
+ * @param {Element} main The container element
+ */
+function decorateHeroBanner(main) {
+  const elements = main.querySelectorAll('.hero');
+  if (elements && elements?.length) {
+    elements.forEach((elem) => {
+      const bannerImgProps = {
+        alt: '',
+        loading: 'eager',
+      };
+      const productImgProps = {
+        alt: '',
+        loading: 'eager',
+      };
+      // Loop through the child div elements
+      const childElems = Array.from(elem.children);
+      childElems.forEach((divElement) => {
+        // Get the text content of the first div element
+        const firstDivText = divElement.querySelector('div:first-child').textContent;
+        // Check if the first div text matches the desired text (based of document)
+        if (firstDivText === SECTION_BG_MOBILE || firstDivText === SECTION_BG_DESKTOP) {
+          const imgSrc = divElement.querySelector('img')?.getAttribute('src');
+          bannerImgProps[firstDivText] = imgSrc || '';
+        }
+        if (firstDivText === PRODUCT_IMG_MOBILE || firstDivText === PRODUCT_IMG_DESKTOP) {
+          const imgSrc = divElement.querySelector('img')?.getAttribute('src');
+          productImgProps[firstDivText] = imgSrc || '';
+        }
+      });
+
+      const bannerImgWrapper = document.createElement('div');
+      bannerImgWrapper.className = 'hero-bg';
+      bannerImgWrapper.append(createPicture(bannerImgProps));
+      elem.innerHTML = '';
+      elem.appendChild(bannerImgWrapper);
+      if (productImgProps[PRODUCT_IMG_MOBILE] || productImgProps[PRODUCT_IMG_DESKTOP]) {
+        const productImgWrapper = document.createElement('div');
+        productImgWrapper.className = 'hero-product';
+        productImgWrapper.append(createPicture(productImgProps));
+        elem.appendChild(productImgWrapper);
+      }
+    });
+  }
+}
+
+/**
+ * Builds Full width Banner in a container element.
+ * @param {Element} main The container element
+ */
+function decorateFullWidthBanner(main) {
+  const elements = main.querySelectorAll('.full-width-banner');
+  if (elements && elements?.length) {
+    elements.forEach((elem, index) => {
+      const pictureProps = {
+        alt: '',
+        loading: (index === 0) ? 'eager' : 'lazy',
+        'bg-mobile': elem.dataset.backgroundMobile,
+        'bg-desktop': elem.dataset.backgroundDesktop,
+      };
+      const picture = createPicture(pictureProps);
+      elem.append(picture);
+    });
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
+  decorateHeroBanner(main);
   decorateButtons(main);
   buildAutoBlocks(main);
   buildCarouselBlock(main);
   decorateSections(main);
   decorateBlocks(main);
-  (new GenerateBackGroundImages()).init();
+  decorateFullWidthBanner(main);
 }
 
 /**
