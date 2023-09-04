@@ -29,6 +29,7 @@ const SECTION_BG_MOBILE = 'bg-mobile';
 const SECTION_BG_DESKTOP = 'bg-desktop';
 const PRODUCT_IMG_MOBILE = 'product-mobile';
 const PRODUCT_IMG_DESKTOP = 'product-desktop';
+const isDesktop = window.matchMedia('(min-width: 900px)').matches;
 
 export function createPicture(props) {
   const desktopImgUrl = props[SECTION_BG_DESKTOP] || props[PRODUCT_IMG_DESKTOP];
@@ -56,8 +57,8 @@ export function createPicture(props) {
   img.src = `${pathname}?width=1024&format=webply&optimize=medium`;
   img.alt = props.alt || '';
   img.loading = props.loading || 'lazy';
-  img.width = '1024';
-  img.height = '793';
+  img.width = isDesktop ? '600' : '360';
+  img.height = isDesktop ? '453': '730'
 
   if (mobileImgUrl && desktopImgUrl) {
     picture.appendChild(img);
