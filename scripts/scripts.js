@@ -48,13 +48,13 @@ export function createPicture(props) {
     const sourceMobile = document.createElement('source');
     const { pathname } = new URL(mobileImgUrl, window.location.href);
     sourceMobile.type = 'image/webp';
-    sourceMobile.srcset = `${pathname}?width=1024&format=webply&optimize=medium`;
+    sourceMobile.srcset = `${pathname}?width=600&format=webply&optimize=medium`;
     picture.appendChild(sourceMobile);
   }
 
   const img = document.createElement('img');
   const { pathname } = new URL(mobileImgUrl, window.location.href);
-  img.src = `${pathname}?width=1024&format=webply&optimize=medium`;
+  img.src = `${pathname}?width=600&format=webply&optimize=medium`;
   img.alt = props.alt || '';
   img.loading = props.loading || 'lazy';
   img.width = isMobile ? '360' : '600';
