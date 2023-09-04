@@ -586,7 +586,7 @@
   align-items: center;
   display: flex;
   justify-content: space-between;
-  padding-bottom: 20px;
+  padding: 20px 0;
 }
 
 #search-dialog .search-header button.close {
@@ -594,7 +594,7 @@
   color: var(--global-color-black);
   cursor: pointer;
   font-size: .938rem;
-  margin: 0 20px 0 0;
+  margin: 0 10px 0 0;
   min-width: unset;
   padding: 10px;
 }
@@ -803,14 +803,18 @@
     color: var(--global-color-dark-gray);
   }
 
+  #search-dialog .search-header{
+    padding: 0;
+  }
+
   #search-dialog .search-header button.close {
     font-size: 1.188rem;
-    margin-right: 40px;
+    margin-right: 30px;
   }
 
   #search-dialog .search-header img {
     height: auto;
-    padding-left: 11px;
+    padding-left: 10px;
     padding-top: 7px;
     width: 190px;
   }
