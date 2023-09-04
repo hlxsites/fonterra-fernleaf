@@ -18,7 +18,8 @@
 }
 
 .columns.product-category img {
-  width: 100%;
+  width: 140px;
+  width: 130px;
 }
 
 .columns.product > div > .columns-img-col {
@@ -103,5 +104,10 @@
 
   .columns .button-container .button {
     width: auto;
+  }
+
+  .columns.product-category img {
+    width: initial;
+    width: initial;
   }
 }
