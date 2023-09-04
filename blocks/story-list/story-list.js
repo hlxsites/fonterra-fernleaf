@@ -40,7 +40,7 @@ export default async function decorate(block) {
   } else {
     block.append('no result found');
   }
-  setTimeout(() => {
+  window.setTimeout(() => {
     const processStoriesBgImage = new ProcessStoriesBgImage();
     processStoriesBgImage.updateStoriesBgImage.bind(this, bgConfigParams).call();
   }, 3000);
