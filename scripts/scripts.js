@@ -264,64 +264,6 @@ export function ProcessBottomBgImage() {
   };
 }
 
-function GenerateBackGroundImages() {
-  this.addImageSource = (src, alt = '', eager = false, breakpoints = [{ media: '(min-width: 600px)', width: '1920' }, { width: '1023' }]) => {
-    if (breakpoints.length && src.length) {
-      const picture = document.createElement('picture');
-      const sourceElements = breakpoints.map((mediaPoints, index) => {
-        const { pathname } = new URL(src[index], window.location.href);
-        return `<source type='image/webp' ${mediaPoints.media ? `media='${mediaPoints.media}'` : ''} srcset='${pathname}?width=${mediaPoints.width}&format=webply&optimize=medium'>`;
-      });
-
-      const defaultIndex = 0;
-      const srcUrl = new URL(src[defaultIndex], window.location.href);
-      const sourcePathname = srcUrl?.pathname;
-      const ext = sourcePathname.substring(sourcePathname.lastIndexOf('.') + 1);
-      const fallbackSource = `<source ${breakpoints[defaultIndex].media ? `media='${breakpoints[defaultIndex].media}'` : ''} 
-                                      srcset='${sourcePathname}?width=${breakpoints[defaultIndex].width}&format=${ext}&optimize=medium'>`;
-      sourceElements.push(fallbackSource);
-
-      const defaultSrcIndex = breakpoints.length - 1;
-      const source = src[defaultSrcIndex] ? src[defaultSrcIndex] : src[0];
-      const imgUrl = new URL(source, window.location.href);
-      const imgPathname = imgUrl?.pathname;
-      const imgSrc = `<img src='${imgPathname}?width=${breakpoints[defaultSrcIndex].width}&format=${ext}&optimize=medium'
-                      alt='${alt}'
-                      width='${breakpoints[defaultSrcIndex].width}'
-                      height='100%'
-                      loading='${eager ? 'eager' : 'lazy'}'>
-                    `;
-      sourceElements.push(imgSrc);
-
-      const combinedElements = sourceElements.join('');
-      picture.innerHTML = combinedElements;
-      return picture;
-    }
-    return false;
-  };
-
-  this.render = (banner) => {
-    banner.forEach((elem, index) => {
-      const desktopBg = elem.dataset.backgroundDesktop;
-      const mobileBg = elem.dataset.backgroundMobile;
-      if (desktopBg && mobileBg) {
-        const responsiveImages = this.addImageSource([desktopBg, mobileBg], '', !index, [{ media: '(min-width: 600px)', width: '1920' }, { width: '700' }]);
-        elem.append(responsiveImages);
-      } else {
-        elem.style.background = desktopBg || mobileBg;
-      }
-    });
-  };
-
-  this.init = () => {
-    const main = document.querySelector('main');
-    const banner = main.querySelectorAll('.full-width-banner');
-    if (banner) {
-      this.render(banner);
-    }
-  };
-}
-
 /**
  * Fetch filtered search results
  * @param {*} cat The category filter
@@ -429,6 +371,26 @@ function decorateHeroBanner(main) {
 }
 
 /**
+ * Builds Full width Banner in a container element.
+ * @param {Element} main The container element
+ */
+function decorateFullWidthBanner(main) {
+  const elements = main.querySelectorAll('.full-width-banner');
+  if (elements && elements?.length) {
+    elements.forEach((elem, index) => {
+      const pictureProps = {
+        alt: '',
+        loading: (index === 0) ? 'eager' : 'lazy',
+        'bg-mobile': elem.dataset.backgroundMobile,
+        'bg-desktop': elem.dataset.backgroundDesktop,
+      };
+      const picture = createPicture(pictureProps);
+      elem.append(picture);
+    });
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -441,7 +403,7 @@ export function decorateMain(main) {
   buildCarouselBlock(main);
   decorateSections(main);
   decorateBlocks(main);
-  (new GenerateBackGroundImages()).init();
+  decorateFullWidthBanner(main);
 }
 
 /**
