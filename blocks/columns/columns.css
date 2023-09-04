@@ -23,6 +23,11 @@
   align-self: center;
 }
 
+.columns.product-category .button-container a:hover, .columns.product-category .button-container a:focus {
+  color: var(--global-color-dark-blue);
+  outline: 0;
+}
+
 .columns .button-container .button {
   width: 100%;
   font-family: var(--global-tertiary-font-family);

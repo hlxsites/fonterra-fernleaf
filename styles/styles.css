@@ -538,23 +538,13 @@ main .section.highlight {
   width: 100%;
 }
 
-.story-tips .story-page-bg-bottom img,
-.story-tips-landing .story-page-bg-bottom img,
 .story-tips .story-page-bg-top img,
 .story-tips-landing .story-page-bg-top img {
   position: absolute;
   z-index: -1;
   width: 100%;
-}
-
-.story-tips .story-page-bg-top img,
-.story-tips-landing .story-page-bg-top img {
   top: 0;
-}
-
-.story-tips .story-page-bg-bottom img,
-.story-tips-landing .story-page-bg-bottom img {
-  bottom: 0;
+  aspect-ratio: 454/178 auto;
 }
 
 .story-tips .section > div * {
@@ -608,7 +598,8 @@ main .section.highlight {
   position: absolute;
   z-index: -1;
   width: 100%;
-  bottom: var(--footer-height-mobile);
+  bottom: 0;
+  aspect-ratio: 2/3 auto;
 }
 
 #protein-milk-powder-for-the-whole-family, #protein-susu-tepung-untuk-seisi-keluarga {
@@ -712,14 +703,6 @@ main .section.highlight {
   .recipe .columns ul li,
   .recipe .columns ol li {
     font-size: 1rem;
-  }
-
-  .story-tips .story-page-bg-bottom img {
-    bottom: 0;
-  }
-
-  .bottom-bg img{
-    bottom: var(--footer-height-desktop);
   }
 }
 

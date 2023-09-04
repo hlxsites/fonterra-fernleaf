@@ -140,9 +140,10 @@ function buildCarouselBlock(main) {
   }
 }
 
-export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
+// Build picture tag
+export function createPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   const picture = document.createElement('picture');
-  picture.className = pictureClass;
+  picture.className = `${pictureClass} bg-img`;
 
   const sourceDesktop = document.createElement('source');
   sourceDesktop.media = '(min-width: 600px)';
@@ -155,6 +156,7 @@ export function formPictureTag(pictureClass, mobileImgUrl, desktopImgUrl) {
   img.alt = '';
   img.width = '360';
   img.height = '264';
+  img.style.display = 'none';
   picture.appendChild(img);
   return picture;
 }
@@ -220,7 +222,7 @@ export function ProcessStoriesBgImage() {
 
     const createAndAppendPicture = (bgClass, bgConstant) => {
       if (document.querySelector(`.${bgClass}`)) document.querySelector(`.${bgClass}`).remove();
-      return formPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
+      return createPictureTag(bgClass, placeholder[`${bgConstant}Mobile`], placeholder[`${bgConstant}Desktop`]);
     };
 
     const topPicture = createAndAppendPicture(params.BG_TOP_CLASS, params.BG_TOP);
@@ -235,7 +237,7 @@ export function ProcessStoriesBgImage() {
         BG_TOP: 'storyTipsBgTop',
         BG_BOTTOM: 'storyTipsBgBottom',
         BG_TOP_CLASS: 'story-page-bg-top',
-        BG_BOTTOM_CLASS: 'story-page-bg-bottom',
+        BG_BOTTOM_CLASS: 'bottom-bg',
       };
       const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
       boundAction();
@@ -248,7 +250,7 @@ export function ProcessBottomBgImage() {
     const placeholder = await fetchPlaceholders();
     const container = document.querySelector('main');
     if (container && placeholder[`${params.bgKey}Mobile`] && placeholder[`${params.bgKey}Desktop`]) {
-      const pictureTag = formPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
+      const pictureTag = createPictureTag(params.bgClass, placeholder[`${params.bgKey}Mobile`], placeholder[`${params.bgKey}Desktop`]);
       container.appendChild(pictureTag);
     }
   };
@@ -450,13 +452,27 @@ async function loadLazy(doc) {
   await initConversionTracking.call(context, document);
 }
 
+// Show background image
+function showBgImage() {
+  const bgImageElement = document.querySelectorAll('.bg-img img');
+  if (bgImageElement && bgImageElement.length) {
+    bgImageElement.forEach((elem) => {
+      elem.removeAttribute('style');
+    });
+  }
+}
+
 /**
  * Loads everything that happens a lot later,
  * without impacting the user experience.
  */
 function loadDelayed() {
   // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => {
+    import('./delayed.js');
+    // Showing bg image after delay
+    showBgImage();
+  }, 3000);
   // load anything that can be postponed to the latest here
 }
 
