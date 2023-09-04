@@ -313,6 +313,14 @@ function buildAutoBlocks(main) {
   }
 }
 
+/** Create Image Wrapper */
+function createImageWrapper(className, imgProps) {
+  const imgWrapper = document.createElement('div');
+  imgWrapper.className = className;
+  imgWrapper.append(createPicture(imgProps));
+  return imgWrapper;
+}
+
 /**
  * Builds Hero Banner in a container element.
  * @param {Element} main The container element
@@ -325,10 +333,12 @@ function decorateHeroBanner(main) {
         alt: '',
         loading: 'eager',
       };
+
       const productImgProps = {
         alt: '',
         loading: 'eager',
       };
+
       // Loop through the child div elements
       const childElems = Array.from(elem.children);
       childElems.forEach((divElement) => {
@@ -345,15 +355,14 @@ function decorateHeroBanner(main) {
         }
       });
 
-      const bannerImgWrapper = document.createElement('div');
-      bannerImgWrapper.className = 'hero-bg';
-      bannerImgWrapper.append(createPicture(bannerImgProps));
+      // Create Banner Image Wrapper
+      const bannerImgWrapper = createImageWrapper('hero-bg', bannerImgProps);
       elem.innerHTML = '';
       elem.appendChild(bannerImgWrapper);
+
+      // Create Product Image Wrapper
       if (productImgProps[PRODUCT_IMG_MOBILE] || productImgProps[PRODUCT_IMG_DESKTOP]) {
-        const productImgWrapper = document.createElement('div');
-        productImgWrapper.className = 'hero-product';
-        productImgWrapper.append(createPicture(productImgProps));
+        const productImgWrapper = createImageWrapper('hero-product', productImgProps);
         elem.appendChild(productImgWrapper);
       }
     });
