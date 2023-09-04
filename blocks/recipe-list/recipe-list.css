@@ -135,6 +135,12 @@
   }
 
   .recipe .section .default-content-wrapper {
+    padding: 0 0.938rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .recipe .section .default-content-wrapper {
     padding: 0;
   }
 }

@@ -253,6 +253,9 @@ export default async function decorate(block) {
         createSearchDialog(nav, placeholders);
       });
     }
+
+    // cleanup empty markup
+    navWrapper.previousElementSibling.remove();
   }
 
   // Add skip link

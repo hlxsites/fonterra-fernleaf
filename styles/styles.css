@@ -335,7 +335,7 @@ main img {
   }
 }
 
-@media (min-width: 1020px) {
+@media (min-width: 1200px) {
   .section > div {
     padding: 30px 0;
   }
@@ -723,7 +723,7 @@ main .section.highlight {
   }
 }
 
-@media (min-width: 1020px) {
+@media (min-width: 1200px) {
   [lang="ms"] .story-tips .section.picture-container .picture-wrapper {
     padding: 0;
   }
