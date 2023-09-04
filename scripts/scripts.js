@@ -379,7 +379,7 @@ function decorateFullWidthBanner(main) {
     elements.forEach((elem, index) => {
       const pictureProps = {
         alt: '',
-        loading: (index === 0) ? 'eager' : 'lazy',
+        loading: 'lazy',
         'bg-mobile': elem.dataset.backgroundMobile,
         'bg-desktop': elem.dataset.backgroundDesktop,
       };
