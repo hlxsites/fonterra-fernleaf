@@ -38,11 +38,6 @@ span.icon.icon-search::before {
   font-size: 14px;
 }
 
-header nav a:any-link {
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
 header nav .nav-sections>ul {
   display: block;
   background-color: var(--global-color-white);
@@ -62,6 +57,8 @@ header nav a:any-link {
   margin: 0;
   text-align: left;
   font-size: 13px;
+  text-transform: uppercase;
+  text-decoration: none;
 }
 
 header nav .nav-brand a {
@@ -196,7 +193,6 @@ header nav[aria-expanded="false"] .nav-hamburger-icon::after {
 /* brand */
 header .nav-brand {
   grid-area: brand;
-  flex-basis: 128px;
   font-size: var(--heading-font-size-s);
   font-weight: 700;
   cursor: pointer;
@@ -248,21 +244,6 @@ header nav .nav-sections ul>li:first-child {
 
 header nav .nav-sections>ul>li:not(.child-section)>ul {
   display: none;
-}
-
-header nav .sub-nav li a {
-  color: initial;
-}
-
-header nav .sub-nav span {
-  color: currentcolor;
-  text-decoration: none;
-  padding: 1.125rem 1.575rem 1.25rem;
-  text-align: center;
-  display: block;
-  text-transform: uppercase;
-  font-size: .875rem;
-  cursor: pointer;
 }
 
 header nav .child-section-enable>ul>li:not(.child-section) {
