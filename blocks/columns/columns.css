@@ -17,11 +17,6 @@
   flex-basis: 50%;
 }
 
-.columns.product-category img {
-  width: 140px;
-  height: 130px;
-}
-
 .columns.product > div > .columns-img-col {
   order: 1;
   text-align: right;
@@ -104,10 +99,5 @@
 
   .columns .button-container .button {
     width: auto;
-  }
-
-  .columns.product-category img {
-    width: initial;
-    width: initial;
   }
 }
