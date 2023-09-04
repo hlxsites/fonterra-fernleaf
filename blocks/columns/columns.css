@@ -19,7 +19,7 @@
 
 .columns.product-category img {
   width: 140px;
-  width: 130px;
+  height: 130px;
 }
 
 .columns.product > div > .columns-img-col {
