@@ -17,6 +17,10 @@
   flex-basis: 50%;
 }
 
+.columns.product-category > img {
+  width: 100%;
+}
+
 .columns.product > div > .columns-img-col {
   order: 1;
   text-align: right;
