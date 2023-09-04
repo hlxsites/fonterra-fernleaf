@@ -33,6 +33,7 @@ const PRODUCT_IMG_DESKTOP = 'product-desktop';
 export function createPicture(props) {
   const desktopImgUrl = props[SECTION_BG_DESKTOP] || props[PRODUCT_IMG_DESKTOP];
   const mobileImgUrl = props[SECTION_BG_MOBILE] || props[PRODUCT_IMG_MOBILE];
+  const isMobile = window.matchMedia('(max-width: 600px)').matches;
   const picture = document.createElement('picture');
   if (desktopImgUrl) {
     const sourceDesktop = document.createElement('source');
@@ -56,8 +57,8 @@ export function createPicture(props) {
   img.src = `${pathname}?width=1024&format=webply&optimize=medium`;
   img.alt = props.alt || '';
   img.loading = props.loading || 'lazy';
-  img.width = '1024';
-  img.height = '793';
+  img.width = isMobile ? '360' : '600';
+  img.height = isMobile ? '298' : '620';
 
   if (mobileImgUrl && desktopImgUrl) {
     picture.appendChild(img);
@@ -428,26 +429,6 @@ function decorateHeroBanner(main) {
 }
 
 /**
- * Builds Full width Banner in a container element.
- * @param {Element} main The container element
- */
-// function decorateFullWidthBanner(main) {
-//   const elements = main.querySelectorAll('.full-width-banner');
-//   if (elements && elements?.length) {
-//     elements.forEach((elem, index) => {
-//       const pictureProps = {
-//         alt: '',
-//         loading: (index === 0) ? 'eager' : 'lazy',
-//         'bg-mobile': elem.dataset.backgroundMobile,
-//         'bg-desktop': elem.dataset.backgroundDesktop,
-//       };
-//       const picture = createPicture(pictureProps);
-//       elem.append(picture);
-//     });
-//   }
-// }
-
-/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -460,7 +441,6 @@ export function decorateMain(main) {
   buildCarouselBlock(main);
   decorateSections(main);
   decorateBlocks(main);
-  // decorateFullWidthBanner(main);
   (new GenerateBackGroundImages()).init();
 }
 
