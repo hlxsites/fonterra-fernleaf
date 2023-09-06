@@ -237,7 +237,7 @@ export default async function decorate(block) {
     // Search Implementation
     const navTools = nav.querySelector('.nav-tools');
     if (navTools) {
-      const placeholders = await fetchPlaceholders();
+      const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
       const searchParamValue = currentUrl.searchParams.get(searchParamName);
       if (searchParamValue) {
         disablePageScroll();
