@@ -367,7 +367,7 @@ main .section.highlight {
   display: block;
   height: 730px;
   object-fit: cover;
-  object-position: bottom;
+  object-position: center;
 }
 
 .full-width-banner .default-content-wrapper {
