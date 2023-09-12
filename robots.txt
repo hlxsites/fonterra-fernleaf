@@ -10,8 +10,6 @@ Disallow: /ms/nav
 Disallow: /ms/footer
 Disallow: /404.html
 
-sitemap: https://www.fernleaf.com.my/sitemap.xml
+Sitemap: https://www.fernleaf.com.my/sitemap.xml
 
-# Remove below line before go live
-Disallow: /
-# Allow: /
+Allow: /
