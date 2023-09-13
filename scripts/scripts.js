@@ -95,10 +95,10 @@ export function getLanguage(curPath = window.location.pathname, resetCache = fal
 }
 
 /**
- * Reducing image size to custom Reduced size
+ * Changing passed image attribute to passed image attribute value
  * @param {*} row
  */
-export function adjustImageSize(img, newSize) {
+export function changeImageAttribute(img, imgAttr, imgAttrValue) {
   if (img) {
     let url;
     if (img.startsWith('/')) {
@@ -108,10 +108,10 @@ export function adjustImageSize(img, newSize) {
     }
     const params = url.searchParams;
 
-    if (params.has('width')) {
-      params.set('width', newSize);
+    if (params.has(imgAttr)) {
+      params.set(imgAttr, imgAttrValue);
     } else {
-      params.append('width', newSize);
+      params.append(imgAttr, imgAttrValue);
     }
 
     url.search = params.toString();

@@ -4,11 +4,11 @@ import {
 
 import {
   pushToGTM,
-  adjustImageSize,
+  changeImageAttribute,
 } from '../../scripts/scripts.js';
 
 const getHTML = (row) => `<a target="_blank" href="${row.link}" title="${row.brand}" aria-label="${row.brand}">
-                <img alt="${row.brand}" src="${adjustImageSize(row.img, 100)}" width="100" height="42">
+                <img alt="${row.brand}" src="${changeImageAttribute(row.img, 'width', 100)}" width="100" height="42">
             </a>`;
 
 const buyOptions = [];
