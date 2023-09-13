@@ -2,7 +2,7 @@ import {
   adjustImageSize,
   fetchSearch,
   CATEGORY_RECIPES,
-  ProcessBottomBgImage,
+  CreateBottomBgImage,
 } from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div>
@@ -45,7 +45,7 @@ export default async function decorate(block) {
   if (list.length > 0) {
     const objects = await printList(list);
     block.append(objects);
-    const boundFunction = new ProcessBottomBgImage().updateBgImage.bind(this, bgConfigParams);
+    const boundFunction = new CreateBottomBgImage().updateBgImage.bind(this, bgConfigParams);
     boundFunction();
   } else {
     block.append('no result found');

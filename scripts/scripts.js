@@ -215,8 +215,8 @@ export async function load404() {
   }
 }
 
-export function ProcessStoriesBgImage() {
-  this.updateStoriesBgImage = async (params) => {
+export function CreateBgImage() {
+  this.updateBgImage = async (params) => {
     const placeholder = await fetchPlaceholders();
     const storyContainer = document.querySelector('main');
 
@@ -239,13 +239,23 @@ export function ProcessStoriesBgImage() {
         BG_TOP_CLASS: 'story-page-bg-top',
         BG_BOTTOM_CLASS: 'bottom-bg',
       };
-      const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
+      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
+      boundAction();
+    }
+    if (document.querySelector('body.story-tips-landing')) {
+      const bgConfigParams = {
+        BG_TOP: 'storyListBgTop',
+        BG_BOTTOM: 'storyListBgBottom',
+        BG_TOP_CLASS: 'story-page-bg-top',
+        BG_BOTTOM_CLASS: 'bottom-bg',
+      };
+      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
       boundAction();
     }
   };
 }
 
-export function ProcessBottomBgImage() {
+export function CreateBottomBgImage() {
   this.updateBgImage = async (params) => {
     const placeholder = await fetchPlaceholders();
     const container = document.querySelector('main');
@@ -308,8 +318,8 @@ function buildAutoBlocks(main) {
   try {
     decorateLinkedPictures(main);
 
-    new ProcessStoriesBgImage().init();
-    new ProcessBottomBgImage().init();
+    new CreateBgImage().init();
+    new CreateBottomBgImage().init();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

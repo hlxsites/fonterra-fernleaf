@@ -1,14 +1,7 @@
 import {
-  getLanguage, adjustImageSize, fetchSearch, CATEGORY_STORIES, ProcessStoriesBgImage,
+  getLanguage, adjustImageSize, fetchSearch, CATEGORY_STORIES,
 } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
-
-const bgConfigParams = {
-  BG_TOP: 'storyListBgTop',
-  BG_BOTTOM: 'storyListBgBottom',
-  BG_TOP_CLASS: 'story-page-bg-top',
-  BG_BOTTOM_CLASS: 'bottom-bg',
-};
 
 async function printList(list) {
   const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
@@ -40,8 +33,4 @@ export default async function decorate(block) {
   } else {
     block.append('no result found');
   }
-  window.setTimeout(() => {
-    const processStoriesBgImage = new ProcessStoriesBgImage();
-    processStoriesBgImage.updateStoriesBgImage.bind(this, bgConfigParams).call();
-  }, 3000);
 }
