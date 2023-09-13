@@ -214,7 +214,9 @@ export async function load404() {
     sectionWrapper.innerHTML = createSectionWrapper();
   }
 }
-
+/**
+ * Creating top and bottom background images
+ */
 export function CreateBgImage() {
   this.updateBgImage = async (params) => {
     const placeholder = await fetchPlaceholders();
