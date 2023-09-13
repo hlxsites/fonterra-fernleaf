@@ -32,7 +32,8 @@
 
 /* Main - Hero Banner */
 .hero.main .hero-bg img {
-    height: 18.6rem;
+    height: auto;
+    min-height: 18.6rem;
     object-fit: cover;
 }
 
@@ -62,7 +63,7 @@
 
     /* Main - Hero Banner */
     .hero.main .hero-bg img {
-        height: 18.6rem;
+        min-height: 18.6rem;
     }
 }
 
@@ -73,7 +74,7 @@
 
     /* Main - Hero Banner */
     .hero.main .hero-bg img {
-        height: 38.75rem;        
+        min-height: 38.75rem;        
     }
 }
 
@@ -84,6 +85,6 @@
 
     /* Main - Hero Banner */
     .hero.main .hero-bg img {
-        height: 43.625rem;
+        min-height: 43.625rem;
     }
 }
