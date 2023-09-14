@@ -1,5 +1,5 @@
 import {
-  getLanguage, adjustImageSize, fetchSearch, CATEGORY_STORIES,
+  getLanguage, changeImageAttribute, fetchSearch, CATEGORY_STORIES, ProcessStoriesBgImage,
 } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
@@ -14,7 +14,7 @@ async function printList(list) {
 
   const ul = document.createElement('ul');
   list.forEach((row) => {
-    row.image = adjustImageSize(row.image, 300);
+    row.image = changeImageAttribute(row.image, 'width', 300);
     const li = document.createElement('li');
     li.classList.add('story');
     li.innerHTML = getListHTML(row);

@@ -298,8 +298,10 @@ header nav .nav-back-btn span {
     border-bottom: 3px;
     cursor: pointer;
     font-size: 13px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
-
+  
   header nav .nav-sections>ul>li>strong {
     border-bottom: 3px solid var(--global-color-selective-yellow);
     height: 100%;
@@ -307,13 +309,14 @@ header nav .nav-back-btn span {
     align-items: center;
   }
 
-  header nav .nav-sections>ul>li>a {
+  header nav>div.nav-sections>ul>li>a{
+    padding : .438rem .625rem .438rem .563rem;
     height: 70px;
     display: flex;
     align-items: center;
   }
 
-  header nav .nav-sections>ul>li>a::after {
+  header nav>div.nav-sections>ul>li>a::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -332,7 +335,7 @@ header nav .nav-back-btn span {
     font-weight: bold;
   }
 
-  header nav .nav-sections>ul>li>a:hover::after, header nav .nav-sections>ul>li>a:focus::after {
+  header nav>div.nav-sections>ul>li>a:hover::after,header nav>div.nav-sections>ul>li>a:focus::after {
     width: 100%;
   }
 
