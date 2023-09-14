@@ -1,5 +1,5 @@
 import {
-  getLanguage, changeImageAttribute, fetchSearch, CATEGORY_STORIES, ProcessStoriesBgImage,
+  getLanguage, changeImageAttribute, fetchSearch, CATEGORY_STORIES,
 } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 

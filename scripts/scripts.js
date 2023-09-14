@@ -234,25 +234,25 @@ export function CreateBgImage() {
     storyContainer.appendChild(bottomPicture);
   };
   this.init = () => {
+    let bgConfigParams = null;
     if (document.querySelector('body.story-tips')) {
-      const bgConfigParams = {
+      bgConfigParams = {
         BG_TOP: 'storyTipsBgTop',
         BG_BOTTOM: 'storyTipsBgBottom',
         BG_TOP_CLASS: 'story-page-bg-top',
         BG_BOTTOM_CLASS: 'bottom-bg',
       };
-      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
-      boundAction();
     }
     if (document.querySelector('body.story-tips-landing')) {
-      const bgConfigParams = {
+      bgConfigParams = {
         BG_TOP: 'storyListBgTop',
         BG_BOTTOM: 'storyListBgBottom',
         BG_TOP_CLASS: 'story-page-bg-top',
         BG_BOTTOM_CLASS: 'bottom-bg',
       };
-      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
-      boundAction();
+    }
+    if (bgConfigParams) {
+      this.updateBgImage.call(this, bgConfigParams);
     }
   };
 }
