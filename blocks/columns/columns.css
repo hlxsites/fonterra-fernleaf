@@ -50,6 +50,11 @@
   white-space: break-spaces;
 }
 
+.columns.col-1by3 div div:first-child {
+  width: 100%;
+  min-height: 300px;
+}
+
 @media (min-width: 600px) {
   .columns > div {
     flex-flow: row wrap;

@@ -560,11 +560,12 @@ main .section.highlight {
   padding-top: 40px;
 }
 
-[lang="en"] .story-tips .section:first-of-type .default-content-wrapper {
+[lang="en"] .story-tips .section:first-of-type .default-content-wrapper ul,
+[lang="en"] .story-tips .section:first-of-type .default-content-wrapper ol{
   white-space: pre-line;
 }
 
-[lang="ms"] .story-tips .section:first-of-type .default-content-wrapper {
+[lang="ms"] .story-tips .section:first-of-type .default-content-wrapper{
   padding-bottom: 0;
 }
 

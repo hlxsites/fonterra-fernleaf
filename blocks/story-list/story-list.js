@@ -1,21 +1,14 @@
 import {
-  getLanguage, changeImageAttribute, fetchSearch, CATEGORY_STORIES, ProcessStoriesBgImage,
+  getLanguage, changeImageAttribute, fetchSearch, CATEGORY_STORIES,
 } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
-
-const bgConfigParams = {
-  BG_TOP: 'storyListBgTop',
-  BG_BOTTOM: 'storyListBgBottom',
-  BG_TOP_CLASS: 'story-page-bg-top',
-  BG_BOTTOM_CLASS: 'bottom-bg',
-};
 
 async function printList(list) {
   const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
   const getListHTML = (row, index) => `<div class="story-image"><img alt="${row.shorttitle}" loading="${!index ? 'eager' : 'lazy'}" src="${row.image}" width="300" height="218"></div>
             <div class="story-content">
                 <div class="story-title"><a href="${row.path}" title="${row.shorttitle}" aria-label="${row.shorttitle}">${row.shorttitle}</a></div>
-                <p class="story-desc">${row.description}</p>
+                <p class="story-desc">${row.shortdesc}</p>
                 <a href="${row.path}" title="${row.shorttitle}" aria-label="${placeholders.readmore} for ${row.shorttitle}" class="button primary">${placeholders.readmore}</a>
             </div>`;
 
@@ -40,8 +33,4 @@ export default async function decorate(block) {
   } else {
     block.append('no result found');
   }
-  window.setTimeout(() => {
-    const processStoriesBgImage = new ProcessStoriesBgImage();
-    processStoriesBgImage.updateStoriesBgImage.bind(this, bgConfigParams).call();
-  }, 3000);
 }
