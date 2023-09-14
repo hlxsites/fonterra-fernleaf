@@ -1,5 +1,5 @@
 import {
-  adjustImageSize,
+  changeImageAttribute,
   fetchSearch,
   CATEGORY_RECIPES,
   ProcessBottomBgImage,
@@ -26,7 +26,7 @@ async function printList(list) {
   const ul = document.createElement('ul');
   list.forEach((row) => {
     if (row.shorttitle !== '0') {
-      row.image = adjustImageSize(row.image, 500);
+      row.image = changeImageAttribute(row.image, 'width', 500);
       const li = document.createElement('li');
       li.innerHTML = getListHTML(row);
       if (row.shortdesc === '0') {
