@@ -2,7 +2,6 @@ import {
   changeImageAttribute,
   fetchSearch,
   CATEGORY_RECIPES,
-  ProcessBottomBgImage,
 } from '../../scripts/scripts.js';
 
 const getListHTML = (row) => `<div>
@@ -17,10 +16,6 @@ const getListHTML = (row) => `<div>
                     </div>
                 </div>
             </a></div>`;
-const bgConfigParams = {
-  bgKey: 'recipesBgBottom',
-  bgClass: 'bottom-bg',
-};
 
 async function printList(list) {
   const ul = document.createElement('ul');
@@ -45,8 +40,6 @@ export default async function decorate(block) {
   if (list.length > 0) {
     const objects = await printList(list);
     block.append(objects);
-    const boundFunction = new ProcessBottomBgImage().updateBgImage.bind(this, bgConfigParams);
-    boundFunction();
   } else {
     block.append('no result found');
   }
