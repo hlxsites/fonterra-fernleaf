@@ -242,8 +242,7 @@ export function CreateBgImage() {
         BG_TOP_CLASS: 'story-page-bg-top',
         BG_BOTTOM_CLASS: 'bottom-bg',
       };
-    }
-    if (document.querySelector('body.story-tips-landing')) {
+    } else if (document.querySelector('body.story-tips-landing')) {
       bgConfigParams = {
         BG_TOP: 'storyListBgTop',
         BG_BOTTOM: 'storyListBgBottom',
@@ -267,13 +266,20 @@ export function CreateBottomBgImage() {
     }
   };
   this.init = () => {
+    let bgConfigParams = null;
     if (document.querySelector('main .product-category')) {
-      const bgConfigParams = {
+      bgConfigParams = {
         bgKey: 'categoryBgBottom',
         bgClass: 'bottom-bg',
       };
-      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
-      boundAction();
+    } else if (document.querySelector('body.recipe')) {
+      bgConfigParams = {
+        bgKey: 'recipesBgBottom',
+        bgClass: 'bottom-bg',
+      };
+    }
+    if (bgConfigParams) {
+      this.updateBgImage.call(this, bgConfigParams);
     }
   };
 }
