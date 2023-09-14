@@ -47,6 +47,11 @@ function focusNavSection() {
  */
 function toggleAllNavSections(sections, expanded = false) {
   sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
+    const subNav = section.querySelector('.sub-nav-list');
+    if (subNav) {
+      subNav.classList.remove('active');
+      document.body.classList.remove('disable-page-scroll');
+    }
     section.setAttribute('aria-expanded', expanded);
   });
 }
@@ -194,25 +199,71 @@ export default async function decorate(block) {
     });
 
     const navSections = nav.querySelector('.nav-sections');
+
     if (navSections) {
+      const currentPageURL = new URL(window.location.href);
+      const pageCategory = currentPageURL.pathname.split('/')[2];
+
       navSections.querySelectorAll(':scope > ul > li').forEach((navSection) => {
-        if (navSection.querySelector('a').href === window.location.href) {
+        const sectionLink = navSection.querySelector('a');
+        if (!sectionLink) return;
+
+        const sectionURL = new URL(sectionLink.href);
+        const linkCategory = sectionURL.pathname.split('/')[2];
+
+        if (sectionURL.href === currentPageURL.href || pageCategory === linkCategory) {
           navSection.classList.add('active');
-        } else { // make the category page link active for sub pages as well
-          const pageCategory = new URL(window.location.href).pathname.split('/')[2];
-          const linkCategory = new URL(navSection.querySelector('a').href).pathname.split('/')[2];
-          if (pageCategory === linkCategory) {
-            navSection.classList.add('active');
-          }
         }
-        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-        navSection.addEventListener('mouseenter', () => {
+
+        const subNav = navSection.querySelector('ul');
+        if (subNav) {
+          const backLink = document.createElement('li');
+          backLink.classList.add('back-link');
+          backLink.textContent = 'Back To Main Menu';
+          subNav.prepend(backLink);
+          subNav.outerHTML = `<div class="sub-nav-arrow"><span class="icon icon-arrow-right"></span></div><div class="sub-nav-list">${subNav.outerHTML}</div>`;
+          navSection.classList.add('nav-drop');
+        }
+
+        const arrow = navSection.querySelector('.sub-nav-arrow');
+        const subNavList = navSection.querySelector('.sub-nav-list');
+        const backLink = navSection.querySelector('.back-link');
+
+        if (arrow) {
+          arrow.addEventListener('click', () => {
+            const expanded = navSection.getAttribute('aria-expanded') === 'true';
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', !expanded ? 'true' : 'false');
+            if (subNavList) {
+              subNavList.classList.add('active');
+              document.body.classList.add('disable-page-scroll');
+            }
+          });
+        }
+
+        if (backLink) {
+          backLink.addEventListener('click', () => {
+            if (subNavList) {
+              subNavList.classList.remove('active');
+              toggleAllNavSections(navSections);
+            }
+          });
+        }
+
+        const handleMouseAndFocus = () => {
           if (isDesktop.matches) {
             const expanded = navSection.getAttribute('aria-expanded') === 'true';
             toggleAllNavSections(navSections);
-            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+            navSection.setAttribute('aria-expanded', !expanded ? 'true' : 'false');
+            if (subNavList) {
+              subNavList.classList.add('active');
+              document.body.classList.add('disable-page-scroll');
+            }
           }
-        });
+        };
+
+        navSection.addEventListener('mouseover', handleMouseAndFocus);
+        navSection.addEventListener('focus', handleMouseAndFocus);
       });
     }
 
