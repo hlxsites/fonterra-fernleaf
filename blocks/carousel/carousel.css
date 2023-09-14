@@ -137,7 +137,7 @@
 
 .section > div.carousel-wrapper > div.product-landing-page {
     padding-top: 0;
-    margin: -15rem 0 5rem;
+    margin: -9rem 2rem 5rem;
     position: relative;
     z-index: 100;
 }
@@ -158,6 +158,12 @@
     .scroll-left::before, .scroll-right::before {
         font-size: 2rem;
     }
+
+    .section > div.carousel-wrapper > div.product-landing-page {
+        margin: -15rem 0 5rem;
+    }
+
+
 }
 
 @media (min-width: 900px) {
@@ -175,5 +181,9 @@
 
     .scroll-left::before, .scroll-right::before {
         font-size: 3rem;
+    }
+
+    .section > div.carousel-wrapper > div.product-landing-page {
+        margin: -15rem 0 5rem;
     }
 } 
