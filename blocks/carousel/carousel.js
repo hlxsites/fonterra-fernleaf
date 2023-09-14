@@ -1,4 +1,4 @@
-import { getLanguage, fetchSearch, adjustImageSize } from '../../scripts/scripts.js';
+import { getLanguage, fetchSearch, changeImageAttribute } from '../../scripts/scripts.js';
 import { fetchPlaceholders } from '../../scripts/lib-franklin.js';
 
 // maintains current state for carousel items
@@ -13,6 +13,8 @@ let bulletCurrent = 1;
 let interval;
 // difference between active and clicked bullets in carousel
 let bulletDiff = 1;
+// stores if block is a product landing page variant or not
+let productLandingPageCarousel = false;
 
 /**
  * Handler for button click, initiates transition
@@ -37,11 +39,11 @@ function fetchItemsInCarousel() {
   if (category === 'recipe') {
     itemsInCarousel = screenWidth < 900 ? 2 : 3;
   } else if (screenWidth < 600) {
-    itemsInCarousel = 2;
+    itemsInCarousel = productLandingPageCarousel ? 1 : 2;
   } else if (screenWidth < 900) {
-    itemsInCarousel = 3;
+    itemsInCarousel = productLandingPageCarousel ? 2 : 3;
   } else {
-    itemsInCarousel = 4;
+    itemsInCarousel = productLandingPageCarousel ? 3 : 4;
   }
   return itemsInCarousel;
 }
@@ -170,7 +172,10 @@ function showHideCarousel() {
 
 async function addCarouselHeader() {
   const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
-  const parentElement = document.querySelector('.carousel-container');
+  let parentElement = document.querySelector('.carousel-container');
+  if (productLandingPageCarousel) {
+    parentElement = document.querySelector('.carousel');
+  }
   const section = document.createElement('div');
   section.classList.add('carousel-header');
   const headerText = category === 'recipe' ? placeholders.recipecarouselheading : placeholders.productscarouselheading;
@@ -194,7 +199,15 @@ function autoScrollCarousel() {
   }
 }
 
+function isCarouselBlockVariant() {
+  const carouselElement = document.querySelector('.carousel');
+  if (carouselElement.classList.contains('product-landing-page')) {
+    productLandingPageCarousel = true;
+  }
+}
+
 export default async function decorate(block) {
+  isCarouselBlockVariant();
   category = block.innerText.replace(/\s/g, '');
   const filteredItems = (await fetchSearch(category)).filter(
     (c) => c.path !== window.location.pathname,
@@ -226,7 +239,8 @@ export default async function decorate(block) {
     let intialCount = 1;
     randomItems.forEach((item) => {
       const categoryElement = document.createElement('div');
-      const updatedImageUrl = adjustImageSize(item.image, 250);
+      let updatedImageUrl = changeImageAttribute(item.image, 'width', productLandingPageCarousel ? 450 : 250);
+      updatedImageUrl = changeImageAttribute(updatedImageUrl, 'format', 'webp');
       const tabIndexValue = intialCount <= fetchItemsInCarousel() ? 0 : -1;
       categoryElement.innerHTML = `
         <a href="${item.path}" title='${item.shorttitle}' tabindex='${tabIndexValue}'>
