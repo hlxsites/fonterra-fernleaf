@@ -47,9 +47,9 @@ function focusNavSection() {
  */
 function toggleAllNavSections(sections, expanded = false) {
   sections.querySelectorAll('.nav-sections > ul > li').forEach((section) => {
-    const subNav = section.querySelector('.sub-nav-list');
-    if (subNav) {
-      subNav.classList.remove('active');
+    const subNavList = section.querySelector('.sub-nav-list');
+    if (subNavList) {
+      subNavList.classList.remove('active');
       document.body.classList.remove('disable-page-scroll');
     }
     section.setAttribute('aria-expanded', expanded);
