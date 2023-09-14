@@ -203,9 +203,7 @@ function isCarouselBlockVariant() {
   const carouselElement = document.querySelector('.carousel');
   if (carouselElement.classList.contains('product-landing-page')) {
     productLandingPageCarousel = true;
-    return true;
   }
-  return false;
 }
 
 export default async function decorate(block) {
