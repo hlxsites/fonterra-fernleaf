@@ -51,11 +51,14 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   hideAllSubNavSections(navSections);
   if (expanded) {
+    nav.setAttribute('aria-expanded', 'false');
     document.body.classList.remove('disable-page-scroll');
+    button.setAttribute('aria-label', 'Open navigation');
   } else {
+    nav.setAttribute('aria-expanded', 'true');
     document.body.classList.add('disable-page-scroll');
+    button.setAttribute('aria-label', 'Close navigation');
   }
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   if (!expanded || isDesktop.matches) {
     // collapse menu on escape press
     window.addEventListener('keydown', closeOnEscape);
