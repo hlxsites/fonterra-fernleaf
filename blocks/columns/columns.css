@@ -50,11 +50,9 @@
   white-space: break-spaces;
 }
 
-@media (max-width: 900px) {
-  .columns.col-1by3 div div:first-child {
-    width: 100%;
-    min-height: 300px;
-  }
+.columns.col-1by3 div div:first-child {
+  width: 100%;
+  min-height: 300px;
 }
 
 @media (min-width: 600px) {
