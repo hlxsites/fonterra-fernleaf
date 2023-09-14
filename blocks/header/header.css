@@ -22,7 +22,7 @@ span.icon.icon-search svg {
 span.icon.icon-search {
   background: var(--global-color-strong-green);
   border-radius: 50%;
-  color: white;
+  color: var(--global-color-white);
   position: relative;
 }
 
@@ -278,7 +278,7 @@ header nav .nav-sections .sub-nav-list ul li {
 }
 
 header nav .nav-sections .sub-nav-list ul li.back-link {
-  background-color: #fff;
+  background-color: var(--global-color-white);
   cursor: pointer;
   font-family: var(--global-quinary-font-family);
   font-size: .875rem;
@@ -297,7 +297,7 @@ header nav .nav-sections .nav-drop {
 }
 
 header nav .nav-sections .sub-nav-arrow {  
-  border-left: 1px solid #e5e5e5;
+  border-left: 1px solid var(--global-color-mercury);
   cursor: pointer;
   margin: 5px 0;
   padding: 12px 20px;
@@ -395,7 +395,7 @@ header nav .nav-sections .sub-nav-arrow .icon-arrow-right {
   }
 
   header nav .nav-sections .sub-nav-list ul li a {
-    color: #000;
+    color: var(--global-color-black);
     font-size: .875rem;
     padding: 0;
   }

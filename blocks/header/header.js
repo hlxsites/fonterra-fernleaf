@@ -48,10 +48,17 @@ function closeOnEscape(e) {
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   hideAllSubNavSections(navSections);
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+  if (expanded) {
+    nav.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('disable-page-scroll');
+    button.setAttribute('aria-label', 'Open navigation');
+  } else {
+    nav.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('disable-page-scroll');
+    button.setAttribute('aria-label', 'Close navigation');
+  }
   if (!expanded || isDesktop.matches) {
     // collapse menu on escape press
     window.addEventListener('keydown', closeOnEscape);
@@ -209,7 +216,6 @@ export default async function decorate(block) {
           backLink.addEventListener('click', () => {
             if (subNavList) {
               hideAllSubNavSections(navSections);
-              document.body.classList.remove('disable-page-scroll');
             }
           });
         }
