@@ -48,9 +48,13 @@ function closeOnEscape(e) {
 function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   hideAllSubNavSections(navSections);
+  if (expanded) {
+    document.body.classList.remove('disable-page-scroll');
+  } else {
+    document.body.classList.add('disable-page-scroll');
+  }
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   if (!expanded || isDesktop.matches) {
     // collapse menu on escape press
@@ -209,7 +213,6 @@ export default async function decorate(block) {
           backLink.addEventListener('click', () => {
             if (subNavList) {
               hideAllSubNavSections(navSections);
-              document.body.classList.remove('disable-page-scroll');
             }
           });
         }
