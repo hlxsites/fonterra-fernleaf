@@ -183,6 +183,7 @@ export default async function decorate(block) {
 
   if (resp.ok) {
     const html = await resp.text();
+    const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
 
     // decorate nav DOM
     const nav = document.createElement('nav');
@@ -219,7 +220,7 @@ export default async function decorate(block) {
         if (subNav) {
           const backLink = document.createElement('li');
           backLink.classList.add('back-link');
-          backLink.textContent = 'Back To Main Menu';
+          backLink.textContent = placeholders?.backToMenu;
           subNav.prepend(backLink);
           subNav.outerHTML = `<div class="sub-nav-arrow"><span class="icon icon-arrow-right"></span></div><div class="sub-nav-list">${subNav.outerHTML}</div>`;
           navSection.classList.add('nav-drop');
@@ -288,7 +289,6 @@ export default async function decorate(block) {
     // Search Implementation
     const navTools = nav.querySelector('.nav-tools');
     if (navTools) {
-      const placeholders = await fetchPlaceholders(`/${getLanguage()}`);
       const searchParamValue = currentUrl.searchParams.get(searchParamName);
       if (searchParamValue) {
         disablePageScroll();
