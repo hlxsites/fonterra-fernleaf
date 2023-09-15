@@ -48,3 +48,6 @@ indices:
       tags:
         select: head > meta[property="article:tag"]
         values: attribute(el, "content")
+      visibility:
+        select: head > meta[name="visibility"]
+        value: attribute(el, "content")
