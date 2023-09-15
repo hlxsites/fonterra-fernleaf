@@ -14,12 +14,14 @@ async function printList(list) {
 
   const ul = document.createElement('ul');
   list.forEach((row) => {
-    row.image = changeImageAttribute(row.image, 'width', 300);
-    const li = document.createElement('li');
-    li.classList.add('story');
-    li.innerHTML = getListHTML(row);
+    if (row.visibility !== 'off') {
+      row.image = changeImageAttribute(row.image, 'width', 300);
+      const li = document.createElement('li');
+      li.classList.add('story');
+      li.innerHTML = getListHTML(row);
 
-    ul.append(li);
+      ul.append(li);
+    }
   });
   return ul;
 }

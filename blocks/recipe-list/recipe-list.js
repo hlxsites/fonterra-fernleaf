@@ -20,7 +20,7 @@ const getListHTML = (row) => `<div>
 async function printList(list) {
   const ul = document.createElement('ul');
   list.forEach((row) => {
-    if (row.shorttitle !== '0') {
+    if (row.shorttitle !== '0' && row.visibility !== 'off') {
       row.image = changeImageAttribute(row.image, 'width', 500);
       const li = document.createElement('li');
       li.innerHTML = getListHTML(row);
