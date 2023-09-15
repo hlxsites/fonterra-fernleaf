@@ -24,31 +24,14 @@ function hideAllSubNavSections(sections) {
   });
 }
 
-function closeOnEscape(e) {
-  if (e.code === 'Escape') {
-    const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      hideAllSubNavSections(navSections);
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections);
-      nav.querySelector('button').focus();
-    }
-  }
-}
-
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
  * @param {Element} navSections The nav sections within the container element
- * @param {*} forceExpanded Optional param to force nav expand behavior when not null
  */
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
+function toggleMenu(nav, navSections) {
+  const expanded = nav.getAttribute('aria-expanded').toLowerCase() === 'true';
   const button = nav.querySelector('.nav-hamburger button');
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   hideAllSubNavSections(navSections);
   if (expanded) {
     nav.setAttribute('aria-expanded', 'false');
@@ -58,12 +41,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     nav.setAttribute('aria-expanded', 'true');
     document.body.classList.add('disable-page-scroll');
     button.setAttribute('aria-label', 'Close navigation');
-  }
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
   }
 }
 
@@ -238,7 +215,7 @@ export default async function decorate(block) {
       });
     }
 
-    // hamburger for mobile
+    // Hamburger for mobile
     const hamburger = document.createElement('div');
     hamburger.classList.add('nav-hamburger');
     hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
@@ -246,10 +223,20 @@ export default async function decorate(block) {
       </button>`;
     hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
     nav.prepend(hamburger);
-    nav.setAttribute('aria-expanded', 'false');
-    // prevent mobile nav behavior on window resize
-    toggleMenu(nav, navSections, isDesktop.matches);
-    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+
+    // Set aria-expanded as true for Desktop
+    nav.setAttribute('aria-expanded', isDesktop.matches);
+
+    // Close the Navigation while resizing the browser
+    window.addEventListener('resize', () => {
+      hideAllSubNavSections(navSections);
+      document.body.classList.remove('disable-page-scroll');
+      if (isDesktop.matches) {
+        nav.setAttribute('aria-expanded', 'true');
+      } else {
+        nav.setAttribute('aria-expanded', 'false');
+      }
+    });
 
     const navWrapper = document.createElement('div');
     navWrapper.className = 'nav-wrapper';

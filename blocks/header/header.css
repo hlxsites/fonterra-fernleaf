@@ -379,7 +379,7 @@ header nav .nav-sections .sub-nav-arrow .icon-arrow-right {
     width: 100%;
   }
 
-  header nav .nav-sections .sub-nav-list.active {
+  header nav .nav-sections .sub-nav-list {
     transition: height 0.3s;
   }
 
