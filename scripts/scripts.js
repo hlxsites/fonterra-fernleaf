@@ -214,9 +214,11 @@ export async function load404() {
     sectionWrapper.innerHTML = createSectionWrapper();
   }
 }
-
-export function ProcessStoriesBgImage() {
-  this.updateStoriesBgImage = async (params) => {
+/**
+ * Creating top and bottom background images
+ */
+export function CreateBgImage() {
+  this.updateBgImage = async (params) => {
     const placeholder = await fetchPlaceholders();
     const storyContainer = document.querySelector('main');
 
@@ -232,20 +234,29 @@ export function ProcessStoriesBgImage() {
     storyContainer.appendChild(bottomPicture);
   };
   this.init = () => {
+    let bgConfigParams = null;
     if (document.querySelector('body.story-tips')) {
-      const bgConfigParams = {
+      bgConfigParams = {
         BG_TOP: 'storyTipsBgTop',
         BG_BOTTOM: 'storyTipsBgBottom',
         BG_TOP_CLASS: 'story-page-bg-top',
         BG_BOTTOM_CLASS: 'bottom-bg',
       };
-      const boundAction = this.updateStoriesBgImage.bind(this, bgConfigParams);
-      boundAction();
+    } else if (document.querySelector('body.story-tips-landing')) {
+      bgConfigParams = {
+        BG_TOP: 'storyListBgTop',
+        BG_BOTTOM: 'storyListBgBottom',
+        BG_TOP_CLASS: 'story-page-bg-top',
+        BG_BOTTOM_CLASS: 'bottom-bg',
+      };
+    }
+    if (bgConfigParams) {
+      this.updateBgImage.call(this, bgConfigParams);
     }
   };
 }
 
-export function ProcessBottomBgImage() {
+export function CreateBottomBgImage() {
   this.updateBgImage = async (params) => {
     const placeholder = await fetchPlaceholders();
     const container = document.querySelector('main');
@@ -255,13 +266,20 @@ export function ProcessBottomBgImage() {
     }
   };
   this.init = () => {
+    let bgConfigParams = null;
     if (document.querySelector('main .product-category')) {
-      const bgConfigParams = {
+      bgConfigParams = {
         bgKey: 'categoryBgBottom',
         bgClass: 'bottom-bg',
       };
-      const boundAction = this.updateBgImage.bind(this, bgConfigParams);
-      boundAction();
+    } else if (document.querySelector('body.recipe')) {
+      bgConfigParams = {
+        bgKey: 'recipesBgBottom',
+        bgClass: 'bottom-bg',
+      };
+    }
+    if (bgConfigParams) {
+      this.updateBgImage.call(this, bgConfigParams);
     }
   };
 }
@@ -308,8 +326,8 @@ function buildAutoBlocks(main) {
   try {
     decorateLinkedPictures(main);
 
-    new ProcessStoriesBgImage().init();
-    new ProcessBottomBgImage().init();
+    new CreateBgImage().init();
+    new CreateBottomBgImage().init();
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
