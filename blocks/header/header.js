@@ -224,8 +224,11 @@ export default async function decorate(block) {
     hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
     nav.prepend(hamburger);
 
-    // Resize Observer for Navigation to reset
-    const resizeObserver = new ResizeObserver(() => {
+    // Set aria-expanded as true for Desktop
+    nav.setAttribute('aria-expanded', isDesktop.matches);
+
+    // Close the Navigation while resizing the browser
+    window.addEventListener('resize', () => {
       hideAllSubNavSections(navSections);
       document.body.classList.remove('disable-page-scroll');
       if (isDesktop.matches) {
@@ -234,8 +237,6 @@ export default async function decorate(block) {
         nav.setAttribute('aria-expanded', 'false');
       }
     });
-
-    resizeObserver.observe(nav);
 
     const navWrapper = document.createElement('div');
     navWrapper.className = 'nav-wrapper';
