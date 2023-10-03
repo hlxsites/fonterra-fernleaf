@@ -1,7 +1,6 @@
 .recipe .recipe-list-container #recipes {
-  color: var(--global-color-strong-red);
-  font-size: 1.563rem;
   margin: 0;
+  font-size: 1.563rem;
 }
 
 .recipe .recipe-list ul {
