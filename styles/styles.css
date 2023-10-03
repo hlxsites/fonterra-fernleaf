@@ -54,7 +54,7 @@
   --global-color-dark-goldenrod: #c18812;
   --global-color-philippine-bronze: #630;
   --global-color-strong-green: #006636;
-  --global-color-strong-red: #AE1C14;
+  --global-color-green: #060;
 
   /* Colors - Alias Names */
   --text-color: var(--global-color-black);
@@ -63,6 +63,7 @@
   --border-highlight-color: var(--global-color-selective-yellow);
   --overlay-background-color: var(--global-color-dim-gray);
   --highlight-background-color: var(--global-color-silver);
+  --headings-color: var(--global-color-green);
 
   /* body sizes */
   --body-font-size-l: 20px;
@@ -160,13 +161,13 @@ h1 {
 
 h2 {
   font-size: var(--heading-font-size-xl);
-  color: var(--global-color-strong-red);
+  color: var(--headings-color);
   font-weight: bold;
 }
 
 h3 {
   font-size: var(--heading-font-size-l);
-  color: var(--global-color-strong-red);
+  color: var(--headings-color);
 }
 
 h4 {
@@ -450,10 +451,6 @@ main .section.highlight {
   vertical-align: middle;
 }
 
-.recipe h2 {
-  color: var(--global-color-strong-red);
-}
-
 /* stylelint-disable no-descending-specificity */
 .recipe h2 + p {
   margin-bottom: 1.375rem;
@@ -602,15 +599,6 @@ main .section.highlight {
   bottom: 0;
   aspect-ratio: 2/3 auto;
 }
-
-#protein-milk-powder-for-the-whole-family, #protein-susu-tepung-untuk-seisi-keluarga {
-  color: var(--global-color-strong-red);
-}
-
-.product #protein-milk-powder-for-the-whole-family, .product #protein-susu-tepung-untuk-seisi-keluarga {
-  color: var(--global-color-strong-green);
-}
-
 
 @media (min-width: 600px) {
   /* Full Width Banner */
