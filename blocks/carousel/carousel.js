@@ -239,7 +239,7 @@ export default async function decorate(block) {
     let intialCount = 1;
     randomItems.forEach((item) => {
       const categoryElement = document.createElement('div');
-      let updatedImageUrl = changeImageAttribute(item.image, 'width', productLandingPageCarousel ? 450 : 250);
+      let updatedImageUrl = changeImageAttribute(item.image, 'width', 250);
       updatedImageUrl = changeImageAttribute(updatedImageUrl, 'format', 'webp');
       const tabIndexValue = intialCount <= fetchItemsInCarousel() ? 0 : -1;
       categoryElement.innerHTML = `
