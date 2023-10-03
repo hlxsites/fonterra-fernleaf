@@ -54,7 +54,7 @@
   --global-color-dark-goldenrod: #c18812;
   --global-color-philippine-bronze: #630;
   --global-color-strong-green: #006636;
-  --global-color-green: #006600;
+  --global-color-green: #060;
 
   /* Colors - Alias Names */
   --text-color: var(--global-color-black);
