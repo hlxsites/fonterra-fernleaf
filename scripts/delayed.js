@@ -134,6 +134,14 @@ function GoogleTagManager() {
         'cookie_flags': 'SameSite=None;Secure'
     });
     `;
+
+    const gtmIframe = document.createElement('iframe');
+    gtmIframe.classList.add('gtm-iframe');
+    gtmIframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-NX6JQZG';
+    const gtmEl = document.createElement('noscript');
+    gtmEl.append(gtmIframe);
+
+    document.head.prepend(gtmEl);
     document.head.prepend(scriptTag);
   };
 }
