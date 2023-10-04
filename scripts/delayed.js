@@ -141,8 +141,8 @@ function GoogleTagManager() {
     const gtmEl = document.createElement('noscript');
     gtmEl.append(gtmIframe);
 
-    document.head.prepend(gtmEl);
     document.head.prepend(scriptTag);
+    document.body.prepend(gtmEl);
   };
 }
 
